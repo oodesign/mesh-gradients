@@ -1,23 +1,30 @@
 {
-  "compatibleVersion": 3,
-  "bundleVersion": 1,
+  "identifier": "com.oodesign.meshgradients",
+  "name": "Mesh gradients",
+  "icon": "icon.png",
+  "description": "Merge symbols or styles, replacing all instances and keeping overrides.",
+  "author": "oodesign",
+  "homepage": "http://bit.ly/mergesymbolsinsketch",
+  "compatibleVersion": 50,
   "commands": [
     {
-      "name": "my-command",
-      "identifier": "mesh-gradients.my-command-identifier",
-      "script": "./my-command.js",
+      "script": "Main.js",
+      "name": "Mesh gradient",
       "handlers": {
-        "run": "onRun",
+        "run": "EditGradient",
         "actions": {
           "Shutdown": "onShutdown"
         }
-      }
+      },
+      "identifier": "newmeshgradient",
+      "shortcut": "ctrl shift g",
+      "icon": "icon-sr.png"
     }
   ],
   "menu": {
-    "title": "mesh-gradients",
+    "title": "Mesh gradients ...",
     "items": [
-      "mesh-gradients.my-command-identifier"
+      "newmeshgradient"
     ]
   }
 }

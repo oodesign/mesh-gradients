@@ -1,28 +1,150 @@
-/* some default styles to make the view more native like */
-
-html {
-  box-sizing: border-box;
-  background: transparent;
-
-  /* Prevent the page to be scrollable */
+body {
+  position: relative;
+  display: flex;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
   overflow: hidden;
-
-  /* Force the default cursor, even on text */
-  cursor: default;
+  font-family: 'Abel', sans-serif;
+  align-items: center;
+  justify-content: center;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
-  position: relative;
+.hotkey-button {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: #0024;
+  border: none;
+  padding: 1rem;
+  border-radius: 3px;
+}
+.hotkeys {
+  position: absolute;
+  left: inherit;
+  margin: 3rem;
+}
 
-  /* Prevent the content from being selectionable */
-  -webkit-user-select: none;
+.gradient-mesh {
+  position: relative;
+  display: flex;
+  width: 70vh;
+  max-width: 80vw;
+  height: 70vh;
+  max-height: 80vw;
+  color: #fff;
+  font-size: 5vh;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2vh 2vh 6vh 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.gradient-mesh.editing {
+  cursor: default;
   user-select: none;
 }
 
-input, textarea {
-  -webkit-user-select: auto;
-  user-select: auto;
+.gradient-mesh canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.gradient-mesh.editing .control-point {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 0;
+  left: 0;
+  background-color: #00000055;
+  border: 1px solid white;
+  border-radius: 10px;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+.gradient-mesh .control-point.active {
+  background-color: #ffffff;
+  border-color: #000;
+}
+
+.gradient-mesh.editing .tangent-point {
+  display: none;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: #000;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.gradient-mesh .control-point.active .tangent-point {
+  display: block;
+}
+
+.gradient-mesh .control-point.active .tangent-point.hidden {
+  display: none;
+}
+
+.color-editor {
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  right: 40px;
+  background-color: #0024;
+  padding: 24px 12px;
+  border-radius: 3px;
+}
+
+.color-editor.editing {
+  display: flex;
+}
+
+.color-editor input.slider {
+  margin-top: 30px;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background: #ffffff88;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity .2s;
+}
+
+.color-editor input.slider:hover {
+  opacity: 1;
+}
+
+.color-editor input.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.color-editor input.slider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.color-editor__indicator {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #000;
 }

@@ -29,7 +29,8 @@
     "resources/**/*.js"
   ],
   "dependencies": {
-    "sketch-module-web-view": "^3.1.4"
+    "sketch-module-web-view": "^3.1.4",
+    "three": "^0.108.0"
   },
   "author": "oodesign <oscar@oodesign.me>"
 }
