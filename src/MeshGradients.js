@@ -29,6 +29,10 @@ export function EditGradient(context) {
   webContents.on('Cancel', () => {
     onShutdown(webviewIdentifier);
   });
+
+  webContents.on('nativeLog', s => {
+    console.log(s);
+  })
 };
 
 export function onShutdown(webviewID) {

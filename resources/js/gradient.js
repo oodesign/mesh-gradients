@@ -263,6 +263,7 @@ window.addEventListener('keydown', (e) => {
     editor.toggleTangentBinding();
     calculateHermiteSurface();
     renderer.render(scene, sceneCamera);
+    window.postMessage("nativeLog", document.querySelector('canvas').toDataURL('image/png', 0.95))
   }
 });
 
