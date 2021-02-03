@@ -1,0 +1,1706 @@
+
+@import "scss/_media"; 
+@import "scss/_colors"; 
+@import "scss/_layout"; 
+ @import "scss/_meshgradients"; 
+
+html {
+  box-sizing: border-box;
+  background: transparent;
+  overflow: hidden;
+  cursor: default;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  padding:0;
+  margin:0;
+
+  @include for-theme(light){
+      background-color: $light_backgroundColor;
+      color: $light_primaryColor;
+  }
+  
+  @include for-theme(dark){
+      background-color: $dark_backgroundColor;
+      color: $dark_primaryColor;
+  }
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  /* Prevent the content from being selectionable */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.leftPanelPadding{
+  padding: $topPadding $leftRightPadding $bottomPadding $leftRightPadding;
+}
+
+
+
+.leftPanelArea{
+  overflow: hidden;
+  padding: $topPadding 0 $bottomPadding 0;
+  @include for-theme(light){
+    background-color: $light_leftPanelBackgroundColor;
+    border-right: 1px solid $light_bottomBarBorderColor;
+  }
+  @include for-theme(dark){
+    background-color: $dark_leftPanelBackgroundColor;
+    border-right: 1px solid $dark_bottomBarBorderColor;
+  }
+
+  .roundCheckbox{
+    margin-bottom: 10px;
+    span{
+      width:180px;
+    }
+  }
+}
+
+.rightPanelPadding{
+  padding: $topPadding $leftRightPadding 0 $leftRightPadding;
+}
+
+@mixin primaryText{
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  @include for-theme(light){
+    color: $light_primaryColor;
+  }
+  @include for-theme(dark){
+      color: $dark_primaryColor;
+  }
+}
+
+.contrastMode{
+  @include for-theme(light){
+    background-color: $light_contrastModeColor;
+  }
+  @include for-theme(dark){
+    background-color: $dark_contrastModeColor;
+  }
+}
+
+.primaryText{
+  @include primaryText;
+}
+
+.primaryBoldText{
+  @include primaryText;
+  font-weight: 700;
+}
+
+@mixin primaryMediumText{
+  @include primaryText;
+  font-size: 15px;
+}
+
+.primaryMediumText{
+  @include primaryMediumText;
+}
+
+@mixin primaryBigText{
+  @include primaryText;
+  font-size: 25px;
+  margin-bottom:10px;
+}
+
+.primaryBigText{
+  @include primaryBigText;
+}
+
+@mixin secondaryText{
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+
+  @include for-theme(light){
+    color: $light_secondaryColor;
+  }
+  @include for-theme(dark){
+      color: $dark_secondaryColor;
+  }
+}
+
+.secondaryText{
+  @include secondaryText;
+}
+
+.mainTitle{
+  padding: $topPadding $leftRightPadding 0 $leftRightPadding;
+  @include primaryText;
+  font-size: 30px;
+}
+
+.descriptionTitle{
+  padding: 5px $leftRightPadding 0 $leftRightPadding;
+  @include secondaryText;
+}
+
+.workZone{
+  padding-right: 10px;
+}
+
+.areaHeader{
+  padding: 10px;
+  margin: 5px 0;
+  width:250px;
+
+  span{
+    @include primaryMediumText;
+    font-weight: 500;
+    padding-left: 5px;
+    font-size: 16px;
+    @include for-theme(light){
+      color: $light_primaryColor;
+    }
+    @include for-theme(dark){
+      color: $dark_primaryColor;
+    }
+  }
+}
+
+.groupHeader{
+  padding: 10px;
+
+  &:hover{
+    @include for-theme(light){
+      background-color: $light_leftListItemHoverBackgroundColor;
+    }
+    @include for-theme(dark){
+      background-color: $dark_leftListItemHoverBackgroundColor;
+    }
+
+    .expanderIcon{
+      path{
+          fill: $accentColor;
+      }
+    }
+  }
+
+  &.collapsed{
+    .expanderIcon{
+      transform: scaleY(1);
+    }
+  }
+
+  span{
+    @include primaryMediumText;
+    font-weight: 500;
+    padding-left: 5px;
+    font-size: 16px;
+    @include for-theme(light){
+      color: $light_primaryColor;
+    }
+    @include for-theme(dark){
+      color: $dark_primaryColor;
+    }
+  }
+
+  .regularIcon{
+    width:24px;
+    height:24px;
+    margin-left: 6px;
+    
+    path{
+      @include for-theme(light){
+        fill: $light_primaryColor;
+      }
+      @include for-theme(dark){
+        fill: $dark_primaryColor;
+      }
+    }
+  }
+
+  .expanderIcon{
+    width:24px;
+    height:24px;
+    transition: transform 0.2s ease-out;
+    transform: scaleY(-1);
+
+    path{
+      @include for-theme(light){
+        fill: $light_primaryColor;
+      }
+      @include for-theme(dark){
+        fill: $dark_primaryColor;
+      }
+    }
+  }
+
+}
+
+.expanderContent{
+  margin-bottom:20px;
+}
+
+
+
+.draggableArea{
+  position: absolute;
+  width:100vw;
+  height: 30px;
+  background-color: transparent;
+  z-index: 1;
+
+  span{
+    @include secondaryText();
+  }
+}
+
+
+.leftPanel{
+  width:260px;
+  transition: all 0.2s ease-out;
+  @include for-theme(light){
+    background-color: $light_leftPanelBackgroundColor;
+  }
+  @include for-theme(dark){
+      background-color: $dark_leftPanelBackgroundColor;
+  }
+
+  .roundCheckbox{
+    margin-bottom: 10px;
+    span{
+      width:180px;
+    }
+  }
+  
+  &.collapsed{
+    width:0;
+    opacity: 0;
+  }
+}
+
+.bottomBar{
+  // height:60px;
+  @include for-theme(light){
+    background-color: $light_bottomBarBackgroundColor;
+    border-top: 1px solid $light_bottomBarBorderColor;
+  }
+  @include for-theme(dark){
+      background-color: $dark_bottomBarBackgroundColor;
+      border-top: 1px solid $dark_bottomBarBorderColor;
+  }
+}
+
+
+
+.separeHeader{
+  margin-top:60px;
+}
+
+.progressIndicator{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.progressCircle{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  visibility: hidden;
+  opacity: 0;
+
+  .secondaryText{
+    max-width: 420px;
+    margin: 20px 0 0 0;
+  }
+}
+
+
+
+.emptyState{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+
+  // visibility: hidden;
+  // opacity: 0;
+
+  .emptyStateIcon{
+    @include for-theme(light){
+      fill:$light_emptyStateIcon;
+    }
+    @include for-theme(dark){
+      fill:$dark_emptyStateIcon;
+    }
+  }
+
+  .successIcon{
+    fill:$accentColor;
+  }
+
+  .primaryText, .secondaryText{
+    width:280px;
+    margin: 20px 0 0 0;
+    text-align: center;
+  }
+}
+
+.registerHeader{
+  @include primaryMediumText;
+  font-size: 32px;
+  text-align: center;
+}
+
+.registerText{
+  @include secondaryText;
+
+  width:400px;
+  margin: 10px 0 30px 0;
+  text-align: center;
+}
+
+.fadeIn{
+  transition: visibility 0s, opacity 0.5s linear;
+  visibility: visible;
+  opacity: 1;
+}
+
+.fadeOut{
+  transition: opacity 0.5s linear, visibility 0s 0.5s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.logo{
+  position: absolute;
+  top:15px;
+  right:23px;
+  width:39px;
+  height:36px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  @include for-theme(light){
+    background-image: url("images/LogoLight.png");
+  }
+  @include for-theme(dark){
+    background-image: url("./images/LogoDark.png");
+  }
+}
+
+.btnApply{
+  width:100%;
+  margin: 0 20px;
+  height: 34px;
+  border: double 2px $accentColor;
+  border-radius: 17px;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  @include alignHorizontalCenter;
+  outline: none;
+  font-weight: 700;
+  background-color: transparent;
+  transition: all 0.1s ease-out;
+
+  @include for-theme(light){
+    color:$accentColor;
+  }
+  @include for-theme(dark){
+    color:$dark_inverseColor;
+  }
+
+  &:hover {
+    background-color: $accentColor;
+    outline: none;
+    @include for-theme(light){
+      color:$light_inverseColor;
+    }
+    @include for-theme(dark){
+      color:$dark_inverseColor;
+    }
+  }
+  &:active {
+    background-color: $accentColorActive;
+    border-color: $accentColorActive;
+    outline: none;
+  }
+  
+}
+
+.actionsRow{
+  @include horizontalLayout;
+  @include alignVerticalCenter;
+  padding: 10px 10px 10px 20px;
+}
+
+
+@mixin btnPrimary{
+  border:none;
+  width: 150px;
+  height: 34px;
+  border-radius: 17px;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  @include alignHorizontalCenter;
+  outline: none;
+  font-weight: 700;
+  background-color: $accentColor;
+  transition: all 0.1s ease-out;
+  color:$dark_inverseColor;
+  margin-left:5px;
+
+  &:hover {
+    background-color: $accentColorHover;
+    outline: none;
+  }
+  &:active {
+    background-color: $accentColorActive;
+    border-color: $accentColorActive;
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: $accentColor;
+    border-color: $accentColor;
+    outline: none;
+    opacity: 0.3;
+  }
+}
+
+.btnPrimary{
+  @include btnPrimary;
+
+  &.xl{
+    width: 170px;
+  }
+}
+
+@mixin btnSecondary{
+  @include for-theme(light){
+    border:1px solid $light_btnSecondaryBorderColor;
+  }
+  @include for-theme(dark){
+    border:1px solid $dark_btnSecondaryBorderColor;
+  }
+  background-color: transparent;
+  width: 100px;
+  height: 34px;
+  border-radius: 17px;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  @include alignHorizontalCenter;
+  outline: none;
+  font-weight: 700;
+  transition: all 0.1s ease-out;
+
+  @include for-theme(light){
+    color:$light_primaryColor;
+  }
+  @include for-theme(dark){
+    color:$dark_inverseColor;
+  }
+
+  &:hover {
+    @include for-theme(light){
+      background-color: $light_btnSecondaryBackgroundHover;
+      border-color: $accentColorHover;
+      color:$accentColorDarkText;
+    }
+    @include for-theme(dark){
+      background-color: $dark_btnSecondaryBackgroundHover;
+      border-color: $accentColorHover;
+    }
+    outline: none;
+  }
+  &:active {
+    @include for-theme(light){
+      background-color: $light_btnSecondaryBackgroundActive;
+      border-color: $accentColorActive;
+    }
+    @include for-theme(dark){
+      background-color: $dark_btnSecondaryBackgroundActive;
+      border-color: $accentColorActive;
+    }
+    outline: none;
+  }
+}
+
+.btnSecondary{
+  @include btnSecondary;
+}
+
+@mixin btnTertiary{
+  border:1px solid transparent;
+  background-color: transparent;
+  width: 100px;
+  height: 34px;
+  border-radius: 17px;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  @include alignHorizontalCenter;
+  outline: none;
+  font-weight: 500;
+  transition: all 0.1s ease-out;
+
+  @include for-theme(light){
+    color:$light_secondaryColor;
+  }
+  @include for-theme(dark){
+    color:$dark_secondaryColor;
+  }
+
+  &:hover {
+    @include for-theme(light){
+      border-color: $accentColorHover;
+      color:$accentColorDarkText;
+    }
+    @include for-theme(dark){
+      border-color: $accentColorHover;
+      color:$dark_primaryColor;
+    }
+    outline: none;
+  }
+  &:active {
+    @include for-theme(light){
+      border-color: $accentColorActive;
+    }
+    @include for-theme(dark){
+      border-color: $accentColorActive;
+    }
+    outline: none;
+  }
+}
+
+.btnTertiary{
+  @include btnTertiary;
+}
+
+
+
+.btnStartTrial{
+  @include btnSecondary;
+  width:200px;
+}
+
+.btnGetItNow{
+  @include btnPrimary;
+  width:200px;
+}
+
+.btnAlreadyLicense{
+  @include btnTertiary;
+  width:200px;
+  margin-top: 30px;
+}
+
+
+.btnArrow{
+  @include for-theme(light){
+    background-color: rgba($dark_backgroundColor,0.2);
+  }
+  @include for-theme(dark){
+    background-color: rgba($light_backgroundColor,0.3);
+  }
+  width: 24px;
+  height: 24px;
+  @include alignHorizontalCenter;
+  outline: none;
+  border:none;
+  border-radius: 2px;
+  transition: all 0.1s ease-out;
+
+  &:hover {
+    @include for-theme(light){
+      background-color: rgba($dark_backgroundColor,0.3);
+    }
+    @include for-theme(dark){
+      background-color: rgba($light_backgroundColor,0.6);
+    }
+    outline: none;
+  }
+  &:active {
+    @include for-theme(light){
+      background-color: rgba($dark_backgroundColor,0.4);
+    }
+    @include for-theme(dark){
+      background-color: rgba($light_backgroundColor,0.45);
+    }
+    outline: none;
+  }
+}
+
+.registerLogo{
+  margin-bottom: 20px;
+  width:160px;
+
+  path{
+    @include for-theme(light){
+      fill: $light_primaryColor;
+    }
+    @include for-theme(dark){
+      fill: $dark_primaryColor;
+    }
+  }
+}
+
+.settingsLogo{
+  margin-top: 140px;
+  margin-bottom: 40px;
+  width:110px;
+
+  path{
+    @include for-theme(light){
+      fill: $light_primaryColor;
+    }
+    @include for-theme(dark){
+      fill: $dark_primaryColor;
+    }
+  }
+}
+
+.listOfStyles{
+  padding: 10px 20px;
+
+  .movingYFadeInitialState{
+    transition: transform 0.3s 0.2s ease-out, opacity 0.3s 0.2s ease-out;
+  }
+}
+
+.thumbnailContainer{
+  height:160px;
+  padding: 10px;
+  margin-right:10px;
+}
+
+.thumbnailData{
+  padding-left:20px;
+  padding-bottom:5px;
+}
+
+
+.padded{
+  padding:10px;
+}
+
+.bgContrastMode{
+  @include for-theme(light){
+    background-color: $light_leftListItemSelectedBackgroundColor;
+  }
+  @include for-theme(dark){
+    background-color: $dark_leftListItemSelectedBackgroundColor;
+  }
+}
+
+.thumbnail{
+  width:100%;
+  height:100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+
+
+  &.isSmallThumbnail{
+    background-size: initial;
+    background-position: top;
+  }
+}
+
+.infoIcon{
+  top:1px;
+  margin-left: 5px;
+
+  path{
+    @include for-theme(light){
+      fill: $light_primaryColor;
+    }
+    @include for-theme(dark){
+      fill: $dark_primaryColor;
+    }
+    opacity: 0.5;
+    transition: all 0.2s ease-out;
+  }
+    
+  &:hover{
+    path{
+      opacity: 1;
+    }
+  }
+}
+
+
+.listItem{
+
+  .itemText{
+    margin-bottom: 4px;
+    max-width: 400px;
+    span{
+      width:100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: inline-block;
+      overflow: hidden;
+    }
+  }
+
+  transition: all 0.8s ease-out;
+  .listItemBg{
+    background-color: transparent;
+    transition: background-color 0.2s ease-out;
+  }
+
+  .listItemHead{
+    height:7px;
+    background-color: transparent;
+    transition: background-color 0.2s ease-out;
+  }
+  .listItemFoot{
+    height:14px;
+    background-color: transparent;
+    transition: background-color 0.2s ease-out;
+  }
+
+  .listItemSeparator{
+    height:1px;
+    width:100%;
+    @include for-theme(light){
+      background-color: $light_SeparatorColor;
+    }
+    @include for-theme(dark){
+      background-color: $dark_SeparatorColor;
+    }
+    margin:0 0 10px 0;
+  }
+
+  &:hover{
+    .listItemBg, .listItemFoot, .listItemHead{
+      @include for-theme(light){
+        background-color: $light_leftPanelBackgroundColor;
+      }
+      @include for-theme(dark){
+        background-color: $dark_leftPanelBackgroundColor;
+      }
+    }
+    .listItemSeparator{
+      opacity: 0;
+    }
+  }
+}
+
+.textPreview{
+  @include for-theme(light){
+    border:1px dashed $light_lessWeightBorderColor;
+  }
+
+  @include for-theme(dark){
+    border:1px dashed $dark_lessWeightBorderColor;
+  }
+}
+
+.symbolPreview{
+  @include for-theme(light){
+    background-color: $light_symbolPreviewListItemBg;
+    border:1px solid transparent;
+    border-bottom:1px solid $light_leftListItemSeparatorColor;
+  }
+
+  @include for-theme(dark){
+    background-color: $dark_symbolPreviewListItemBg;
+    border:1px solid transparent;
+    border-bottom:1px solid $dark_leftListItemSeparatorColor;
+  }
+
+  border-radius: 1px;
+  transition: all 0.1s ease-out;
+
+  &.thumbnailContainer{
+    padding: 10px 20px;
+
+  }
+
+  &:hover{
+    @include for-theme(light){
+      background-color: $light_symbolPreviewListItemBgHover;
+    }
+  
+    @include for-theme(dark){
+      background-color: $dark_symbolPreviewListItemBgHover;
+    }
+  }
+
+  &.selected{
+    @include for-theme(light){
+      background-color: $light_symbolPreviewListItemBgSelected;
+      border:1px solid $accentColor;
+    }
+  
+    @include for-theme(dark){
+      background-color: $dark_symbolPreviewListItemBgSelected;
+      border-bottom:transparent;
+      border:1px solid $accentColor;
+    }
+  }
+}
+
+.btnThumbnailNavigationLeft{
+  position: absolute;
+  left:10px;
+  top:0;
+  bottom:0;
+  margin:auto;
+}
+.btnThumbnailNavigationRight{
+  position: absolute;
+  right:10px;
+  top:0;
+  bottom:0;
+  margin:auto;
+}
+
+.separatorBelow{
+  @include for-theme(light){
+    border-bottom: 1px solid $light_bottomBarBorderColor;
+  }
+  @include for-theme(dark){
+      border-bottom: 1px solid $dark_bottomBarBorderColor;
+  }
+}
+
+
+.filterArea{
+  width:260px;
+  padding: $topPadding 0 $bottomPadding 0;
+  transition: all 0.2s ease-out;
+  @include for-theme(light){
+    background-color: $light_leftPanelBackgroundColor;
+    border-right: 1px solid $light_bottomBarBorderColor;
+  }
+  @include for-theme(dark){
+    background-color: $dark_leftPanelBackgroundColor;
+    border-right: 1px solid $dark_bottomBarBorderColor;
+  }
+
+  .filterTitle{
+    width:140px;
+
+    &.xl{
+      width:200px;
+    }
+  }
+
+  .filterCounter{
+    background-color: $accentColor;
+    border-radius: 50%;
+    width:20px;
+    height:20px;
+    span{
+      @include primaryText;
+      @include for-theme(light){
+        color:$light_inverseColor;
+      }
+      @include for-theme(dark){
+        color:$dark_inverseColor;
+      }
+      top:1px;
+      left:1px;
+    }
+  }
+
+  .treeContent{
+    margin-top: $headerTopDistance;
+  }
+
+  .filterAreaPadded{
+    padding-left: $headerSidesDistance;
+    padding-right: $headerSidesDistance;
+  }
+
+  .roundCheckbox{
+    margin-bottom: 10px;
+    span{
+      width:180px;
+    }
+  }
+
+  &.collapsed{
+    width:50px;
+    span, .regularIcon,.treeContent, .btnApply,.filterCounter{
+      display: none;
+    }
+  }
+
+  &.hidden{
+    width:0;
+    span, .regularIcon,.treeContent, .btnApply,.filterCounter{
+      display: none;
+    }
+  }
+}
+
+@mixin roundCheckbox($bgColor,$marginBottom){
+  position: relative;
+  margin-bottom: $marginBottom;
+
+  .padder{
+    width: 160px;
+    height: 100%;
+    background-color: transparent;
+  }
+
+  label {
+    border-radius: 50%;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    background-color: transparent;
+    border: 2px solid ;
+    transition: all 0.1s;
+
+    @include for-theme(light){
+      border-color: $light_inputBorderColor;
+    }
+    @include for-theme(dark){
+      border-color: $dark_inputBorderColor;
+    }
+
+    &:hover{
+      @include for-theme(light){
+        border-color: $light_inputBorderColorHover;
+      }
+      @include for-theme(dark){
+        border-color: $dark_inputBorderColorHover;
+      }
+    }
+
+    span{
+      left:25px;
+      width:120px;
+      position: absolute;
+      @include primaryText;
+
+      &.longLabel{
+        width:500px;
+      }
+    }
+  }
+
+  label:after {
+    border: 2px solid white;
+    border-top: none;
+    border-right: none;
+    content: "";
+    height: 6px;
+    left: 3px;
+    opacity: 0;
+    position: absolute;
+    top: 4px;
+    transform: rotate(-45deg);
+    width: 10px;
+  }
+
+  input[type="checkbox"] {
+    visibility: hidden;
+  }
+
+  input[type="checkbox"]:checked + label {
+    background-color: $bgColor;
+    border-color: $bgColor;
+  }
+
+  input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+  }
+
+}
+
+
+.roundCheckbox {
+  @include roundCheckbox($accentColor,7px);
+}
+
+.selectRoundCheckbox{
+  @include roundCheckbox($complementaryColor,0);
+  width:30px;
+  margin-left: 10px;
+}
+///////
+
+@mixin squareCheckbox($bgColor,$marginBottom){
+  position: relative;
+
+  .padder{
+    width: 160px;
+    height: 100%;
+    background-color: transparent;
+  }
+
+  label {
+    border-radius: 4px;
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    background-color: transparent;
+    border: 2px solid ;
+    transition: all 0.1s;
+
+    @include for-theme(light){
+      border-color: $light_inputBorderColor;
+    }
+    @include for-theme(dark){
+      border-color: $dark_inputBorderColor;
+    }
+
+    span{
+      left:25px;
+      width:120px;
+      position: absolute;
+      @include primaryText;
+    }
+  }
+
+  label:after {
+    border: 2px solid white;
+    border-top: none;
+    border-right: none;
+    content: "";
+    height: 6px;
+    left: 1px;
+    opacity: 0;
+    position: absolute;
+    top: 2px;
+    transform: rotate(-45deg);
+    width: 10px;
+  }
+
+  input[type="checkbox"] {
+    visibility: hidden;
+  }
+
+  input[type="checkbox"]:checked + label {
+    background-color: $bgColor;
+    border-color: $bgColor;
+  }
+
+  input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+  }
+
+}
+
+
+.squareCheckbox {
+  @include squareCheckbox($complementaryColor,7px);
+}
+
+
+
+
+div::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: transparent;
+}
+
+div::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+
+div::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  @include for-theme(light){
+    background-color: $light_scrollThumbColor;
+  }
+  @include for-theme(dark){
+    background-color: $dark_scrollThumbColor;
+  }
+
+  &:hover{
+    @include for-theme(light){
+      background-color: $light_scrollThumbColorHover;
+    }
+    @include for-theme(dark){
+      background-color: $dark_scrollThumbColorHover;
+    }
+  }
+
+  &:active{
+    @include for-theme(light){
+      background-color: $light_scrollThumbColorActive;
+    }
+    @include for-theme(dark){
+      background-color: $dark_scrollThumbColorActive;
+    }
+  }
+}
+
+.movingYFadeInitialState{
+  transition: transform 0.3s ease-out, opacity 0.3s 0.1s ease-out;
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+.movingYFadeIn{
+  transform: translateY(0px) ;
+  opacity: 1;
+}
+
+.movingYFadeOut{
+  transition: opacity 0.15s ease-out, transform 0s 0.3s ease-out !important;
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.item {
+	margin-bottom: 20px;
+	position: relative;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+  @include for-theme(light){
+    border: 1px solid $light_backgroundColor;
+    background: $light_backgroundColor;
+  }
+  @include for-theme(dark){
+    border: 1px solid $dark_backgroundColor;
+    background: $dark_backgroundColor;
+  }
+  float: left;
+}
+
+.radial-inner-bg {
+	border-radius: 50%;
+	width: 72px;
+	height: 72px; 
+	top: 3px;
+  left: 3px;
+  @include for-theme(light){
+    background: $light_backgroundColor;
+  }
+  @include for-theme(dark){
+    background: $dark_backgroundColor;
+  }
+	position: absolute;
+}
+
+$step: 1; // step of % for created classes
+$loops: 100;
+$increment: (360 / $loops);
+$half: round($loops / 2);
+@for $i from 0 through $loops {
+  .progress-#{$i*$step} {
+    @if $i < 50 {
+      $nextdeg: 90deg + ( $increment * $i );
+      @include for-theme(light){
+        background-image: linear-gradient(90deg, $light_backgroundColor 50%, transparent 50%, transparent), linear-gradient($nextdeg, $accentColor 50%, $light_backgroundColor 50%, $light_backgroundColor);
+      }
+      @include for-theme(dark){
+        background-image: linear-gradient(90deg, $dark_backgroundColor 50%, transparent 50%, transparent), linear-gradient($nextdeg, $accentColor 50%, $dark_backgroundColor 50%, $dark_backgroundColor);
+      }
+    }
+    @else {
+      $nextdeg: -90deg + ( $increment * ( $i - $half ) );
+      @include for-theme(light){
+        background-image: linear-gradient($nextdeg, $accentColor 50%, transparent 50%, transparent), linear-gradient(270deg, $accentColor 50%, $light_backgroundColor 50%, $light_backgroundColor);
+      }
+      @include for-theme(dark){
+        background-image: linear-gradient($nextdeg, $accentColor 50%, transparent 50%, transparent), linear-gradient(270deg, $accentColor 50%, $dark_backgroundColor 50%, $dark_backgroundColor);
+      }
+    }
+  }
+}
+
+
+input, textarea {
+  -webkit-user-select: auto;
+  user-select: auto;
+}
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: none;
+
+  .tooltipText {
+    visibility: hidden;
+    width: 240px;
+    @include for-theme(light){
+      background-color: $light_tooltipColor;
+    }
+    @include for-theme(dark){
+      background-color: $dark_tooltipColor;
+    }
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 7px;
+    margin-left: -120px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: 0px 2px 11px rgba(0,0,0,0.2);
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      @include for-theme(light){
+        border-color: $light_tooltipColor transparent transparent transparent;
+      }
+      @include for-theme(dark){
+        border-color: $dark_tooltipColor transparent transparent transparent;
+      }
+    }
+
+    span{
+      @include primaryText;
+    }
+  }
+
+  &:hover .tooltipText {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.warningText{
+  @include primaryText;
+  color:$warningColor !important;
+  margin:20px 0 0 0;
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition:height 0.3s ease-out, opacity 0.3s ease-out, visibility 0s 0.3s;
+}
+
+.warningTextVisible{
+  transition: visibility 0s, height 0.3s ease-out, opacity 0.3s ease-out;
+  visibility: visible;
+  height:35px;
+  opacity: 1;
+}
+
+input[type=text] {
+  padding: 8px 12px;
+  width:305px;
+  height: 34px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 3px;
+  outline: none;
+  @include primaryText;
+  @include for-theme(light){
+    background-color: $light_inputBackgroundColor;
+    border: 1px solid $light_inputBorderColor;
+  }
+  @include for-theme(dark){
+      background-color: $dark_inputBackgroundColor;
+      border: 1px solid $dark_inputBorderColor;
+  }
+}
+
+a{
+  color:inherit;
+}
+
+@mixin animatedDiv{
+
+  .yFadeIn{
+    transition: visibility 0s, transform 0.3s ease-out, opacity 0.3s ease-out !important;
+    visibility: visible !important;
+    opacity:1 !important;
+    transform: translate(-50%,0px) !important;
+  }
+
+  .yFadeOut{
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0s 0.3s !important;
+    visibility: hidden !important;
+    opacity:0 !important;
+    transform:translate(-50%,-50px) !important;
+  }
+}
+
+.animatedDiv{
+  @include animatedDiv;
+}
+
+#ctaForm{
+  opacity: 1;
+  //transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-out, opacity 0.3s 0.1s ease-out;
+  position: absolute;
+  left:50%;
+  transform:translate(-50%,0);
+}
+
+#registerForm{
+  position: absolute;
+  left:50%;
+  visibility: hidden;
+  opacity:0;
+  transform:translate(-50%,50px);
+  transition: all 0.3s ease-out
+}
+
+#confirmationForm{
+  position: absolute;
+  left:50%;
+  visibility: hidden;
+  opacity:0;
+  transform:translate(-50%,50px);
+  transition: all 0.3s ease-out
+}
+
+#startTrialForm{
+  position: absolute;
+  left:50%;
+  visibility: hidden;
+  opacity:0;
+  transform:translate(-50%,50px);
+  transition: all 0.3s ease-out;
+}
+
+.leftPanelListItem{
+  height: 40px;
+  padding: 0 15px;
+  @include for-theme(light){
+    border-bottom:1px solid $light_leftListItemSeparatorColor;
+  }
+  @include for-theme(dark){
+    border-bottom:1px solid $dark_leftListItemSeparatorColor;
+  }
+  background-color: transparent;
+  transition: all 0.1s ease-out;
+
+  span{
+    left:25px;
+    width:200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    position: absolute;
+    @include primaryText;
+  }
+
+  &:hover{
+    @include for-theme(light){
+      background-color: $light_leftListItemHoverBackgroundColor;
+    }
+    @include for-theme(dark){
+      background-color: $dark_leftListItemHoverBackgroundColor;
+    }
+  }
+
+  &.selected{
+    @include for-theme(light){
+      background-color: $light_leftListItemSelectedBackgroundColor;
+    }
+    @include for-theme(dark){
+      background-color: $dark_leftListItemSelectedBackgroundColor;
+    }
+  }
+
+  
+}
+
+.cardsView{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  .thumbnailContainer{
+    height: 300px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+    .roundCheckbox{
+      position: absolute;
+      top:20px;
+      left:20px;
+    }
+
+    span{
+      text-align: center;
+    }
+  }
+
+  .symbolPreview{
+    border-radius: 5px;
+    @include for-theme(light){
+      border:1px solid $light_leftListItemSeparatorColor;
+    }
+    @include for-theme(dark){
+      border:1px solid $dark_leftListItemSeparatorColor;
+    }
+
+    &.selected{
+      @include for-theme(light){
+        background-color: $light_symbolPreviewListItemBgSelected;
+        border:1px solid $accentColor;
+      }
+    
+      @include for-theme(dark){
+        background-color: $dark_symbolPreviewListItemBgSelected;
+        border:1px solid $accentColor;
+      }
+    }
+  }
+}
+
+.viewSelector{
+  margin-right: 25px;
+  top:5px;
+}
+
+.viewIcon{
+  width:12px;
+  height:12px;
+  margin-right: 5px;
+  cursor: pointer;
+  transition: opacity 0.15s ease-out;
+
+  path{
+    @include for-theme(light){
+      fill: $light_primaryColor;
+    }
+    @include for-theme(dark){
+      fill: $dark_primaryColor;
+    }
+  }
+
+  opacity: 0.3;
+
+  &:hover{
+    opacity: 0.7;
+  }
+
+  &.selected{
+    opacity: 1;
+  }
+
+}
+
+.offDownCenter{
+  .mk-spinner-wrap{
+    top:20px;
+  }
+  .secondaryText{
+    max-width: 420px;
+    margin: 10px 0 0 0;
+  }
+}
+
+.mk-spinner-wrap{
+  min-height:100px;
+  width:100%;
+  position:relative;
+}
+@-webkit-keyframes a{
+  0%{
+    -webkit-transform:rotate(0deg);
+    transform:rotate(0deg)
+  }
+  to{
+    -webkit-transform:rotate(1turn);
+    transform:rotate(1turn)
+  }
+}
+@keyframes a{
+  0%{
+    -webkit-transform:rotate(0deg);
+    transform:rotate(0deg)
+  }
+  to{
+    -webkit-transform:rotate(1turn);
+    transform:rotate(1turn)
+  }
+}
+.mk-spinner-ring{
+  content:"";
+  display:inline-block;
+  position:absolute;
+  width:50px;
+  height:50px;
+  top:50%;
+  margin-top:-25px;
+  left:50%;
+  margin-left:-25px;
+  z-index:1;
+  border-radius:50%;
+  border:3px solid $accentColor;
+  border-left-color:transparent;
+  background:transparent;
+  -webkit-animation:a 1s infinite linear;
+  animation:a 0.7s infinite linear
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 26px;
+  margin-right: 15px;
+  
+  input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 32px;
+
+  &:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+}
+
+input:checked + .slider {
+  background-color: #38D256;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #38D256;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(18px);
+  -ms-transform: translateX(18px);
+  transform: translateX(18px);
+}
+
+.settingsRow{
+  width:320px;
+  margin-bottom: 10px;
+}
+
+.detailsRow
+{
+  .detailsTitle{
+    margin-top: 4px;
+    margin-bottom: 5px;
+  }
+}
+
+.settingsDescription{
+  padding: 0 50px 15px 50px;
+}
+
+
+.sliderContainer {
+  width: 100%;
+  margin-top: 20px;
+
+  .inputSlider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    outline: none;
+    transition: all .1s ease-in-out;
+
+    @include for-theme(light){
+      background: $light_sliderBarColor;
+    }
+    @include for-theme(dark){
+      background: $dark_sliderBarColor;
+    }
+  
+    &:hover {
+      @include for-theme(light){
+        background: $light_sliderBarColorHover;
+      }
+      @include for-theme(dark){
+        background: $dark_sliderBarColorHover;
+      }
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: $accentColor;
+      cursor: pointer;
+      transition: all .1s ease-in-out;
+
+      &:hover{
+        background: $accentColorHover;
+      }
+    }
+  }
+
+  .topLabel{
+    @include primaryMediumText();
+    margin-bottom: 8px;
+  }
+
+  .sliderLabels{
+
+    margin-top:10px;
+
+    .leftRange{
+      @include primaryText;
+      position: absolute;
+      left:0;
+    }
+
+    .rightRange{
+      @include primaryText;
+      text-align: right;
+      position: absolute;
+      right:0;
+    }
+  }
+}

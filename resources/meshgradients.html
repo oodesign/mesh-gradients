@@ -1,26 +1,58 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset=utf-8>
-		<title>Gradient mesh transition</title>
-		<link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
-		<link rel="stylesheet" href="style.css">
-	</head>
-	<body>
-		<div class="hotkeys" id="hotkeys" style="display: none">
-			Hotkeys: <br/><br/>
-			Space: apply selected colour <br/>
-			1: Camera view 1 <br/>
-			2: Camera view 2 <br/>
-			R: Reset handles <br/>
-			X: Toggle X handles <br/>
-			Y: Toggle Y handles <br/>
-			Alt + X: Reset X handles <br/>
-			Alt + Y: Reset Y handles <br/>
-			Drag and press Shift: Toggle separated handles <br/>
+
+<head>
+	<meta charset="utf-8">
+	<title>Mesh gradient</title>
+	<link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+	<div class="verticalLayout">
+		<div class="rowAvailable">
+			<div class="verticalLayout">
+				<div class="rowAuto">
+					<div class="horizontalLayout">
+						<div id="workZoneTitle" class="colAvailable verticalLayout movingYFadeInitialState">
+							<div class="rowAuto mainTitle" id="resultsTitle">Merging layer styles</div>
+							<div class="rowAuto descriptionTitle secondaryText" id="resultsDescription">The style you
+								decide
+								to keep will be applied to all layers & overrides using any of the discarded styles, and
+								the
+								discarded styles will be removed from the local file.</div>
+						</div>
+						<div class="colAuto logo"></div>
+					</div>
+				</div>
+				<div class="rowAvailable">
+					<div class="horizontalLayout">
+						<div class="colAvailable">
+							<div class="gradient-mesh editing"></div>
+						</div>
+						<div class="colAuto colorpicker">
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="gradient-mesh"></div>
-		<script src="../resources_js_Hotkeys.js"></script>
-		<script src="../resources_js_gradient.js"></script>
-	</body>
+		<div class="rowAuto bottomBar">
+			<div class="horizontalLayout actionsRow">
+				<div class="colAvailable">
+				</div>
+				<div class="colAuto">
+					<button id="btnCancel" class="btnSecondary">Cancel</button>
+				</div>
+				<div class="colAuto">
+					<button id="btnAccept" class="btnPrimary" disabled>Accept</button>
+				</div>
+			</div>
+		</div>
+		<div class="draggableArea alignFullCenter" data-app-region="drag"><span id="windowTitle">Mesh gradients</span>
+		</div>
+	</div>
+
+	<script src="../resources_js_gradient.js"></script>
+	<script src="../resources_meshgradients.js"></script>
+</body>
+
 </html>

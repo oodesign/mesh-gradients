@@ -29,7 +29,7 @@ export default class Editor {
     this.initControlPoints();
     this.initEventListeners();
     this.boundingRect = container.getBoundingClientRect();
-    this.colorEditor = new ColorEditor(document.body, this.setColor.bind(this));
+    this.colorEditor = new ColorEditor(document.querySelector('.colorpicker'), this.setColor.bind(this));
     this.movingCpStartPos = { x: null, y: null };
   }
 
