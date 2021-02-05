@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import Editor from './Editor';
 
 const scene = new THREE.Scene();
-const camera = new THREE.OrthographicCamera( 0, 1, 0, 1, 1, 1000 );
-const camera2 = new THREE.PerspectiveCamera( 50, 1, 1, 1000 );
+const camera = new THREE.OrthographicCamera(0, 1, 0, 1, 1, 1000);
+const camera2 = new THREE.PerspectiveCamera(50, 1, 1, 1000);
 camera2.position.z = 3;
 camera2.position.x = 0.5;
 camera2.position.y = 0.5;
@@ -33,9 +33,9 @@ function transpose(matrix) {
   if (h === 0 || w === 0) { return []; }
   const t = [];
 
-  for(let i = 0; i < h; i++) {
+  for (let i = 0; i < h; i++) {
     t[i] = [];
-    for(let j = 0; j < w; j++) {
+    for (let j = 0; j < w; j++) {
       t[i][j] = matrix[j][i];
     }
   }
@@ -136,8 +136,8 @@ let colors;
 
 function fillBufferAttributeByPatches(patches, positionAttr, colorAttr) {
   patches.forEach((patch, patchIndex) => {
-    for(let i = 0; i <= patchDivCount; i++) {
-      for(let j = 0; j <= patchDivCount; j++) {
+    for (let i = 0; i <= patchDivCount; i++) {
+      for (let j = 0; j <= patchDivCount; j++) {
         const x = getPatchPoint(patch.x, i / patchDivCount, j / patchDivCount);
         const y = getPatchPoint(patch.y, i / patchDivCount, j / patchDivCount);
         const r = getPatchPoint(patch.r, i / patchDivCount, j / patchDivCount);
@@ -199,8 +199,8 @@ function initializeHermiteSurface() {
   colorBufferAttribute.setArray(colors);
   colorBufferAttribute.setDynamic(true);
   gradientMeshGeometry.addAttribute('color', colorBufferAttribute);
-  const material = new THREE.MeshBasicMaterial( { color: 0xffffff, vertexColors: THREE.VertexColors, side: THREE.DoubleSide } );
-  gradientMesh = new THREE.Mesh( gradientMeshGeometry, material );
+  const material = new THREE.MeshBasicMaterial({ color: 0xffffff, vertexColors: THREE.VertexColors, side: THREE.DoubleSide });
+  gradientMesh = new THREE.Mesh(gradientMeshGeometry, material);
   scene.add(gradientMesh);
   console.log(gradientMesh);
   gradientMesh.geometry.attributes.position.needsUpdate = true;
@@ -263,9 +263,9 @@ window.addEventListener('keydown', (e) => {
     editor.toggleTangentBinding();
     calculateHermiteSurface();
     renderer.render(scene, sceneCamera);
-    window.postMessage("nativeLog", document.querySelector('canvas').toDataURL('image/png', 0.95))
   }
 });
+
 
 const animate = (t) => {
   if (editor.shouldRefresh) {
@@ -276,3 +276,26 @@ const animate = (t) => {
 };
 
 animate(0);
+
+// UI Interaction
+
+document.addEventListener('contextmenu', (e) => {
+  e.preventDefault()
+});
+
+document.getElementById('btnAccept').addEventListener("click", () => {
+  editor.toggleTangentBinding();
+  calculateHermiteSurface();
+  renderer.render(scene, sceneCamera);
+  var meshGradientBase64 = document.querySelector('canvas').toDataURL('image/png', 1.0).replace("data:image/png;base64,","");
+  window.postMessage("ConfirmMeshGradient", meshGradientBase64);
+});
+
+window.cancelAssignation = () => {
+    window.postMessage('Cancel');
+}
+
+document.getElementById('btnCancel').addEventListener("click", () => {
+    window.postMessage("nativeLog", "WV - Cancel");
+    cancelAssignation();
+});
