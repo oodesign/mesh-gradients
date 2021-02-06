@@ -287,15 +287,16 @@ document.getElementById('btnAccept').addEventListener("click", () => {
   editor.toggleTangentBinding();
   calculateHermiteSurface();
   renderer.render(scene, sceneCamera);
-  var meshGradientBase64 = document.querySelector('canvas').toDataURL('image/png', 1.0).replace("data:image/png;base64,","");
-  window.postMessage("ConfirmMeshGradient", meshGradientBase64);
+  var meshGradientBase64 = document.querySelector('canvas').toDataURL('image/png', 1.0).replace("data:image/png;base64,", "");
+  var patchPoints = JSON.stringify(allPatches).replace(/"/g, "'");
+  window.postMessage("ConfirmMeshGradient", meshGradientBase64, patchPoints);
 });
 
 window.cancelAssignation = () => {
-    window.postMessage('Cancel');
+  window.postMessage('Cancel');
 }
 
 document.getElementById('btnCancel').addEventListener("click", () => {
-    window.postMessage("nativeLog", "WV - Cancel");
-    cancelAssignation();
+  window.postMessage("nativeLog", "WV - Cancel");
+  cancelAssignation();
 });

@@ -5,9 +5,9 @@ let cpIdCounter = 0;
 
 function debounce(func, wait, immediate) {
   let timeout;
-  return function() {
+  return function () {
     const context = this, args = arguments;
-    const later = function() {
+    const later = function () {
       timeout = null;
       if (!immediate) func.apply(context, args);
     };
@@ -43,10 +43,15 @@ export default class Editor {
         const cp = {
           x: i / this.divisionCount,
           y: j / this.divisionCount,
+          // r: (i == 0) ? 1 : 0,
+          // g: (i == 1) ? 1 : 0,
+          // b: (i == 2) ? 1 : 0,
           r: i / this.divisionCount,
           g: j / this.divisionCount,
           b: j / this.divisionCount,
           id: `control-point-${cpIdCounter++}`,
+          // xTangentLength: 1 / 2,
+          // yTangentLength: 1 / 2,
           xTangentLength: 1 / this.divisionCount,
           yTangentLength: 1 / this.divisionCount,
         };
@@ -110,7 +115,7 @@ export default class Editor {
       }
     }
     if (this.currentlyMovingTangent) {
-      const x =  (e.clientX - this.boundingRect.x) - this.selectedCp.x * this.boundingRect.width;
+      const x = (e.clientX - this.boundingRect.x) - this.selectedCp.x * this.boundingRect.width;
       const y = (e.clientY - this.boundingRect.y) - this.selectedCp.y * this.boundingRect.height;
       this.selectedCp.moveTangent(this.currentlyMovingTangent, x, y);
     }
