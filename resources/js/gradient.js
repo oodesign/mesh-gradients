@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import Editor from './Editor';
 
+
 const scene = new THREE.Scene();
 const camera = new THREE.OrthographicCamera(0, 1, 0, 1, 1, 1000);
 const camera2 = new THREE.PerspectiveCamera(50, 1, 1, 1000);
@@ -25,7 +26,8 @@ camera.position.z = 10;
 const patchDivCount = 20;
 
 const initialDivisionCount = 3;
-const editor = new Editor(initialDivisionCount, parentElement);
+var editor;
+//var editor = new Editor(initialDivisionCount, parentElement);
 
 function transpose(matrix) {
   const w = matrix.length || 0;
@@ -116,7 +118,7 @@ function getPatchPoint(hermitePatch, u, v) {
   return vec[0][0];
 }
 
-let allPatches = getPatches(editor.controlPointMatrix);
+let allPatches = null;//getPatches(editor.controlPointMatrix);
 let hermitePatches = new THREE.Group();
 let positionBufferAttribute = new THREE.BufferAttribute(new Float32Array([]), 3);
 let colorBufferAttribute = new THREE.BufferAttribute(new Float32Array([]), 3);
@@ -124,11 +126,11 @@ const gradientMeshGeometry = new THREE.BufferGeometry();
 
 const patchVertexCount = (patchDivCount + 1) * (patchDivCount + 1);
 const patchFaceCount = patchDivCount * patchDivCount * 2;
-const vertexCount = allPatches.length * patchFaceCount * 3;
+var vertexCount = 4 * patchFaceCount * 3;//allPatches.length * patchFaceCount * 3;
 
 let gradientMesh;
-const vertexArray = new Array(vertexCount * 3);
-const colorArray = new Array(vertexCount * 3);
+var vertexArray = new Array(vertexCount * 3);
+var colorArray = new Array(vertexCount * 3);
 const surfaceElements = new Array(patchVertexCount * 3);
 const vertexColors = new Array(patchVertexCount * 3);
 let vertices;
@@ -189,22 +191,32 @@ function fillBufferAttributeByPatches(patches, positionAttr, colorAttr) {
 }
 
 function initializeHermiteSurface() {
+
+  window.postMessage("nativeLog", "2.1");
+  window.postMessage("nativeLog", allPatches);
   fillBufferAttributeByPatches(allPatches, positionBufferAttribute, colorBufferAttribute);
+  window.postMessage("nativeLog", "2.11");
   vertices = new Float32Array(vertexArray);
   colors = new Float32Array(colorArray);
+  window.postMessage("nativeLog", "2.12");
   positionBufferAttribute.setArray(vertices);
+  window.postMessage("nativeLog", "2.13");
   positionBufferAttribute.setDynamic(true);
+  window.postMessage("nativeLog", "2.14");
   gradientMeshGeometry.addAttribute('position', positionBufferAttribute);
 
+  window.postMessage("nativeLog", "2.2");
   colorBufferAttribute.setArray(colors);
   colorBufferAttribute.setDynamic(true);
   gradientMeshGeometry.addAttribute('color', colorBufferAttribute);
   const material = new THREE.MeshBasicMaterial({ color: 0xffffff, vertexColors: THREE.VertexColors, side: THREE.DoubleSide });
   gradientMesh = new THREE.Mesh(gradientMeshGeometry, material);
+  window.postMessage("nativeLog", "2.3");
   scene.add(gradientMesh);
   console.log(gradientMesh);
   gradientMesh.geometry.attributes.position.needsUpdate = true;
   gradientMesh.geometry.attributes.color.needsUpdate = true;
+  window.postMessage("nativeLog", "2.4");
 }
 
 function setBufferAttributeFromArray(attr, attrIndex, array, vertexIndex) {
@@ -217,54 +229,54 @@ function calculateHermiteSurface(t) {
   gradientMesh.geometry.attributes.position.needsUpdate = true;
   gradientMesh.geometry.attributes.color.needsUpdate = true;
 }
-initializeHermiteSurface();
 
-window.addEventListener('keydown', (e) => {
-  if (e.code === 'Space') {
-    calculateHermiteSurface();
-    renderer.render(scene, sceneCamera);
-  }
-  if (e.code === 'Digit1') {
-    calculateHermiteSurface();
-    sceneCamera = camera;
-    renderer.render(scene, sceneCamera);
-  }
-  if (e.code === 'Digit2') {
-    calculateHermiteSurface();
-    sceneCamera = camera2;
-    renderer.render(scene, sceneCamera);
-  }
-  if (e.code === 'KeyR') {
-    editor.resetSelectedCpTangent();
-    calculateHermiteSurface();
-    renderer.render(scene, sceneCamera);
-  }
-  if (e.code === 'KeyX') {
-    editor.toggleCpXHandles();
-    calculateHermiteSurface();
-    renderer.render(scene, sceneCamera);
-  }
-  if (e.code === 'KeyY') {
-    editor.toggleCpYHandles();
-    calculateHermiteSurface();
-    renderer.render(scene, sceneCamera);
-  }
-  if (e.code === 'KeyX' && e.altKey) {
-    editor.resetCpXHandles();
-    calculateHermiteSurface();
-    renderer.render(scene, sceneCamera);
-  }
-  if (e.code === 'KeyY' && e.altKey) {
-    editor.resetCpYHandles();
-    calculateHermiteSurface();
-    renderer.render(scene, sceneCamera);
-  }
-  if (e.code === 'ShiftLeft') {
-    editor.toggleTangentBinding();
-    calculateHermiteSurface();
-    renderer.render(scene, sceneCamera);
-  }
-});
+
+// window.addEventListener('keydown', (e) => {
+//   if (e.code === 'Space') {
+//     calculateHermiteSurface();
+//     renderer.render(scene, sceneCamera);
+//   }
+//   if (e.code === 'Digit1') {
+//     calculateHermiteSurface();
+//     sceneCamera = camera;
+//     renderer.render(scene, sceneCamera);
+//   }
+//   if (e.code === 'Digit2') {
+//     calculateHermiteSurface();
+//     sceneCamera = camera2;
+//     renderer.render(scene, sceneCamera);
+//   }
+//   if (e.code === 'KeyR') {
+//     editor.resetSelectedCpTangent();
+//     calculateHermiteSurface();
+//     renderer.render(scene, sceneCamera);
+//   }
+//   if (e.code === 'KeyX') {
+//     editor.toggleCpXHandles();
+//     calculateHermiteSurface();
+//     renderer.render(scene, sceneCamera);
+//   }
+//   if (e.code === 'KeyY') {
+//     editor.toggleCpYHandles();
+//     calculateHermiteSurface();
+//     renderer.render(scene, sceneCamera);
+//   }
+//   if (e.code === 'KeyX' && e.altKey) {
+//     editor.resetCpXHandles();
+//     calculateHermiteSurface();
+//     renderer.render(scene, sceneCamera);
+//   }
+//   if (e.code === 'KeyY' && e.altKey) {
+//     editor.resetCpYHandles();
+//     calculateHermiteSurface();
+//     renderer.render(scene, sceneCamera);
+//   }
+//   if (e.code === 'ShiftLeft') {
+//     editor.toggleTangentBinding();
+//     calculateHermiteSurface();
+//     renderer.render(scene, sceneCamera);
+//   }
+// });
 
 
 const animate = (t) => {
@@ -275,12 +287,12 @@ const animate = (t) => {
   requestAnimationFrame(() => animate(t + 0.05));
 };
 
-animate(0);
+//animate(0);
 
 // UI Interaction
 
 document.addEventListener('contextmenu', (e) => {
-  e.preventDefault()
+  //e.preventDefault()
 });
 
 document.getElementById('btnAccept').addEventListener("click", () => {
@@ -288,7 +300,10 @@ document.getElementById('btnAccept').addEventListener("click", () => {
   calculateHermiteSurface();
   renderer.render(scene, sceneCamera);
   var meshGradientBase64 = document.querySelector('canvas').toDataURL('image/png', 1.0).replace("data:image/png;base64,", "");
-  var patchPoints = JSON.stringify(allPatches).replace(/"/g, "'");
+
+  window.postMessage("nativeLog", "allPatches");
+  window.postMessage("nativeLog", allPatches);
+  var patchPoints = JSON.stringify(allPatches);
   window.postMessage("ConfirmMeshGradient", meshGradientBase64, patchPoints);
 });
 
@@ -300,3 +315,19 @@ document.getElementById('btnCancel').addEventListener("click", () => {
   window.postMessage("nativeLog", "WV - Cancel");
   cancelAssignation();
 });
+
+window.LoadMesh = (meshGradientDefinition) => {
+
+  window.postMessage("nativeLog", "1");
+  editor = new Editor(initialDivisionCount, parentElement, meshGradientDefinition);
+  allPatches = getPatches(editor.controlPointMatrix);
+  vertexCount = allPatches.length * patchFaceCount * 3;
+  vertexArray = new Array(vertexCount * 3);
+  colorArray = new Array(vertexCount * 3);
+  window.postMessage("nativeLog", "2");
+  initializeHermiteSurface();
+  window.postMessage("nativeLog", "3");
+  animate(0);
+  window.postMessage("nativeLog", "4");
+}
+

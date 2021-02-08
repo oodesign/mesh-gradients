@@ -23,7 +23,14 @@ export function EditGradient(context) {
   }
   const browserWindow = new BrowserWindow(options);
   const webContents = browserWindow.webContents;
-
+  var layerMeshGradientDefinition = null;
+  var selectedLayer = null;
+  if (document.selectedLayers.length > 0) {
+    selectedLayer = document.selectedLayers.layers[0];
+    if (Settings.layerSettingForKey(selectedLayer, 'MeshGradientDefinition')) {
+      layerMeshGradientDefinition = Settings.layerSettingForKey(selectedLayer, 'MeshGradientDefinition');
+    }
+  }
   browserWindow.loadURL(require('../resources/meshgradients.html'));
 
   browserWindow.once('ready-to-show', () => {
@@ -31,6 +38,7 @@ export function EditGradient(context) {
   })
 
   webContents.on('did-finish-load', () => {
+    webContents.executeJavaScript(`LoadMesh(${JSON.stringify(layerMeshGradientDefinition)})`).catch(console.error);
   })
 
   webContents.on('Cancel', () => {
@@ -48,25 +56,41 @@ export function EditGradient(context) {
     console.log("patchPoints is:")
     console.log(patchPoints)
 
-    let rectangle = new ShapePath({
-      name: "Mesh gradient",
-      frame: new Rectangle(0, 0, 1000, 1000),
-      style: {
-        fills: [{
-          fillType: Style.FillType.Pattern,
-          pattern: {
-            patternType: Style.PatternFillType.Fill,
-            image: { base64: meshGradientBase64}
-          },
-        }]
-      },
-      parent: parent
-    })
-    //Settings.setLayerSettingForKey(rectangle, 'MeshGradientDefinition', 'Wola Marc! Quieres un gofre??? No nos quedan, me los he acabado todos!!!');
-    Settings.setLayerSettingForKey(rectangle, 'MeshGradientDefinition', patchPoints);
+    let layer;
+    if ((document.selectedLayers.length > 0) && (document.selectedLayers.layers[0].type == "ShapePath")) {
+      console.log("Editing layer");
+      layer = document.selectedLayers.layers[0];
+      layer.style.fills = [{
+        fillType: Style.FillType.Pattern,
+        pattern: {
+          patternType: Style.PatternFillType.Fill,
+          image: { base64: meshGradientBase64 }
+        },
+      }]
+    }
+    else {
+      console.log("Creating new layer");
+      layer = new ShapePath({
+        name: "Mesh gradient",
+        frame: new Rectangle(0, 0, 1000, 1000),
+        style: {
+          fills: [{
+            fillType: Style.FillType.Pattern,
+            pattern: {
+              patternType: Style.PatternFillType.Fill,
+              image: { base64: meshGradientBase64 }
+            },
+          }]
+        },
+        parent: parent
+      });
+    }
+
+    console.log("Saving gradient");
+    Settings.setLayerSettingForKey(layer, 'MeshGradientDefinition', patchPoints);
 
     console.log("Saved mesh gradient")
-    console.log(Settings.layerSettingForKey(rectangle, 'MeshGradientDefinition'))
+    console.log(Settings.layerSettingForKey(layer, 'MeshGradientDefinition'))
 
     onShutdown(webviewIdentifier);
   });
