@@ -12,11 +12,13 @@ camera2.lookAt(0.5, 0.5, 0);
 scene.add(camera2);
 
 let sceneCamera = camera;
+const imageQuality = 5000;
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({ alpha: true });
 const parentElement = document.querySelector('.gradient-mesh');
 const colorPickerContainer = document.querySelector('.aColorPicker');
-renderer.setSize(parentElement.clientWidth, parentElement.clientHeight);
+// renderer.setSize(parentElement.clientWidth, parentElement.clientHeight);
+renderer.setSize(imageQuality, imageQuality);
 renderer.domElement.style = '';
 parentElement.insertBefore(renderer.domElement, parentElement.firstChild);
 
@@ -26,7 +28,7 @@ scene.add(ambientLight);
 camera.position.z = 10;
 const patchDivCount = 20;
 
-const initialDivisionCount = 3;
+let initialDivisionCount = 5;
 var editor;
 //var editor = new Editor(initialDivisionCount, parentElement);
 
@@ -301,7 +303,7 @@ document.getElementById('btnAccept').addEventListener("click", () => {
   editor.toggleTangentBinding();
   calculateHermiteSurface();
   renderer.render(scene, sceneCamera);
-  
+
   var meshGradientBase64 = document.querySelector('canvas').toDataURL('image/png', 1.0).replace("data:image/png;base64,", "");
 
   var pointMatrix = JSON.stringify(editor.getStorePointArray());
@@ -317,8 +319,13 @@ document.getElementById('btnCancel').addEventListener("click", () => {
   cancelAssignation();
 });
 
+
 window.LoadMesh = (meshGradientDefinition) => {
 
+  if (meshGradientDefinition!=null) {
+    var parsed = JSON.parse(meshGradientDefinition);
+    initialDivisionCount = Math.sqrt(parsed.length) - 1
+  }
   editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition);
   allPatches = getPatches(editor.controlPointMatrix);
   vertexCount = allPatches.length * patchFaceCount * 3;

@@ -124,11 +124,11 @@ export default class Editor {
     if (e.target === this.container) {
       if (this.editing) {
         this.editing = false;
-        this.container.classList.remove('editing');
+        //this.container.classList.remove('editing');
         //this.colorEditor.wrapper.classList.remove('editing');
       } else {
         this.editing = true;
-        this.container.classList.add('editing');
+        //this.container.classList.add('editing');
         //this.colorEditor.wrapper.classList.add('editing');
       }
     }
