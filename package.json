@@ -29,6 +29,7 @@
     "resources/**/*.js"
   ],
   "dependencies": {
+    "a-color-picker": "^1.2.1",
     "sketch-module-web-view": "^3.1.4",
     "three": "^0.108.0"
   },

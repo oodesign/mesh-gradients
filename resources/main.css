@@ -163,6 +163,12 @@
   padding: 5px 10px 0 10px;
 }
 
+.aColorPicker {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 body {
   position: relative;
   display: -webkit-box;

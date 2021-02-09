@@ -1,5 +1,6 @@
 import ControlPoint from './ControlPoint';
-import ColorEditor from './ColorEditor';
+import StorePoint from './StorePoint';
+const AColorPicker = require('a-color-picker');
 
 let cpIdCounter = 0;
 
@@ -19,8 +20,9 @@ function debounce(func, wait, immediate) {
 }
 
 export default class Editor {
-  constructor(initialDivisionCount, container, meshGradientDefinition) {
+  constructor(initialDivisionCount, container, colorPickerContainer, meshGradientDefinition) {
     this.container = container;
+    this.colorPickerContainer = colorPickerContainer;
     this.editing = false;
     this.divisionCount = initialDivisionCount;
     this.currentlyMovingCp = null;
@@ -31,14 +33,18 @@ export default class Editor {
     else this.loadControlPoints();
     this.initEventListeners();
     this.boundingRect = container.getBoundingClientRect();
-    this.colorEditor = new ColorEditor(document.querySelector('.colorpicker'), this.setColor.bind(this));
+    this.colorEditor = AColorPicker.from(this.colorPickerContainer);
+    this.colorEditor.on('change', (picker, color) => {
+      this.setColorToCp(AColorPicker.parseColor(picker.color, "rgba"));
+    })
     this.movingCpStartPos = { x: null, y: null };
   }
 
   initControlPoints() {
     this.controlPointArray = [];
+    this.storePointArray = [];
     this.controlPointMatrix = new Array(this.divisionCount + 1);
-    //cpIdCounter = 0;
+    cpIdCounter = 0;
 
     for (let i = 0; i <= this.divisionCount; i++) {
       this.controlPointMatrix[i] = [];
@@ -46,75 +52,47 @@ export default class Editor {
         const cp = {
           x: i / this.divisionCount,
           y: j / this.divisionCount,
-          // r: (i == 0) ? 1 : 0,
-          // g: (i == 1) ? 1 : 0,
-          // b: (i == 2) ? 1 : 0,
           r: i / this.divisionCount,
           g: j / this.divisionCount,
           b: j / this.divisionCount,
           id: `control-point-${cpIdCounter++}`,
-          // xTangentLength: 1 / 2,
-          // yTangentLength: 1 / 2,
           xTangentLength: 1 / this.divisionCount,
           yTangentLength: 1 / this.divisionCount,
         };
         const cpObject = new ControlPoint(cp, this);
+
         this.container.appendChild(cpObject.cpElement);
         this.controlPointArray.push(cpObject);
         this.controlPointMatrix[i].push(cpObject);
+
       }
     }
   }
 
   loadControlPoints() {
-
-
-    window.postMessage("nativeLog", "loadControlPoints");
-    window.postMessage("nativeLog", "LOAD CONTROL POINTS RECEIVES: " + this.meshGradientDefinition);
-
-    this.controlPointArray = [];
-    this.controlPointMatrix = new Array(this.divisionCount + 1);
-    //cpIdCounter = 0;
-    //this.container.innerHTML="";
-
     var parsed = JSON.parse(this.meshGradientDefinition);
-    var result = [];
-    for (var i = 0; i < parsed.length; i++) {
-      var points = {
-        "x": parsed[i].x,
-        "y": parsed[i].y,
-        "r": parsed[i].r,
-        "g": parsed[i].g,
-        "b": parsed[i].b,
-      }
-      result.push(points);
-    }
+    this.controlPointArray = [];
+    this.controlPointMatrix = new Array(Math.sqrt(parsed.length));
 
-
-    window.postMessage("nativeLog", "Recovered Array:")
-    window.postMessage("nativeLog", result)
-
-
-
+    let index = 0;
     for (let i = 0; i <= this.divisionCount; i++) {
       this.controlPointMatrix[i] = [];
       for (let j = 0; j <= this.divisionCount; j++) {
-
-    window.postMessage("nativeLog", "Adding point to {"+points.x[i][j]+","+points.y[i][j]+"}, with RGB:{"+points.r[i][j]+","+points.g[i][j]+","+points.b[i][j]+"}")
         const cp = {
-          x: points.x[j][i],
-          y: points.y[j][i],
-          r: points.r[j][i],
-          g: points.g[j][i],
-          b: points.b[j][i],
-          id: `control-point-${cpIdCounter++}`,
-          xTangentLength: 1 / this.divisionCount,
-          yTangentLength: 1 / this.divisionCount,
+          x: parsed[index].x,
+          y: parsed[index].y,
+          r: parsed[index].r,
+          g: parsed[index].g,
+          b: parsed[index].b,
+          id: parsed[index].id,
+          xTangentLength: parsed[index].xTangentLength,
+          yTangentLength: parsed[index].yTangentLength
         };
         const cpObject = new ControlPoint(cp, this);
         this.container.appendChild(cpObject.cpElement);
         this.controlPointArray.push(cpObject);
         this.controlPointMatrix[i].push(cpObject);
+        index++;
       }
     }
   }
@@ -129,16 +107,25 @@ export default class Editor {
     }, 500));
   }
 
+  getStorePointArray() {
+    let storePointArray = [];
+    for (var i = 0; i < this.controlPointArray.length; i++) {
+      const cpStorePoint = new StorePoint(this.controlPointArray[i]);
+      storePointArray.push(cpStorePoint); 
+    }
+    return storePointArray;
+  }
+
   onClick(e) {
     if (e.target === this.container) {
       if (this.editing) {
         this.editing = false;
         this.container.classList.remove('editing');
-        this.colorEditor.wrapper.classList.remove('editing');
+        //this.colorEditor.wrapper.classList.remove('editing');
       } else {
         this.editing = true;
         this.container.classList.add('editing');
-        this.colorEditor.wrapper.classList.add('editing');
+        //this.colorEditor.wrapper.classList.add('editing');
       }
     }
   }
@@ -230,7 +217,7 @@ export default class Editor {
     }
     this.selectedCp = cp;
     this.selectedCp.cpElement.classList.add('active');
-    this.colorEditor.setColor(cp);
+    //this.colorEditor.color = "rgba("+cp.r+","+ cp.g+","+ cp.b+","+cp.a;
     console.log('SET CP_UNDER_EDITING', this.currentlyMovingCp.id);
   }
 
@@ -241,9 +228,10 @@ export default class Editor {
     }
   }
 
-  setColor(color) {
+  setColorToCp(color) {
     if (this.selectedCp) {
       this.selectedCp.setColor(color);
+      this.shouldRefresh = true;
     }
   }
 }

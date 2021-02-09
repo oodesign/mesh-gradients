@@ -15,6 +15,7 @@ let sceneCamera = camera;
 
 const renderer = new THREE.WebGLRenderer();
 const parentElement = document.querySelector('.gradient-mesh');
+const colorPickerContainer = document.querySelector('.aColorPicker');
 renderer.setSize(parentElement.clientWidth, parentElement.clientHeight);
 renderer.domElement.style = '';
 parentElement.insertBefore(renderer.domElement, parentElement.firstChild);
@@ -111,6 +112,17 @@ function getPatches(controlPoints) {
   return patches;
 }
 
+// function getMatrix(refMatrix) {
+//   const matrix = [];
+//   for (let i = 0; i < refMatrix.length; i++) {
+//     matrix[i] = [];
+//     for (let j = 0; j < refMatrix[i].length; j++) {
+//       matrix[i].push(refMatrix[i][j]);
+//     }
+//   }
+//   return matrix;
+// }
+
 function getPatchPoint(hermitePatch, u, v) {
   const Uvec = [[u ** 3], [u ** 2], [u], [1]];
   const Vvec = [[v ** 3], [v ** 2], [v], [1]];
@@ -192,31 +204,21 @@ function fillBufferAttributeByPatches(patches, positionAttr, colorAttr) {
 
 function initializeHermiteSurface() {
 
-  window.postMessage("nativeLog", "2.1");
-  window.postMessage("nativeLog", allPatches);
   fillBufferAttributeByPatches(allPatches, positionBufferAttribute, colorBufferAttribute);
-  window.postMessage("nativeLog", "2.11");
   vertices = new Float32Array(vertexArray);
   colors = new Float32Array(colorArray);
-  window.postMessage("nativeLog", "2.12");
   positionBufferAttribute.setArray(vertices);
-  window.postMessage("nativeLog", "2.13");
   positionBufferAttribute.setDynamic(true);
-  window.postMessage("nativeLog", "2.14");
   gradientMeshGeometry.addAttribute('position', positionBufferAttribute);
 
-  window.postMessage("nativeLog", "2.2");
   colorBufferAttribute.setArray(colors);
   colorBufferAttribute.setDynamic(true);
   gradientMeshGeometry.addAttribute('color', colorBufferAttribute);
   const material = new THREE.MeshBasicMaterial({ color: 0xffffff, vertexColors: THREE.VertexColors, side: THREE.DoubleSide });
   gradientMesh = new THREE.Mesh(gradientMeshGeometry, material);
-  window.postMessage("nativeLog", "2.3");
   scene.add(gradientMesh);
-  console.log(gradientMesh);
   gradientMesh.geometry.attributes.position.needsUpdate = true;
   gradientMesh.geometry.attributes.color.needsUpdate = true;
-  window.postMessage("nativeLog", "2.4");
 }
 
 function setBufferAttributeFromArray(attr, attrIndex, array, vertexIndex) {
@@ -301,10 +303,8 @@ document.getElementById('btnAccept').addEventListener("click", () => {
   renderer.render(scene, sceneCamera);
   var meshGradientBase64 = document.querySelector('canvas').toDataURL('image/png', 1.0).replace("data:image/png;base64,", "");
 
-  window.postMessage("nativeLog", "allPatches");
-  window.postMessage("nativeLog", allPatches);
-  var patchPoints = JSON.stringify(allPatches);
-  window.postMessage("ConfirmMeshGradient", meshGradientBase64, patchPoints);
+  var pointMatrix = JSON.stringify(editor.getStorePointArray());
+  window.postMessage("ConfirmMeshGradient", meshGradientBase64, pointMatrix);
 });
 
 window.cancelAssignation = () => {
@@ -318,16 +318,12 @@ document.getElementById('btnCancel').addEventListener("click", () => {
 
 window.LoadMesh = (meshGradientDefinition) => {
 
-  window.postMessage("nativeLog", "1");
-  editor = new Editor(initialDivisionCount, parentElement, meshGradientDefinition);
+  editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition);
   allPatches = getPatches(editor.controlPointMatrix);
   vertexCount = allPatches.length * patchFaceCount * 3;
   vertexArray = new Array(vertexCount * 3);
   colorArray = new Array(vertexCount * 3);
-  window.postMessage("nativeLog", "2");
   initializeHermiteSurface();
-  window.postMessage("nativeLog", "3");
   animate(0);
-  window.postMessage("nativeLog", "4");
 }
 

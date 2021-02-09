@@ -1,4 +1,5 @@
 import SingleTangent from './SingleTangent';
+const AColorPicker = require('a-color-picker');
 
 export default class ControlPoint {
   constructor({ x, y, r, g, b, a = 1, id, xTangentLength = 0, yTangentLength = 0 }, editor) {
@@ -48,11 +49,11 @@ export default class ControlPoint {
     }
   }
 
-  setColor({ r, g, b, a = 1 }) {
-    this.r = r;
-    this.g = g;
-    this.b = b;
-    this.a = a;
+  setColor(color) {
+    this.r = color[0]/255;
+    this.g = color[1]/255;
+    this.b = color[2]/255;
+    this.a = color[3];
   }
 
   moveTangent(tangent, x, y) {
@@ -116,7 +117,6 @@ export default class ControlPoint {
 
   onCpMouseDown(e) {
     if (e.target === this.cpElement) {
-      console.log('cpMouseDown');
       this.editor.onCpMouseDown(this);
     }
   }

@@ -11,8 +11,6 @@ var document = sketch.getSelectedDocument();
 const webviewIdentifier = 'meshgradients.webview'
 
 export function EditGradient(context) {
-  console.log("Mesh gradients!");
-
   const options = {
     identifier: webviewIdentifier,
     width: 1200,
@@ -47,18 +45,11 @@ export function EditGradient(context) {
 
   webContents.on('ConfirmMeshGradient', (meshGradientBase64, patchPoints) => {
 
-    console.log("Accepting mesh gradient")
     var parent = (document.selectedLayers.length > 0) ? document.selectedLayers.layers[0].parent : document.selectedPage;
     if (parent == null) parent = document.selectedPage;
-    // console.log("Parent is:" + parent.name)
-    // console.log("meshGradientBase64 is:")
-    // console.log(meshGradientBase64)
-    console.log("patchPoints is:")
-    console.log(patchPoints)
 
     let layer;
     if ((document.selectedLayers.length > 0) && (document.selectedLayers.layers[0].type == "ShapePath")) {
-      console.log("Editing layer");
       layer = document.selectedLayers.layers[0];
       layer.style.fills = [{
         fillType: Style.FillType.Pattern,
@@ -69,7 +60,6 @@ export function EditGradient(context) {
       }]
     }
     else {
-      console.log("Creating new layer");
       layer = new ShapePath({
         name: "Mesh gradient",
         frame: new Rectangle(0, 0, 1000, 1000),
@@ -86,16 +76,9 @@ export function EditGradient(context) {
       });
     }
 
-    console.log("Saving gradient");
     Settings.setLayerSettingForKey(layer, 'MeshGradientDefinition', patchPoints);
-
-    console.log("Saved mesh gradient")
-    console.log(Settings.layerSettingForKey(layer, 'MeshGradientDefinition'))
-
     onShutdown(webviewIdentifier);
   });
-
-
 
   webContents.on('nativeLog', s => {
     console.log(s);
@@ -104,7 +87,10 @@ export function EditGradient(context) {
 
 export function LogLayerData(context) {
   var layer = document.selectedLayers.layers[0];
-  console.log(Settings.layerSettingForKey(layer, 'MeshGradientDefinition'))
+  var definition = Settings.layerSettingForKey(layer, 'MeshGradientDefinition');
+
+  var parsed = JSON.parse(definition);
+  console.log(parsed);
 };
 
 export function onShutdown(webviewID) {
