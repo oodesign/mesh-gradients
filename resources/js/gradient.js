@@ -301,6 +301,7 @@ document.getElementById('btnAccept').addEventListener("click", () => {
   editor.toggleTangentBinding();
   calculateHermiteSurface();
   renderer.render(scene, sceneCamera);
+  
   var meshGradientBase64 = document.querySelector('canvas').toDataURL('image/png', 1.0).replace("data:image/png;base64,", "");
 
   var pointMatrix = JSON.stringify(editor.getStorePointArray());

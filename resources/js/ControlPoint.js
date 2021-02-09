@@ -2,7 +2,7 @@ import SingleTangent from './SingleTangent';
 const AColorPicker = require('a-color-picker');
 
 export default class ControlPoint {
-  constructor({ x, y, r, g, b, a = 1, id, xTangentLength = 0, yTangentLength = 0 }, editor) {
+  constructor({ x, y, r, g, b, a = 1, id, uTanX = 0, uTanY = 0, vTanX = 0, vTanY = 0 }, editor) {
     this.editor = editor;
     this.x = x;
     this.y = y;
@@ -13,25 +13,25 @@ export default class ControlPoint {
     this.id = id;
     this.cpElement = null;
     this.initializeDom();
-    this.originalXTangentLength = xTangentLength;
-    this.originalYTangentLength = yTangentLength;
+    this.originalXTangentLength = uTanX;
+    this.originalYTangentLength = vTanY;
     this.uTangents = {
-      posDir: new SingleTangent({ x: xTangentLength, y: 0, direction: true }, this),
-      negDir: new SingleTangent({ x: xTangentLength, y: 0, direction: false }, this),
+      posDir: new SingleTangent({ x: uTanX, y: uTanY, direction: true }, this),
+      negDir: new SingleTangent({ x: uTanX, y: uTanY, direction: false }, this),
     };
     this.uTangents.posDir.bindTangent(this.uTangents.negDir);
     this.vTangents = {
-      posDir: new SingleTangent({ x: 0, y: yTangentLength, direction: true }, this),
-      negDir: new SingleTangent({ x: 0, y: yTangentLength, direction: false }, this),
+      posDir: new SingleTangent({ x: vTanX, y: vTanY, direction: true }, this),
+      negDir: new SingleTangent({ x: vTanX, y: vTanY, direction: false }, this),
     };
     this.vTangents.posDir.bindTangent(this.vTangents.negDir);
     this.uHandlesHidden = false;
     this.vHandlesHidden = false;
 
-    this.prevUHandleX = xTangentLength;
-    this.prevUHandleY = yTangentLength;
-    this.prevVHandleX = xTangentLength;
-    this.prevVHandleY = yTangentLength;
+    this.prevUHandleX = uTanX;
+    this.prevUHandleY = uTanY;
+    this.prevVHandleX = vTanX;
+    this.prevVHandleY = vTanY;
   }
 
   initializeDom() {
@@ -50,9 +50,9 @@ export default class ControlPoint {
   }
 
   setColor(color) {
-    this.r = color[0]/255;
-    this.g = color[1]/255;
-    this.b = color[2]/255;
+    this.r = color[0] / 255;
+    this.g = color[1] / 255;
+    this.b = color[2] / 255;
     this.a = color[3];
   }
 

@@ -9,7 +9,9 @@ export default class StorePoint {
     this.b = cp.b;
     this.a = cp.a;
     this.id = cp.id;
-    this.xTangentLength = cp.uTangents.posDir.x;
-    this.yTangentLength = cp.vTangents.posDir.y;
+    this.uTanX = cp.uTangents.posDir.x;
+    this.uTanY = cp.uTangents.posDir.y;
+    this.vTanX = cp.vTangents.posDir.x;
+    this.vTanY = cp.vTangents.posDir.y; 
   }
 }

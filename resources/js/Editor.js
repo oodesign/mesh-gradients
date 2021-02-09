@@ -56,8 +56,10 @@ export default class Editor {
           g: j / this.divisionCount,
           b: j / this.divisionCount,
           id: `control-point-${cpIdCounter++}`,
-          xTangentLength: 1 / this.divisionCount,
-          yTangentLength: 1 / this.divisionCount,
+          uTanX: 1 / this.divisionCount,
+          uTanY: 0,
+          vTanX: 0,
+          vTanY: 1 / this.divisionCount,
         };
         const cpObject = new ControlPoint(cp, this);
 
@@ -85,8 +87,10 @@ export default class Editor {
           g: parsed[index].g,
           b: parsed[index].b,
           id: parsed[index].id,
-          xTangentLength: parsed[index].xTangentLength,
-          yTangentLength: parsed[index].yTangentLength
+          uTanX: parsed[index].uTanX,
+          uTanY: parsed[index].uTanY,
+          vTanX: parsed[index].vTanX,
+          vTanY: parsed[index].vTanY,
         };
         const cpObject = new ControlPoint(cp, this);
         this.container.appendChild(cpObject.cpElement);
