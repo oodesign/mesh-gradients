@@ -56,6 +56,10 @@ export default class ControlPoint {
     this.a = color[3];
   }
 
+  getColor() {
+    return "rgba(" + (this.r * 255) + "," + (this.g * 255) + "," + (this.b * 255) + "," + this.a + ")";
+  }
+
   moveTangent(tangent, x, y) {
     tangent.moveTangent(x, y);
   }

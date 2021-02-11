@@ -33,7 +33,7 @@ export default class Editor {
     else this.loadControlPoints();
     this.initEventListeners();
     this.boundingRect = container.getBoundingClientRect();
-    this.colorEditor = AColorPicker.from(this.colorPickerContainer);
+    this.colorEditor = AColorPicker.createPicker(this.colorPickerContainer, { showHSL: false, showAlpha: false });
     this.colorEditor.on('change', (picker, color) => {
       this.setColorToCp(AColorPicker.parseColor(picker.color, "rgba"));
     })
@@ -115,7 +115,7 @@ export default class Editor {
     let storePointArray = [];
     for (var i = 0; i < this.controlPointArray.length; i++) {
       const cpStorePoint = new StorePoint(this.controlPointArray[i]);
-      storePointArray.push(cpStorePoint); 
+      storePointArray.push(cpStorePoint);
     }
     return storePointArray;
   }
@@ -221,8 +221,7 @@ export default class Editor {
     }
     this.selectedCp = cp;
     this.selectedCp.cpElement.classList.add('active');
-    //this.colorEditor.color = "rgba("+cp.r+","+ cp.g+","+ cp.b+","+cp.a;
-    console.log('SET CP_UNDER_EDITING', this.currentlyMovingCp.id);
+    this.colorEditor.color = cp.getColor();
   }
 
   onTangentMouseDown(tangent) {
