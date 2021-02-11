@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import Editor from './Editor';
+var MeshLine = require('three.meshline');
 
 
 const scene = new THREE.Scene();
@@ -10,6 +11,15 @@ camera2.position.x = 0.5;
 camera2.position.y = 0.5;
 camera2.lookAt(0.5, 0.5, 0);
 scene.add(camera2);
+
+
+const meshGradientMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, vertexColors: THREE.VertexColors, side: THREE.DoubleSide });
+const wireframeMeshMaterial = new THREE.MeshPhongMaterial({
+  color: 0xffffff,
+  polygonOffset: true,
+  polygonOffsetFactor: 1, // positive value pushes polygon further away
+  polygonOffsetUnits: 1
+});
 
 let sceneCamera = camera;
 const imageQuality = 5000;
@@ -28,7 +38,7 @@ scene.add(ambientLight);
 camera.position.z = 10;
 const patchDivCount = 20;
 
-let initialDivisionCount = 5;
+let initialDivisionCount = 2;
 var editor;
 //var editor = new Editor(initialDivisionCount, parentElement);
 
@@ -216,9 +226,9 @@ function initializeHermiteSurface() {
   colorBufferAttribute.setArray(colors);
   colorBufferAttribute.setDynamic(true);
   gradientMeshGeometry.addAttribute('color', colorBufferAttribute);
-  const material = new THREE.MeshBasicMaterial({ color: 0xffffff, vertexColors: THREE.VertexColors, side: THREE.DoubleSide });
-  gradientMesh = new THREE.Mesh(gradientMeshGeometry, material);
+  gradientMesh = new THREE.Mesh(gradientMeshGeometry, meshGradientMaterial);
   scene.add(gradientMesh);
+
   gradientMesh.geometry.attributes.position.needsUpdate = true;
   gradientMesh.geometry.attributes.color.needsUpdate = true;
 }
@@ -233,6 +243,19 @@ function calculateHermiteSurface(t) {
   gradientMesh.geometry.attributes.position.needsUpdate = true;
   gradientMesh.geometry.attributes.color.needsUpdate = true;
 }
+
+window.addEventListener('keydown', (e) => {
+  if (e.code === 'Space') {
+    gradientMesh.material = (gradientMesh.material == meshGradientMaterial) ? wireframeMeshMaterial : meshGradientMaterial;
+    calculateHermiteSurface();
+    renderer.render(scene, sceneCamera);
+  }
+  if (e.code === 'ShiftLeft') {
+    editor.toggleTangentBinding();
+    calculateHermiteSurface();
+    renderer.render(scene, sceneCamera);
+  }
+});
 
 
 // window.addEventListener('keydown', (e) => {
@@ -301,6 +324,7 @@ document.addEventListener('contextmenu', (e) => {
 
 document.getElementById('btnAccept').addEventListener("click", () => {
   editor.toggleTangentBinding();
+  gradientMesh.material = meshGradientMaterial;
   calculateHermiteSurface();
   renderer.render(scene, sceneCamera);
 
@@ -322,7 +346,7 @@ document.getElementById('btnCancel').addEventListener("click", () => {
 
 window.LoadMesh = (meshGradientDefinition) => {
 
-  if (meshGradientDefinition!=null) {
+  if (meshGradientDefinition != null) {
     var parsed = JSON.parse(meshGradientDefinition);
     initialDivisionCount = Math.sqrt(parsed.length) - 1
   }
