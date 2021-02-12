@@ -38,7 +38,7 @@ scene.add(ambientLight);
 camera.position.z = 10;
 const patchDivCount = 20;
 
-let initialDivisionCount = 2;
+let initialDivisionCount = 5;
 var editor;
 //var editor = new Editor(initialDivisionCount, parentElement);
 
@@ -245,6 +245,7 @@ function calculateHermiteSurface(t) {
 }
 
 window.addEventListener('keydown', (e) => {
+  window.postMessage("nativeLog", e.code);
   if (e.code === 'Space') {
     gradientMesh.material = (gradientMesh.material == meshGradientMaterial) ? wireframeMeshMaterial : meshGradientMaterial;
     calculateHermiteSurface();

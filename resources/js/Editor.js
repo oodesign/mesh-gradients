@@ -23,7 +23,7 @@ export default class Editor {
   constructor(initialDivisionCount, container, colorPickerContainer, meshGradientDefinition) {
     this.container = container;
     this.colorPickerContainer = colorPickerContainer;
-    this.editing = false;
+    this.editing = true;
     this.divisionCount = initialDivisionCount;
     this.currentlyMovingCp = null;
     this.selectedCp = null;
@@ -122,15 +122,15 @@ export default class Editor {
 
   onClick(e) {
     if (e.target === this.container) {
-      if (this.editing) {
-        this.editing = false;
+      // if (this.editing) {
+        // this.editing = false;
         //this.container.classList.remove('editing');
         //this.colorEditor.wrapper.classList.remove('editing');
-      } else {
-        this.editing = true;
+      // } else {
+        // this.editing = true;
         //this.container.classList.add('editing');
         //this.colorEditor.wrapper.classList.add('editing');
-      }
+      // }
     }
   }
 
