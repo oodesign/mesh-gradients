@@ -245,16 +245,22 @@ function calculateHermiteSurface(t) {
 }
 
 window.addEventListener('keydown', (e) => {
-  window.postMessage("nativeLog", e.code);
-  if (e.code === 'Space') {
-    gradientMesh.material = (gradientMesh.material == meshGradientMaterial) ? wireframeMeshMaterial : meshGradientMaterial;
-    calculateHermiteSurface();
-    renderer.render(scene, sceneCamera);
-  }
-  if (e.code === 'ShiftLeft') {
-    editor.toggleTangentBinding();
-    calculateHermiteSurface();
-    renderer.render(scene, sceneCamera);
+  switch (e.code) {
+    case "Space":
+      gradientMesh.material = (gradientMesh.material == meshGradientMaterial) ? wireframeMeshMaterial : meshGradientMaterial;
+      calculateHermiteSurface();
+      renderer.render(scene, sceneCamera);
+      break;
+    case "ShiftLeft":
+      editor.toggleTangentBinding();
+      calculateHermiteSurface();
+      renderer.render(scene, sceneCamera);
+      break;
+    case "KeyR":
+      editor.resetSelectedCpTangent();
+      calculateHermiteSurface();
+      renderer.render(scene, sceneCamera);
+      break;
   }
 });
 

@@ -29,6 +29,7 @@ export default class Editor {
     this.selectedCp = null;
     this.meshGradientDefinition = meshGradientDefinition;
     this.shouldRefresh = true;
+    this.multipleSelectedCPs = [];
     if (meshGradientDefinition == null) this.initControlPoints();
     else this.loadControlPoints();
     this.initEventListeners();
@@ -123,13 +124,13 @@ export default class Editor {
   onClick(e) {
     if (e.target === this.container) {
       // if (this.editing) {
-        // this.editing = false;
-        //this.container.classList.remove('editing');
-        //this.colorEditor.wrapper.classList.remove('editing');
+      // this.editing = false;
+      //this.container.classList.remove('editing');
+      //this.colorEditor.wrapper.classList.remove('editing');
       // } else {
-        // this.editing = true;
-        //this.container.classList.add('editing');
-        //this.colorEditor.wrapper.classList.add('editing');
+      // this.editing = true;
+      //this.container.classList.add('editing');
+      //this.colorEditor.wrapper.classList.add('editing');
       // }
     }
   }
@@ -139,9 +140,13 @@ export default class Editor {
     this.currentlyMovingTangent = null;
     this.movingCpStartPos = { x: null, y: null };
     this.shouldRefresh = false;
-    if (e.target.classList.contains('gradient-mesh') && this.selectedCp) {
-      this.selectedCp.cpElement.classList.remove('active');
-      this.selectedCp = null;
+
+    if (!e.target.classList.contains('control-point')) {
+      if (e.target.parentElement.classList.contains('gradient-mesh') && this.selectedCp) {
+        this.selectedCp.cpElement.classList.remove('active');
+        this.resetMultipleSelection()
+        this.selectedCp = null;
+      }
     }
   }
 
@@ -211,7 +216,7 @@ export default class Editor {
     e.stopPropagation();
   }
 
-  onCpMouseDown(cp) {
+  onCpMouseDown(cp, e) {
     this.currentlyMovingCp = cp;
     this.shouldRefresh = true;
     this.movingCpStartPos.x = cp.x;
@@ -221,8 +226,23 @@ export default class Editor {
     }
     this.selectedCp = cp;
     this.selectedCp.cpElement.classList.add('active');
-    this.colorEditor.color = cp.getColor();
+
+    if (!e.shiftKey)
+      this.resetMultipleSelection();
+
+    this.multipleSelectedCPs.push(cp);
+    cp.highlight();
+
+    if (this.multipleSelectedCPs.length == 1)
+      this.colorEditor.color = cp.getColor();
+
   }
+
+  resetMultipleSelection() {
+    this.multipleSelectedCPs.forEach(cp => { cp.unhighlight(); });
+    this.multipleSelectedCPs = [];
+  }
+
 
   onTangentMouseDown(tangent) {
     this.shouldRefresh = true;
@@ -232,9 +252,7 @@ export default class Editor {
   }
 
   setColorToCp(color) {
-    if (this.selectedCp) {
-      this.selectedCp.setColor(color);
-      this.shouldRefresh = true;
-    }
+    this.multipleSelectedCPs.forEach(cp => { cp.setColor(color); });
+    this.shouldRefresh = true;
   }
 }
