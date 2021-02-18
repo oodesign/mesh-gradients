@@ -38,7 +38,7 @@ scene.add(ambientLight);
 camera.position.z = 10;
 const patchDivCount = 20;
 
-let initialDivisionCount = 5;
+let initialDivisionCount = 3;
 var editor;
 //var editor = new Editor(initialDivisionCount, parentElement);
 
@@ -227,7 +227,7 @@ function initializeHermiteSurface() {
   colorBufferAttribute.setDynamic(true);
   gradientMeshGeometry.addAttribute('color', colorBufferAttribute);
   gradientMesh = new THREE.Mesh(gradientMeshGeometry, meshGradientMaterial);
-  scene.add(gradientMesh);
+  //scene.add(gradientMesh);
 
   gradientMesh.geometry.attributes.position.needsUpdate = true;
   gradientMesh.geometry.attributes.color.needsUpdate = true;
@@ -260,6 +260,10 @@ window.addEventListener('keydown', (e) => {
       editor.resetSelectedCpTangent();
       calculateHermiteSurface();
       renderer.render(scene, sceneCamera);
+      break;
+    case "KeyS":
+      drawLines()
+      //drawTestLine(true);
       break;
   }
 });
@@ -314,6 +318,11 @@ window.addEventListener('keydown', (e) => {
 
 
 const animate = (t) => {
+
+  if (editor.currentlyMovingCp || editor.currentlyMovingTangent) {
+    //updateCPlines();
+  }
+
   if (editor.shouldRefresh) {
     calculateHermiteSurface(t);
     renderer.render(scene, sceneCamera);
@@ -364,5 +373,133 @@ window.LoadMesh = (meshGradientDefinition) => {
   colorArray = new Array(vertexCount * 3);
   initializeHermiteSurface();
   animate(0);
+}
+
+let horizontalLines = new Map();
+let verticalLines = new Map();
+const coolmaterial = new THREE.LineBasicMaterial({ color: 0xff0000, linewidth: 4 });
+let line;
+
+
+const drawTestLine = (log) => {
+  if (!line) {
+    let curve = new THREE.CubicBezierCurve3(
+      new THREE.Vector3(0, 0, 0),
+      new THREE.Vector3(0, 0.2, 0),
+      new THREE.Vector3(1, 0.8, 0),
+      new THREE.Vector3(1, 1, 0)
+    );
+
+    window.postMessage("nativeLog", "creating line")
+    let geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(50));
+    line = new THREE.Line(geometry, coolmaterial);
+    line.curve = curve;
+    scene.add(line);
+
+
+  }
+  {
+    if (log) {
+      window.postMessage("nativeLog", line.curve.v3)
+      window.postMessage("nativeLog", "updating line to " + (editor.mouseX / editor.boundingRect.width) + "," + (editor.mouseY / editor.boundingRect.height))
+    }
+
+    line.curve.v3.x = (editor.mouseX - editor.boundingRect.x) / editor.boundingRect.width;
+    line.curve.v3.y = (editor.mouseY - editor.boundingRect.y) / editor.boundingRect.height;
+    line.geometry.setFromPoints(line.curve.getPoints(50));
+    line.geometry.attributes.position.needsUpdate = true;
+
+  }
+  //calculateHermiteSurface(t);
+  renderer.render(scene, sceneCamera);
+}
+
+const drawLines = () => {
+
+  for (let i = 0; i < editor.controlPointMatrix.length; i++) {
+    for (let j = 0; j < editor.controlPointMatrix[i].length - 1; j++) {
+
+      let p1 = editor.controlPointMatrix[i][j];
+      let p2 = editor.controlPointMatrix[i][j + 1];
+
+      var p1VTanPosDirX = (p1.vTangents.posDir.x * 100 + p1.x * editor.boundingRect.width) / editor.boundingRect.width;
+      var p1VTanPosDirY = (p1.vTangents.posDir.y * 100 + p1.y * editor.boundingRect.height) / editor.boundingRect.height;
+      var p2VTanNegDirX = (p2.vTangents.negDir.x * -100 + p2.x * editor.boundingRect.width) / editor.boundingRect.width;
+      var p2VTanNegDirY = (p2.vTangents.negDir.y * -100 + p2.y * editor.boundingRect.height) / editor.boundingRect.height;
+
+      let curve = new THREE.CubicBezierCurve3(
+        new THREE.Vector3(p1.x, p1.y, 0),
+        new THREE.Vector3(p1VTanPosDirX, p1VTanPosDirY, 0),
+        new THREE.Vector3(p2VTanNegDirX, p2VTanNegDirY, 0),
+        new THREE.Vector3(p2.x, p2.y, 0)
+      );
+
+      //window.postMessage("nativeLog", "creating line")
+      let geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(50));
+      let curveObject = new THREE.Line(geometry, coolmaterial);
+      curveObject.curve = curve;
+      scene.add(curveObject);
+      verticalLines.set(i + "," + j, curveObject);
+    }
+  }
+
+  for (let i = 0; i < editor.controlPointMatrix.length - 1; i++) {
+    for (let j = 0; j < editor.controlPointMatrix[i].length; j++) {
+
+      let p1 = editor.controlPointMatrix[i][j];
+      let p2 = editor.controlPointMatrix[i + 1][j];
+
+      var p1UTanPosDirX = (p1.uTangents.posDir.x * 100 + p1.x * editor.boundingRect.width) / editor.boundingRect.width;
+      var p1UTanPosDirY = (p1.uTangents.posDir.y * 100 + p1.y * editor.boundingRect.height) / editor.boundingRect.height;
+      var p2UTanNegDirX = (p2.uTangents.negDir.x * -100 + p2.x * editor.boundingRect.width) / editor.boundingRect.width;
+      var p2UTanNegDirY = (p2.uTangents.negDir.y * -100 + p2.y * editor.boundingRect.height) / editor.boundingRect.height;
+
+      let curve = new THREE.CubicBezierCurve3(
+        new THREE.Vector3(p1.x, p1.y, 0),
+        new THREE.Vector3(p1UTanPosDirX, p1UTanPosDirY, 0),
+        new THREE.Vector3(p2UTanNegDirX, p2UTanNegDirY, 0),
+        new THREE.Vector3(p2.x, p2.y, 0)
+      );
+
+      //window.postMessage("nativeLog", "creating line")
+      let geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(50));
+      let curveObject = new THREE.Line(geometry, coolmaterial);
+      curveObject.curve = curve;
+      scene.add(curveObject);
+      horizontalLines.set(i + "," + j, curveObject);
+    }
+  }
+
+  calculateHermiteSurface();
+  renderer.render(scene, sceneCamera);
+}
+
+const updateCPlines = (cp) => {
+  if (editor.selectedCp != null) {
+
+    //TODO
+
+    // var p1VTanPosDirX = (p1.vTangents.posDir.x * 100 + p1.x * editor.boundingRect.width) / editor.boundingRect.width;
+    // var p1VTanPosDirY = (p1.vTangents.posDir.y * 100 + p1.y * editor.boundingRect.height) / editor.boundingRect.height;
+    // var p2VTanNegDirX = (p2.vTangents.negDir.x * -100 + p2.x * editor.boundingRect.width) / editor.boundingRect.width;
+    // var p2VTanNegDirY = (p2.vTangents.negDir.y * -100 + p2.y * editor.boundingRect.height) / editor.boundingRect.height;
+
+    // let curve = new THREE.CubicBezierCurve3(
+    //   new THREE.Vector3(p1.x, p1.y, 0),
+    //   new THREE.Vector3(p1VTanPosDirX, p1VTanPosDirY, 0),
+    //   new THREE.Vector3(p2VTanNegDirX, p2VTanNegDirY, 0),
+    //   new THREE.Vector3(p2.x, p2.y, 0)
+    // );
+
+    // window.postMessage("nativeLog", "creating line")
+    // let geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(50));
+    // let curveObject = new THREE.Line(geometry, coolmaterial);
+    // curveObject.curve = curve;
+    // scene.add(curveObject);
+    // verticalLines.set(i + "," + j, curveObject);
+
+  }
+
+
 }
 

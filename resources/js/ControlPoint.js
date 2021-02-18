@@ -37,7 +37,6 @@ export default class ControlPoint {
   initializeDom() {
     this.cpElement = document.createElement('div');
     this.cpElement.classList.add('control-point');
-    // this.cpElement.setAttribute('style', `top: ${100 * this.y}%; left: ${100 * this.x}%;`);
     this.cpElement.style.left = 100 * this.x + "%";
     this.cpElement.style.top = 100 * this.y + "%";
     this.cpElement.addEventListener('mousedown', this.onCpMouseDown.bind(this));
@@ -47,7 +46,6 @@ export default class ControlPoint {
     this.x = x;
     this.y = y;
     if (this.cpElement) {
-      // this.cpElement.setAttribute('style', `top: ${100 * y}%; left: ${100 * x}%;`);
       this.cpElement.style.left = 100 * x + "%";
       this.cpElement.style.top = 100 * y + "%";
     }

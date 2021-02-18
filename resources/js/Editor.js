@@ -30,6 +30,9 @@ export default class Editor {
     this.meshGradientDefinition = meshGradientDefinition;
     this.shouldRefresh = true;
     this.multipleSelectedCPs = [];
+    this.mouseX = 0;
+    this.mouseY = 0;
+    this.pointsMap = new Map();
     if (meshGradientDefinition == null) this.initControlPoints();
     else this.loadControlPoints();
     this.initEventListeners();
@@ -57,13 +60,13 @@ export default class Editor {
           g: j / this.divisionCount,
           b: j / this.divisionCount,
           id: `control-point-${cpIdCounter++}`,
-          uTanX: 1 / this.divisionCount,
+          uTanX: 1,// / this.divisionCount,
           uTanY: 0,
           vTanX: 0,
-          vTanY: 1 / this.divisionCount,
+          vTanY: 1 // / this.divisionCount,
         };
         const cpObject = new ControlPoint(cp, this);
-
+        this.pointsMap.set(i + "," + j, cpObject);
         this.container.appendChild(cpObject.cpElement);
         this.controlPointArray.push(cpObject);
         this.controlPointMatrix[i].push(cpObject);
@@ -93,7 +96,8 @@ export default class Editor {
           vTanX: parsed[index].vTanX,
           vTanY: parsed[index].vTanY,
         };
-        const cpObject = new ControlPoint(cp, this);
+        const cpObject = new ControlPoint(cp, this, i, j);
+        this.pointsMap.set(i + "," + j, cpObject);
         this.container.appendChild(cpObject.cpElement);
         this.controlPointArray.push(cpObject);
         this.controlPointMatrix[i].push(cpObject);
@@ -171,6 +175,10 @@ export default class Editor {
       const y = (e.clientY - this.boundingRect.y) - this.selectedCp.y * this.boundingRect.height;
       this.selectedCp.moveTangent(this.currentlyMovingTangent, x, y);
     }
+
+    this.mouseX = e.clientX;
+    this.mouseY = e.clientY;
+
   }
 
   resetSelectedCpTangent() {
@@ -217,6 +225,9 @@ export default class Editor {
   }
 
   onCpMouseDown(cp, e) {
+
+    //window.postMessage("nativeLog", "CP position and tangents: (" + cp.x + "," + cp.y + ") - UTAN:posDir(" + cp.uTangents.posDir.x + "," + cp.uTangents.posDir.y + ") - negDir(" + cp.uTangents.negDir.x + "," + cp.uTangents.negDir.y + ") - VTAN:posDir(" + cp.vTangents.posDir.x + "," + cp.vTangents.posDir.y + ") - negDir(" + cp.vTangents.negDir.x + "," + cp.vTangents.negDir.y + ")");
+
     this.currentlyMovingCp = cp;
     this.shouldRefresh = true;
     this.movingCpStartPos.x = cp.x;
@@ -255,4 +266,6 @@ export default class Editor {
     this.multipleSelectedCPs.forEach(cp => { cp.setColor(color); });
     this.shouldRefresh = true;
   }
+
+
 }
