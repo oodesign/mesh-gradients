@@ -60,13 +60,13 @@ export default class Editor {
           g: j / this.divisionCount,
           b: j / this.divisionCount,
           id: `control-point-${cpIdCounter++}`,
-          uTanX: 1,// / this.divisionCount,
+          uTanX: 1 / this.divisionCount,
           uTanY: 0,
           vTanX: 0,
-          vTanY: 1 // / this.divisionCount,
+          vTanY: 1 / this.divisionCount,
         };
         const cpObject = new ControlPoint(cp, this);
-        this.pointsMap.set(i + "," + j, cpObject);
+        this.pointsMap.set(cpObject, { "i": i, "j": j });
         this.container.appendChild(cpObject.cpElement);
         this.controlPointArray.push(cpObject);
         this.controlPointMatrix[i].push(cpObject);
@@ -97,7 +97,7 @@ export default class Editor {
           vTanY: parsed[index].vTanY,
         };
         const cpObject = new ControlPoint(cp, this, i, j);
-        this.pointsMap.set(i + "," + j, cpObject);
+        this.pointsMap.set(cpObject, { "i": i, "j": j });
         this.container.appendChild(cpObject.cpElement);
         this.controlPointArray.push(cpObject);
         this.controlPointMatrix[i].push(cpObject);

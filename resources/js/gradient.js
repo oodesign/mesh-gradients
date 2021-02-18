@@ -227,7 +227,7 @@ function initializeHermiteSurface() {
   colorBufferAttribute.setDynamic(true);
   gradientMeshGeometry.addAttribute('color', colorBufferAttribute);
   gradientMesh = new THREE.Mesh(gradientMeshGeometry, meshGradientMaterial);
-  //scene.add(gradientMesh);
+  scene.add(gradientMesh);
 
   gradientMesh.geometry.attributes.position.needsUpdate = true;
   gradientMesh.geometry.attributes.color.needsUpdate = true;
@@ -320,7 +320,7 @@ window.addEventListener('keydown', (e) => {
 const animate = (t) => {
 
   if (editor.currentlyMovingCp || editor.currentlyMovingTangent) {
-    //updateCPlines();
+    updateCPlines();
   }
 
   if (editor.shouldRefresh) {
@@ -428,10 +428,10 @@ const drawLines = () => {
       var p2VTanNegDirY = (p2.vTangents.negDir.y * -100 + p2.y * editor.boundingRect.height) / editor.boundingRect.height;
 
       let curve = new THREE.CubicBezierCurve3(
-        new THREE.Vector3(p1.x, p1.y, 0),
-        new THREE.Vector3(p1VTanPosDirX, p1VTanPosDirY, 0),
-        new THREE.Vector3(p2VTanNegDirX, p2VTanNegDirY, 0),
-        new THREE.Vector3(p2.x, p2.y, 0)
+        new THREE.Vector3(p1.x, p1.y, 1),
+        new THREE.Vector3(p1VTanPosDirX, p1VTanPosDirY, 1),
+        new THREE.Vector3(p2VTanNegDirX, p2VTanNegDirY, 1),
+        new THREE.Vector3(p2.x, p2.y, 1)
       );
 
       //window.postMessage("nativeLog", "creating line")
@@ -455,10 +455,10 @@ const drawLines = () => {
       var p2UTanNegDirY = (p2.uTangents.negDir.y * -100 + p2.y * editor.boundingRect.height) / editor.boundingRect.height;
 
       let curve = new THREE.CubicBezierCurve3(
-        new THREE.Vector3(p1.x, p1.y, 0),
-        new THREE.Vector3(p1UTanPosDirX, p1UTanPosDirY, 0),
-        new THREE.Vector3(p2UTanNegDirX, p2UTanNegDirY, 0),
-        new THREE.Vector3(p2.x, p2.y, 0)
+        new THREE.Vector3(p1.x, p1.y, 1),
+        new THREE.Vector3(p1UTanPosDirX, p1UTanPosDirY, 1),
+        new THREE.Vector3(p2UTanNegDirX, p2UTanNegDirY, 1),
+        new THREE.Vector3(p2.x, p2.y, 1)
       );
 
       //window.postMessage("nativeLog", "creating line")
@@ -474,8 +474,59 @@ const drawLines = () => {
   renderer.render(scene, sceneCamera);
 }
 
-const updateCPlines = (cp) => {
+const updateCPlines = () => {
   if (editor.selectedCp != null) {
+
+    let i = editor.pointsMap.get(editor.selectedCp).i;
+    let j = editor.pointsMap.get(editor.selectedCp).j;
+
+    if (horizontalLines.has(i + "," + j)) {
+      let curveObject = horizontalLines.get(i + "," + j)
+
+      var p1UTanPosDirX = (editor.selectedCp.uTangents.posDir.x * 100 + editor.selectedCp.x * editor.boundingRect.width) / editor.boundingRect.width;
+      var p1UTanPosDirY = (editor.selectedCp.uTangents.posDir.y * 100 + editor.selectedCp.y * editor.boundingRect.height) / editor.boundingRect.height;
+
+      curveObject.curve.v0.set(editor.selectedCp.x, editor.selectedCp.y, 1)
+      curveObject.curve.v1.set(p1UTanPosDirX, p1UTanPosDirY, 0)
+      curveObject.geometry.setFromPoints(curveObject.curve.getPoints(50));
+      curveObject.geometry.attributes.position.needsUpdate = true;
+    }
+
+    if (horizontalLines.has((i - 1) + "," + j)) {
+      let curveObject = horizontalLines.get((i - 1) + "," + j)
+
+      var p2UTanNegDirX = (editor.selectedCp.uTangents.negDir.x * -100 + editor.selectedCp.x * editor.boundingRect.width) / editor.boundingRect.width;
+      var p2UTanNegDirY = (editor.selectedCp.uTangents.negDir.y * -100 + editor.selectedCp.y * editor.boundingRect.height) / editor.boundingRect.height;
+
+      curveObject.curve.v2.set(p2UTanNegDirX, p2UTanNegDirY, 0)
+      curveObject.curve.v3.set(editor.selectedCp.x, editor.selectedCp.y, 1)
+      curveObject.geometry.setFromPoints(curveObject.curve.getPoints(50));
+      curveObject.geometry.attributes.position.needsUpdate = true;
+    }
+
+    if (verticalLines.has(i + "," + j)) {
+      let curveObject = verticalLines.get(i + "," + j)
+
+      var p1VTanPosDirX = (editor.selectedCp.vTangents.posDir.x * 100 + editor.selectedCp.x * editor.boundingRect.width) / editor.boundingRect.width;
+      var p1VTanPosDirY = (editor.selectedCp.vTangents.posDir.y * 100 + editor.selectedCp.y * editor.boundingRect.height) / editor.boundingRect.height;
+
+      curveObject.curve.v0.set(editor.selectedCp.x, editor.selectedCp.y, 1)
+      curveObject.curve.v1.set(p1VTanPosDirX, p1VTanPosDirY, 0)
+      curveObject.geometry.setFromPoints(curveObject.curve.getPoints(50));
+      curveObject.geometry.attributes.position.needsUpdate = true;
+    }
+
+    if (verticalLines.has(i + "," + (j - 1))) {
+      let curveObject = verticalLines.get(i + "," + (j - 1))
+
+      var p2VTanNegDirX = (editor.selectedCp.vTangents.negDir.x * -100 + editor.selectedCp.x * editor.boundingRect.width) / editor.boundingRect.width;
+      var p2VTanNegDirY = (editor.selectedCp.vTangents.negDir.y * -100 + editor.selectedCp.y * editor.boundingRect.height) / editor.boundingRect.height;
+
+      curveObject.curve.v2.set(p2VTanNegDirX, p2VTanNegDirY, 0)
+      curveObject.curve.v3.set(editor.selectedCp.x, editor.selectedCp.y, 1)
+      curveObject.geometry.setFromPoints(curveObject.curve.getPoints(50));
+      curveObject.geometry.attributes.position.needsUpdate = true;
+    }
 
     //TODO
 
