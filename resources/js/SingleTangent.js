@@ -50,6 +50,11 @@ export default class SingleTangent {
     this.cp.onTangentMouseDown(tangent);
   }
 
+  initializeTangentPair(tangent) {
+    this.tangentPair = tangent;
+    tangent.tangentPair = this;
+  }
+
   bindTangent(tangent) {
     this.tangentPair = tangent;
     this.boundTangent = tangent;

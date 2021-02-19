@@ -60,12 +60,16 @@ export default class Editor {
           g: j / this.divisionCount,
           b: j / this.divisionCount,
           id: `control-point-${cpIdCounter++}`,
-          uTanX: 1 / this.divisionCount,
-          uTanY: 0,
-          vTanX: 0,
-          vTanY: 1 / this.divisionCount,
+          uPosTanX: 1 / this.divisionCount,
+          uPosTanY: 0,
+          uNegTanX: 1 / this.divisionCount,
+          uNegTanY: 0,
+          vPosTanX: 0,
+          vPosTanY: 1 / this.divisionCount,
+          vNegTanX: 0,
+          vNegTanY: 1 / this.divisionCount,
         };
-        const cpObject = new ControlPoint(cp, this);
+        const cpObject = new ControlPoint(cp, this, i, j);
         this.pointsMap.set(cpObject, { "i": i, "j": j });
         this.container.appendChild(cpObject.cpElement);
         this.controlPointArray.push(cpObject);
@@ -84,6 +88,7 @@ export default class Editor {
     for (let i = 0; i <= this.divisionCount; i++) {
       this.controlPointMatrix[i] = [];
       for (let j = 0; j <= this.divisionCount; j++) {
+
         const cp = {
           x: parsed[index].x,
           y: parsed[index].y,
@@ -91,11 +96,16 @@ export default class Editor {
           g: parsed[index].g,
           b: parsed[index].b,
           id: parsed[index].id,
-          uTanX: parsed[index].uTanX,
-          uTanY: parsed[index].uTanY,
-          vTanX: parsed[index].vTanX,
-          vTanY: parsed[index].vTanY,
+          uPosTanX: parsed[index].uPosTanX,
+          uPosTanY: parsed[index].uPosTanY,
+          uNegTanX: parsed[index].uNegTanX ? parsed[index].uNegTanX : parsed[index].uPosTanX,
+          uNegTanY: parsed[index].uNegTanY ? parsed[index].uNegTanY : parsed[index].uPosTanY,
+          vPosTanX: parsed[index].vPosTanX,
+          vPosTanY: parsed[index].vPosTanY,
+          vNegTanX: parsed[index].vNegTanX ? parsed[index].vNegTanX : parsed[index].vPosTanX,
+          vNegTanY: parsed[index].vNegTanY ? parsed[index].vNegTanY : parsed[index].vPosTanY,
         };
+
         const cpObject = new ControlPoint(cp, this, i, j);
         this.pointsMap.set(cpObject, { "i": i, "j": j });
         this.container.appendChild(cpObject.cpElement);
