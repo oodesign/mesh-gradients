@@ -262,7 +262,7 @@ window.addEventListener('keydown', (e) => {
       renderer.render(scene, sceneCamera);
       break;
     case "KeyS":
-      drawLines()
+      toggleLines()
       //drawTestLine(true);
       break;
   }
@@ -373,12 +373,14 @@ window.LoadMesh = (meshGradientDefinition) => {
   colorArray = new Array(vertexCount * 3);
   initializeHermiteSurface();
   animate(0);
+  drawLines();
 }
 
 let horizontalLines = new Map();
 let verticalLines = new Map();
 const coolmaterial = new THREE.LineBasicMaterial({ color: 0xff0000, linewidth: 4 });
 let line;
+let linesVisible = false;
 
 
 const drawTestLine = (log) => {
@@ -414,6 +416,21 @@ const drawTestLine = (log) => {
   renderer.render(scene, sceneCamera);
 }
 
+const toggleLines = () => {
+  linesVisible = !linesVisible;
+
+  horizontalLines.forEach(hLine => {
+    hLine.visible = linesVisible;
+  });
+   
+  verticalLines.forEach(vLine => {
+    vLine.visible = linesVisible;
+  });
+
+  
+  renderer.render(scene, sceneCamera);
+}
+
 const drawLines = () => {
 
   for (let i = 0; i < editor.controlPointMatrix.length; i++) {
@@ -438,6 +455,7 @@ const drawLines = () => {
       let geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(50));
       let curveObject = new THREE.Line(geometry, coolmaterial);
       curveObject.curve = curve;
+      curveObject.visible = linesVisible;
       scene.add(curveObject);
       verticalLines.set(i + "," + j, curveObject);
     }
@@ -464,6 +482,7 @@ const drawLines = () => {
       //window.postMessage("nativeLog", "creating line")
       let geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(50));
       let curveObject = new THREE.Line(geometry, coolmaterial);
+      curveObject.visible = linesVisible;
       curveObject.curve = curve;
       scene.add(curveObject);
       horizontalLines.set(i + "," + j, curveObject);
