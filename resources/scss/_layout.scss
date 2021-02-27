@@ -1,23 +1,21 @@
-@import "_colors"; 
-@import "_media"; 
+@import "_colors";
+@import "_media";
 
-$topPadding: 46px;  
-$bottomPadding: 30px;  
-$leftRightPadding: 20px;  
-$headerTopDistance:8px;
-$headerSidesDistance:18px;
+$topPadding: 46px;
+$bottomPadding: 30px;
+$leftRightPadding: 20px;
+$headerTopDistance: 8px;
+$headerSidesDistance: 18px;
 
-
-
-.notDisplayed{
+.notDisplayed {
     display: none !important;
 }
 
-.notVisible{
+.notVisible {
     visibility: hidden !important;
 }
 
-@mixin flex{
+@mixin flex {
     display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -36,7 +34,7 @@ $headerSidesDistance:18px;
     flex-direction: row;
 }
 
-.flexDirectionRow{
+.flexDirectionRow {
     @include flexDirectionRow;
 }
 
@@ -48,7 +46,7 @@ $headerSidesDistance:18px;
     flex-direction: column;
 }
 
-.flexDirectionColumn{
+.flexDirectionColumn {
     @include flex;
     @include flexDirectionColumn;
 }
@@ -65,7 +63,6 @@ $headerSidesDistance:18px;
     @include horizontalLayout;
 }
 
-
 @mixin verticalLayout {
     @include flex;
     @extend .flexDirectionColumn;
@@ -80,15 +77,15 @@ $headerSidesDistance:18px;
 
 @mixin colAuto {
     -webkit-box-flex: 0;
-   -moz-box-flex: 0;
-   -ms-flex: 0 0 auto ;
-   -webkit-flex: 0 0 auto ;
-   flex: 0 0 auto ;
-   position: relative;
+    -moz-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
+    position: relative;
 }
 
 .colAuto {
-     @include colAuto;
+    @include colAuto;
 }
 
 @mixin colAvailable {
@@ -101,15 +98,15 @@ $headerSidesDistance:18px;
 }
 
 .colAvailable {
-     @include colAvailable;
+    @include colAvailable;
 }
 
 .rowAuto {
-     -webkit-box-flex: 0;
+    -webkit-box-flex: 0;
     -moz-box-flex: 0;
-    -ms-flex: 0 0 auto ;
-    -webkit-flex: 0 0 auto ;
-    flex: 0 0 auto ;
+    -ms-flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
     position: relative;
     width: 100%;
 }
@@ -125,66 +122,66 @@ $headerSidesDistance:18px;
     overflow-x: hidden;
 }
 
-@mixin alignVerticalCenter{
+@mixin alignVerticalCenter {
     @include flex;
     align-content: center;
     align-items: center;
 }
 
-.alignVerticalCenter{
+.alignVerticalCenter {
     @include alignVerticalCenter;
 }
 
-@mixin alignHorizontalCenter{
-    margin:0 auto;
+@mixin alignHorizontalCenter {
+    margin: 0 auto;
 }
 
-.alignHorizontalCenter{
+.alignHorizontalCenter {
     @include alignHorizontalCenter;
 }
 
-@mixin alignFullCenter{
-        display: flex; // make us of Flexbox
-        align-items: center; // does vertically center the desired content
-        justify-content: center; // horizontally centers single line items
-        text-align: center; // optional, but helps horizontally center text that breaks into multiple lines
+@mixin alignFullCenter {
+    display: flex; // make us of Flexbox
+    align-items: center; // does vertically center the desired content
+    justify-content: center; // horizontally centers single line items
+    text-align: center; // optional, but helps horizontally center text that breaks into multiple lines
 }
 
-.alignFullCenter{
+.alignFullCenter {
     @include alignFullCenter;
 }
 
-.alignFlexHorizontalCenter{
+.alignFlexHorizontalCenter {
     justify-content: center;
 }
 
-.scrollable{
+.scrollable {
     overflow-y: auto;
     overflow-x: hidden;
 }
 
-@mixin wrapPanel{
+@mixin wrapPanel {
     @include flex;
     flex-wrap: wrap;
 }
 
-.wrapPanel{
+.wrapPanel {
     @include wrapPanel;
 }
 
-.extendHeight{
+.extendHeight {
     height: 100%;
 }
 
-.noScroll{
+.noScroll {
     overflow: hidden !important;
 }
 
-.fullWidth{
-    width: 100%;;
+.fullWidth {
+    width: 100%;
 }
 
-.flexGhostElement{
+.flexGhostElement {
     @include flex;
     flex: 1 1 250px;
     height: 0;
@@ -193,36 +190,46 @@ $headerSidesDistance:18px;
     background-color: red;
 }
 
-
-.scrollXVisible{
+.scrollXVisible {
     overflow-x: visible !important;
 }
 
-.relativePos{
-    position:relative;
+.relativePos {
+    position: relative;
 }
 
-.singleArea{
+.singleArea {
     padding: 5px 10px 0 10px;
 }
 
-.colorPicker{
-    width:250px;
+.colorPicker {
+    margin: 50px 20px 0 0;
+    padding: 20px;
 }
 
-.aColorPicker{
-    position: absolute;
-    top:0;
-    right:0;
+.aColorPicker {
 }
 
-.dotted{
+.dotted {
     background: transparent;
     background-image: radial-gradient(#343434 1px, transparent 0);
     background-size: 20px 20px;
     background-position: -19px -19px;
 }
 
-.bounds{
-    border:1px solid red;
+.bounds {
+    border: 1px solid red;
+}
+
+.layoutPanel {
+    border-radius: 10px;
+    box-shadow: rgba($color: #000000, $alpha: 0.15) 0 2px 16px 0;
+
+    @include for-theme(light) {
+        background-color: $light_backgroundColor_500;
+    }
+
+    @include for-theme(dark) {
+        background-color: $dark_backgroundColor_500;
+    }
 }

@@ -164,13 +164,8 @@
 }
 
 .colorPicker {
-  width: 250px;
-}
-
-.aColorPicker {
-  position: absolute;
-  top: 0;
-  right: 0;
+  margin: 50px 20px 0 0;
+  padding: 20px;
 }
 
 .dotted {
@@ -182,6 +177,24 @@
 
 .bounds {
   border: 1px solid red;
+}
+
+.layoutPanel {
+  border-radius: 10px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
+          box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
+}
+
+@media (prefers-color-scheme: light) {
+  .layoutPanel {
+    background-color: #F9F9F9;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .layoutPanel {
+    background-color: #28282A;
+  }
 }
 
 body {
@@ -221,13 +234,9 @@ body {
 }
 
 .meshEditor {
-  margin: 50px;
-  width: calc(100% - 100px);
+  margin: 50px 20px;
+  width: calc(100% - 40px);
   height: calc(100% - 100px);
-  background-color: #28282A;
-  border-radius: 10px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
-          box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
 }
 
 .gradient-mesh {
@@ -386,7 +395,7 @@ html, body {
 @media (prefers-color-scheme: light) {
   html, body {
     background-color: #F9F9F9;
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -410,51 +419,8 @@ html, body {
        user-select: none;
 }
 
-.leftPanelPadding {
-  padding: 46px 20px 30px 20px;
-}
-
-.leftPanelArea {
-  overflow: hidden;
-  padding: 46px 0 30px 0;
-}
-
-@media (prefers-color-scheme: light) {
-  .leftPanelArea {
-    background-color: #F0F0F0;
-    border-right: 1px solid #DDDDDD;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .leftPanelArea {
-    background-color: #28282D;
-    border-right: 1px solid #4D4D4D;
-  }
-}
-
-.leftPanelArea .roundCheckbox {
-  margin-bottom: 10px;
-}
-
-.leftPanelArea .roundCheckbox span {
-  width: 180px;
-}
-
 .rightPanelPadding {
   padding: 46px 20px 0 20px;
-}
-
-@media (prefers-color-scheme: light) {
-  .contrastMode {
-    background-color: #c9c9c9;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .contrastMode {
-    background-color: #727282;
-  }
 }
 
 .primaryText {
@@ -464,7 +430,7 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .primaryText {
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -482,7 +448,7 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .primaryBoldText {
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -500,7 +466,7 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .primaryMediumText {
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -519,7 +485,7 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .primaryBigText {
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -555,7 +521,7 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .mainTitle {
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -587,148 +553,6 @@ html, body {
   padding-right: 10px;
 }
 
-.areaHeader {
-  padding: 10px;
-  margin: 5px 0;
-  width: 250px;
-}
-
-.areaHeader span {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-size: 15px;
-  font-weight: 500;
-  padding-left: 5px;
-  font-size: 16px;
-}
-
-@media (prefers-color-scheme: light) {
-  .areaHeader span {
-    color: #212124;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .areaHeader span {
-    color: #ffffff;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .areaHeader span {
-    color: #212124;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .areaHeader span {
-    color: #ffffff;
-  }
-}
-
-.groupHeader {
-  padding: 10px;
-}
-
-@media (prefers-color-scheme: light) {
-  .groupHeader:hover {
-    background-color: #E9E9E9;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .groupHeader:hover {
-    background-color: #35353C;
-  }
-}
-
-.groupHeader:hover .expanderIcon path {
-  fill: #235FFF;
-}
-
-.groupHeader.collapsed .expanderIcon {
-  -webkit-transform: scaleY(1);
-          transform: scaleY(1);
-}
-
-.groupHeader span {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-size: 15px;
-  font-weight: 500;
-  padding-left: 5px;
-  font-size: 16px;
-}
-
-@media (prefers-color-scheme: light) {
-  .groupHeader span {
-    color: #212124;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .groupHeader span {
-    color: #ffffff;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .groupHeader span {
-    color: #212124;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .groupHeader span {
-    color: #ffffff;
-  }
-}
-
-.groupHeader .regularIcon {
-  width: 24px;
-  height: 24px;
-  margin-left: 6px;
-}
-
-@media (prefers-color-scheme: light) {
-  .groupHeader .regularIcon path {
-    fill: #212124;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .groupHeader .regularIcon path {
-    fill: #ffffff;
-  }
-}
-
-.groupHeader .expanderIcon {
-  width: 24px;
-  height: 24px;
-  -webkit-transition: -webkit-transform 0.2s ease-out;
-  transition: -webkit-transform 0.2s ease-out;
-  transition: transform 0.2s ease-out;
-  transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
-  -webkit-transform: scaleY(-1);
-          transform: scaleY(-1);
-}
-
-@media (prefers-color-scheme: light) {
-  .groupHeader .expanderIcon path {
-    fill: #212124;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .groupHeader .expanderIcon path {
-    fill: #ffffff;
-  }
-}
-
-.expanderContent {
-  margin-bottom: 20px;
-}
-
 .draggableArea {
   position: absolute;
   width: 100vw;
@@ -752,37 +576,6 @@ html, body {
   .draggableArea span {
     color: #9595A8;
   }
-}
-
-.leftPanel {
-  width: 260px;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
-
-@media (prefers-color-scheme: light) {
-  .leftPanel {
-    background-color: #F0F0F0;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .leftPanel {
-    background-color: #28282D;
-  }
-}
-
-.leftPanel .roundCheckbox {
-  margin-bottom: 10px;
-}
-
-.leftPanel .roundCheckbox span {
-  width: 180px;
-}
-
-.leftPanel.collapsed {
-  width: 0;
-  opacity: 0;
 }
 
 @media (prefers-color-scheme: light) {
@@ -867,7 +660,7 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .registerHeader {
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -979,8 +772,8 @@ html, body {
 }
 
 .btnApply:active {
-  background-color: #ED725A;
-  border-color: #ED725A;
+  background-color: #1b4edb;
+  border-color: #1b4edb;
   outline: none;
 }
 
@@ -1023,13 +816,13 @@ html, body {
 }
 
 .btnPrimary:hover {
-  background-color: #FFA388;
+  background-color: #4274ff;
   outline: none;
 }
 
 .btnPrimary:active {
-  background-color: #ED725A;
-  border-color: #ED725A;
+  background-color: #1b4edb;
+  border-color: #1b4edb;
   outline: none;
 }
 
@@ -1072,7 +865,7 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .btnSecondary {
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -1088,16 +881,16 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .btnSecondary:hover {
-    background-color: rgba(255, 142, 120, 0.1);
-    border-color: #FFA388;
-    color: #DD715C;
+    background-color: rgba(35, 95, 255, 0.1);
+    border-color: #4274ff;
+    color: #1b52e9;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .btnSecondary:hover {
-    background-color: rgba(255, 142, 120, 0.1);
-    border-color: #FFA388;
+    background-color: rgba(35, 95, 255, 0.1);
+    border-color: #4274ff;
   }
 }
 
@@ -1107,15 +900,15 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .btnSecondary:active {
-    background-color: rgba(255, 142, 120, 0.2);
-    border-color: #ED725A;
+    background-color: rgba(35, 95, 255, 0.2);
+    border-color: #1b4edb;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .btnSecondary:active {
-    background-color: rgba(255, 142, 120, 0.2);
-    border-color: #ED725A;
+    background-color: rgba(35, 95, 255, 0.2);
+    border-color: #1b4edb;
   }
 }
 
@@ -1152,14 +945,14 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .btnTertiary:hover {
-    border-color: #FFA388;
-    color: #DD715C;
+    border-color: #4274ff;
+    color: #1b52e9;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .btnTertiary:hover {
-    border-color: #FFA388;
+    border-color: #4274ff;
     color: #ffffff;
   }
 }
@@ -1170,13 +963,13 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .btnTertiary:active {
-    border-color: #ED725A;
+    border-color: #1b4edb;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .btnTertiary:active {
-    border-color: #ED725A;
+    border-color: #1b4edb;
   }
 }
 
@@ -1209,7 +1002,7 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .btnStartTrial {
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -1225,16 +1018,16 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .btnStartTrial:hover {
-    background-color: rgba(255, 142, 120, 0.1);
-    border-color: #FFA388;
-    color: #DD715C;
+    background-color: rgba(35, 95, 255, 0.1);
+    border-color: #4274ff;
+    color: #1b52e9;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .btnStartTrial:hover {
-    background-color: rgba(255, 142, 120, 0.1);
-    border-color: #FFA388;
+    background-color: rgba(35, 95, 255, 0.1);
+    border-color: #4274ff;
   }
 }
 
@@ -1244,15 +1037,15 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .btnStartTrial:active {
-    background-color: rgba(255, 142, 120, 0.2);
-    border-color: #ED725A;
+    background-color: rgba(35, 95, 255, 0.2);
+    border-color: #1b4edb;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .btnStartTrial:active {
-    background-color: rgba(255, 142, 120, 0.2);
-    border-color: #ED725A;
+    background-color: rgba(35, 95, 255, 0.2);
+    border-color: #1b4edb;
   }
 }
 
@@ -1275,13 +1068,13 @@ html, body {
 }
 
 .btnGetItNow:hover {
-  background-color: #FFA388;
+  background-color: #4274ff;
   outline: none;
 }
 
 .btnGetItNow:active {
-  background-color: #ED725A;
-  border-color: #ED725A;
+  background-color: #1b4edb;
+  border-color: #1b4edb;
   outline: none;
 }
 
@@ -1327,14 +1120,14 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .btnAlreadyLicense:hover {
-    border-color: #FFA388;
-    color: #DD715C;
+    border-color: #4274ff;
+    color: #1b52e9;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .btnAlreadyLicense:hover {
-    border-color: #FFA388;
+    border-color: #4274ff;
     color: #ffffff;
   }
 }
@@ -1345,13 +1138,13 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .btnAlreadyLicense:active {
-    border-color: #ED725A;
+    border-color: #1b4edb;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .btnAlreadyLicense:active {
-    border-color: #ED725A;
+    border-color: #1b4edb;
   }
 }
 
@@ -1417,7 +1210,7 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .registerLogo path {
-    fill: #212124;
+    fill: #212123;
   }
 }
 
@@ -1435,7 +1228,7 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .settingsLogo path {
-    fill: #212124;
+    fill: #212123;
   }
 }
 
@@ -1445,56 +1238,8 @@ html, body {
   }
 }
 
-.listOfStyles {
-  padding: 10px 20px;
-}
-
-.listOfStyles .movingYFadeInitialState {
-  -webkit-transition: opacity 0.3s 0.2s ease-out, -webkit-transform 0.3s 0.2s ease-out;
-  transition: opacity 0.3s 0.2s ease-out, -webkit-transform 0.3s 0.2s ease-out;
-  transition: transform 0.3s 0.2s ease-out, opacity 0.3s 0.2s ease-out;
-  transition: transform 0.3s 0.2s ease-out, opacity 0.3s 0.2s ease-out, -webkit-transform 0.3s 0.2s ease-out;
-}
-
-.thumbnailContainer {
-  height: 160px;
-  padding: 10px;
-  margin-right: 10px;
-}
-
-.thumbnailData {
-  padding-left: 20px;
-  padding-bottom: 5px;
-}
-
 .padded {
   padding: 10px;
-}
-
-@media (prefers-color-scheme: light) {
-  .bgContrastMode {
-    background-color: #DFDFDF;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .bgContrastMode {
-    background-color: #474750;
-  }
-}
-
-.thumbnail {
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  position: relative;
-}
-
-.thumbnail.isSmallThumbnail {
-  background-size: initial;
-  background-position: top;
 }
 
 .infoIcon {
@@ -1510,7 +1255,7 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .infoIcon path {
-    fill: #212124;
+    fill: #212123;
   }
 }
 
@@ -1524,159 +1269,6 @@ html, body {
   opacity: 1;
 }
 
-.listItem {
-  -webkit-transition: all 0.8s ease-out;
-  transition: all 0.8s ease-out;
-}
-
-.listItem .itemText {
-  margin-bottom: 4px;
-  max-width: 400px;
-}
-
-.listItem .itemText span {
-  width: 100%;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: inline-block;
-  overflow: hidden;
-}
-
-.listItem .listItemBg {
-  background-color: transparent;
-  -webkit-transition: background-color 0.2s ease-out;
-  transition: background-color 0.2s ease-out;
-}
-
-.listItem .listItemHead {
-  height: 7px;
-  background-color: transparent;
-  -webkit-transition: background-color 0.2s ease-out;
-  transition: background-color 0.2s ease-out;
-}
-
-.listItem .listItemFoot {
-  height: 14px;
-  background-color: transparent;
-  -webkit-transition: background-color 0.2s ease-out;
-  transition: background-color 0.2s ease-out;
-}
-
-.listItem .listItemSeparator {
-  height: 1px;
-  width: 100%;
-  margin: 0 0 10px 0;
-}
-
-@media (prefers-color-scheme: light) {
-  .listItem .listItemSeparator {
-    background-color: #616170;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .listItem .listItemSeparator {
-    background-color: #B6B6C4;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .listItem:hover .listItemBg, .listItem:hover .listItemFoot, .listItem:hover .listItemHead {
-    background-color: #F0F0F0;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .listItem:hover .listItemBg, .listItem:hover .listItemFoot, .listItem:hover .listItemHead {
-    background-color: #28282D;
-  }
-}
-
-.listItem:hover .listItemSeparator {
-  opacity: 0;
-}
-
-@media (prefers-color-scheme: light) {
-  .textPreview {
-    border: 1px dashed #B6B6C4;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .textPreview {
-    border: 1px dashed #616170;
-  }
-}
-
-.symbolPreview {
-  border-radius: 1px;
-  -webkit-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
-}
-
-@media (prefers-color-scheme: light) {
-  .symbolPreview {
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-bottom: 1px solid #D0D0D0;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .symbolPreview {
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-bottom: 1px solid #3A3A42;
-  }
-}
-
-.symbolPreview.thumbnailContainer {
-  padding: 10px 20px;
-}
-
-@media (prefers-color-scheme: light) {
-  .symbolPreview:hover {
-    background-color: #f0f0f0;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .symbolPreview:hover {
-    background-color: #28282D;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .symbolPreview.selected {
-    background-color: #dfdfdf;
-    border: 1px solid #235FFF;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .symbolPreview.selected {
-    background-color: #35353C;
-    border-bottom: transparent;
-    border: 1px solid #235FFF;
-  }
-}
-
-.btnThumbnailNavigationLeft {
-  position: absolute;
-  left: 10px;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-.btnThumbnailNavigationRight {
-  position: absolute;
-  right: 10px;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-
 @media (prefers-color-scheme: light) {
   .separatorBelow {
     border-bottom: 1px solid #DDDDDD;
@@ -1687,106 +1279,6 @@ html, body {
   .separatorBelow {
     border-bottom: 1px solid #4D4D4D;
   }
-}
-
-.filterArea {
-  width: 260px;
-  padding: 46px 0 30px 0;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
-
-@media (prefers-color-scheme: light) {
-  .filterArea {
-    background-color: #F0F0F0;
-    border-right: 1px solid #DDDDDD;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .filterArea {
-    background-color: #28282D;
-    border-right: 1px solid #4D4D4D;
-  }
-}
-
-.filterArea .filterTitle {
-  width: 140px;
-}
-
-.filterArea .filterTitle.xl {
-  width: 200px;
-}
-
-.filterArea .filterCounter {
-  background-color: #235FFF;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-}
-
-.filterArea .filterCounter span {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  top: 1px;
-  left: 1px;
-}
-
-@media (prefers-color-scheme: light) {
-  .filterArea .filterCounter span {
-    color: #212124;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .filterArea .filterCounter span {
-    color: #ffffff;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .filterArea .filterCounter span {
-    color: #ffffff;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .filterArea .filterCounter span {
-    color: #ffffff;
-  }
-}
-
-.filterArea .treeContent {
-  margin-top: 8px;
-}
-
-.filterArea .filterAreaPadded {
-  padding-left: 18px;
-  padding-right: 18px;
-}
-
-.filterArea .roundCheckbox {
-  margin-bottom: 10px;
-}
-
-.filterArea .roundCheckbox span {
-  width: 180px;
-}
-
-.filterArea.collapsed {
-  width: 50px;
-}
-
-.filterArea.collapsed span, .filterArea.collapsed .regularIcon, .filterArea.collapsed .treeContent, .filterArea.collapsed .btnApply, .filterArea.collapsed .filterCounter {
-  display: none;
-}
-
-.filterArea.hidden {
-  width: 0;
-}
-
-.filterArea.hidden span, .filterArea.hidden .regularIcon, .filterArea.hidden .treeContent, .filterArea.hidden .btnApply, .filterArea.hidden .filterCounter {
-  display: none;
 }
 
 .roundCheckbox {
@@ -1848,7 +1340,7 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .roundCheckbox label span {
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -1951,7 +1443,7 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .selectRoundCheckbox label span {
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -2039,7 +1531,7 @@ html, body {
 
 @media (prefers-color-scheme: light) {
   .squareCheckbox label span {
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -2153,1272 +1645,6 @@ div::-webkit-scrollbar-thumb {
   opacity: 0;
 }
 
-.item {
-  margin-bottom: 20px;
-  position: relative;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  float: left;
-}
-
-@media (prefers-color-scheme: light) {
-  .item {
-    border: 1px solid #F9F9F9;
-    background: #F9F9F9;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .item {
-    border: 1px solid #212124;
-    background: #212124;
-  }
-}
-
-.radial-inner-bg {
-  border-radius: 50%;
-  width: 72px;
-  height: 72px;
-  top: 3px;
-  left: 3px;
-  position: absolute;
-}
-
-@media (prefers-color-scheme: light) {
-  .radial-inner-bg {
-    background: #F9F9F9;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .radial-inner-bg {
-    background: #212124;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-0 {
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, #F9F9F9), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, left top, right top, color-stop(50%, #235FFF), color-stop(50%, #F9F9F9), to(#F9F9F9));
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(90deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-0 {
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, #212124), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, left top, right top, color-stop(50%, #235FFF), color-stop(50%, #212124), to(#212124));
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(90deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-1 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(93.6deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-1 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(93.6deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-2 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(97.2deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-2 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(97.2deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-3 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(100.8deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-3 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(100.8deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-4 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(104.4deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-4 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(104.4deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-5 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(108deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-5 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(108deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-6 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(111.6deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-6 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(111.6deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-7 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(115.2deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-7 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(115.2deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-8 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(118.8deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-8 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(118.8deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-9 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(122.4deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-9 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(122.4deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-10 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(126deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-10 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(126deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-11 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(129.6deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-11 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(129.6deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-12 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(133.2deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-12 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(133.2deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-13 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(136.8deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-13 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(136.8deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-14 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(140.4deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-14 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(140.4deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-15 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(144deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-15 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(144deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-16 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(147.6deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-16 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(147.6deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-17 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(151.2deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-17 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(151.2deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-18 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(154.8deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-18 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(154.8deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-19 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(158.4deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-19 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(158.4deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-20 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(162deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-20 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(162deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-21 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(165.6deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-21 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(165.6deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-22 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(169.2deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-22 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(169.2deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-23 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(172.8deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-23 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(172.8deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-24 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(176.4deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-24 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(176.4deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-25 {
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, #F9F9F9), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, left top, left bottom, color-stop(50%, #235FFF), color-stop(50%, #F9F9F9), to(#F9F9F9));
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(180deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-25 {
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, #212124), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, left top, left bottom, color-stop(50%, #235FFF), color-stop(50%, #212124), to(#212124));
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(180deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-26 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(183.6deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-26 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(183.6deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-27 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(187.2deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-27 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(187.2deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-28 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(190.8deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-28 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(190.8deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-29 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(194.4deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-29 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(194.4deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-30 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(198deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-30 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(198deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-31 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(201.6deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-31 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(201.6deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-32 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(205.2deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-32 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(205.2deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-33 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(208.8deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-33 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(208.8deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-34 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(212.4deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-34 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(212.4deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-35 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(216deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-35 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(216deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-36 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(219.6deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-36 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(219.6deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-37 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(223.2deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-37 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(223.2deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-38 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(226.8deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-38 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(226.8deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-39 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(230.4deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-39 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(230.4deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-40 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(234deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-40 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(234deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-41 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(237.6deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-41 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(237.6deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-42 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(241.2deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-42 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(241.2deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-43 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(244.8deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-43 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(244.8deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-44 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(248.4deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-44 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(248.4deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-45 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(252deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-45 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(252deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-46 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(255.6deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-46 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(255.6deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-47 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(259.2deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-47 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(259.2deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-48 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(262.8deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-48 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(262.8deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-49 {
-    background-image: linear-gradient(90deg, #F9F9F9 50%, transparent 50%, transparent), linear-gradient(266.4deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-49 {
-    background-image: linear-gradient(90deg, #212124 50%, transparent 50%, transparent), linear-gradient(266.4deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-50 {
-    background-image: -webkit-gradient(linear, right top, left top, color-stop(50%, #235FFF), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, right top, left top, color-stop(50%, #235FFF), color-stop(50%, #F9F9F9), to(#F9F9F9));
-    background-image: linear-gradient(-90deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-50 {
-    background-image: -webkit-gradient(linear, right top, left top, color-stop(50%, #235FFF), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, right top, left top, color-stop(50%, #235FFF), color-stop(50%, #212124), to(#212124));
-    background-image: linear-gradient(-90deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-51 {
-    background-image: linear-gradient(-86.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-51 {
-    background-image: linear-gradient(-86.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-52 {
-    background-image: linear-gradient(-82.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-52 {
-    background-image: linear-gradient(-82.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-53 {
-    background-image: linear-gradient(-79.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-53 {
-    background-image: linear-gradient(-79.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-54 {
-    background-image: linear-gradient(-75.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-54 {
-    background-image: linear-gradient(-75.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-55 {
-    background-image: linear-gradient(-72deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-55 {
-    background-image: linear-gradient(-72deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-56 {
-    background-image: linear-gradient(-68.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-56 {
-    background-image: linear-gradient(-68.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-57 {
-    background-image: linear-gradient(-64.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-57 {
-    background-image: linear-gradient(-64.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-58 {
-    background-image: linear-gradient(-61.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-58 {
-    background-image: linear-gradient(-61.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-59 {
-    background-image: linear-gradient(-57.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-59 {
-    background-image: linear-gradient(-57.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-60 {
-    background-image: linear-gradient(-54deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-60 {
-    background-image: linear-gradient(-54deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-61 {
-    background-image: linear-gradient(-50.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-61 {
-    background-image: linear-gradient(-50.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-62 {
-    background-image: linear-gradient(-46.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-62 {
-    background-image: linear-gradient(-46.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-63 {
-    background-image: linear-gradient(-43.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-63 {
-    background-image: linear-gradient(-43.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-64 {
-    background-image: linear-gradient(-39.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-64 {
-    background-image: linear-gradient(-39.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-65 {
-    background-image: linear-gradient(-36deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-65 {
-    background-image: linear-gradient(-36deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-66 {
-    background-image: linear-gradient(-32.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-66 {
-    background-image: linear-gradient(-32.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-67 {
-    background-image: linear-gradient(-28.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-67 {
-    background-image: linear-gradient(-28.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-68 {
-    background-image: linear-gradient(-25.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-68 {
-    background-image: linear-gradient(-25.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-69 {
-    background-image: linear-gradient(-21.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-69 {
-    background-image: linear-gradient(-21.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-70 {
-    background-image: linear-gradient(-18deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-70 {
-    background-image: linear-gradient(-18deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-71 {
-    background-image: linear-gradient(-14.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-71 {
-    background-image: linear-gradient(-14.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-72 {
-    background-image: linear-gradient(-10.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-72 {
-    background-image: linear-gradient(-10.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-73 {
-    background-image: linear-gradient(-7.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-73 {
-    background-image: linear-gradient(-7.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-74 {
-    background-image: linear-gradient(-3.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-74 {
-    background-image: linear-gradient(-3.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-75 {
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(50%, #235FFF), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, right top, left top, color-stop(50%, #235FFF), color-stop(50%, #F9F9F9), to(#F9F9F9));
-    background-image: linear-gradient(0deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-75 {
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(50%, #235FFF), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, right top, left top, color-stop(50%, #235FFF), color-stop(50%, #212124), to(#212124));
-    background-image: linear-gradient(0deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-76 {
-    background-image: linear-gradient(3.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-76 {
-    background-image: linear-gradient(3.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-77 {
-    background-image: linear-gradient(7.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-77 {
-    background-image: linear-gradient(7.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-78 {
-    background-image: linear-gradient(10.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-78 {
-    background-image: linear-gradient(10.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-79 {
-    background-image: linear-gradient(14.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-79 {
-    background-image: linear-gradient(14.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-80 {
-    background-image: linear-gradient(18deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-80 {
-    background-image: linear-gradient(18deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-81 {
-    background-image: linear-gradient(21.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-81 {
-    background-image: linear-gradient(21.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-82 {
-    background-image: linear-gradient(25.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-82 {
-    background-image: linear-gradient(25.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-83 {
-    background-image: linear-gradient(28.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-83 {
-    background-image: linear-gradient(28.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-84 {
-    background-image: linear-gradient(32.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-84 {
-    background-image: linear-gradient(32.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-85 {
-    background-image: linear-gradient(36deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-85 {
-    background-image: linear-gradient(36deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-86 {
-    background-image: linear-gradient(39.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-86 {
-    background-image: linear-gradient(39.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-87 {
-    background-image: linear-gradient(43.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-87 {
-    background-image: linear-gradient(43.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-88 {
-    background-image: linear-gradient(46.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-88 {
-    background-image: linear-gradient(46.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-89 {
-    background-image: linear-gradient(50.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-89 {
-    background-image: linear-gradient(50.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-90 {
-    background-image: linear-gradient(54deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-90 {
-    background-image: linear-gradient(54deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-91 {
-    background-image: linear-gradient(57.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-91 {
-    background-image: linear-gradient(57.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-92 {
-    background-image: linear-gradient(61.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-92 {
-    background-image: linear-gradient(61.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-93 {
-    background-image: linear-gradient(64.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-93 {
-    background-image: linear-gradient(64.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-94 {
-    background-image: linear-gradient(68.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-94 {
-    background-image: linear-gradient(68.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-95 {
-    background-image: linear-gradient(72deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-95 {
-    background-image: linear-gradient(72deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-96 {
-    background-image: linear-gradient(75.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-96 {
-    background-image: linear-gradient(75.6deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-97 {
-    background-image: linear-gradient(79.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-97 {
-    background-image: linear-gradient(79.2deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-98 {
-    background-image: linear-gradient(82.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-98 {
-    background-image: linear-gradient(82.8deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-99 {
-    background-image: linear-gradient(86.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-99 {
-    background-image: linear-gradient(86.4deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .progress-100 {
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, #235FFF), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, right top, left top, color-stop(50%, #235FFF), color-stop(50%, #F9F9F9), to(#F9F9F9));
-    background-image: linear-gradient(90deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #F9F9F9 50%, #F9F9F9);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-100 {
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, #235FFF), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, right top, left top, color-stop(50%, #235FFF), color-stop(50%, #212124), to(#212124));
-    background-image: linear-gradient(90deg, #235FFF 50%, transparent 50%, transparent), linear-gradient(270deg, #235FFF 50%, #212124 50%, #212124);
-  }
-}
-
 input, textarea {
   -webkit-user-select: auto;
   -moz-user-select: auto;
@@ -3490,7 +1716,7 @@ input, textarea {
 
 @media (prefers-color-scheme: light) {
   .tooltip .tooltipText span {
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -3519,7 +1745,7 @@ input, textarea {
 
 @media (prefers-color-scheme: light) {
   .warningText {
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -3552,7 +1778,7 @@ input[type=text] {
 
 @media (prefers-color-scheme: light) {
   input[type=text] {
-    color: #212124;
+    color: #212123;
   }
 }
 
@@ -3647,217 +1873,6 @@ a {
   transition: all 0.3s ease-out;
 }
 
-.leftPanelListItem {
-  height: 40px;
-  padding: 0 15px;
-  background-color: transparent;
-  -webkit-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
-}
-
-@media (prefers-color-scheme: light) {
-  .leftPanelListItem {
-    border-bottom: 1px solid #D0D0D0;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .leftPanelListItem {
-    border-bottom: 1px solid #3A3A42;
-  }
-}
-
-.leftPanelListItem span {
-  left: 25px;
-  width: 200px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  position: absolute;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-}
-
-@media (prefers-color-scheme: light) {
-  .leftPanelListItem span {
-    color: #212124;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .leftPanelListItem span {
-    color: #ffffff;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .leftPanelListItem:hover {
-    background-color: #E9E9E9;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .leftPanelListItem:hover {
-    background-color: #35353C;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .leftPanelListItem.selected {
-    background-color: #DFDFDF;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .leftPanelListItem.selected {
-    background-color: #474750;
-  }
-}
-
-.cardsView {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (minmax(300px, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-.cardsView .thumbnailContainer {
-  height: 300px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-
-.cardsView .thumbnailContainer .roundCheckbox {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-}
-
-.cardsView .thumbnailContainer span {
-  text-align: center;
-}
-
-.cardsView .symbolPreview {
-  border-radius: 5px;
-}
-
-@media (prefers-color-scheme: light) {
-  .cardsView .symbolPreview {
-    border: 1px solid #D0D0D0;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .cardsView .symbolPreview {
-    border: 1px solid #3A3A42;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .cardsView .symbolPreview.selected {
-    background-color: #dfdfdf;
-    border: 1px solid #235FFF;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .cardsView .symbolPreview.selected {
-    background-color: #35353C;
-    border: 1px solid #235FFF;
-  }
-}
-
-.viewSelector {
-  margin-right: 25px;
-  top: 5px;
-}
-
-.viewIcon {
-  width: 12px;
-  height: 12px;
-  margin-right: 5px;
-  cursor: pointer;
-  -webkit-transition: opacity 0.15s ease-out;
-  transition: opacity 0.15s ease-out;
-  opacity: 0.3;
-}
-
-@media (prefers-color-scheme: light) {
-  .viewIcon path {
-    fill: #212124;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .viewIcon path {
-    fill: #ffffff;
-  }
-}
-
-.viewIcon:hover {
-  opacity: 0.7;
-}
-
-.viewIcon.selected {
-  opacity: 1;
-}
-
-.offDownCenter .mk-spinner-wrap {
-  top: 20px;
-}
-
-.offDownCenter .secondaryText {
-  max-width: 420px;
-  margin: 10px 0 0 0;
-}
-
-.mk-spinner-wrap {
-  min-height: 100px;
-  width: 100%;
-  position: relative;
-}
-
-@-webkit-keyframes a {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(1turn);
-    transform: rotate(1turn);
-  }
-}
-
-@keyframes a {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(1turn);
-    transform: rotate(1turn);
-  }
-}
-
-.mk-spinner-ring {
-  content: "";
-  display: inline-block;
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  top: 50%;
-  margin-top: -25px;
-  left: 50%;
-  margin-left: -25px;
-  z-index: 1;
-  border-radius: 50%;
-  border: 3px solid #235FFF;
-  border-left-color: transparent;
-  background: transparent;
-  -webkit-animation: a 1s infinite linear;
-  animation: a 0.7s infinite linear;
-}
-
 .switch {
   position: relative;
   display: inline-block;
@@ -3872,46 +1887,6 @@ a {
   height: 0;
 }
 
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-  border-radius: 32px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 22px;
-  width: 22px;
-  left: 2px;
-  bottom: 2px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #38D256;
-}
-
-input:focus + .slider {
-  -webkit-box-shadow: 0 0 1px #38D256;
-          box-shadow: 0 0 1px #38D256;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(18px);
-  transform: translateX(18px);
-}
-
 .settingsRow {
   width: 320px;
   margin-bottom: 10px;
@@ -3924,122 +1899,5 @@ input:checked + .slider:before {
 
 .settingsDescription {
   padding: 0 50px 15px 50px;
-}
-
-.sliderContainer {
-  width: 100%;
-  margin-top: 20px;
-}
-
-.sliderContainer .inputSlider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 8px;
-  border-radius: 4px;
-  outline: none;
-  -webkit-transition: all .1s ease-in-out;
-  transition: all .1s ease-in-out;
-}
-
-@media (prefers-color-scheme: light) {
-  .sliderContainer .inputSlider {
-    background: #C9C9C9;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .sliderContainer .inputSlider {
-    background: #616170;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .sliderContainer .inputSlider:hover {
-    background: #B9b9b9;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .sliderContainer .inputSlider:hover {
-    background: #6C6C82;
-  }
-}
-
-.sliderContainer .inputSlider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: #235FFF;
-  cursor: pointer;
-  -webkit-transition: all .1s ease-in-out;
-  transition: all .1s ease-in-out;
-}
-
-.sliderContainer .inputSlider::-webkit-slider-thumb:hover {
-  background: #FFA388;
-}
-
-.sliderContainer .topLabel {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-size: 15px;
-  margin-bottom: 8px;
-}
-
-@media (prefers-color-scheme: light) {
-  .sliderContainer .topLabel {
-    color: #212124;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .sliderContainer .topLabel {
-    color: #ffffff;
-  }
-}
-
-.sliderContainer .sliderLabels {
-  margin-top: 10px;
-}
-
-.sliderContainer .sliderLabels .leftRange {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  position: absolute;
-  left: 0;
-}
-
-@media (prefers-color-scheme: light) {
-  .sliderContainer .sliderLabels .leftRange {
-    color: #212124;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .sliderContainer .sliderLabels .leftRange {
-    color: #ffffff;
-  }
-}
-
-.sliderContainer .sliderLabels .rightRange {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  text-align: right;
-  position: absolute;
-  right: 0;
-}
-
-@media (prefers-color-scheme: light) {
-  .sliderContainer .sliderLabels .rightRange {
-    color: #212124;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .sliderContainer .sliderLabels .rightRange {
-    color: #ffffff;
-  }
 }
 /*# sourceMappingURL=main.css.map */

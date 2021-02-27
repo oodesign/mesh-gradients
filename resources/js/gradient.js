@@ -272,6 +272,7 @@ window.addEventListener('keydown', (e) => {
 
 window.addEventListener('load', (e) => {
   setEditorScenario();
+  setTimeout(setEditorScenario, 100);
 });
 
 window.addEventListener('resize', (e) => {
@@ -289,7 +290,12 @@ function setEditorScenario() {
   gradientMesh.style.top = (meshEditor.clientHeight - newSize) / 2 + 30 + "px";
   gradientMesh.style.left = (meshEditor.clientWidth - newSize) / 2 + 30 + "px";
 
-  editor.controlPointArray.forEach(cp => updateCPlines(cp));
+  if (!editor || !editor.controlPointArray)
+    setTimeout(setEditorScenario, 100);
+  else {
+    editor.boundingRect = gradientMesh.getBoundingClientRect();
+    editor.controlPointArray.forEach(cp => updateCPlines(cp));
+  }
 }
 
 

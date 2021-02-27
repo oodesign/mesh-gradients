@@ -1,7 +1,16 @@
 $light_backgroundColor:#F9F9F9;
-$dark_backgroundColor:#212124;
+$dark_backgroundColor:#212123;
 
-$light_primaryColor: #212124;
+$light_backgroundColor_500:#F9F9F9;
+$dark_backgroundColor_500:#28282A;
+
+$light_backgroundColor_400:#F9F9F9;
+$dark_backgroundColor_400:#2F2F32;
+
+$light_backgroundColor_300:#F9F9F9;
+$dark_backgroundColor_300:#37373A;
+
+$light_primaryColor: #212123;
 $dark_primaryColor: #ffffff;
 
 $light_secondaryColor: #9595A8;
@@ -20,9 +29,9 @@ $dark_bottomBarBackgroundColor:#28282D;
 $dark_bottomBarBorderColor:#4D4D4D;
 
 $accentColor: #235FFF;
-$accentColorHover:#FFA388;
-$accentColorActive: #ED725A;
-$accentColorDarkText: #DD715C;
+$accentColorHover:#4274ff;
+$accentColorActive: #1b4edb;
+$accentColorDarkText: #1b52e9;
 
 $complementaryColor: #52CF67;
 
@@ -33,11 +42,11 @@ $light_inputBorderColorHover:#B6A8E4;
 $dark_inputBorderColorHover:#ffffff;
 
 $light_btnSecondaryBorderColor: #9797A9;
-$light_btnSecondaryBackgroundHover: rgba(255,142,120,0.1);
-$light_btnSecondaryBackgroundActive: rgba(255,142,120,0.2);
+$light_btnSecondaryBackgroundHover: rgba($accentColor,0.1); 
+$light_btnSecondaryBackgroundActive: rgba($accentColor,0.2);
 $dark_btnSecondaryBorderColor: #9595A8;
-$dark_btnSecondaryBackgroundHover: rgba(255,142,120,0.1);
-$dark_btnSecondaryBackgroundActive: rgba(255,142,120,0.2);
+$dark_btnSecondaryBackgroundHover: rgba($accentColor,0.1);
+$dark_btnSecondaryBackgroundActive: rgba($accentColor,0.2);
 
 $light_lessWeightBorderColor: #B6B6C4; 
 $light_moreWeightBorderColor: #7D7D88;

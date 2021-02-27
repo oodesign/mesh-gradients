@@ -39,32 +39,6 @@ html,body{
   user-select: none;
 }
 
-.leftPanelPadding{
-  padding: $topPadding $leftRightPadding $bottomPadding $leftRightPadding;
-}
-
-
-
-.leftPanelArea{
-  overflow: hidden;
-  padding: $topPadding 0 $bottomPadding 0;
-  @include for-theme(light){
-    background-color: $light_leftPanelBackgroundColor;
-    border-right: 1px solid $light_bottomBarBorderColor;
-  }
-  @include for-theme(dark){
-    background-color: $dark_leftPanelBackgroundColor;
-    border-right: 1px solid $dark_bottomBarBorderColor;
-  }
-
-  .roundCheckbox{
-    margin-bottom: 10px;
-    span{
-      width:180px;
-    }
-  }
-}
-
 .rightPanelPadding{
   padding: $topPadding $leftRightPadding 0 $leftRightPadding;
 }
@@ -77,15 +51,6 @@ html,body{
   }
   @include for-theme(dark){
       color: $dark_primaryColor;
-  }
-}
-
-.contrastMode{
-  @include for-theme(light){
-    background-color: $light_contrastModeColor;
-  }
-  @include for-theme(dark){
-    background-color: $dark_contrastModeColor;
   }
 }
 
@@ -148,101 +113,6 @@ html,body{
   padding-right: 10px;
 }
 
-.areaHeader{
-  padding: 10px;
-  margin: 5px 0;
-  width:250px;
-
-  span{
-    @include primaryMediumText;
-    font-weight: 500;
-    padding-left: 5px;
-    font-size: 16px;
-    @include for-theme(light){
-      color: $light_primaryColor;
-    }
-    @include for-theme(dark){
-      color: $dark_primaryColor;
-    }
-  }
-}
-
-.groupHeader{
-  padding: 10px;
-
-  &:hover{
-    @include for-theme(light){
-      background-color: $light_leftListItemHoverBackgroundColor;
-    }
-    @include for-theme(dark){
-      background-color: $dark_leftListItemHoverBackgroundColor;
-    }
-
-    .expanderIcon{
-      path{
-          fill: $accentColor;
-      }
-    }
-  }
-
-  &.collapsed{
-    .expanderIcon{
-      transform: scaleY(1);
-    }
-  }
-
-  span{
-    @include primaryMediumText;
-    font-weight: 500;
-    padding-left: 5px;
-    font-size: 16px;
-    @include for-theme(light){
-      color: $light_primaryColor;
-    }
-    @include for-theme(dark){
-      color: $dark_primaryColor;
-    }
-  }
-
-  .regularIcon{
-    width:24px;
-    height:24px;
-    margin-left: 6px;
-    
-    path{
-      @include for-theme(light){
-        fill: $light_primaryColor;
-      }
-      @include for-theme(dark){
-        fill: $dark_primaryColor;
-      }
-    }
-  }
-
-  .expanderIcon{
-    width:24px;
-    height:24px;
-    transition: transform 0.2s ease-out;
-    transform: scaleY(-1);
-
-    path{
-      @include for-theme(light){
-        fill: $light_primaryColor;
-      }
-      @include for-theme(dark){
-        fill: $dark_primaryColor;
-      }
-    }
-  }
-
-}
-
-.expanderContent{
-  margin-bottom:20px;
-}
-
-
-
 .draggableArea{
   position: absolute;
   width:100vw;
@@ -255,29 +125,6 @@ html,body{
   }
 }
 
-
-.leftPanel{
-  width:260px;
-  transition: all 0.2s ease-out;
-  @include for-theme(light){
-    background-color: $light_leftPanelBackgroundColor;
-  }
-  @include for-theme(dark){
-      background-color: $dark_leftPanelBackgroundColor;
-  }
-
-  .roundCheckbox{
-    margin-bottom: 10px;
-    span{
-      width:180px;
-    }
-  }
-  
-  &.collapsed{
-    width:0;
-    opacity: 0;
-  }
-}
 
 .bottomBar{
   // height:60px;
@@ -663,53 +510,10 @@ html,body{
   }
 }
 
-.listOfStyles{
-  padding: 10px 20px;
-
-  .movingYFadeInitialState{
-    transition: transform 0.3s 0.2s ease-out, opacity 0.3s 0.2s ease-out;
-  }
-}
-
-.thumbnailContainer{
-  height:160px;
-  padding: 10px;
-  margin-right:10px;
-}
-
-.thumbnailData{
-  padding-left:20px;
-  padding-bottom:5px;
-}
-
-
 .padded{
   padding:10px;
 }
 
-.bgContrastMode{
-  @include for-theme(light){
-    background-color: $light_leftListItemSelectedBackgroundColor;
-  }
-  @include for-theme(dark){
-    background-color: $dark_leftListItemSelectedBackgroundColor;
-  }
-}
-
-.thumbnail{
-  width:100%;
-  height:100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  position: relative;
-
-
-  &.isSmallThumbnail{
-    background-size: initial;
-    background-position: top;
-  }
-}
 
 .infoIcon{
   top:1px;
@@ -734,133 +538,6 @@ html,body{
 }
 
 
-.listItem{
-
-  .itemText{
-    margin-bottom: 4px;
-    max-width: 400px;
-    span{
-      width:100%;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      display: inline-block;
-      overflow: hidden;
-    }
-  }
-
-  transition: all 0.8s ease-out;
-  .listItemBg{
-    background-color: transparent;
-    transition: background-color 0.2s ease-out;
-  }
-
-  .listItemHead{
-    height:7px;
-    background-color: transparent;
-    transition: background-color 0.2s ease-out;
-  }
-  .listItemFoot{
-    height:14px;
-    background-color: transparent;
-    transition: background-color 0.2s ease-out;
-  }
-
-  .listItemSeparator{
-    height:1px;
-    width:100%;
-    @include for-theme(light){
-      background-color: $light_SeparatorColor;
-    }
-    @include for-theme(dark){
-      background-color: $dark_SeparatorColor;
-    }
-    margin:0 0 10px 0;
-  }
-
-  &:hover{
-    .listItemBg, .listItemFoot, .listItemHead{
-      @include for-theme(light){
-        background-color: $light_leftPanelBackgroundColor;
-      }
-      @include for-theme(dark){
-        background-color: $dark_leftPanelBackgroundColor;
-      }
-    }
-    .listItemSeparator{
-      opacity: 0;
-    }
-  }
-}
-
-.textPreview{
-  @include for-theme(light){
-    border:1px dashed $light_lessWeightBorderColor;
-  }
-
-  @include for-theme(dark){
-    border:1px dashed $dark_lessWeightBorderColor;
-  }
-}
-
-.symbolPreview{
-  @include for-theme(light){
-    background-color: $light_symbolPreviewListItemBg;
-    border:1px solid transparent;
-    border-bottom:1px solid $light_leftListItemSeparatorColor;
-  }
-
-  @include for-theme(dark){
-    background-color: $dark_symbolPreviewListItemBg;
-    border:1px solid transparent;
-    border-bottom:1px solid $dark_leftListItemSeparatorColor;
-  }
-
-  border-radius: 1px;
-  transition: all 0.1s ease-out;
-
-  &.thumbnailContainer{
-    padding: 10px 20px;
-
-  }
-
-  &:hover{
-    @include for-theme(light){
-      background-color: $light_symbolPreviewListItemBgHover;
-    }
-  
-    @include for-theme(dark){
-      background-color: $dark_symbolPreviewListItemBgHover;
-    }
-  }
-
-  &.selected{
-    @include for-theme(light){
-      background-color: $light_symbolPreviewListItemBgSelected;
-      border:1px solid $accentColor;
-    }
-  
-    @include for-theme(dark){
-      background-color: $dark_symbolPreviewListItemBgSelected;
-      border-bottom:transparent;
-      border:1px solid $accentColor;
-    }
-  }
-}
-
-.btnThumbnailNavigationLeft{
-  position: absolute;
-  left:10px;
-  top:0;
-  bottom:0;
-  margin:auto;
-}
-.btnThumbnailNavigationRight{
-  position: absolute;
-  right:10px;
-  top:0;
-  bottom:0;
-  margin:auto;
-}
 
 .separatorBelow{
   @include for-theme(light){
@@ -871,76 +548,6 @@ html,body{
   }
 }
 
-
-.filterArea{
-  width:260px;
-  padding: $topPadding 0 $bottomPadding 0;
-  transition: all 0.2s ease-out;
-  @include for-theme(light){
-    background-color: $light_leftPanelBackgroundColor;
-    border-right: 1px solid $light_bottomBarBorderColor;
-  }
-  @include for-theme(dark){
-    background-color: $dark_leftPanelBackgroundColor;
-    border-right: 1px solid $dark_bottomBarBorderColor;
-  }
-
-  .filterTitle{
-    width:140px;
-
-    &.xl{
-      width:200px;
-    }
-  }
-
-  .filterCounter{
-    background-color: $accentColor;
-    border-radius: 50%;
-    width:20px;
-    height:20px;
-    span{
-      @include primaryText;
-      @include for-theme(light){
-        color:$light_inverseColor;
-      }
-      @include for-theme(dark){
-        color:$dark_inverseColor;
-      }
-      top:1px;
-      left:1px;
-    }
-  }
-
-  .treeContent{
-    margin-top: $headerTopDistance;
-  }
-
-  .filterAreaPadded{
-    padding-left: $headerSidesDistance;
-    padding-right: $headerSidesDistance;
-  }
-
-  .roundCheckbox{
-    margin-bottom: 10px;
-    span{
-      width:180px;
-    }
-  }
-
-  &.collapsed{
-    width:50px;
-    span, .regularIcon,.treeContent, .btnApply,.filterCounter{
-      display: none;
-    }
-  }
-
-  &.hidden{
-    width:0;
-    span, .regularIcon,.treeContent, .btnApply,.filterCounter{
-      display: none;
-    }
-  }
-}
 
 @mixin roundCheckbox($bgColor,$marginBottom){
   position: relative;
@@ -1104,8 +711,6 @@ html,body{
 }
 
 
-
-
 div::-webkit-scrollbar-track {
   border-radius: 8px;
   background-color: transparent;
@@ -1160,82 +765,6 @@ div::-webkit-scrollbar-thumb {
   transform: translateY(30px);
   opacity: 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.item {
-	margin-bottom: 20px;
-	position: relative;
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-  @include for-theme(light){
-    border: 1px solid $light_backgroundColor;
-    background: $light_backgroundColor;
-  }
-  @include for-theme(dark){
-    border: 1px solid $dark_backgroundColor;
-    background: $dark_backgroundColor;
-  }
-  float: left;
-}
-
-.radial-inner-bg {
-	border-radius: 50%;
-	width: 72px;
-	height: 72px; 
-	top: 3px;
-  left: 3px;
-  @include for-theme(light){
-    background: $light_backgroundColor;
-  }
-  @include for-theme(dark){
-    background: $dark_backgroundColor;
-  }
-	position: absolute;
-}
-
-$step: 1; // step of % for created classes
-$loops: 100;
-$increment: (360 / $loops);
-$half: round($loops / 2);
-@for $i from 0 through $loops {
-  .progress-#{$i*$step} {
-    @if $i < 50 {
-      $nextdeg: 90deg + ( $increment * $i );
-      @include for-theme(light){
-        background-image: linear-gradient(90deg, $light_backgroundColor 50%, transparent 50%, transparent), linear-gradient($nextdeg, $accentColor 50%, $light_backgroundColor 50%, $light_backgroundColor);
-      }
-      @include for-theme(dark){
-        background-image: linear-gradient(90deg, $dark_backgroundColor 50%, transparent 50%, transparent), linear-gradient($nextdeg, $accentColor 50%, $dark_backgroundColor 50%, $dark_backgroundColor);
-      }
-    }
-    @else {
-      $nextdeg: -90deg + ( $increment * ( $i - $half ) );
-      @include for-theme(light){
-        background-image: linear-gradient($nextdeg, $accentColor 50%, transparent 50%, transparent), linear-gradient(270deg, $accentColor 50%, $light_backgroundColor 50%, $light_backgroundColor);
-      }
-      @include for-theme(dark){
-        background-image: linear-gradient($nextdeg, $accentColor 50%, transparent 50%, transparent), linear-gradient(270deg, $accentColor 50%, $dark_backgroundColor 50%, $dark_backgroundColor);
-      }
-    }
-  }
-}
-
 
 input, textarea {
   -webkit-user-select: auto;
@@ -1392,179 +921,6 @@ a{
   transition: all 0.3s ease-out;
 }
 
-.leftPanelListItem{
-  height: 40px;
-  padding: 0 15px;
-  @include for-theme(light){
-    border-bottom:1px solid $light_leftListItemSeparatorColor;
-  }
-  @include for-theme(dark){
-    border-bottom:1px solid $dark_leftListItemSeparatorColor;
-  }
-  background-color: transparent;
-  transition: all 0.1s ease-out;
-
-  span{
-    left:25px;
-    width:200px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    position: absolute;
-    @include primaryText;
-  }
-
-  &:hover{
-    @include for-theme(light){
-      background-color: $light_leftListItemHoverBackgroundColor;
-    }
-    @include for-theme(dark){
-      background-color: $dark_leftListItemHoverBackgroundColor;
-    }
-  }
-
-  &.selected{
-    @include for-theme(light){
-      background-color: $light_leftListItemSelectedBackgroundColor;
-    }
-    @include for-theme(dark){
-      background-color: $dark_leftListItemSelectedBackgroundColor;
-    }
-  }
-
-  
-}
-
-.cardsView{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
-  .thumbnailContainer{
-    height: 300px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-
-    .roundCheckbox{
-      position: absolute;
-      top:20px;
-      left:20px;
-    }
-
-    span{
-      text-align: center;
-    }
-  }
-
-  .symbolPreview{
-    border-radius: 5px;
-    @include for-theme(light){
-      border:1px solid $light_leftListItemSeparatorColor;
-    }
-    @include for-theme(dark){
-      border:1px solid $dark_leftListItemSeparatorColor;
-    }
-
-    &.selected{
-      @include for-theme(light){
-        background-color: $light_symbolPreviewListItemBgSelected;
-        border:1px solid $accentColor;
-      }
-    
-      @include for-theme(dark){
-        background-color: $dark_symbolPreviewListItemBgSelected;
-        border:1px solid $accentColor;
-      }
-    }
-  }
-}
-
-.viewSelector{
-  margin-right: 25px;
-  top:5px;
-}
-
-.viewIcon{
-  width:12px;
-  height:12px;
-  margin-right: 5px;
-  cursor: pointer;
-  transition: opacity 0.15s ease-out;
-
-  path{
-    @include for-theme(light){
-      fill: $light_primaryColor;
-    }
-    @include for-theme(dark){
-      fill: $dark_primaryColor;
-    }
-  }
-
-  opacity: 0.3;
-
-  &:hover{
-    opacity: 0.7;
-  }
-
-  &.selected{
-    opacity: 1;
-  }
-
-}
-
-.offDownCenter{
-  .mk-spinner-wrap{
-    top:20px;
-  }
-  .secondaryText{
-    max-width: 420px;
-    margin: 10px 0 0 0;
-  }
-}
-
-.mk-spinner-wrap{
-  min-height:100px;
-  width:100%;
-  position:relative;
-}
-@-webkit-keyframes a{
-  0%{
-    -webkit-transform:rotate(0deg);
-    transform:rotate(0deg)
-  }
-  to{
-    -webkit-transform:rotate(1turn);
-    transform:rotate(1turn)
-  }
-}
-@keyframes a{
-  0%{
-    -webkit-transform:rotate(0deg);
-    transform:rotate(0deg)
-  }
-  to{
-    -webkit-transform:rotate(1turn);
-    transform:rotate(1turn)
-  }
-}
-.mk-spinner-ring{
-  content:"";
-  display:inline-block;
-  position:absolute;
-  width:50px;
-  height:50px;
-  top:50%;
-  margin-top:-25px;
-  left:50%;
-  margin-left:-25px;
-  z-index:1;
-  border-radius:50%;
-  border:3px solid $accentColor;
-  border-left-color:transparent;
-  background:transparent;
-  -webkit-animation:a 1s infinite linear;
-  animation:a 0.7s infinite linear
-}
-
 .switch {
   position: relative;
   display: inline-block;
@@ -1577,46 +933,6 @@ a{
     width: 0;
     height: 0;
   }
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-  border-radius: 32px;
-
-  &:before {
-    position: absolute;
-    content: "";
-    height: 22px;
-    width: 22px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 50%;
-  }
-}
-
-input:checked + .slider {
-  background-color: #38D256;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #38D256;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(18px);
-  -ms-transform: translateX(18px);
-  transform: translateX(18px);
 }
 
 .settingsRow{
@@ -1636,71 +952,3 @@ input:checked + .slider:before {
   padding: 0 50px 15px 50px;
 }
 
-
-.sliderContainer {
-  width: 100%;
-  margin-top: 20px;
-
-  .inputSlider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 8px;
-    border-radius: 4px;
-    outline: none;
-    transition: all .1s ease-in-out;
-
-    @include for-theme(light){
-      background: $light_sliderBarColor;
-    }
-    @include for-theme(dark){
-      background: $dark_sliderBarColor;
-    }
-  
-    &:hover {
-      @include for-theme(light){
-        background: $light_sliderBarColorHover;
-      }
-      @include for-theme(dark){
-        background: $dark_sliderBarColorHover;
-      }
-    }
-
-    &::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: $accentColor;
-      cursor: pointer;
-      transition: all .1s ease-in-out;
-
-      &:hover{
-        background: $accentColorHover;
-      }
-    }
-  }
-
-  .topLabel{
-    @include primaryMediumText();
-    margin-bottom: 8px;
-  }
-
-  .sliderLabels{
-
-    margin-top:10px;
-
-    .leftRange{
-      @include primaryText;
-      position: absolute;
-      left:0;
-    }
-
-    .rightRange{
-      @include primaryText;
-      text-align: right;
-      position: absolute;
-      right:0;
-    }
-  }
-}
