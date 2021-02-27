@@ -28,16 +28,18 @@ body {
 }
 
 .meshEditor{
-  margin: 100px;
+  margin: 50px;
+  width: calc(100% - 100px);
+  height: calc(100% - 100px);
+  background-color: #28282A;
+  border-radius: 10px;
+  box-shadow: rgba($color: #000000, $alpha: 0.15) 0 2px 16px 0;
+
 }
 
 .gradient-mesh {
-  position: relative;
+  position: absolute;
   display: flex;
-  width: 70vh;
-  max-width: 80vw;
-  height: 70vh;
-  max-height: 80vw;
   color: #fff;
   font-size: 5vh;
   align-items: center;

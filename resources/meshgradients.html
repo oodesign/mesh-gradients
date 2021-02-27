@@ -9,31 +9,25 @@
 
 <body>
 	<div class="verticalLayout">
-		<div class="rowAvailable">
+		<div class="rowAvailable dotted">
 			<div class="verticalLayout">
 				<div class="rowAuto">
-					<div class="horizontalLayout">
-						<div id="workZoneTitle" class="colAvailable verticalLayout movingYFadeInitialState">
-							<div class="rowAuto mainTitle" id="resultsTitle">Merging layer styles</div>
-							<div class="rowAuto descriptionTitle secondaryText" id="resultsDescription">The style you
-								decide
-								to keep will be applied to all layers & overrides using any of the discarded styles, and
-								the
-								discarded styles will be removed from the local file.</div>
-						</div>
-						<div class="colAuto logo"></div>
-					</div>
+					Mesh gradients
 				</div>
 				<div class="rowAvailable">
 					<div class="horizontalLayout">
-						<div class="colAvailable">
-							<div class="meshEditor">
-								<div class="gradient-mesh editing"></div>
+						<div class="colAuto">
+							<div class="bounds" style="width:250px;height:100%"></div>
+						</div>
+						<div class="colAvailable bounds">
+							<div id="meshEditor" class="meshEditor">
+								<div id="gradientMesh" class="gradient-mesh editing"></div>
+								<span id="logger"></span>
 							</div>
 						</div>
-						<div class="colAuto colorpicker">
-						</div>
-						<div id="colorPicker" class="aColorPicker">
+						<div class="colAuto colorPicker bounds">
+							<div id="colorPicker" class="aColorPicker">
+							</div>
 						</div>
 					</div>
 				</div>
