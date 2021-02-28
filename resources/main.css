@@ -197,6 +197,13 @@
   }
 }
 
+.leftPanel {
+  width: 320px;
+  height: 100%;
+  margin: 50px 0 50px 20px;
+  overflow: hidden;
+}
+
 body {
   position: relative;
   display: -webkit-box;
@@ -385,7 +392,8 @@ html {
   cursor: default;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   padding: 0;
@@ -393,20 +401,24 @@ html, body {
 }
 
 @media (prefers-color-scheme: light) {
-  html, body {
+  html,
+  body {
     background-color: #F9F9F9;
     color: #212123;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  html, body {
+  html,
+  body {
     background-color: #212124;
     color: #ffffff;
   }
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   -webkit-box-sizing: inherit;
           box-sizing: inherit;
   margin: 0;
@@ -644,7 +656,8 @@ html, body {
   fill: #235FFF;
 }
 
-.emptyState .primaryText, .emptyState .secondaryText {
+.emptyState .primaryText,
+.emptyState .secondaryText {
   width: 280px;
   margin: 20px 0 0 0;
   text-align: center;
@@ -1645,7 +1658,8 @@ div::-webkit-scrollbar-thumb {
   opacity: 0;
 }
 
-input, textarea {
+input,
+textarea {
   -webkit-user-select: auto;
   -moz-user-select: auto;
    -ms-user-select: auto;
@@ -1763,7 +1777,7 @@ input, textarea {
   opacity: 1;
 }
 
-input[type=text] {
+input[type="text"] {
   padding: 8px 12px;
   width: 305px;
   height: 34px;
@@ -1777,26 +1791,26 @@ input[type=text] {
 }
 
 @media (prefers-color-scheme: light) {
-  input[type=text] {
+  input[type="text"] {
     color: #212123;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  input[type=text] {
+  input[type="text"] {
     color: #ffffff;
   }
 }
 
 @media (prefers-color-scheme: light) {
-  input[type=text] {
+  input[type="text"] {
     background-color: #FFFFFF;
     border: 1px solid #A9A9A9;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  input[type=text] {
+  input[type="text"] {
     background-color: #28282A;
     border: 1px solid #6A6A6A;
   }
@@ -1899,5 +1913,53 @@ a {
 
 .settingsDescription {
   padding: 0 50px 15px 50px;
+}
+
+.tabButton {
+  background-color: transparent;
+  border: none;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-size: 14px;
+  font-weight: 400;
+  width: 100%;
+  height: 48px;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+}
+
+@media (prefers-color-scheme: light) {
+  .tabButton {
+    color: #212123;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .tabButton {
+    color: #ffffff;
+  }
+}
+
+.tabButton:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tabButton:active {
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.tabIndicator {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  background-color: #235FFF;
+  width: 50%;
+  left: 0;
+  -webkit-transition: left 0.1s ease-in-out;
+  transition: left 0.1s ease-in-out;
+}
+
+.tabContent {
+  padding: 24px;
 }
 /*# sourceMappingURL=main.css.map */

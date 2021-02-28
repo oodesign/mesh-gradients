@@ -1,8 +1,7 @@
-
-@import "scss/_media"; 
-@import "scss/_colors"; 
-@import "scss/_layout"; 
- @import "scss/_meshgradients"; 
+@import "scss/_media";
+@import "scss/_colors";
+@import "scss/_layout";
+@import "scss/_meshgradients";
 
 html {
   box-sizing: border-box;
@@ -11,24 +10,27 @@ html {
   cursor: default;
 }
 
-html,body{
-  width:100%;
-  height:100%;
-  padding:0;
-  margin:0;
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
 
-  @include for-theme(light){
-      background-color: $light_backgroundColor;
-      color: $light_primaryColor;
+  @include for-theme(light) {
+    background-color: $light_backgroundColor;
+    color: $light_primaryColor;
   }
-  
-  @include for-theme(dark){
-      background-color: $dark_backgroundColor;
-      color: $dark_primaryColor;
+
+  @include for-theme(dark) {
+    background-color: $dark_backgroundColor;
+    color: $dark_primaryColor;
   }
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
@@ -39,119 +41,116 @@ html,body{
   user-select: none;
 }
 
-.rightPanelPadding{
+.rightPanelPadding {
   padding: $topPadding $leftRightPadding 0 $leftRightPadding;
 }
 
-@mixin primaryText{
+@mixin primaryText {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
-  @include for-theme(light){
+  @include for-theme(light) {
     color: $light_primaryColor;
   }
-  @include for-theme(dark){
-      color: $dark_primaryColor;
+  @include for-theme(dark) {
+    color: $dark_primaryColor;
   }
 }
 
-.primaryText{
+.primaryText {
   @include primaryText;
 }
 
-.primaryBoldText{
+.primaryBoldText {
   @include primaryText;
   font-weight: 700;
 }
 
-@mixin primaryMediumText{
+@mixin primaryMediumText {
   @include primaryText;
   font-size: 15px;
 }
 
-.primaryMediumText{
+.primaryMediumText {
   @include primaryMediumText;
 }
 
-@mixin primaryBigText{
+@mixin primaryBigText {
   @include primaryText;
   font-size: 25px;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 
-.primaryBigText{
+.primaryBigText {
   @include primaryBigText;
 }
 
-@mixin secondaryText{
+@mixin secondaryText {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
 
-  @include for-theme(light){
+  @include for-theme(light) {
     color: $light_secondaryColor;
   }
-  @include for-theme(dark){
-      color: $dark_secondaryColor;
+  @include for-theme(dark) {
+    color: $dark_secondaryColor;
   }
 }
 
-.secondaryText{
+.secondaryText {
   @include secondaryText;
 }
 
-.mainTitle{
+.mainTitle {
   padding: $topPadding $leftRightPadding 0 $leftRightPadding;
   @include primaryText;
   font-size: 30px;
 }
 
-.descriptionTitle{
+.descriptionTitle {
   padding: 5px $leftRightPadding 0 $leftRightPadding;
   @include secondaryText;
 }
 
-.workZone{
+.workZone {
   padding-right: 10px;
 }
 
-.draggableArea{
+.draggableArea {
   position: absolute;
-  width:100vw;
+  width: 100vw;
   height: 30px;
   background-color: transparent;
   z-index: 1;
 
-  span{
+  span {
     @include secondaryText();
   }
 }
 
-
-.bottomBar{
+.bottomBar {
   // height:60px;
-  @include for-theme(light){
+  @include for-theme(light) {
     background-color: $light_bottomBarBackgroundColor;
     border-top: 1px solid $light_bottomBarBorderColor;
   }
-  @include for-theme(dark){
-      background-color: $dark_bottomBarBackgroundColor;
-      border-top: 1px solid $dark_bottomBarBorderColor;
+  @include for-theme(dark) {
+    background-color: $dark_bottomBarBackgroundColor;
+    border-top: 1px solid $dark_bottomBarBorderColor;
   }
 }
 
-
-
-.separeHeader{
-  margin-top:60px;
+.separeHeader {
+  margin-top: 60px;
 }
 
-.progressIndicator{
+.progressIndicator {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.progressCircle{
+.progressCircle {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -160,15 +159,13 @@ html,body{
   visibility: hidden;
   opacity: 0;
 
-  .secondaryText{
+  .secondaryText {
     max-width: 420px;
     margin: 20px 0 0 0;
   }
 }
 
-
-
-.emptyState{
+.emptyState {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -178,70 +175,71 @@ html,body{
   // visibility: hidden;
   // opacity: 0;
 
-  .emptyStateIcon{
-    @include for-theme(light){
-      fill:$light_emptyStateIcon;
+  .emptyStateIcon {
+    @include for-theme(light) {
+      fill: $light_emptyStateIcon;
     }
-    @include for-theme(dark){
-      fill:$dark_emptyStateIcon;
+    @include for-theme(dark) {
+      fill: $dark_emptyStateIcon;
     }
   }
 
-  .successIcon{
-    fill:$accentColor;
+  .successIcon {
+    fill: $accentColor;
   }
 
-  .primaryText, .secondaryText{
-    width:280px;
+  .primaryText,
+  .secondaryText {
+    width: 280px;
     margin: 20px 0 0 0;
     text-align: center;
   }
 }
 
-.registerHeader{
+.registerHeader {
   @include primaryMediumText;
   font-size: 32px;
   text-align: center;
 }
 
-.registerText{
+.registerText {
   @include secondaryText;
 
-  width:400px;
+  width: 400px;
   margin: 10px 0 30px 0;
   text-align: center;
 }
 
-.fadeIn{
+.fadeIn {
   transition: visibility 0s, opacity 0.5s linear;
   visibility: visible;
   opacity: 1;
 }
 
-.fadeOut{
+.fadeOut {
   transition: opacity 0.5s linear, visibility 0s 0.5s;
   opacity: 0;
   visibility: hidden;
 }
 
-.logo{
+.logo {
   position: absolute;
-  top:15px;
-  right:23px;
-  width:39px;
-  height:36px;
+  top: 15px;
+  right: 23px;
+  width: 39px;
+  height: 36px;
   background-size: cover;
   background-repeat: no-repeat;
-  @include for-theme(light){
+  @include for-theme(light) {
     background-image: url("images/LogoLight.png");
   }
-  @include for-theme(dark){
+  @include for-theme(dark) {
     background-image: url("./images/LogoDark.png");
   }
 }
 
-.btnApply{
-  width:100%;
+.btnApply {
+  width: 100%;
   margin: 0 20px;
   height: 34px;
   border: double 2px $accentColor;
@@ -254,21 +252,21 @@ html,body{
   background-color: transparent;
   transition: all 0.1s ease-out;
 
-  @include for-theme(light){
-    color:$accentColor;
+  @include for-theme(light) {
+    color: $accentColor;
   }
-  @include for-theme(dark){
-    color:$dark_inverseColor;
+  @include for-theme(dark) {
+    color: $dark_inverseColor;
   }
 
   &:hover {
     background-color: $accentColor;
     outline: none;
-    @include for-theme(light){
-      color:$light_inverseColor;
+    @include for-theme(light) {
+      color: $light_inverseColor;
     }
-    @include for-theme(dark){
-      color:$dark_inverseColor;
+    @include for-theme(dark) {
+      color: $dark_inverseColor;
     }
   }
   &:active {
@@ -276,18 +274,16 @@ html,body{
     border-color: $accentColorActive;
     outline: none;
   }
-  
 }
 
-.actionsRow{
+.actionsRow {
   @include horizontalLayout;
   @include alignVerticalCenter;
   padding: 10px 10px 10px 20px;
 }
 
-
-@mixin btnPrimary{
-  border:none;
+@mixin btnPrimary {
+  border: none;
   width: 150px;
   height: 34px;
   border-radius: 17px;
@@ -298,8 +294,8 @@ html,body{
   font-weight: 700;
   background-color: $accentColor;
   transition: all 0.1s ease-out;
-  color:$dark_inverseColor;
-  margin-left:5px;
+  color: $dark_inverseColor;
+  margin-left: 5px;
 
   &:hover {
     background-color: $accentColorHover;
@@ -319,20 +315,20 @@ html,body{
   }
 }
 
-.btnPrimary{
+.btnPrimary {
   @include btnPrimary;
 
-  &.xl{
+  &.xl {
     width: 170px;
   }
 }
 
-@mixin btnSecondary{
-  @include for-theme(light){
-    border:1px solid $light_btnSecondaryBorderColor;
+@mixin btnSecondary {
+  @include for-theme(light) {
+    border: 1px solid $light_btnSecondaryBorderColor;
   }
-  @include for-theme(dark){
-    border:1px solid $dark_btnSecondaryBorderColor;
+  @include for-theme(dark) {
+    border: 1px solid $dark_btnSecondaryBorderColor;
   }
   background-color: transparent;
   width: 100px;
@@ -345,31 +341,31 @@ html,body{
   font-weight: 700;
   transition: all 0.1s ease-out;
 
-  @include for-theme(light){
-    color:$light_primaryColor;
+  @include for-theme(light) {
+    color: $light_primaryColor;
   }
-  @include for-theme(dark){
-    color:$dark_inverseColor;
+  @include for-theme(dark) {
+    color: $dark_inverseColor;
   }
 
   &:hover {
-    @include for-theme(light){
+    @include for-theme(light) {
       background-color: $light_btnSecondaryBackgroundHover;
       border-color: $accentColorHover;
-      color:$accentColorDarkText;
+      color: $accentColorDarkText;
     }
-    @include for-theme(dark){
+    @include for-theme(dark) {
       background-color: $dark_btnSecondaryBackgroundHover;
       border-color: $accentColorHover;
     }
     outline: none;
   }
   &:active {
-    @include for-theme(light){
+    @include for-theme(light) {
       background-color: $light_btnSecondaryBackgroundActive;
       border-color: $accentColorActive;
     }
-    @include for-theme(dark){
+    @include for-theme(dark) {
       background-color: $dark_btnSecondaryBackgroundActive;
       border-color: $accentColorActive;
     }
@@ -377,12 +373,12 @@ html,body{
   }
 }
 
-.btnSecondary{
+.btnSecondary {
   @include btnSecondary;
 }
 
-@mixin btnTertiary{
-  border:1px solid transparent;
+@mixin btnTertiary {
+  border: 1px solid transparent;
   background-color: transparent;
   width: 100px;
   height: 34px;
@@ -394,166 +390,159 @@ html,body{
   font-weight: 500;
   transition: all 0.1s ease-out;
 
-  @include for-theme(light){
-    color:$light_secondaryColor;
+  @include for-theme(light) {
+    color: $light_secondaryColor;
   }
-  @include for-theme(dark){
-    color:$dark_secondaryColor;
+  @include for-theme(dark) {
+    color: $dark_secondaryColor;
   }
 
   &:hover {
-    @include for-theme(light){
+    @include for-theme(light) {
       border-color: $accentColorHover;
-      color:$accentColorDarkText;
+      color: $accentColorDarkText;
     }
-    @include for-theme(dark){
+    @include for-theme(dark) {
       border-color: $accentColorHover;
-      color:$dark_primaryColor;
+      color: $dark_primaryColor;
     }
     outline: none;
   }
   &:active {
-    @include for-theme(light){
+    @include for-theme(light) {
       border-color: $accentColorActive;
     }
-    @include for-theme(dark){
+    @include for-theme(dark) {
       border-color: $accentColorActive;
     }
     outline: none;
   }
 }
 
-.btnTertiary{
+.btnTertiary {
   @include btnTertiary;
 }
 
-
-
-.btnStartTrial{
+.btnStartTrial {
   @include btnSecondary;
-  width:200px;
+  width: 200px;
 }
 
-.btnGetItNow{
+.btnGetItNow {
   @include btnPrimary;
-  width:200px;
+  width: 200px;
 }
 
-.btnAlreadyLicense{
+.btnAlreadyLicense {
   @include btnTertiary;
-  width:200px;
+  width: 200px;
   margin-top: 30px;
 }
 
-
-.btnArrow{
-  @include for-theme(light){
-    background-color: rgba($dark_backgroundColor,0.2);
+.btnArrow {
+  @include for-theme(light) {
+    background-color: rgba($dark_backgroundColor, 0.2);
   }
-  @include for-theme(dark){
-    background-color: rgba($light_backgroundColor,0.3);
+  @include for-theme(dark) {
+    background-color: rgba($light_backgroundColor, 0.3);
   }
   width: 24px;
   height: 24px;
   @include alignHorizontalCenter;
   outline: none;
-  border:none;
+  border: none;
   border-radius: 2px;
   transition: all 0.1s ease-out;
 
   &:hover {
-    @include for-theme(light){
-      background-color: rgba($dark_backgroundColor,0.3);
+    @include for-theme(light) {
+      background-color: rgba($dark_backgroundColor, 0.3);
     }
-    @include for-theme(dark){
-      background-color: rgba($light_backgroundColor,0.6);
+    @include for-theme(dark) {
+      background-color: rgba($light_backgroundColor, 0.6);
     }
     outline: none;
   }
   &:active {
-    @include for-theme(light){
-      background-color: rgba($dark_backgroundColor,0.4);
+    @include for-theme(light) {
+      background-color: rgba($dark_backgroundColor, 0.4);
     }
-    @include for-theme(dark){
-      background-color: rgba($light_backgroundColor,0.45);
+    @include for-theme(dark) {
+      background-color: rgba($light_backgroundColor, 0.45);
     }
     outline: none;
   }
 }
 
-.registerLogo{
+.registerLogo {
   margin-bottom: 20px;
-  width:160px;
+  width: 160px;
 
-  path{
-    @include for-theme(light){
+  path {
+    @include for-theme(light) {
       fill: $light_primaryColor;
     }
-    @include for-theme(dark){
+    @include for-theme(dark) {
       fill: $dark_primaryColor;
     }
   }
 }
 
-.settingsLogo{
+.settingsLogo {
   margin-top: 140px;
   margin-bottom: 40px;
-  width:110px;
+  width: 110px;
 
-  path{
-    @include for-theme(light){
+  path {
+    @include for-theme(light) {
       fill: $light_primaryColor;
     }
-    @include for-theme(dark){
+    @include for-theme(dark) {
       fill: $dark_primaryColor;
     }
   }
 }
 
-.padded{
-  padding:10px;
+.padded {
+  padding: 10px;
 }
 
-
-.infoIcon{
-  top:1px;
+.infoIcon {
+  top: 1px;
   margin-left: 5px;
 
-  path{
-    @include for-theme(light){
+  path {
+    @include for-theme(light) {
       fill: $light_primaryColor;
     }
-    @include for-theme(dark){
+    @include for-theme(dark) {
       fill: $dark_primaryColor;
     }
     opacity: 0.5;
     transition: all 0.2s ease-out;
   }
-    
-  &:hover{
-    path{
+
+  &:hover {
+    path {
       opacity: 1;
     }
   }
 }
 
-
-
-.separatorBelow{
-  @include for-theme(light){
+.separatorBelow {
+  @include for-theme(light) {
     border-bottom: 1px solid $light_bottomBarBorderColor;
   }
-  @include for-theme(dark){
-      border-bottom: 1px solid $dark_bottomBarBorderColor;
+  @include for-theme(dark) {
+    border-bottom: 1px solid $dark_bottomBarBorderColor;
   }
 }
 
-
-@mixin roundCheckbox($bgColor,$marginBottom){
+@mixin roundCheckbox($bgColor, $marginBottom) {
   position: relative;
   margin-bottom: $marginBottom;
 
-  .padder{
+  .padder {
     width: 160px;
     height: 100%;
     background-color: transparent;
@@ -568,33 +557,33 @@ html,body{
     position: absolute;
     top: 0;
     background-color: transparent;
-    border: 2px solid ;
+    border: 2px solid;
     transition: all 0.1s;
 
-    @include for-theme(light){
+    @include for-theme(light) {
       border-color: $light_inputBorderColor;
     }
-    @include for-theme(dark){
+    @include for-theme(dark) {
       border-color: $dark_inputBorderColor;
     }
 
-    &:hover{
-      @include for-theme(light){
+    &:hover {
+      @include for-theme(light) {
         border-color: $light_inputBorderColorHover;
       }
-      @include for-theme(dark){
+      @include for-theme(dark) {
         border-color: $dark_inputBorderColorHover;
       }
     }
 
-    span{
-      left:25px;
-      width:120px;
+    span {
+      left: 25px;
+      width: 120px;
       position: absolute;
       @include primaryText;
 
-      &.longLabel{
-        width:500px;
+      &.longLabel {
+        width: 500px;
       }
     }
   }
@@ -625,25 +614,23 @@ html,body{
   input[type="checkbox"]:checked + label:after {
     opacity: 1;
   }
-
 }
-
 
 .roundCheckbox {
-  @include roundCheckbox($accentColor,7px);
+  @include roundCheckbox($accentColor, 7px);
 }
 
-.selectRoundCheckbox{
-  @include roundCheckbox($complementaryColor,0);
-  width:30px;
+.selectRoundCheckbox {
+  @include roundCheckbox($complementaryColor, 0);
+  width: 30px;
   margin-left: 10px;
 }
 ///////
 
-@mixin squareCheckbox($bgColor,$marginBottom){
+@mixin squareCheckbox($bgColor, $marginBottom) {
   position: relative;
 
-  .padder{
+  .padder {
     width: 160px;
     height: 100%;
     background-color: transparent;
@@ -658,19 +645,19 @@ html,body{
     position: absolute;
     top: 0;
     background-color: transparent;
-    border: 2px solid ;
+    border: 2px solid;
     transition: all 0.1s;
 
-    @include for-theme(light){
+    @include for-theme(light) {
       border-color: $light_inputBorderColor;
     }
-    @include for-theme(dark){
+    @include for-theme(dark) {
       border-color: $dark_inputBorderColor;
     }
 
-    span{
-      left:25px;
-      width:120px;
+    span {
+      left: 25px;
+      width: 120px;
       position: absolute;
       @include primaryText;
     }
@@ -702,14 +689,11 @@ html,body{
   input[type="checkbox"]:checked + label:after {
     opacity: 1;
   }
-
 }
-
 
 .squareCheckbox {
-  @include squareCheckbox($complementaryColor,7px);
+  @include squareCheckbox($complementaryColor, 7px);
 }
-
 
 div::-webkit-scrollbar-track {
   border-radius: 8px;
@@ -723,54 +707,54 @@ div::-webkit-scrollbar {
 
 div::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  @include for-theme(light){
+  @include for-theme(light) {
     background-color: $light_scrollThumbColor;
   }
-  @include for-theme(dark){
+  @include for-theme(dark) {
     background-color: $dark_scrollThumbColor;
   }
 
-  &:hover{
-    @include for-theme(light){
+  &:hover {
+    @include for-theme(light) {
       background-color: $light_scrollThumbColorHover;
     }
-    @include for-theme(dark){
+    @include for-theme(dark) {
       background-color: $dark_scrollThumbColorHover;
     }
   }
 
-  &:active{
-    @include for-theme(light){
+  &:active {
+    @include for-theme(light) {
       background-color: $light_scrollThumbColorActive;
     }
-    @include for-theme(dark){
+    @include for-theme(dark) {
       background-color: $dark_scrollThumbColorActive;
     }
   }
 }
 
-.movingYFadeInitialState{
+.movingYFadeInitialState {
   transition: transform 0.3s ease-out, opacity 0.3s 0.1s ease-out;
   transform: translateY(30px);
   opacity: 0;
 }
 
-.movingYFadeIn{
-  transform: translateY(0px) ;
+.movingYFadeIn {
+  transform: translateY(0px);
   opacity: 1;
 }
 
-.movingYFadeOut{
+.movingYFadeOut {
   transition: opacity 0.15s ease-out, transform 0s 0.3s ease-out !important;
   transform: translateY(30px);
   opacity: 0;
 }
 
-input, textarea {
+input,
+textarea {
   -webkit-user-select: auto;
   user-select: auto;
 }
-
 
 .tooltip {
   position: relative;
@@ -780,10 +764,10 @@ input, textarea {
   .tooltipText {
     visibility: hidden;
     width: 240px;
-    @include for-theme(light){
+    @include for-theme(light) {
       background-color: $light_tooltipColor;
     }
-    @include for-theme(dark){
+    @include for-theme(dark) {
       background-color: $dark_tooltipColor;
     }
     border-radius: 6px;
@@ -795,7 +779,7 @@ input, textarea {
     margin-left: -120px;
     opacity: 0;
     transition: opacity 0.3s;
-    box-shadow: 0px 2px 11px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.2);
 
     &::after {
       content: "";
@@ -805,15 +789,15 @@ input, textarea {
       margin-left: -5px;
       border-width: 5px;
       border-style: solid;
-      @include for-theme(light){
+      @include for-theme(light) {
         border-color: $light_tooltipColor transparent transparent transparent;
       }
-      @include for-theme(dark){
+      @include for-theme(dark) {
         border-color: $dark_tooltipColor transparent transparent transparent;
       }
     }
 
-    span{
+    span {
       @include primaryText;
     }
   }
@@ -824,100 +808,99 @@ input, textarea {
   }
 }
 
-.warningText{
+.warningText {
   @include primaryText;
-  color:$warningColor !important;
-  margin:20px 0 0 0;
+  color: $warningColor !important;
+  margin: 20px 0 0 0;
   height: 0;
   visibility: hidden;
   opacity: 0;
-  transition:height 0.3s ease-out, opacity 0.3s ease-out, visibility 0s 0.3s;
+  transition: height 0.3s ease-out, opacity 0.3s ease-out, visibility 0s 0.3s;
 }
 
-.warningTextVisible{
+.warningTextVisible {
   transition: visibility 0s, height 0.3s ease-out, opacity 0.3s ease-out;
   visibility: visible;
-  height:35px;
+  height: 35px;
   opacity: 1;
 }
 
-input[type=text] {
+input[type="text"] {
   padding: 8px 12px;
-  width:305px;
+  width: 305px;
   height: 34px;
   margin: 8px 0;
   box-sizing: border-box;
   border-radius: 3px;
   outline: none;
   @include primaryText;
-  @include for-theme(light){
+  @include for-theme(light) {
     background-color: $light_inputBackgroundColor;
     border: 1px solid $light_inputBorderColor;
   }
-  @include for-theme(dark){
-      background-color: $dark_inputBackgroundColor;
-      border: 1px solid $dark_inputBorderColor;
+  @include for-theme(dark) {
+    background-color: $dark_inputBackgroundColor;
+    border: 1px solid $dark_inputBorderColor;
   }
 }
 
-a{
-  color:inherit;
+a {
+  color: inherit;
 }
 
-@mixin animatedDiv{
-
-  .yFadeIn{
+@mixin animatedDiv {
+  .yFadeIn {
     transition: visibility 0s, transform 0.3s ease-out, opacity 0.3s ease-out !important;
     visibility: visible !important;
-    opacity:1 !important;
-    transform: translate(-50%,0px) !important;
+    opacity: 1 !important;
+    transform: translate(-50%, 0px) !important;
   }
 
-  .yFadeOut{
+  .yFadeOut {
     transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0s 0.3s !important;
     visibility: hidden !important;
-    opacity:0 !important;
-    transform:translate(-50%,-50px) !important;
+    opacity: 0 !important;
+    transform: translate(-50%, -50px) !important;
   }
 }
 
-.animatedDiv{
+.animatedDiv {
   @include animatedDiv;
 }
 
-#ctaForm{
+#ctaForm {
   opacity: 1;
   //transition: all 0.3s ease-in-out;
   transition: transform 0.3s ease-out, opacity 0.3s 0.1s ease-out;
   position: absolute;
-  left:50%;
-  transform:translate(-50%,0);
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
-#registerForm{
+#registerForm {
   position: absolute;
-  left:50%;
+  left: 50%;
   visibility: hidden;
-  opacity:0;
-  transform:translate(-50%,50px);
-  transition: all 0.3s ease-out
+  opacity: 0;
+  transform: translate(-50%, 50px);
+  transition: all 0.3s ease-out;
 }
 
-#confirmationForm{
+#confirmationForm {
   position: absolute;
-  left:50%;
+  left: 50%;
   visibility: hidden;
-  opacity:0;
-  transform:translate(-50%,50px);
-  transition: all 0.3s ease-out
+  opacity: 0;
+  transform: translate(-50%, 50px);
+  transition: all 0.3s ease-out;
 }
 
-#startTrialForm{
+#startTrialForm {
   position: absolute;
-  left:50%;
+  left: 50%;
   visibility: hidden;
-  opacity:0;
-  transform:translate(-50%,50px);
+  opacity: 0;
+  transform: translate(-50%, 50px);
   transition: all 0.3s ease-out;
 }
 
@@ -927,28 +910,58 @@ a{
   width: 44px;
   height: 26px;
   margin-right: 15px;
-  
-  input { 
+
+  input {
     opacity: 0;
     width: 0;
     height: 0;
   }
 }
 
-.settingsRow{
-  width:320px;
+.settingsRow {
+  width: 320px;
   margin-bottom: 10px;
 }
 
-.detailsRow
-{
-  .detailsTitle{
+.detailsRow {
+  .detailsTitle {
     margin-top: 4px;
     margin-bottom: 5px;
   }
 }
 
-.settingsDescription{
+.settingsDescription {
   padding: 0 50px 15px 50px;
 }
 
+.tabButton {
+  background-color: transparent;
+  border: none;
+  @include primaryText;
+  font-size: 14px;
+  font-weight: 400;
+  width: 100%;
+  height: 48px;
+  transition: background-color 0.1s ease-in-out;
+
+  &:hover {
+    background-color: rgba($dark_primaryColor, 0.05);
+  }
+  &:active {
+    background-color: rgba($dark_primaryColor, 0.01);
+  }
+}
+
+.tabIndicator {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  background-color: $accentColor;
+  width: 50%;
+  left: 0;
+  transition: left 0.1s ease-in-out;
+}
+
+.tabContent{
+  padding: 24px;
+}

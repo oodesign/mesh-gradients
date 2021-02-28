@@ -16,8 +16,29 @@
 				</div>
 				<div class="rowAvailable">
 					<div class="horizontalLayout">
-						<div class="colAuto">
-							<div class="" style="width:250px;height:100%"></div>
+						<div class="colAuto leftPanel layoutPanel">
+							<div class="verticalLayout">
+								<div class="rowAuto separatorBelow">
+									<div class="horizontalLayout">
+										<div class="colAvailable">
+											<button id="leftTab" class="tabButton">Collection</button>
+										</div>
+										<div class="colAvailable">
+											<button id="rightTab" class="tabButton">Create your own</button>
+										</div>
+										<div id="tabIndicator" class="tabIndicator">
+										</div>
+									</div>
+								</div>
+								<div class="rowAvailable tabContent">
+									<div id="collectionContent">
+										This is collection.
+									</div>
+									<div id="createYourOwnContent" style="display: none;">
+										This is Create your own.
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class="colAvailable">
 							<div id="meshEditor" class="meshEditor layoutPanel">

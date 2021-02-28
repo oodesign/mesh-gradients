@@ -233,3 +233,10 @@ $headerSidesDistance: 18px;
         background-color: $dark_backgroundColor_500;
     }
 }
+
+.leftPanel{
+    width:320px;
+    height: 100%;
+    margin: 50px 0 50px 20px;
+    overflow: hidden;
+}

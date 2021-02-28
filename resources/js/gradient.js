@@ -604,3 +604,21 @@ const updateCPlines = (cp) => {
 
 }
 
+document.getElementById('leftTab').addEventListener("click", function () { changeTab(0) });
+document.getElementById('rightTab').addEventListener("click", function () { changeTab(1) });
+
+function changeTab(index) {
+  switch (index) {
+    case 0:
+      document.getElementById("tabIndicator").style.left = "0";
+      document.getElementById("collectionContent").style.display = "initial";
+      document.getElementById("createYourOwnContent").style.display = "none";
+
+      break;
+    case 1:
+      document.getElementById("tabIndicator").style.left = "50%";
+      document.getElementById("collectionContent").style.display = "none";
+      document.getElementById("createYourOwnContent").style.display = "initial";
+      break;
+  }
+}
