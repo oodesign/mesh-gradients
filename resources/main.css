@@ -2059,4 +2059,111 @@ a {
     color: #87898E;
   }
 }
+
+.colorPicker.layoutPanel .a-color-picker {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  border-radius: 10px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .colorPicker.layoutPanel .a-color-picker {
+    color: #87898E;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .colorPicker.layoutPanel .a-color-picker {
+    color: #87898E;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .colorPicker.layoutPanel .a-color-picker {
+    background-color: #F9F9F9;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .colorPicker.layoutPanel .a-color-picker {
+    background-color: #2F2F32;
+  }
+}
+
+.colorPicker.layoutPanel .a-color-picker .a-color-picker-row,
+.colorPicker.layoutPanel .a-color-picker .a-color-picker-clipbaord,
+.colorPicker.layoutPanel .a-color-picker .a-color-picker-circle {
+  border: none;
+}
+
+.colorPicker.layoutPanel .a-color-picker .a-color-picker-sl {
+  border-radius: 10px 10px 0 0;
+}
+
+.colorPicker.layoutPanel .a-color-picker .a-color-picker-row:not(:first-child) {
+  padding: 10px 16px;
+}
+
+.colorPicker.layoutPanel .a-color-picker .a-color-picker-dot {
+  width: 15px;
+  height: 15px;
+  background-color: transparent;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 4px 0;
+          box-shadow: rgba(0, 0, 0, 0.5) 0 2px 4px 0;
+  top: 0;
+}
+
+@media (prefers-color-scheme: light) {
+  .colorPicker.layoutPanel .a-color-picker .a-color-picker-dot {
+    border: 2px solid #ffffff;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .colorPicker.layoutPanel .a-color-picker .a-color-picker-dot {
+    border: 2px solid #ffffff;
+  }
+}
+
+.colorPicker.layoutPanel .a-color-picker .a-color-picker-h {
+  border-radius: 4px;
+}
+
+.colorPicker.layoutPanel .a-color-picker .a-color-picker-preview {
+  border: none;
+  border-radius: 4px;
+}
+
+.colorPicker.layoutPanel .a-color-picker input {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  background: transparent;
+  border-radius: 4px;
+}
+
+@media (prefers-color-scheme: light) {
+  .colorPicker.layoutPanel .a-color-picker input {
+    color: #212123;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .colorPicker.layoutPanel .a-color-picker input {
+    color: #ffffff;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .colorPicker.layoutPanel .a-color-picker input {
+    border: 1px solid #454649;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .colorPicker.layoutPanel .a-color-picker input {
+    border: 1px solid #454649;
+  }
+}
 /*# sourceMappingURL=main.css.map */
