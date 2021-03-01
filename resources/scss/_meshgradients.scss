@@ -1,16 +1,4 @@
-body {
-  position: relative;
-  display: flex;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  overflow: hidden;
-  font-family: 'Abel', sans-serif;
-  align-items: center;
-  justify-content: center;
-}
+
 
 .hotkey-button {
   position: absolute;
@@ -28,9 +16,9 @@ body {
 }
 
 .meshEditor{
-  margin: 50px 20px;
+  margin: 20px 20px;
   width: calc(100% - 40px);
-  height: calc(100% - 100px);
+  height: calc(100% - 70px);
 }
 
 .gradient-mesh {

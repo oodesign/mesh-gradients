@@ -3,6 +3,20 @@
 @import "scss/_layout";
 @import "scss/_meshgradients";
 
+@font-face {
+  font-family: AvenirNextLTPro-Medium;
+  src: url(./fonts/AvenirNextLTPro-Medium.ttf);
+}
+@font-face {
+  font-family: AvenirNextLTPro-Bold;
+  src: url(./fonts/AvenirNextLTPro-Bold.ttf);
+}
+@font-face {
+  font-family: AvenirNextLTPro-Demi;
+  src: url(./fonts/AvenirNextLTPro-Demi.ttf);
+}
+
+
 html {
   box-sizing: border-box;
   background: transparent;
@@ -16,6 +30,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
 
   @include for-theme(light) {
     background-color: $light_backgroundColor;
@@ -46,8 +61,21 @@ body {
 }
 
 @mixin primaryText {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
+  @include for-theme(light) {
+    color: $light_primaryColor;
+  }
+  @include for-theme(dark) {
+    color: $dark_primaryColor;
+  }
+}
+
+.heroHeaderText{
+  margin: 50px 0 0 24px;
+  font-family: AvenirNextLTPro-Bold, -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0.3px;
+  font-size: 22px;
   @include for-theme(light) {
     color: $light_primaryColor;
   }
@@ -85,7 +113,7 @@ body {
 }
 
 @mixin secondaryText {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
 
   @include for-theme(light) {
@@ -97,7 +125,7 @@ body {
 }
 
 @mixin collapsedPanelLabel {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   text-transform: uppercase;
   font-weight: 700;
@@ -317,7 +345,8 @@ body {
   background-clip: content-box, border-box;
   @include alignHorizontalCenter;
   outline: none;
-  font-weight: 700;
+  font-family: AvenirNextLTPro-Demi, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
   background-color: $accentColor;
   transition: all 0.1s ease-out;
   color: $dark_inverseColor;
@@ -364,7 +393,8 @@ body {
   background-clip: content-box, border-box;
   @include alignHorizontalCenter;
   outline: none;
-  font-weight: 700;
+  font-family: AvenirNextLTPro-Demi, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
   transition: all 0.1s ease-out;
 
   @include for-theme(light) {
@@ -413,7 +443,8 @@ body {
   background-clip: content-box, border-box;
   @include alignHorizontalCenter;
   outline: none;
-  font-weight: 500;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
   transition: all 0.1s ease-out;
 
   @include for-theme(light) {
@@ -1000,7 +1031,7 @@ a {
   transform: rotate(270deg);
   transform-origin: 0 0;
   width: 180px;
-  top: 180px;
+  top: 200px;
   left: 20px;
 }
 

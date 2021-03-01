@@ -164,7 +164,7 @@
 }
 
 .colorPicker {
-  margin: 50px 20px 0 0;
+  margin: 20px 20px 0 0;
   padding: 20px;
 }
 
@@ -200,7 +200,7 @@
 
 .leftPanel {
   width: 320px;
-  margin: 50px 0 50px 20px;
+  margin: 20px 0 50px 20px;
   -webkit-transition: width 0.3s ease-in-out;
   transition: width 0.3s ease-in-out;
 }
@@ -260,26 +260,6 @@
   left: 11px;
 }
 
-body {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  overflow: hidden;
-  font-family: 'Abel', sans-serif;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
 .hotkey-button {
   position: absolute;
   top: 1rem;
@@ -297,9 +277,9 @@ body {
 }
 
 .meshEditor {
-  margin: 50px 20px;
+  margin: 20px 20px;
   width: calc(100% - 40px);
-  height: calc(100% - 100px);
+  height: calc(100% - 70px);
 }
 
 .gradient-mesh {
@@ -440,6 +420,21 @@ body {
   border: 1px solid #000;
 }
 
+@font-face {
+  font-family: AvenirNextLTPro-Medium;
+  src: url(./fonts/AvenirNextLTPro-Medium.ttf);
+}
+
+@font-face {
+  font-family: AvenirNextLTPro-Bold;
+  src: url(./fonts/AvenirNextLTPro-Bold.ttf);
+}
+
+@font-face {
+  font-family: AvenirNextLTPro-Demi;
+  src: url(./fonts/AvenirNextLTPro-Demi.ttf);
+}
+
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -454,6 +449,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 @media (prefers-color-scheme: light) {
@@ -491,8 +487,27 @@ body {
   padding: 46px 20px 0 20px;
 }
 
+.heroHeaderText {
+  margin: 50px 0 0 24px;
+  font-family: AvenirNextLTPro-Bold, -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0.3px;
+  font-size: 22px;
+}
+
+@media (prefers-color-scheme: light) {
+  .heroHeaderText {
+    color: #212123;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .heroHeaderText {
+    color: #ffffff;
+  }
+}
+
 .primaryText {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
 }
 
@@ -509,7 +524,7 @@ body {
 }
 
 .primaryBoldText {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 700;
 }
@@ -527,7 +542,7 @@ body {
 }
 
 .primaryMediumText {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-size: 15px;
 }
@@ -545,7 +560,7 @@ body {
 }
 
 .primaryBigText {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-size: 25px;
   margin-bottom: 10px;
@@ -564,7 +579,7 @@ body {
 }
 
 .secondaryText {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
 }
 
@@ -582,7 +597,7 @@ body {
 
 .mainTitle {
   padding: 46px 20px 0 20px;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-size: 30px;
 }
@@ -601,7 +616,7 @@ body {
 
 .descriptionTitle {
   padding: 5px 20px 0 20px;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
 }
 
@@ -630,7 +645,7 @@ body {
 }
 
 .draggableArea span {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
 }
 
@@ -720,7 +735,7 @@ body {
 }
 
 .registerHeader {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-size: 15px;
   font-size: 32px;
@@ -740,7 +755,7 @@ body {
 }
 
 .registerText {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   width: 400px;
   margin: 10px 0 30px 0;
@@ -890,7 +905,8 @@ body {
   background-clip: content-box, border-box;
   margin: 0 auto;
   outline: none;
-  font-weight: 700;
+  font-family: AvenirNextLTPro-Demi, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
   background-color: #235FFF;
   -webkit-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
@@ -929,7 +945,8 @@ body {
   background-clip: content-box, border-box;
   margin: 0 auto;
   outline: none;
-  font-weight: 700;
+  font-family: AvenirNextLTPro-Demi, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
   -webkit-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
 }
@@ -1005,7 +1022,8 @@ body {
   background-clip: content-box, border-box;
   margin: 0 auto;
   outline: none;
-  font-weight: 500;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
   -webkit-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
 }
@@ -1065,7 +1083,8 @@ body {
   background-clip: content-box, border-box;
   margin: 0 auto;
   outline: none;
-  font-weight: 700;
+  font-family: AvenirNextLTPro-Demi, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
   -webkit-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
   width: 200px;
@@ -1141,7 +1160,8 @@ body {
   background-clip: content-box, border-box;
   margin: 0 auto;
   outline: none;
-  font-weight: 700;
+  font-family: AvenirNextLTPro-Demi, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
   background-color: #235FFF;
   -webkit-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
@@ -1178,7 +1198,8 @@ body {
   background-clip: content-box, border-box;
   margin: 0 auto;
   outline: none;
-  font-weight: 500;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
   -webkit-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
   width: 200px;
@@ -1417,7 +1438,7 @@ body {
   left: 25px;
   width: 120px;
   position: absolute;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
 }
 
@@ -1520,7 +1541,7 @@ body {
   left: 25px;
   width: 120px;
   position: absolute;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
 }
 
@@ -1608,7 +1629,7 @@ body {
   left: 25px;
   width: 120px;
   position: absolute;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
 }
 
@@ -1794,7 +1815,7 @@ textarea {
 }
 
 .tooltip .tooltipText span {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
 }
 
@@ -1816,7 +1837,7 @@ textarea {
 }
 
 .warningText {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   color: #FF6D6D !important;
   margin: 20px 0 0 0;
@@ -1856,7 +1877,7 @@ input[type="text"] {
           box-sizing: border-box;
   border-radius: 3px;
   outline: none;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
 }
 
@@ -1988,7 +2009,7 @@ a {
 .tabButton {
   background-color: transparent;
   border: none;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-size: 14px;
   font-weight: 400;
@@ -2034,7 +2055,7 @@ a {
 }
 
 .collapsedPanelText {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   text-transform: uppercase;
   font-weight: 700;
@@ -2044,7 +2065,7 @@ a {
   -webkit-transform-origin: 0 0;
           transform-origin: 0 0;
   width: 180px;
-  top: 180px;
+  top: 200px;
   left: 20px;
 }
 
@@ -2061,7 +2082,7 @@ a {
 }
 
 .colorPicker.layoutPanel .a-color-picker {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   border-radius: 10px;
   -webkit-box-shadow: none;
@@ -2137,7 +2158,7 @@ a {
 }
 
 .colorPicker.layoutPanel .a-color-picker input {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   background: transparent;
   border-radius: 4px;
