@@ -280,6 +280,7 @@ window.addEventListener('resize', (e) => {
 });
 
 function setEditorScenario() {
+  // document.getElementById("logger").innerHTML = "Redrawing";
   var meshEditor = document.getElementById("meshEditor");
   var gradientMesh = document.getElementById("gradientMesh");
 
@@ -291,7 +292,7 @@ function setEditorScenario() {
   gradientMesh.style.left = (meshEditor.clientWidth - newSize) / 2 + 30 + "px";
 
   if (!editor || !editor.controlPointArray)
-    setTimeout(setEditorScenario, 100);
+    setTimeout(setEditorScenario, 50);
   else {
     editor.boundingRect = gradientMesh.getBoundingClientRect();
     editor.controlPointArray.forEach(cp => updateCPlines(cp));
@@ -621,4 +622,42 @@ function changeTab(index) {
       document.getElementById("createYourOwnContent").style.display = "initial";
       break;
   }
+}
+document.getElementById('collapseLeftPanel').addEventListener("click", toggleLeftPanel);
+
+let redrawInterval;
+
+function toggleLeftPanel(e) {
+  e.stopPropagation();
+
+  if (document.getElementById("leftPanel").classList.contains("collapsed")) {
+    document.getElementById("collapseLeftPanel").classList.remove("collapsed");
+    document.getElementById("collapsedPanelText").classList.remove("deferredFadeIn");
+    document.getElementById("collapsedPanelText").classList.add("quickFadeOut");
+    document.getElementById("leftPanel").classList.remove("collapsed");
+    document.getElementById("tabs").classList.remove("quickFadeOut");
+    document.getElementById("tabs").classList.add("deferredFadeIn");
+    document.getElementById("tabContent").classList.remove("quickFadeOut");
+    document.getElementById("tabContent").classList.add("deferredFadeIn");
+
+    document.getElementById('leftPanel').removeEventListener("click", toggleLeftPanel);
+  }
+  else {
+    document.getElementById("collapseLeftPanel").classList.add("collapsed");
+    document.getElementById("collapsedPanelText").classList.remove("quickFadeOut");
+    document.getElementById("collapsedPanelText").classList.add("deferredFadeIn");
+    document.getElementById("leftPanel").classList.add("collapsed");
+    document.getElementById("tabs").classList.remove("deferredFadeIn");
+    document.getElementById("tabs").classList.add("quickFadeOut");
+    document.getElementById("tabContent").classList.remove("deferredFadeIn");
+    document.getElementById("tabContent").classList.add("quickFadeOut");
+
+    document.getElementById('leftPanel').addEventListener("click", toggleLeftPanel);
+  }
+
+  redrawInterval = setInterval(setEditorScenario, 30);
+  setTimeout(function () {
+    clearInterval(redrawInterval);
+    // document.getElementById("logger").innerHTML = "Stopped";
+  }, 400);
 }

@@ -16,9 +16,9 @@
 				</div>
 				<div class="rowAvailable">
 					<div class="horizontalLayout">
-						<div class="colAuto leftPanel layoutPanel">
-							<div class="verticalLayout">
-								<div class="rowAuto separatorBelow">
+						<div id="leftPanel" class="colAuto leftPanel">
+							<div class="verticalLayout layoutPanel">
+								<div id="tabs" class="rowAuto separatorBelow">
 									<div class="horizontalLayout">
 										<div class="colAvailable">
 											<button id="leftTab" class="tabButton">Collection</button>
@@ -30,7 +30,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="rowAvailable tabContent">
+								<div id="tabContent" class="rowAvailable tabContent">
 									<div id="collectionContent">
 										This is collection.
 									</div>
@@ -38,6 +38,28 @@
 										This is Create your own.
 									</div>
 								</div>
+							</div>
+							<div id="collapseLeftPanel" class="collapseLeftPanel">
+								<div>
+								</div>
+								<?xml version="1.0" encoding="UTF-8"?>
+								<svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1"
+									xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+									<title>Path 2</title>
+									<g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+										<g id="LeftPanel/Collapse" transform="translate(-8.000000, -8.000000)">
+											<rect id="Rectangle" fill="#37373A"
+												transform="translate(13.000000, 13.000000) rotate(-45.000000) translate(-13.000000, -13.000000) "
+												x="4" y="4" width="18" height="18" rx="3"></rect>
+											<path
+												d="M13.2740742,8.29289322 C13.6645985,7.90236893 14.2977634,7.90236893 14.6882877,8.29289322 C15.0487717,8.65337718 15.0765012,9.22060824 14.7714763,9.61289944 L14.6882877,9.70710678 L11.414,12.981 L14.6882877,16.2552551 C15.0487717,16.6157391 15.0765012,17.1829701 14.7714763,17.5752613 L14.6882877,17.6694687 C14.3278038,18.0299526 13.7605727,18.0576822 13.3682815,17.7526573 L13.2740742,17.6694687 L8.58578644,12.9811809 L13.2740742,8.29289322 Z"
+												id="Path-2" fill="#979797" fill-rule="nonzero"></path>
+										</g>
+									</g>
+								</svg>
+							</div>
+							<div id="collapsedPanelText" class="collapsedPanelText quickFadeOut">
+								Pick your gradient
 							</div>
 						</div>
 						<div class="colAvailable">

@@ -96,6 +96,20 @@ body {
   }
 }
 
+@mixin collapsedPanelLabel {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+
+  @include for-theme(light) {
+    color: $light_secondaryColor;
+  }
+  @include for-theme(dark) {
+    color: $dark_secondaryColor;
+  }
+}
+
 .secondaryText {
   @include secondaryText;
 }
@@ -216,8 +230,20 @@ body {
   opacity: 1;
 }
 
+.deferredFadeIn {
+  transition: visibility 0s, opacity 0.2s 0.2s linear;
+  visibility: visible;
+  opacity: 1;
+}
+
 .fadeOut {
   transition: opacity 0.5s linear, visibility 0s 0.5s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.quickFadeOut {
+  transition: opacity 0.2s linear, visibility 0s 0.2s;
   opacity: 0;
   visibility: hidden;
 }
@@ -941,7 +967,7 @@ a {
   font-size: 14px;
   font-weight: 400;
   width: 100%;
-  height: 48px;
+  height: 52px;
   transition: background-color 0.1s ease-in-out;
 
   &:hover {
@@ -962,6 +988,16 @@ a {
   transition: left 0.1s ease-in-out;
 }
 
-.tabContent{
+.tabContent {
   padding: 24px;
+}
+
+.collapsedPanelText {
+  @include collapsedPanelLabel;
+  position: absolute;
+  transform: rotate(270deg);
+  transform-origin: 0 0;
+  width: 180px;
+  top: 180px;
+  left: 20px;
 }

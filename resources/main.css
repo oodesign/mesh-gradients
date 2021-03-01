@@ -180,6 +180,7 @@
 }
 
 .layoutPanel {
+  overflow: hidden;
   border-radius: 10px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
           box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
@@ -199,9 +200,64 @@
 
 .leftPanel {
   width: 320px;
-  height: 100%;
   margin: 50px 0 50px 20px;
-  overflow: hidden;
+  -webkit-transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out;
+}
+
+.leftPanel.collapsed {
+  width: 48px;
+}
+
+.leftPanel.collapsed:hover .collapseLeftPanel div {
+  background-color: #434346;
+}
+
+.collapseLeftPanel {
+  position: absolute;
+  right: -13px;
+  top: 15px;
+  width: 26px;
+  height: 26px;
+  z-index: 1;
+}
+
+.collapseLeftPanel div {
+  background-color: #37373A;
+  border-radius: 4px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  width: 100%;
+  height: 100%;
+}
+
+.collapseLeftPanel div:hover {
+  background-color: #434346;
+}
+
+.collapseLeftPanel div:active {
+  background-color: #303033;
+}
+
+.collapseLeftPanel svg {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  pointer-events: none;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+
+.collapseLeftPanel.collapsed {
+  right: 10px;
+}
+
+.collapseLeftPanel.collapsed svg {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  left: 11px;
 }
 
 body {
@@ -514,13 +570,13 @@ body {
 
 @media (prefers-color-scheme: light) {
   .secondaryText {
-    color: #9595A8;
+    color: #87898E;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .secondaryText {
-    color: #9595A8;
+    color: #87898E;
   }
 }
 
@@ -551,13 +607,13 @@ body {
 
 @media (prefers-color-scheme: light) {
   .descriptionTitle {
-    color: #9595A8;
+    color: #87898E;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .descriptionTitle {
-    color: #9595A8;
+    color: #87898E;
   }
 }
 
@@ -580,13 +636,13 @@ body {
 
 @media (prefers-color-scheme: light) {
   .draggableArea span {
-    color: #9595A8;
+    color: #87898E;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .draggableArea span {
-    color: #9595A8;
+    color: #87898E;
   }
 }
 
@@ -693,13 +749,13 @@ body {
 
 @media (prefers-color-scheme: light) {
   .registerText {
-    color: #9595A8;
+    color: #87898E;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .registerText {
-    color: #9595A8;
+    color: #87898E;
   }
 }
 
@@ -710,9 +766,23 @@ body {
   opacity: 1;
 }
 
+.deferredFadeIn {
+  -webkit-transition: visibility 0s, opacity 0.2s 0.2s linear;
+  transition: visibility 0s, opacity 0.2s 0.2s linear;
+  visibility: visible;
+  opacity: 1;
+}
+
 .fadeOut {
   -webkit-transition: opacity 0.5s linear, visibility 0s 0.5s;
   transition: opacity 0.5s linear, visibility 0s 0.5s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.quickFadeOut {
+  -webkit-transition: opacity 0.2s linear, visibility 0s 0.2s;
+  transition: opacity 0.2s linear, visibility 0s 0.2s;
   opacity: 0;
   visibility: hidden;
 }
@@ -942,13 +1012,13 @@ body {
 
 @media (prefers-color-scheme: light) {
   .btnTertiary {
-    color: #9595A8;
+    color: #87898E;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .btnTertiary {
-    color: #9595A8;
+    color: #87898E;
   }
 }
 
@@ -1117,13 +1187,13 @@ body {
 
 @media (prefers-color-scheme: light) {
   .btnAlreadyLicense {
-    color: #9595A8;
+    color: #87898E;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .btnAlreadyLicense {
-    color: #9595A8;
+    color: #87898E;
   }
 }
 
@@ -1923,7 +1993,7 @@ a {
   font-size: 14px;
   font-weight: 400;
   width: 100%;
-  height: 48px;
+  height: 52px;
   -webkit-transition: background-color 0.1s ease-in-out;
   transition: background-color 0.1s ease-in-out;
 }
@@ -1961,5 +2031,32 @@ a {
 
 .tabContent {
   padding: 24px;
+}
+
+.collapsedPanelText {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  position: absolute;
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  width: 180px;
+  top: 180px;
+  left: 20px;
+}
+
+@media (prefers-color-scheme: light) {
+  .collapsedPanelText {
+    color: #87898E;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .collapsedPanelText {
+    color: #87898E;
+  }
 }
 /*# sourceMappingURL=main.css.map */
