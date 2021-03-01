@@ -24,11 +24,9 @@
 .gradient-mesh {
   position: absolute;
   display: flex;
-  color: #fff;
-  font-size: 5vh;
   align-items: center;
   justify-content: center;
-  box-shadow: 2vh 2vh 6vh 0 rgba(0, 0, 0, 0.2);
+  box-shadow: none;
   cursor: pointer;
 }
 
@@ -48,30 +46,32 @@
 
 .gradient-mesh.editing .control-point {
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   top: 0;
   left: 0;
-  background-color: #00000055;
-  border: 1px solid white;
-  border-radius: 10px;
-  cursor: pointer;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 12px;
+  cursor: grab;
   transform: translate(-50%, -50%);
+  box-shadow: rgba(0,0,0,0.3) 0 2px 6px 0;
+
+  &.highlighted{
+    background-color: #ffffff;
+  }
 }
 
-.gradient-mesh .control-point.active {
-  background-color: #ffffff;
-  border-color: #000;
-}
 
 .gradient-mesh.editing .tangent-point {
   display: none;
   position: absolute;
   width: 5px;
   height: 5px;
-  background-color: #000;
-  border: 1px solid white;
+  border-radius: 5px;
+  background-color: white;
   cursor: pointer;
+  box-shadow: rgba(0,0,0,0.3) 0 2px 6px 0;
 }
 
 .gradient-mesh .control-point.active .tangent-point {

@@ -152,10 +152,10 @@ export default class ControlPoint {
   }
 
   highlight() {
-    this.cpElement.style.backgroundColor = "green";
+    this.cpElement.classList.add('highlighted');
   }
 
   unhighlight() {
-    this.cpElement.style.backgroundColor = "black";
+    this.cpElement.classList.remove('highlighted');
   }
 }
