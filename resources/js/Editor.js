@@ -21,8 +21,10 @@ function debounce(func, wait, immediate) {
 }
 
 export default class Editor {
-  constructor(initialDivisionCount, container, colorPickerContainer, meshGradientDefinition) {
+  constructor(initialDivisionCount, container, colorPickerContainer, meshGradientDefinition, btnSymmetric, btnAsymmetric) {
     this.container = container;
+    this.btnSymmetric = btnSymmetric;
+    this.btnAsymmetric = btnAsymmetric;
     this.colorPickerContainer = colorPickerContainer;
     this.editing = true;
     this.divisionCount = initialDivisionCount;
@@ -99,6 +101,8 @@ export default class Editor {
 
   loadControlPoints() {
     var parsed = JSON.parse(this.meshGradientDefinition);
+
+    window.postMessage("nativeLog", parsed);
     this.controlPointArray = [];
     this.controlPointMatrix = new Array(Math.sqrt(parsed.length));
 
@@ -116,12 +120,12 @@ export default class Editor {
           id: parsed[index].id,
           uPosTanX: parsed[index].uPosTanX,
           uPosTanY: parsed[index].uPosTanY,
-          uNegTanX: parsed[index].uNegTanX ? parsed[index].uNegTanX : parsed[index].uPosTanX,
-          uNegTanY: parsed[index].uNegTanY ? parsed[index].uNegTanY : parsed[index].uPosTanY,
+          uNegTanX: (parsed[index].uNegTanX != null) ? parsed[index].uNegTanX : parsed[index].uPosTanX,
+          uNegTanY: (parsed[index].uNegTanY != null) ? parsed[index].uNegTanY : parsed[index].uPosTanY,
           vPosTanX: parsed[index].vPosTanX,
           vPosTanY: parsed[index].vPosTanY,
-          vNegTanX: parsed[index].vNegTanX ? parsed[index].vNegTanX : parsed[index].vPosTanX,
-          vNegTanY: parsed[index].vNegTanY ? parsed[index].vNegTanY : parsed[index].vPosTanY,
+          vNegTanX: (parsed[index].vNegTanX != null) ? parsed[index].vNegTanX : parsed[index].vPosTanX,
+          vNegTanY: (parsed[index].vNegTanY != null) ? parsed[index].vNegTanY : parsed[index].vPosTanY,
         };
 
         const cpObject = new ControlPoint(cp, this, i, j);
@@ -226,7 +230,7 @@ export default class Editor {
 
   resetSelectedCpTangent() {
     if (this.editing && this.selectedCp) {
-      this.selectedCp.resetTangents();
+      this.selectedCp.resetTangents(this.divisionCount);
       return true;
     }
     return false;
@@ -287,9 +291,28 @@ export default class Editor {
     this.multipleSelectedCPs.push(cp);
     cp.highlight();
 
-    if (this.multipleSelectedCPs.length == 1)
-      this.colorEditor.color = cp.getColor();
+    this.updateTangentButtons()
 
+    if (this.multipleSelectedCPs.length == 1) {
+      this.colorEditor.color = cp.getColor();
+    }
+
+  }
+
+  updateTangentButtons(symmetric) {
+    if (symmetric == null) symmetric = this.selectedCp.getSymmetricTangents();
+    if (symmetric) {
+      this.btnSymmetric.classList.remove("btnTertiaryRegular");
+      this.btnSymmetric.classList.add("btnPrimaryRegular");
+      this.btnAsymmetric.classList.remove("btnPrimaryRegular");
+      this.btnAsymmetric.classList.add("btnTertiaryRegular");
+    }
+    else {
+      this.btnSymmetric.classList.remove("btnPrimaryRegular");
+      this.btnSymmetric.classList.add("btnTertiaryRegular");
+      this.btnAsymmetric.classList.remove("btnTertiaryRegular");
+      this.btnAsymmetric.classList.add("btnPrimaryRegular");
+    }
   }
 
   resetMultipleSelection() {

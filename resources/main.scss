@@ -16,7 +16,6 @@
   src: url(./fonts/AvenirNextLTPro-Demi.ttf);
 }
 
-
 html {
   box-sizing: border-box;
   background: transparent;
@@ -71,7 +70,7 @@ body {
   }
 }
 
-.heroHeaderText{
+.heroHeaderText {
   margin: 50px 0 0 24px;
   font-family: AvenirNextLTPro-Bold, -apple-system, BlinkMacSystemFont, sans-serif;
   letter-spacing: 0.3px;
@@ -285,7 +284,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   @include for-theme(light) {
-    background-image: url("images/LogoLight.png");
+    background-image: url("./images/LogoLight.png");
   }
   @include for-theme(dark) {
     background-image: url("./images/LogoDark.png");
@@ -478,6 +477,146 @@ body {
 
 .btnTertiary {
   @include btnTertiary;
+}
+
+@mixin btnPrimaryRegular {
+  border: none;
+  width: 100%;
+  height: 24px;
+  border-radius: 4px;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  outline: none;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  transition: all 0.1s ease-out;
+
+  background-color: $accentColor;
+  color: $light_inverseColor;
+
+  img {
+    margin-top: 2px;
+    height: 13px;
+  }
+
+  &:hover {
+    background-color: $accentColorHover;
+    outline: none;
+  }
+  &:active {
+    background-color: $accentColorActive;
+    outline: none;
+  }
+}
+
+@mixin btnSecondaryRegular {
+  border: none;
+  width: 100%;
+  height: 24px;
+  border-radius: 4px;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  outline: none;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  transition: all 0.1s ease-out;
+
+  img {
+    margin-top: 2px;
+    height: 13px;
+  }
+
+  @include for-theme(light) {
+    background-color: $light_gray_500;
+    color: $light_inverseColor;
+  }
+  @include for-theme(dark) {
+    background-color: $dark_gray_500;
+    color: $dark_inverseColor;
+  }
+
+  &:hover {
+    @include for-theme(light) {
+      background-color: $light_gray_500_hover;
+    }
+    @include for-theme(dark) {
+      background-color: $dark_gray_500_hover;
+    }
+    outline: none;
+  }
+  &:active {
+    @include for-theme(light) {
+      background-color: $light_gray_500_pressed;
+    }
+    @include for-theme(dark) {
+      background-color: $dark_gray_500_pressed;
+    }
+    outline: none;
+  }
+}
+
+@mixin btnTertiaryRegular {
+  border: none;
+  width: 100%;
+  height: 24px;
+  border-radius: 4px;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  outline: none;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  transition: all 0.1s ease-out;
+
+  img {
+    margin-top: 2px;
+    height: 13px;
+  }
+
+  @include for-theme(light) {
+    background-color: rgba($light_gray_500, 0);
+    border: 1px solid $light_gray_500;
+    color: $light_inverseColor;
+  }
+  @include for-theme(dark) {
+    background-color: rgba($dark_gray_500, 0);
+    border: 1px solid $dark_gray_500;
+    color: $dark_inverseColor;
+  }
+
+  &:hover {
+    @include for-theme(light) {
+      background-color: rgba($light_gray_500_hover, 0.2);
+      border: 1px solid $light_gray_500_hover;
+    }
+    @include for-theme(dark) {
+      background-color: rgba($dark_gray_500_hover, 0.2);
+      border: 1px solid $dark_gray_500_hover;
+    }
+    outline: none;
+  }
+  &:active {
+    @include for-theme(light) {
+      background-color: rgba($light_gray_500_pressed, 0.1);
+      border: 1px solid $light_gray_500_pressed;
+    }
+    @include for-theme(dark) {
+      background-color: rgba($dark_gray_500_pressed, 0.1);
+      border: 1px solid $dark_gray_500_pressed;
+    }
+    outline: none;
+  }
+}
+
+.btnPrimaryRegular {
+  @include btnPrimaryRegular;
+}
+
+.btnSecondaryRegular {
+  @include btnSecondaryRegular;
+}
+
+.btnTertiaryRegular {
+  @include btnTertiaryRegular;
 }
 
 .btnStartTrial {

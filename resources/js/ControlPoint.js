@@ -22,20 +22,19 @@ export default class ControlPoint {
       negDir: new SingleTangent({ x: uNegTanX, y: uNegTanY, direction: false }, this),
     };
 
-    if ((uPosTanX == uNegTanX) && (uPosTanY == uNegTanY))
-      this.uTangents.posDir.bindTangent(this.uTangents.negDir);
-    else
-      this.uTangents.posDir.initializeTangentPair(this.uTangents.negDir);
-
     this.vTangents = {
       posDir: new SingleTangent({ x: vPosTanX, y: vPosTanY, direction: true }, this),
       negDir: new SingleTangent({ x: vNegTanX, y: vNegTanY, direction: false }, this),
     };
 
-    if ((vPosTanX == vNegTanX) && (vPosTanY == vNegTanY))
+    if ((uPosTanX == uNegTanX) && (uPosTanY == uNegTanY) && (vPosTanX == vNegTanX) && (vPosTanY == vNegTanY)) {
+      this.uTangents.posDir.bindTangent(this.uTangents.negDir);
       this.vTangents.posDir.bindTangent(this.vTangents.negDir);
-    else
+    }
+    else {
+      this.uTangents.posDir.initializeTangentPair(this.uTangents.negDir);
       this.vTangents.posDir.initializeTangentPair(this.vTangents.negDir);
+    }
 
     this.uHandlesHidden = false;
     this.vHandlesHidden = false;
@@ -82,63 +81,40 @@ export default class ControlPoint {
     tangent.moveTangent(x, y);
   }
 
-  resetTangents() {
-    this.uTangents.posDir.setTangent(this.originalPosXTangentLength, 0);
-    this.uTangents.negDir.setTangent(this.originalNegXTangentLength, 0);
-    this.vTangents.posDir.setTangent(0, this.originalPosYTangentLength);
-    this.vTangents.negDir.setTangent(0, this.originalNegYTangentLength);
+  getSymmetricTangents() {
+    if ((this.uTangents.posDir.x == this.uTangents.negDir.x)
+      && (this.uTangents.posDir.y == this.uTangents.negDir.y)
+      && (this.vTangents.posDir.x == this.vTangents.negDir.x)
+      && (this.vTangents.posDir.y == this.vTangents.negDir.y)) {
+      return true;
+    }
+    else
+      return false;
+  }
+
+  resetTangents(divisionCount) {
+    this.uTangents.posDir.setTangent(1 / divisionCount, 0);
+    this.uTangents.negDir.setTangent(1 / divisionCount, 0);
+    this.vTangents.posDir.setTangent(0, 1 / divisionCount);
+    this.vTangents.negDir.setTangent(0, 1 / divisionCount);
     this.uTangents.posDir.setHidden(false);
     this.uTangents.negDir.setHidden(false);
     this.vTangents.posDir.setHidden(false);
     this.vTangents.negDir.setHidden(false);
   }
 
-  toggleUHandles() {
-    this.uHandlesHidden = !this.uHandlesHidden;
-    this.uTangents.posDir.setHidden(this.uHandlesHidden);
-    this.uTangents.negDir.setHidden(this.uHandlesHidden);
-    if (!this.uHandlesHidden) {
-      this.uTangents.posDir.setTangent(this.prevUHandlePosX, this.prevUHandlePosY);
-      this.uTangents.negDir.setTangent(this.prevUHandleNegX, this.prevUHandleNegY);
-    } else {
-      this.prevUHandlePosX = this.uTangents.posDir.x;
-      this.prevUHandleNegX = this.uTangents.negDir.x;
-      this.prevUHandlePosY = this.uTangents.posDir.y;
-      this.prevUHandleNegY = this.uTangents.negDir.y;
-      this.uTangents.posDir.setTangent(0, 0);
-      this.uTangents.negDir.setTangent(0, 0);
+  setSymmetricTangents() {
+    if (!this.getSymmetricTangents()) {
+      this.uTangents.posDir.toggleBindTangents();
+      this.vTangents.posDir.toggleBindTangents();
     }
   }
 
-  toggleVHandles() {
-    this.vHandlesHidden = !this.vHandlesHidden;
-    this.vTangents.posDir.setHidden(this.vHandlesHidden);
-    this.vTangents.negDir.setHidden(this.vHandlesHidden);
-    if (!this.vHandlesHidden) {
-      this.vTangents.posDir.setTangent(this.prevVHandlePosX, this.prevVHandlePosY);
-      this.vTangents.negDir.setTangent(this.prevVHandleNegX, this.prevVHandleNegY);
-    } else {
-      this.prevVHandlePosX = this.vTangents.posDir.x;
-      this.prevVHandleNegX = this.vTangents.negDir.x;
-      this.prevVHandlePosY = this.vTangents.posDir.y;
-      this.prevVHandleNegY = this.vTangents.negDir.y;
-      this.vTangents.posDir.setTangent(0, 0);
-      this.vTangents.negDir.setTangent(0, 0);
+  setAsymmetricTangents() {
+    if (this.getSymmetricTangents()) {
+      this.uTangents.posDir.toggleBindTangents();
+      this.vTangents.posDir.toggleBindTangents();
     }
-  }
-
-  resetUHandles() {
-    this.uTangents.posDir.setTangent(this.originalPosXTangentLength, 0);
-    this.uTangents.negDir.setTangent(this.originalNegXTangentLength, 0);
-    this.uTangents.posDir.setHidden(false);
-    this.uTangents.negDir.setHidden(false);
-  }
-
-  resetVHandles() {
-    this.vTangents.posDir.setTangent(0, this.originalPosYTangentLength);
-    this.vTangents.negDir.setTangent(0, this.originalNegYTangentLength);
-    this.vTangents.posDir.setHidden(false);
-    this.vTangents.negDir.setHidden(false);
   }
 
   onCpMouseDown(e) {

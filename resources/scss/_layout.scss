@@ -207,18 +207,11 @@ $headerSidesDistance: 18px;
     padding: 20px;
 }
 
-.aColorPicker {
-}
-
 .dotted {
     background: transparent;
     background-image: radial-gradient(#343434 1px, transparent 0);
     background-size: 20px 20px;
     background-position: -19px -19px;
-}
-
-.bounds {
-    border: 1px solid red;
 }
 
 .layoutPanel {
@@ -294,3 +287,14 @@ $headerSidesDistance: 18px;
         right: 10px;
     }
 }
+
+.cpActions{
+
+    margin:12px 0 16px 0;
+
+    .btnPrimaryRegular, .btnTertiaryRegular{
+        width:56px;
+        margin-right:8px;
+    }
+}
+

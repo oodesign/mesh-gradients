@@ -253,16 +253,6 @@ window.addEventListener('keydown', (e) => {
       calculateHermiteSurface();
       renderer.render(scene, sceneCamera);
       break;
-    case "ShiftLeft":
-      editor.toggleTangentBinding();
-      calculateHermiteSurface();
-      renderer.render(scene, sceneCamera);
-      break;
-    case "KeyR":
-      editor.resetSelectedCpTangent();
-      calculateHermiteSurface();
-      renderer.render(scene, sceneCamera);
-      break;
     case "KeyS":
       toggleLines();
       break;
@@ -369,6 +359,31 @@ document.addEventListener('contextmenu', (e) => {
   //e.preventDefault()
 });
 
+
+document.getElementById('btnResetCurves').addEventListener("click", () => {
+  editor.selectedCp.setSymmetricTangents();
+  editor.resetSelectedCpTangent();
+  editor.updateTangentButtons();
+  updateCPlines(editor.selectedCp);
+  calculateHermiteSurface();
+  renderer.render(scene, sceneCamera);
+});
+
+document.getElementById('btnSymmetric').addEventListener("click", () => {
+  editor.multipleSelectedCPs.forEach(cp => {
+    cp.setSymmetricTangents()
+  });
+  editor.updateTangentButtons(true);
+});
+
+document.getElementById('btnAsymmetric').addEventListener("click", () => {
+  editor.multipleSelectedCPs.forEach(cp => {
+    cp.setAsymmetricTangents()
+  });
+  editor.updateTangentButtons(false);
+});
+
+
 document.getElementById('btnAccept').addEventListener("click", () => {
   editor.toggleTangentBinding();
   gradientMesh.material = meshGradientMaterial;
@@ -397,7 +412,7 @@ window.LoadMesh = (meshGradientDefinition) => {
     var parsed = JSON.parse(meshGradientDefinition);
     initialDivisionCount = Math.sqrt(parsed.length) - 1
   }
-  editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition);
+  editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition, document.getElementById("btnSymmetric"), document.getElementById("btnAsymmetric"));
   allPatches = getPatches(editor.controlPointMatrix);
   vertexCount = allPatches.length * patchFaceCount * 3;
   vertexArray = new Array(vertexCount * 3);

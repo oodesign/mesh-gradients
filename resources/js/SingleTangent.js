@@ -18,10 +18,7 @@ export default class SingleTangent {
   initializeDom() {
     this.element = document.createElement('div');
     this.element.classList.add(tangentClass);
-    this.element.setAttribute(
-      'style',
-      `transform: translate(${this.toScreenSpace(this.x)}px, ${this.toScreenSpace(this.y)}px)`
-    );
+    this.element.style.transform = `translate(${this.toScreenSpace(this.x)}px, ${this.toScreenSpace(this.y)}px)`;
     this.element.addEventListener('mousedown', () => this.onTangentMouseDown(this));
     this.cp.cpElement.appendChild(this.element);
   }
@@ -29,11 +26,12 @@ export default class SingleTangent {
   setTangent(x, y) {
     this.x = x;
     this.y = y;
+    this.reallocate();
+  }
+
+  reallocate() {
     if (this.element) {
-      this.element.setAttribute(
-        'style',
-        `transform: translate(${this.toScreenSpace(this.x)}px, ${this.toScreenSpace(this.y)}px)`
-      );
+      this.element.style.transform = `translate(${this.toScreenSpace(this.x)}px, ${this.toScreenSpace(this.y)}px)`;
     }
   }
 
@@ -70,10 +68,12 @@ export default class SingleTangent {
       } else {
         this.boundTangent = this.tangentPair;
         this.tangentPair.boundTangent = this;
+        this.tangentPair.moveTangent(this.x * tangentDistance, this.y * tangentDistance);
       }
     } else {
       console.warn('no tangentPair set for tangent');
     }
+
   }
 
   setHidden(hidden) {
