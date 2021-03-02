@@ -2240,6 +2240,27 @@ a {
   padding: 24px;
 }
 
+.titleText {
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: light) {
+  .titleText {
+    color: #87898E;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .titleText {
+    color: #87898E;
+  }
+}
+
 .collapsedPanelText {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
