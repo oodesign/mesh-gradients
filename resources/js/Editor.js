@@ -1,6 +1,7 @@
 import ControlPoint from './ControlPoint';
 import StorePoint from './StorePoint';
 const AColorPicker = require('a-color-picker');
+const interpolate = require('color-interpolate');
 
 let cpIdCounter = 0;
 
@@ -33,7 +34,7 @@ export default class Editor {
     this.mouseX = 0;
     this.mouseY = 0;
     this.pointsMap = new Map();
-    if (meshGradientDefinition == null) this.initControlPoints();
+    if (meshGradientDefinition == null) this.initControlPoints("#FFffff", "#3a69fd", "#00ffa2", "#00FFFF");
     else this.loadControlPoints();
     this.initEventListeners();
     this.boundingRect = container.getBoundingClientRect();
@@ -44,21 +45,38 @@ export default class Editor {
     this.movingCpStartPos = { x: null, y: null };
   }
 
-  initControlPoints() {
+  initControlPoints(color1, color2, color3, color4) {
     this.controlPointArray = [];
     this.storePointArray = [];
     this.controlPointMatrix = new Array(this.divisionCount + 1);
     cpIdCounter = 0;
 
+
+
+    let colormap = interpolate([color1, color2]);
+    let colormap2 = interpolate([color3, color4]);
+    let firstRowColors = [];
+    let lastRowColors = [];
+    for (let i = 0; i <= this.divisionCount; i++) {
+      firstRowColors.push(colormap(i / this.divisionCount));
+      lastRowColors.push(colormap2(i / this.divisionCount));
+    }
+
     for (let i = 0; i <= this.divisionCount; i++) {
       this.controlPointMatrix[i] = [];
+
+      let colormap3 = interpolate([firstRowColors[i], lastRowColors[i]]);
+
       for (let j = 0; j <= this.divisionCount; j++) {
+
+        let rgb = AColorPicker.parseColor(colormap3(j / this.divisionCount), "rgb");
+
         const cp = {
           x: i / this.divisionCount,
           y: j / this.divisionCount,
-          r: i / this.divisionCount,
-          g: j / this.divisionCount,
-          b: j / this.divisionCount,
+          r: rgb[0] / 255,
+          g: rgb[1] / 255,
+          b: rgb[2] / 255,
           id: `control-point-${cpIdCounter++}`,
           uPosTanX: 1 / this.divisionCount,
           uPosTanY: 0,
@@ -150,8 +168,16 @@ export default class Editor {
   }
 
   onMouseUp(e) {
+    if (this.currentlyMovingCp)
+      this.currentlyMovingCp.cpElement.classList.remove("moving");
+
     this.currentlyMovingCp = null;
+
+
+    if (this.currentlyMovingTangent)
+      this.currentlyMovingTangent.element.classList.remove("moving");
     this.currentlyMovingTangent = null;
+
     this.movingCpStartPos = { x: null, y: null };
     this.shouldRefresh = false;
 
@@ -166,6 +192,8 @@ export default class Editor {
 
   onMouseMove(e) {
     if (this.currentlyMovingCp) {
+      if (!this.currentlyMovingCp.cpElement.classList.contains("moving"))
+        this.currentlyMovingCp.cpElement.classList.add("moving");
       let x = (e.clientX - this.boundingRect.x) / this.boundingRect.width;
       let y = (e.clientY - this.boundingRect.y) / this.boundingRect.height;
       const deltaX = Math.abs(this.movingCpStartPos.x - x);
@@ -180,11 +208,16 @@ export default class Editor {
         this.currentlyMovingCp.setPosition(this.movingCpStartPos.x, this.movingCpStartPos.y);
       }
     }
+
+
     if (this.currentlyMovingTangent) {
+      if (!this.currentlyMovingTangent.element.classList.contains("moving"))
+        this.currentlyMovingTangent.element.classList.add("moving");
       const x = (e.clientX - this.boundingRect.x) - this.selectedCp.x * this.boundingRect.width;
       const y = (e.clientY - this.boundingRect.y) - this.selectedCp.y * this.boundingRect.height;
       this.selectedCp.moveTangent(this.currentlyMovingTangent, x, y);
     }
+
 
     this.mouseX = e.clientX;
     this.mouseY = e.clientY;

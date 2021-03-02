@@ -335,6 +335,11 @@
   background-color: #ffffff;
 }
 
+.gradient-mesh.editing .control-point.moving {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
 .gradient-mesh.editing .tangent-point {
   display: none;
   position: absolute;
@@ -342,9 +347,15 @@
   height: 5px;
   border-radius: 5px;
   background-color: white;
-  cursor: pointer;
+  cursor: -webkit-grab;
+  cursor: grab;
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 2px 6px 0;
           box-shadow: rgba(0, 0, 0, 0.3) 0 2px 6px 0;
+}
+
+.gradient-mesh.editing .tangent-point.moving {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
 }
 
 .gradient-mesh .control-point.active .tangent-point {
@@ -390,8 +401,8 @@
   background: #ffffff88;
   outline: none;
   opacity: 0.7;
-  -webkit-transition: opacity .2s;
-  transition: opacity .2s;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
 }
 
 .color-editor input.slider:hover {
