@@ -412,7 +412,7 @@ window.LoadMesh = (meshGradientDefinition) => {
     var parsed = JSON.parse(meshGradientDefinition);
     initialDivisionCount = Math.sqrt(parsed.length) - 1
   }
-  editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition, document.getElementById("btnSymmetric"), document.getElementById("btnAsymmetric"));
+  editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition, document.getElementById("btnSymmetric"), document.getElementById("btnAsymmetric"), document.getElementById("controlPointEditor"));
   allPatches = getPatches(editor.controlPointMatrix);
   vertexCount = allPatches.length * patchFaceCount * 3;
   vertexArray = new Array(vertexCount * 3);
@@ -676,3 +676,4 @@ function toggleLeftPanel(e) {
     // document.getElementById("logger").innerHTML = "Stopped";
   }, 400);
 }
+

@@ -166,6 +166,8 @@
 .colorPicker {
   margin: 20px 20px 0 0;
   padding: 20px;
+  width: 272px;
+  height: 423px;
 }
 
 .dotted {
@@ -260,7 +262,8 @@
   margin: 12px 0 16px 0;
 }
 
-.cpActions .btnPrimaryRegular, .cpActions .btnTertiaryRegular {
+.cpActions .btnPrimaryRegular,
+.cpActions .btnTertiaryRegular {
   width: 56px;
   margin-right: 8px;
 }
@@ -2286,6 +2289,32 @@ a {
   .collapsedPanelText {
     color: #87898E;
   }
+}
+
+.controlPointEmptyState {
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  position: absolute;
+  left: 50%;
+  top: 150px;
+  width: 200px;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: light) {
+  .controlPointEmptyState {
+    color: #87898E;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .controlPointEmptyState {
+    color: #87898E;
+  }
+}
+
+.controlPointEmptyState span {
+  left: -50%;
 }
 
 .colorPicker.layoutPanel .a-color-picker {

@@ -205,6 +205,8 @@ $headerSidesDistance: 18px;
 .colorPicker {
     margin: 20px 20px 0 0;
     padding: 20px;
+    width: 272px;
+    height: 423px;
 }
 
 .dotted {
@@ -288,13 +290,12 @@ $headerSidesDistance: 18px;
     }
 }
 
-.cpActions{
+.cpActions {
+    margin: 12px 0 16px 0;
 
-    margin:12px 0 16px 0;
-
-    .btnPrimaryRegular, .btnTertiaryRegular{
-        width:56px;
-        margin-right:8px;
+    .btnPrimaryRegular,
+    .btnTertiaryRegular {
+        width: 56px;
+        margin-right: 8px;
     }
 }
-

@@ -1170,7 +1170,7 @@ a {
   font-weight: 600;
 }
 
-.collapsedPanelText{
+.collapsedPanelText {
   @include titleText;
   position: absolute;
   transform: rotate(270deg);
@@ -1178,14 +1178,23 @@ a {
   width: 180px;
   top: 200px;
   left: 20px;
-
 }
-
-
 
 // #endregion
 
 // #region COLOR PICKER
+
+.controlPointEmptyState {
+  @include secondaryText();
+  position: absolute;
+  left: 50%;
+  top: 150px;
+  width: 200px;
+  text-align: center;
+  span {
+    left: -50%;
+  }
+}
 
 .colorPicker.layoutPanel {
   .a-color-picker {

@@ -21,10 +21,11 @@ function debounce(func, wait, immediate) {
 }
 
 export default class Editor {
-  constructor(initialDivisionCount, container, colorPickerContainer, meshGradientDefinition, btnSymmetric, btnAsymmetric) {
+  constructor(initialDivisionCount, container, colorPickerContainer, meshGradientDefinition, btnSymmetric, btnAsymmetric, controlPointEditor) {
     this.container = container;
     this.btnSymmetric = btnSymmetric;
     this.btnAsymmetric = btnAsymmetric;
+    this.controlPointEditor = controlPointEditor;
     this.colorPickerContainer = colorPickerContainer;
     this.editing = true;
     this.divisionCount = initialDivisionCount;
@@ -192,6 +193,12 @@ export default class Editor {
         this.selectedCp = null;
       }
     }
+
+
+    if (this.multipleSelectedCPs.length >= 1)
+      this.showControlPointEditor();
+    else
+      this.hideControlPointEditor();
   }
 
   onMouseMove(e) {
@@ -297,6 +304,20 @@ export default class Editor {
       this.colorEditor.color = cp.getColor();
     }
 
+    if (this.multipleSelectedCPs.length >= 1)
+      this.showControlPointEditor();
+    else
+      this.hideControlPointEditor();
+  }
+
+  showControlPointEditor() {
+    this.controlPointEditor.classList.remove("notDisplayed");
+    document.getElementById("controlPointEmptyState").classList.add("notDisplayed");
+  }
+
+  hideControlPointEditor() {
+    this.controlPointEditor.classList.add("notDisplayed");
+    document.getElementById("controlPointEmptyState").classList.remove("notDisplayed");
   }
 
   updateTangentButtons(symmetric) {

@@ -69,28 +69,40 @@
 							</div>
 						</div>
 						<div class="colAuto">
-							<div class="colorPicker layoutPanel">
+							<div id="controlPointPanel" class="colorPicker layoutPanel">
 								<div class="verticalLayout">
 									<div class="rowAuto titleText">Control point</div>
-									<div class="rowAuto">
-										<div class="horizontalLayout cpActions">
-											<div class="colAuto">
-												<button class="btnPrimaryRegular" id="btnSymmetric">
-													<img src="../resources/images/Symmetric.png" />
-												</button>
+									<div class="rowAvailable">
+										<div id="controlPointEditor" class="verticalLayout notDisplayed">
+											<div class="rowAuto">
+												<div class="horizontalLayout cpActions">
+													<div class="colAuto">
+														<button class="btnPrimaryRegular" id="btnSymmetric">
+															<img src="../resources/images/Symmetric.png" />
+														</button>
+													</div>
+													<div class="colAuto">
+														<button class="btnTertiaryRegular" id="btnAsymmetric">
+															<img src="../resources/images/Asymmetric.png" />
+														</button>
+													</div>
+													<div class="colAvailable">
+														<button class="btnSecondaryRegular" id="btnResetCurves">Reset
+															curve</button>
+													</div>
+												</div>
 											</div>
-											<div class="colAuto">
-												<button class="btnTertiaryRegular" id="btnAsymmetric">
-													<img src="../resources/images/Asymmetric.png" />
-												</button>
-											</div>
-											<div class="colAvailable">
-												<button class="btnSecondaryRegular" id="btnResetCurves">Reset
-													curve</button>
+											<div id="colorPicker" class="aColorPicker rowAuto">
 											</div>
 										</div>
-									</div>
-									<div id="colorPicker" class="aColorPicker">
+										<div id="controlPointEmptyState" class="controlPointEmptyState">
+											<span>
+												Click on a point to edit its color and attributes.
+												<br />
+												<br />
+												Hold SHIFT while clicking to select multiple points.
+											</span>
+										</div>
 									</div>
 								</div>
 							</div>
