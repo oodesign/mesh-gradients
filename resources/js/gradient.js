@@ -20,9 +20,11 @@ let customColors = ["#FFffff", "#3a69fd", "#00ffa2", "#00FFFF"];
 const meshGradientMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, vertexColors: THREE.VertexColors, side: THREE.DoubleSide });
 const wireframeMeshMaterial = new THREE.MeshPhongMaterial({
   color: 0xffffff,
+  opacity: 0.5,
   polygonOffset: true,
   polygonOffsetFactor: 1, // positive value pushes polygon further away
-  polygonOffsetUnits: 1
+  polygonOffsetUnits: 1,
+  transparent: true,
 });
 
 let sceneCamera = camera;
@@ -42,7 +44,7 @@ scene.add(ambientLight);
 camera.position.z = 10;
 const patchDivCount = 20;
 
-let initialDivisionCount = 5;
+let initialDivisionCount = 4;
 var editor;
 //var editor = new Edddditor(initialDivisionCount, parentElement);
 
@@ -250,12 +252,12 @@ function calculateHermiteSurface(t) {
 
 window.addEventListener('keydown', (e) => {
   switch (e.code) {
-    case "Space":
+    case "KeyM":
       gradientMesh.material = (gradientMesh.material == meshGradientMaterial) ? wireframeMeshMaterial : meshGradientMaterial;
       calculateHermiteSurface();
       renderer.render(scene, sceneCamera);
       break;
-    case "KeyS":
+    case "Space":
       toggleLines();
       break;
   }
@@ -387,6 +389,7 @@ document.getElementById('btnAsymmetric').addEventListener("click", () => {
 
 document.getElementById('btnAccept').addEventListener("click", () => {
   editor.toggleTangentBinding();
+  if (linesVisible) toggleLines();
   gradientMesh.material = meshGradientMaterial;
   calculateHermiteSurface();
   renderer.render(scene, sceneCamera);
