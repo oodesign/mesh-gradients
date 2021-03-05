@@ -163,7 +163,7 @@
   padding: 5px 10px 0 10px;
 }
 
-.colorPicker {
+.rightColorPicker {
   margin: 20px 20px 0 0;
   padding: 20px;
   width: 272px;
@@ -530,7 +530,7 @@ body {
 
 .primaryText {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -547,7 +547,7 @@ body {
 
 .primaryBoldText {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -565,7 +565,7 @@ body {
 
 .primaryMediumText {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-size: 15px;
 }
 
@@ -583,7 +583,7 @@ body {
 
 .primaryBigText {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-size: 25px;
   margin-bottom: 10px;
 }
@@ -620,7 +620,7 @@ body {
 .mainTitle {
   padding: 46px 20px 0 20px;
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-size: 30px;
 }
 
@@ -758,7 +758,7 @@ body {
 
 .registerHeader {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-size: 15px;
   font-size: 32px;
   text-align: center;
@@ -1628,7 +1628,7 @@ body {
   width: 120px;
   position: absolute;
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -1731,7 +1731,7 @@ body {
   width: 120px;
   position: absolute;
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -1819,7 +1819,7 @@ body {
   width: 120px;
   position: absolute;
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -2005,7 +2005,7 @@ textarea {
 
 .tooltip .tooltipText span {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -2027,7 +2027,7 @@ textarea {
 
 .warningText {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   color: #FF6D6D !important;
   margin: 20px 0 0 0;
   height: 0;
@@ -2067,7 +2067,7 @@ input[type="text"] {
   border-radius: 3px;
   outline: none;
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -2199,7 +2199,7 @@ a {
   background-color: transparent;
   border: none;
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-size: 14px;
   font-weight: 400;
   width: 100%;
@@ -2291,6 +2291,118 @@ a {
   }
 }
 
+.formColor {
+  margin-bottom: 8px;
+}
+
+.customColors .label {
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-family: AvenirNextLTPro-Demi, -apple-system, BlinkMacSystemFont, sans-serif;
+  width: 100px;
+}
+
+@media (prefers-color-scheme: light) {
+  .customColors .label {
+    color: #87898E;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .customColors .label {
+    color: #87898E;
+  }
+}
+
+.customColors .titleSpacing {
+  margin-bottom: 16px;
+}
+
+.customColors .colorField {
+  border: none;
+  width: 100%;
+  height: 24px;
+  border-radius: 4px;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  outline: none;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+  height: 32px;
+  padding: 2px;
+}
+
+.customColors .colorField img {
+  margin-top: 2px;
+  height: 13px;
+}
+
+@media (prefers-color-scheme: light) {
+  .customColors .colorField {
+    background-color: rgba(69, 70, 73, 0);
+    border: 1px solid #454649;
+    color: #ffffff;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .customColors .colorField {
+    background-color: rgba(69, 70, 73, 0);
+    border: 1px solid #454649;
+    color: #ffffff;
+  }
+}
+
+.customColors .colorField:hover {
+  outline: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .customColors .colorField:hover {
+    background-color: rgba(84, 85, 88, 0.2);
+    border: 1px solid #545558;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .customColors .colorField:hover {
+    background-color: rgba(84, 85, 88, 0.2);
+    border: 1px solid #545558;
+  }
+}
+
+.customColors .colorField:active {
+  outline: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .customColors .colorField:active {
+    background-color: rgba(53, 54, 58, 0.1);
+    border: 1px solid #35363a;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .customColors .colorField:active {
+    background-color: rgba(53, 54, 58, 0.1);
+    border: 1px solid #35363a;
+  }
+}
+
+.customColors .colorField .colorThumbnail {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background-color: red;
+  margin: 0 8px 0 4px;
+}
+
+.customColorPicker {
+  position: absolute;
+}
+
 .controlPointEmptyState {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
@@ -2317,7 +2429,7 @@ a {
   left: -50%;
 }
 
-.colorPicker.layoutPanel .a-color-picker {
+.colorPicker .a-color-picker {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   border-radius: 10px;
@@ -2326,44 +2438,44 @@ a {
 }
 
 @media (prefers-color-scheme: light) {
-  .colorPicker.layoutPanel .a-color-picker {
+  .colorPicker .a-color-picker {
     color: #87898E;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  .colorPicker.layoutPanel .a-color-picker {
+  .colorPicker .a-color-picker {
     color: #87898E;
   }
 }
 
 @media (prefers-color-scheme: light) {
-  .colorPicker.layoutPanel .a-color-picker {
+  .colorPicker .a-color-picker {
     background-color: #F9F9F9;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  .colorPicker.layoutPanel .a-color-picker {
+  .colorPicker .a-color-picker {
     background-color: #2F2F32;
   }
 }
 
-.colorPicker.layoutPanel .a-color-picker .a-color-picker-row,
-.colorPicker.layoutPanel .a-color-picker .a-color-picker-clipbaord,
-.colorPicker.layoutPanel .a-color-picker .a-color-picker-circle {
+.colorPicker .a-color-picker .a-color-picker-row,
+.colorPicker .a-color-picker .a-color-picker-clipbaord,
+.colorPicker .a-color-picker .a-color-picker-circle {
   border: none;
 }
 
-.colorPicker.layoutPanel .a-color-picker .a-color-picker-sl {
+.colorPicker .a-color-picker .a-color-picker-sl {
   border-radius: 10px 10px 0 0;
 }
 
-.colorPicker.layoutPanel .a-color-picker .a-color-picker-row:not(:first-child) {
+.colorPicker .a-color-picker .a-color-picker-row:not(:first-child) {
   padding: 10px 16px;
 }
 
-.colorPicker.layoutPanel .a-color-picker .a-color-picker-dot {
+.colorPicker .a-color-picker .a-color-picker-dot {
   width: 15px;
   height: 15px;
   background-color: transparent;
@@ -2373,53 +2485,53 @@ a {
 }
 
 @media (prefers-color-scheme: light) {
-  .colorPicker.layoutPanel .a-color-picker .a-color-picker-dot {
+  .colorPicker .a-color-picker .a-color-picker-dot {
     border: 2px solid #ffffff;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  .colorPicker.layoutPanel .a-color-picker .a-color-picker-dot {
+  .colorPicker .a-color-picker .a-color-picker-dot {
     border: 2px solid #ffffff;
   }
 }
 
-.colorPicker.layoutPanel .a-color-picker .a-color-picker-h {
+.colorPicker .a-color-picker .a-color-picker-h {
   border-radius: 4px;
 }
 
-.colorPicker.layoutPanel .a-color-picker .a-color-picker-preview {
+.colorPicker .a-color-picker .a-color-picker-preview {
   border: none;
   border-radius: 4px;
 }
 
-.colorPicker.layoutPanel .a-color-picker input {
+.colorPicker .a-color-picker input {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   background: transparent;
   border-radius: 4px;
 }
 
 @media (prefers-color-scheme: light) {
-  .colorPicker.layoutPanel .a-color-picker input {
+  .colorPicker .a-color-picker input {
     color: #212123;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  .colorPicker.layoutPanel .a-color-picker input {
+  .colorPicker .a-color-picker input {
     color: #ffffff;
   }
 }
 
 @media (prefers-color-scheme: light) {
-  .colorPicker.layoutPanel .a-color-picker input {
+  .colorPicker .a-color-picker input {
     border: 1px solid #454649;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  .colorPicker.layoutPanel .a-color-picker input {
+  .colorPicker .a-color-picker input {
     border: 1px solid #454649;
   }
 }

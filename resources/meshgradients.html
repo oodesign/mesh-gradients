@@ -34,8 +34,71 @@
 									<div id="collectionContent">
 										This is collection.
 									</div>
-									<div id="createYourOwnContent" style="display: none;">
-										This is Create your own.
+									<div id="createYourOwnContent" class="verticalLayout customColors"
+										style="display: none;">
+										<div class="rowAuto primaryText titleSpacing">
+											Custom colors
+										</div>
+										<div class="rowAuto formColor">
+											<div class="horizontalLayout alignVerticalCenter">
+												<div class="colAuto label">
+													Top left
+												</div>
+												<div id="color1" class="colAvailable colorField">
+													<div class="horizontalLayout alignVerticalCenter">
+														<div id="color1thumbnail" class="colorThumbnail colAuto"></div>
+														<div class="colAvailable">
+															<span id="color1text" class="primaryText">#FF0000</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="rowAuto formColor">
+											<div class="horizontalLayout alignVerticalCenter">
+												<div class="colAuto label">
+													Top right
+												</div>
+												<div id="color2" class="colAvailable colorField">
+													<div class="horizontalLayout alignVerticalCenter">
+														<div id="color2thumbnail" class="colorThumbnail colAuto"></div>
+														<div class="colAvailable">
+															<span id="color2text" class="primaryText">#FF0000</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="rowAuto formColor">
+											<div class="horizontalLayout alignVerticalCenter">
+												<div class="colAuto label">
+													Bottom left
+												</div>
+												<div id="color3" class="colAvailable colorField">
+													<div class="horizontalLayout alignVerticalCenter">
+														<div id="color3thumbnail" class="colorThumbnail colAuto"></div>
+														<div class="colAvailable">
+															<span id="color3text" class="primaryText">#FF0000</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="rowAuto formColor">
+											<div class="horizontalLayout alignVerticalCenter">
+												<div class="colAuto label">
+													Bottom right
+												</div>
+												<div id="color4" class="colAvailable colorField">
+													<div class="horizontalLayout alignVerticalCenter">
+														<div id="color4thumbnail" class="colorThumbnail colAuto"></div>
+														<div class="colAvailable">
+															<span id="color4text" class="primaryText">#FF0000</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -65,11 +128,10 @@
 						<div class="colAvailable">
 							<div id="meshEditor" class="meshEditor layoutPanel">
 								<div id="gradientMesh" class="gradient-mesh editing"></div>
-								<span id="logger"></span>
 							</div>
 						</div>
 						<div class="colAuto">
-							<div id="controlPointPanel" class="colorPicker layoutPanel">
+							<div id="controlPointPanel" class="colorPicker layoutPanel rightColorPicker">
 								<div class="verticalLayout">
 									<div class="rowAuto titleText">Control point</div>
 									<div class="rowAvailable">
@@ -125,6 +187,7 @@
 		</div>
 		<div class="draggableArea alignFullCenter" data-app-region="drag"><span id="windowTitle">Mesh gradients</span>
 		</div>
+		<div id="customColorPicker" class="customColorPicker colorPicker"></div>
 	</div>
 
 	<script src="../resources_js_gradient.js"></script>

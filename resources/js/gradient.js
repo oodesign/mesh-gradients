@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import Editor from './Editor';
 var MeshLine = require('three.meshline');
+const AColorPicker = require('a-color-picker');
 
 
 const scene = new THREE.Scene();
@@ -13,6 +14,7 @@ camera2.lookAt(0.5, 0.5, 0);
 scene.add(camera2);
 
 var accentColor = 0x235FFF;
+let customColors = ["#FFffff", "#3a69fd", "#00ffa2", "#00FFFF"];
 
 
 const meshGradientMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, vertexColors: THREE.VertexColors, side: THREE.DoubleSide });
@@ -40,9 +42,9 @@ scene.add(ambientLight);
 camera.position.z = 10;
 const patchDivCount = 20;
 
-let initialDivisionCount = 3;
+let initialDivisionCount = 5;
 var editor;
-//var editor = new Editor(initialDivisionCount, parentElement);
+//var editor = new Edddditor(initialDivisionCount, parentElement);
 
 function transpose(matrix) {
   const w = matrix.length || 0;
@@ -270,7 +272,6 @@ window.addEventListener('resize', (e) => {
 });
 
 function setEditorScenario() {
-  // document.getElementById("logger").innerHTML = "Redrawing";
   var meshEditor = document.getElementById("meshEditor");
   var gradientMesh = document.getElementById("gradientMesh");
 
@@ -412,7 +413,7 @@ window.LoadMesh = (meshGradientDefinition) => {
     var parsed = JSON.parse(meshGradientDefinition);
     initialDivisionCount = Math.sqrt(parsed.length) - 1
   }
-  editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition, document.getElementById("btnSymmetric"), document.getElementById("btnAsymmetric"), document.getElementById("controlPointEditor"));
+  editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition, document.getElementById("btnSymmetric"), document.getElementById("btnAsymmetric"), document.getElementById("controlPointEditor"), customColors);
   allPatches = getPatches(editor.controlPointMatrix);
   vertexCount = allPatches.length * patchFaceCount * 3;
   vertexArray = new Array(vertexCount * 3);
@@ -629,7 +630,6 @@ function changeTab(index) {
       document.getElementById("tabIndicator").style.left = "0";
       document.getElementById("collectionContent").style.display = "initial";
       document.getElementById("createYourOwnContent").style.display = "none";
-
       break;
     case 1:
       document.getElementById("tabIndicator").style.left = "50%";
@@ -638,7 +638,60 @@ function changeTab(index) {
       break;
   }
 }
+
+let customColorPicker = AColorPicker.createPicker(document.getElementById('customColorPicker'), { showHSL: false, showAlpha: false });
+document.getElementById('customColorPicker').style.display = "none";
+let editingCustomColor = 0;
+let updateCustomPicker = true;
+customColorPicker.on('change', (picker, color) => {
+  if (updateCustomPicker) updateCustomPickerColor(picker);
+});
+
+function updateCustomPickerColor(picker) {
+  customColors[editingCustomColor] = (AColorPicker.parseColor(picker.color, "hex"));
+  document.getElementById("color" + (editingCustomColor + 1) + "text").innerHTML = customColors[editingCustomColor];
+  document.getElementById("color" + (editingCustomColor + 1) + "thumbnail").style.backgroundColor = customColors[editingCustomColor];
+  editor.updateColors(customColors);
+}
+
+window.addEventListener("click", hidePicker);
 document.getElementById('collapseLeftPanel').addEventListener("click", toggleLeftPanel);
+document.getElementById('color1').addEventListener("click", function (e) { showPicker(e, 0); });
+document.getElementById('color2').addEventListener("click", function (e) { showPicker(e, 1); });
+document.getElementById('color3').addEventListener("click", function (e) { showPicker(e, 2); });
+document.getElementById('color4').addEventListener("click", function (e) { showPicker(e, 3); });
+document.getElementById('customColorPicker').addEventListener("click", stopPropagation);
+
+initializeCustomColors();
+function initializeCustomColors() {
+  for (var i = 0; i < customColors.length; i++) {
+    document.getElementById("color" + (i + 1) + "text").innerHTML = customColors[i];
+    document.getElementById("color" + (i + 1) + "thumbnail").style.backgroundColor = customColors[i];
+  }
+}
+
+
+function stopPropagation(e) {
+  e.stopPropagation();
+}
+
+function hidePicker() {
+  document.getElementById('customColorPicker').style.display = "none";
+}
+
+function showPicker(e, colorIndex) {
+  stopPropagation(e);
+  updateCustomPicker = false;
+  customColorPicker.color = customColors[colorIndex];
+  updateCustomPicker = true;
+  editingCustomColor = colorIndex;
+
+  let fieldID = "color" + (colorIndex + 1);
+  let bRect = document.getElementById(fieldID).getBoundingClientRect();
+  document.getElementById('customColorPicker').style.left = bRect.x + "px";
+  document.getElementById('customColorPicker').style.top = (bRect.y + bRect.height) + "px";
+  document.getElementById('customColorPicker').style.display = "block";
+}
 
 let redrawInterval;
 
@@ -673,7 +726,6 @@ function toggleLeftPanel(e) {
   redrawInterval = setInterval(setEditorScenario, 30);
   setTimeout(function () {
     clearInterval(redrawInterval);
-    // document.getElementById("logger").innerHTML = "Stopped";
   }, 400);
 }
 

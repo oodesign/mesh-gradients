@@ -61,7 +61,7 @@ body {
 
 @mixin primaryText {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   @include for-theme(light) {
     color: $light_primaryColor;
   }
@@ -1180,6 +1180,45 @@ a {
   left: 20px;
 }
 
+.formColor{
+  margin-bottom: 8px;
+}
+
+// #endregion
+
+// #region Custom colors picker
+
+.customColors {
+  .label {
+    @include secondaryText;
+    font-family: AvenirNextLTPro-Demi, -apple-system, BlinkMacSystemFont, sans-serif;
+    width: 100px;
+  }
+
+  .titleSpacing {
+    margin-bottom: 16px;
+  }
+
+  .colorField {
+    @include btnTertiaryRegular;
+
+    height: 32px;
+    padding: 2px;
+
+    .colorThumbnail {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background-color: red;
+      margin: 0 8px 0 4px;
+    }
+  }
+}
+
+.customColorPicker {
+  position: absolute;
+}
+
 // #endregion
 
 // #region COLOR PICKER
@@ -1196,7 +1235,7 @@ a {
   }
 }
 
-.colorPicker.layoutPanel {
+.colorPicker {
   .a-color-picker {
     @include secondaryText;
     border-radius: 10px;

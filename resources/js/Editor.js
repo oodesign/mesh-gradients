@@ -21,7 +21,7 @@ function debounce(func, wait, immediate) {
 }
 
 export default class Editor {
-  constructor(initialDivisionCount, container, colorPickerContainer, meshGradientDefinition, btnSymmetric, btnAsymmetric, controlPointEditor) {
+  constructor(initialDivisionCount, container, colorPickerContainer, meshGradientDefinition, btnSymmetric, btnAsymmetric, controlPointEditor, customColors) {
     this.container = container;
     this.btnSymmetric = btnSymmetric;
     this.btnAsymmetric = btnAsymmetric;
@@ -37,7 +37,7 @@ export default class Editor {
     this.mouseX = 0;
     this.mouseY = 0;
     this.pointsMap = new Map();
-    if (meshGradientDefinition == null) this.initControlPoints("#FFffff", "#3a69fd", "#00ffa2", "#00FFFF");
+    if (meshGradientDefinition == null) this.initControlPoints(customColors);
     else this.loadControlPoints();
     this.initEventListeners();
     this.boundingRect = container.getBoundingClientRect();
@@ -48,16 +48,14 @@ export default class Editor {
     this.movingCpStartPos = { x: null, y: null };
   }
 
-  initControlPoints(color1, color2, color3, color4) {
+  initControlPoints(customColors) {
     this.controlPointArray = [];
     this.storePointArray = [];
     this.controlPointMatrix = new Array(this.divisionCount + 1);
     cpIdCounter = 0;
 
-
-
-    let colormap = interpolate([color1, color2]);
-    let colormap2 = interpolate([color3, color4]);
+    let colormap = interpolate([customColors[0], customColors[1]]);
+    let colormap2 = interpolate([customColors[2], customColors[3]]);
     let firstRowColors = [];
     let lastRowColors = [];
     for (let i = 0; i <= this.divisionCount; i++) {
@@ -100,10 +98,33 @@ export default class Editor {
     }
   }
 
+  updateColors(customColors) {
+    let colormap = interpolate([customColors[0], customColors[1]]);
+    let colormap2 = interpolate([customColors[2], customColors[3]]);
+    let firstRowColors = [];
+    let lastRowColors = [];
+    for (let i = 0; i <= this.divisionCount; i++) {
+      firstRowColors.push(colormap(i / this.divisionCount));
+      lastRowColors.push(colormap2(i / this.divisionCount));
+    }
+
+    for (let i = 0; i <= this.divisionCount; i++) {
+      let colormap3 = interpolate([firstRowColors[i], lastRowColors[i]]);
+      for (let j = 0; j <= this.divisionCount; j++) {
+        let rgb = AColorPicker.parseColor(colormap3(j / this.divisionCount), "rgb");
+        this.controlPointMatrix[i][j].r = rgb[0] / 255;
+        this.controlPointMatrix[i][j].g = rgb[1] / 255;
+        this.controlPointMatrix[i][j].b = rgb[2] / 255;
+      }
+    }
+
+    this.shouldRefresh = true;
+  }
+
   loadControlPoints() {
     var parsed = JSON.parse(this.meshGradientDefinition);
 
-    window.postMessage("nativeLog", parsed);
+    //window.postMessage("nativeLog", parsed);
     this.controlPointArray = [];
     this.controlPointMatrix = new Array(Math.sqrt(parsed.length));
 
