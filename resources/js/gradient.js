@@ -223,6 +223,9 @@ function initializeHermiteSurface() {
 
   gradientMesh.geometry.attributes.position.needsUpdate = true;
   gradientMesh.geometry.attributes.color.needsUpdate = true;
+
+
+  drawLines();
 }
 
 function setBufferAttributeFromArray(attr, attrIndex, array, vertexIndex) {
@@ -231,7 +234,6 @@ function setBufferAttributeFromArray(attr, attrIndex, array, vertexIndex) {
 
 function calculateHermiteSurface(t) {
   allPatches = getPatches(editor.controlPointMatrix);
-  log2(allPatches.length + " // " + vertexCount)
   fillBufferAttributeByPatches(allPatches, gradientMesh.geometry.attributes.position, gradientMesh.geometry.attributes.color);
   gradientMesh.geometry.attributes.position.needsUpdate = true;
   gradientMesh.geometry.attributes.color.needsUpdate = true;
@@ -370,7 +372,6 @@ window.LoadMesh = (meshGradientDefinition) => {
 
   initializeHermiteSurface();
   animate(0);
-  drawLines();
 }
 
 let horizontalLines = new Map();
@@ -399,6 +400,9 @@ const toggleLines = () => {
 let lines = [];
 
 const drawLines = () => {
+
+  lines.forEach(line => { scene.remove(line); });
+  lines = [];
 
   // window.postMessage("nativeLog", "creating lines")
   for (let i = 0; i < editor.controlPointMatrix.length; i++) {
