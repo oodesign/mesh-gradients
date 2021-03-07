@@ -29,6 +29,7 @@
     "resources/**/*.js"
   ],
   "dependencies": {
+    "@skpm/fs": "^0.2.6",
     "a-color-picker": "^1.2.1",
     "color-interpolate": "^1.0.5",
     "sketch-module-web-view": "^3.1.4",

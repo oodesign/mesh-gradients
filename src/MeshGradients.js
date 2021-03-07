@@ -5,6 +5,7 @@ var Settings = require('sketch/settings')
 var ShapePath = require('sketch/dom').ShapePath;
 var Rectangle = require('sketch/dom').Rectangle;
 var Style = require('sketch/dom').Style;
+var Helpers = require("./Helpers");
 
 var document = sketch.getSelectedDocument();
 
@@ -22,6 +23,7 @@ export function EditGradient(context) {
   const browserWindow = new BrowserWindow(options);
   const webContents = browserWindow.webContents;
   var layerMeshGradientDefinition = null;
+
   var selectedLayer = null;
   if (document.selectedLayers.length > 0) {
     selectedLayer = document.selectedLayers.layers[0];
@@ -29,6 +31,15 @@ export function EditGradient(context) {
       layerMeshGradientDefinition = Settings.layerSettingForKey(selectedLayer, 'MeshGradientDefinition');
     }
   }
+
+  var gradientCollection = Helpers.getGradientCollection();
+  var reducedGradientCollection = Helpers.getReducedGradientCollection(gradientCollection);
+  var customGradientCollection = Helpers.getCustomGradientCollection();
+  var reducedCustomGradientCollection = Helpers.getReducedGradientCollection(customGradientCollection);
+
+
+  console.log(reducedGradientCollection);
+
   browserWindow.loadURL(require('../resources/meshgradients.html'));
 
   browserWindow.once('ready-to-show', () => {
@@ -76,6 +87,7 @@ export function EditGradient(context) {
       });
     }
 
+    console.log(patchPoints);
     Settings.setLayerSettingForKey(layer, 'MeshGradientDefinition', patchPoints);
     onShutdown(webviewIdentifier);
   });
