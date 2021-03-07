@@ -41,8 +41,8 @@ var vertexCount;
 
 let allPatches = null;
 let hermitePatches = new THREE.Group();
-let positionBufferAttribute = new THREE.BufferAttribute(new Float32Array([]), 3);
-let colorBufferAttribute = new THREE.BufferAttribute(new Float32Array([]), 3);
+let positionBufferAttribute;
+let colorBufferAttribute;
 let gradientMeshGeometry = new THREE.BufferGeometry();
 
 let gradientMesh;
@@ -199,15 +199,17 @@ function fillBufferAttributeByPatches(patches, positionAttr, colorAttr) {
 
 function initializeHermiteSurface(recalc) {
   allPatches = getPatches(editor.controlPointMatrix);
-  if (recalc) {
-    vertexCount = allPatches.length * patchFaceCount * 3;
-    vertexArray = new Array(vertexCount * 3);
-    colorArray = new Array(vertexCount * 3);
-  }
+  vertexCount = allPatches.length * patchFaceCount * 3;
+  vertexArray = new Array(vertexCount * 3);
+  colorArray = new Array(vertexCount * 3);
   vertices = new Float32Array(vertexArray);
   colors = new Float32Array(colorArray);
 
+  positionBufferAttribute = new THREE.BufferAttribute(new Float32Array([]), 3);
+  colorBufferAttribute = new THREE.BufferAttribute(new Float32Array([]), 3);
+
   fillBufferAttributeByPatches(allPatches, positionBufferAttribute, colorBufferAttribute);
+
   positionBufferAttribute.setArray(vertices);
   positionBufferAttribute.setDynamic(true);
   gradientMeshGeometry.addAttribute('position', positionBufferAttribute);
@@ -215,6 +217,7 @@ function initializeHermiteSurface(recalc) {
   colorBufferAttribute.setArray(colors);
   colorBufferAttribute.setDynamic(true);
   gradientMeshGeometry.addAttribute('color', colorBufferAttribute);
+  scene.remove(gradientMesh);
   gradientMesh = new THREE.Mesh(gradientMeshGeometry, meshGradientMaterial);
   scene.add(gradientMesh);
 
@@ -367,7 +370,7 @@ window.LoadMesh = (meshGradientDefinition) => {
 
   initializeHermiteSurface(true);
   animate(0);
-  //drawLines();
+  drawLines();
 }
 
 let horizontalLines = new Map();
@@ -392,6 +395,8 @@ const toggleLines = () => {
 
   renderer.render(scene, camera);
 }
+
+let lines = [];
 
 const drawLines = () => {
 
@@ -420,6 +425,7 @@ const drawLines = () => {
       curveObject.visible = linesVisible;
       scene.add(curveObject);
       verticalLines.set(i + "," + j, curveObject);
+      lines.push(curveObject);
     }
   }
 
@@ -448,6 +454,7 @@ const drawLines = () => {
       curveObject.curve = curve;
       scene.add(curveObject);
       horizontalLines.set(i + "," + j, curveObject);
+      lines.push(curveObject);
     }
   }
 
