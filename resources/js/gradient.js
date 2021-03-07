@@ -197,7 +197,7 @@ function fillBufferAttributeByPatches(patches, positionAttr, colorAttr) {
   });
 }
 
-function initializeHermiteSurface(recalc) {
+function initializeHermiteSurface() {
   allPatches = getPatches(editor.controlPointMatrix);
   vertexCount = allPatches.length * patchFaceCount * 3;
   vertexArray = new Array(vertexCount * 3);
@@ -256,8 +256,8 @@ window.addEventListener('keydown', (e) => {
       toggleLines();
       break;
     case "KeyU":
-      editor.changeDivisionCount(3);
-      initializeHermiteSurface(false);
+      editor.changeDivisionCount(editor.divisionCount + 1);
+      initializeHermiteSurface();
       editor.shouldRefresh = true;
       break;
   }
@@ -368,7 +368,7 @@ window.LoadMesh = (meshGradientDefinition) => {
   }
   editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition, document.getElementById("btnSymmetric"), document.getElementById("btnAsymmetric"), document.getElementById("controlPointEditor"), customColors);
 
-  initializeHermiteSurface(true);
+  initializeHermiteSurface();
   animate(0);
   drawLines();
 }
