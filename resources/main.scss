@@ -619,6 +619,19 @@ body {
   @include btnTertiaryRegular;
 }
 
+.btnMesh {
+  @include btnTertiaryRegular;
+  border-radius: 13px;
+  height: 26px;
+  width: 42px;
+  margin: 0 8px 8px 0;
+
+  &.selected {
+    border: 1px solid $accentColor;
+    background: rgba($accentColor, 0.2);
+  }
+}
+
 .btnStartTrial {
   @include btnSecondary;
   width: 200px;
@@ -1180,8 +1193,12 @@ a {
   left: 20px;
 }
 
-.formColor{
+.formColor {
   margin-bottom: 8px;
+}
+
+.contentSection {
+  margin-bottom: 32px;
 }
 
 // #endregion
@@ -1209,7 +1226,7 @@ a {
       width: 20px;
       height: 20px;
       border-radius: 4px;
-      background-color: red;
+      background-color: transparent;
       margin: 0 8px 0 4px;
     }
   }

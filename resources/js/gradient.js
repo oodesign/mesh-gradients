@@ -53,6 +53,8 @@ let vertexColors = new Array(patchVertexCount * 3);
 let vertices;
 let colors;
 
+initializeCustomColors();
+addMeshSizeListeners();
 
 function transpose(matrix) {
   const w = matrix.length || 0;
@@ -256,11 +258,6 @@ window.addEventListener('keydown', (e) => {
       break;
     case "Space":
       toggleLines();
-      break;
-    case "KeyU":
-      editor.changeDivisionCount(editor.divisionCount + 1);
-      initializeHermiteSurface();
-      editor.shouldRefresh = true;
       break;
   }
 });
@@ -519,28 +516,6 @@ const updateCPlines = (cp) => {
       curveObject.geometry.setFromPoints(curveObject.curve.getPoints(50));
       curveObject.geometry.attributes.position.needsUpdate = true;
     }
-
-    //TODO
-
-    // var p1VTanPosDirX = (p1.vTangents.posDir.x * 100 + p1.x * editor.boundingRect.width) / editor.boundingRect.width;
-    // var p1VTanPosDirY = (p1.vTangents.posDir.y * 100 + p1.y * editor.boundingRect.height) / editor.boundingRect.height;
-    // var p2VTanNegDirX = (p2.vTangents.negDir.x * -100 + p2.x * editor.boundingRect.width) / editor.boundingRect.width;
-    // var p2VTanNegDirY = (p2.vTangents.negDir.y * -100 + p2.y * editor.boundingRect.height) / editor.boundingRect.height;
-
-    // let curve = new THREE.CubicBezierCurve3(
-    //   new THREE.Vector3(p1.x, p1.y, 0),
-    //   new THREE.Vector3(p1VTanPosDirX, p1VTanPosDirY, 0),
-    //   new THREE.Vector3(p2VTanNegDirX, p2VTanNegDirY, 0),
-    //   new THREE.Vector3(p2.x, p2.y, 0)
-    // );
-
-    // window.postMessage("nativeLog", "creating line")
-    // let geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(50));
-    // let curveObject = new THREE.Line(geometry, coolmaterial);
-    // curveObject.curve = curve;
-    // scene.add(curveObject);
-    // verticalLines.set(i + "," + j, curveObject);
-
   }
 
 
@@ -587,14 +562,34 @@ document.getElementById('color3').addEventListener("click", function (e) { showP
 document.getElementById('color4').addEventListener("click", function (e) { showPicker(e, 3); });
 document.getElementById('customColorPicker').addEventListener("click", stopPropagation);
 
-initializeCustomColors();
+
+function addMeshSizeListeners() {
+  for (var i = 2; i < 10; i++) {
+    document.getElementById('meshSize' + i).addEventListener("click", function (e) { changeMeshDivisions(e); });
+  }
+}
+
+function activateSizeElement(index){
+  for (var i = 2; i < 10; i++) {
+    document.getElementById('meshSize' + i).classList.remove("selected");
+  }
+  document.getElementById('meshSize' + index).classList.add("selected");
+}
+
+function changeMeshDivisions(e) {
+  activateSizeElement(e.target.value)
+  let newDivisionCount = e.target.value;
+  editor.changeDivisionCount(newDivisionCount);
+  initializeHermiteSurface();
+  editor.shouldRefresh = true;
+}
+
 function initializeCustomColors() {
   for (var i = 0; i < customColors.length; i++) {
     document.getElementById("color" + (i + 1) + "text").innerHTML = customColors[i];
     document.getElementById("color" + (i + 1) + "thumbnail").style.backgroundColor = customColors[i];
   }
 }
-
 
 function stopPropagation(e) {
   e.stopPropagation();

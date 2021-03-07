@@ -1263,6 +1263,86 @@ body {
   }
 }
 
+.btnMesh {
+  border: none;
+  width: 100%;
+  height: 24px;
+  border-radius: 4px;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  outline: none;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+  border-radius: 13px;
+  height: 26px;
+  width: 42px;
+  margin: 0 8px 8px 0;
+}
+
+.btnMesh img {
+  margin-top: 2px;
+  height: 13px;
+}
+
+@media (prefers-color-scheme: light) {
+  .btnMesh {
+    background-color: rgba(69, 70, 73, 0);
+    border: 1px solid #454649;
+    color: #ffffff;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .btnMesh {
+    background-color: rgba(69, 70, 73, 0);
+    border: 1px solid #454649;
+    color: #ffffff;
+  }
+}
+
+.btnMesh:hover {
+  outline: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .btnMesh:hover {
+    background-color: rgba(84, 85, 88, 0.2);
+    border: 1px solid #545558;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .btnMesh:hover {
+    background-color: rgba(84, 85, 88, 0.2);
+    border: 1px solid #545558;
+  }
+}
+
+.btnMesh:active {
+  outline: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .btnMesh:active {
+    background-color: rgba(53, 54, 58, 0.1);
+    border: 1px solid #35363a;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .btnMesh:active {
+    background-color: rgba(53, 54, 58, 0.1);
+    border: 1px solid #35363a;
+  }
+}
+
+.btnMesh.selected {
+  border: 1px solid #235FFF;
+  background: rgba(35, 95, 255, 0.2);
+}
+
 .btnStartTrial {
   background-color: transparent;
   width: 100px;
@@ -2295,6 +2375,10 @@ a {
   margin-bottom: 8px;
 }
 
+.contentSection {
+  margin-bottom: 32px;
+}
+
 .customColors .label {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
@@ -2395,7 +2479,7 @@ a {
   width: 20px;
   height: 20px;
   border-radius: 4px;
-  background-color: red;
+  background-color: transparent;
   margin: 0 8px 0 4px;
 }
 
