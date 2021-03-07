@@ -4,18 +4,16 @@ var MeshLine = require('three.meshline');
 const AColorPicker = require('a-color-picker');
 
 
-const scene = new THREE.Scene();
-const camera = new THREE.OrthographicCamera(0, 1, 0, 1, 1, 1000);
-const camera2 = new THREE.PerspectiveCamera(50, 1, 1, 1000);
-camera2.position.z = 3;
-camera2.position.x = 0.5;
-camera2.position.y = 0.5;
-camera2.lookAt(0.5, 0.5, 0);
-scene.add(camera2);
-
+let initialDivisionCount = 2;
 var accentColor = 0x235FFF;
 let customColors = ["#FFffff", "#3a69fd", "#00ffa2", "#00FFFF"];
+var editor;
 
+const scene = new THREE.Scene();
+const camera = new THREE.OrthographicCamera(0, 1, 0, 1, 1, 1000);
+camera.position.z = 10;
+const ambientLight = new THREE.AmbientLight(0xffffff);
+scene.add(ambientLight);
 
 const meshGradientMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, vertexColors: THREE.VertexColors, side: THREE.DoubleSide });
 const wireframeMeshMaterial = new THREE.MeshPhongMaterial({
@@ -27,26 +25,34 @@ const wireframeMeshMaterial = new THREE.MeshPhongMaterial({
   transparent: true,
 });
 
-let sceneCamera = camera;
-const imageQuality = 5000;
-
 const renderer = new THREE.WebGLRenderer({ alpha: true });
 const parentElement = document.querySelector('.gradient-mesh');
 const colorPickerContainer = document.querySelector('.aColorPicker');
 // renderer.setSize(parentElement.clientWidth, parentElement.clientHeight);
+const imageQuality = 5000;
 renderer.setSize(imageQuality, imageQuality);
 renderer.domElement.style = '';
 parentElement.insertBefore(renderer.domElement, parentElement.firstChild);
 
-const ambientLight = new THREE.AmbientLight(0xffffff);
-scene.add(ambientLight);
-
-camera.position.z = 10;
 const patchDivCount = 20;
+const patchVertexCount = (patchDivCount + 1) * (patchDivCount + 1);
+const patchFaceCount = patchDivCount * patchDivCount * 2;
+var vertexCount = initialDivisionCount * initialDivisionCount * patchFaceCount * 3;//allPatches.length * patchFaceCount * 3;
 
-let initialDivisionCount = 4;
-var editor;
-//var editor = new Edddditor(initialDivisionCount, parentElement);
+let allPatches = null;
+let hermitePatches = new THREE.Group();
+let positionBufferAttribute = new THREE.BufferAttribute(new Float32Array([]), 3);
+let colorBufferAttribute = new THREE.BufferAttribute(new Float32Array([]), 3);
+let gradientMeshGeometry = new THREE.BufferGeometry();
+
+let gradientMesh;
+var vertexArray = new Array(vertexCount * 3);
+var colorArray = new Array(vertexCount * 3);
+let surfaceElements = new Array(patchVertexCount * 3);
+let vertexColors = new Array(patchVertexCount * 3);
+let vertices;
+let colors;
+
 
 function transpose(matrix) {
   const w = matrix.length || 0;
@@ -130,41 +136,12 @@ function getPatches(controlPoints) {
   return patches;
 }
 
-// function getMatrix(refMatrix) {
-//   const matrix = [];
-//   for (let i = 0; i < refMatrix.length; i++) {
-//     matrix[i] = [];
-//     for (let j = 0; j < refMatrix[i].length; j++) {
-//       matrix[i].push(refMatrix[i][j]);
-//     }
-//   }
-//   return matrix;
-// }
-
 function getPatchPoint(hermitePatch, u, v) {
   const Uvec = [[u ** 3], [u ** 2], [u], [1]];
   const Vvec = [[v ** 3], [v ** 2], [v], [1]];
   const vec = multiply(multiply(multiply(multiply(transpose(Uvec), HM), hermitePatch), HM_T), Vvec);
   return vec[0][0];
 }
-
-let allPatches = null;//getPatches(editor.controlPointMatrix);
-let hermitePatches = new THREE.Group();
-let positionBufferAttribute = new THREE.BufferAttribute(new Float32Array([]), 3);
-let colorBufferAttribute = new THREE.BufferAttribute(new Float32Array([]), 3);
-const gradientMeshGeometry = new THREE.BufferGeometry();
-
-const patchVertexCount = (patchDivCount + 1) * (patchDivCount + 1);
-const patchFaceCount = patchDivCount * patchDivCount * 2;
-var vertexCount = 4 * patchFaceCount * 3;//allPatches.length * patchFaceCount * 3;
-
-let gradientMesh;
-var vertexArray = new Array(vertexCount * 3);
-var colorArray = new Array(vertexCount * 3);
-const surfaceElements = new Array(patchVertexCount * 3);
-const vertexColors = new Array(patchVertexCount * 3);
-let vertices;
-let colors;
 
 function fillBufferAttributeByPatches(patches, positionAttr, colorAttr) {
   patches.forEach((patch, patchIndex) => {
@@ -255,10 +232,13 @@ window.addEventListener('keydown', (e) => {
     case "KeyM":
       gradientMesh.material = (gradientMesh.material == meshGradientMaterial) ? wireframeMeshMaterial : meshGradientMaterial;
       calculateHermiteSurface();
-      renderer.render(scene, sceneCamera);
+      renderer.render(scene, camera);
       break;
     case "Space":
       toggleLines();
+      break;
+    case "KeyU":
+      editor.changeDivisionCount(3);
       break;
   }
 });
@@ -292,55 +272,6 @@ function setEditorScenario() {
   }
 }
 
-
-// window.addEventListener('keydown', (e) => {
-//   if (e.code === 'Space') {
-//     calculateHermiteSurface();
-//     renderer.render(scene, sceneCamera);
-//   }
-//   if (e.code === 'Digit1') {
-//     calculateHermiteSurface();
-//     sceneCamera = camera;
-//     renderer.render(scene, sceneCamera);
-//   }
-//   if (e.code === 'Digit2') {
-//     calculateHermiteSurface();
-//     sceneCamera = camera2;
-//     renderer.render(scene, sceneCamera);
-//   }
-//   if (e.code === 'KeyR') {
-//     editor.resetSelectedCpTangent();
-//     calculateHermiteSurface();
-//     renderer.render(scene, sceneCamera);
-//   }
-//   if (e.code === 'KeyX') {
-//     editor.toggleCpXHandles();
-//     calculateHermiteSurface();
-//     renderer.render(scene, sceneCamera);
-//   }
-//   if (e.code === 'KeyY') {
-//     editor.toggleCpYHandles();
-//     calculateHermiteSurface();
-//     renderer.render(scene, sceneCamera);
-//   }
-//   if (e.code === 'KeyX' && e.altKey) {
-//     editor.resetCpXHandles();
-//     calculateHermiteSurface();
-//     renderer.render(scene, sceneCamera);
-//   }
-//   if (e.code === 'KeyY' && e.altKey) {
-//     editor.resetCpYHandles();
-//     calculateHermiteSurface();
-//     renderer.render(scene, sceneCamera);
-//   }
-//   if (e.code === 'ShiftLeft') {
-//     editor.toggleTangentBinding();
-//     calculateHermiteSurface();
-//     renderer.render(scene, sceneCamera);
-//   }
-// });
-
-
 const animate = (t) => {
 
   if (editor.currentlyMovingCp || editor.currentlyMovingTangent) {
@@ -349,12 +280,11 @@ const animate = (t) => {
 
   if (editor.shouldRefresh) {
     calculateHermiteSurface(t);
-    renderer.render(scene, sceneCamera);
+    renderer.render(scene, camera);
   }
   requestAnimationFrame(() => animate(t + 0.05));
 };
 
-//animate(0);
 
 // UI Interaction
 
@@ -369,7 +299,7 @@ document.getElementById('btnResetCurves').addEventListener("click", () => {
   editor.updateTangentButtons();
   updateCPlines(editor.selectedCp);
   calculateHermiteSurface();
-  renderer.render(scene, sceneCamera);
+  renderer.render(scene, camera);
 });
 
 document.getElementById('btnSymmetric').addEventListener("click", () => {
@@ -392,7 +322,7 @@ document.getElementById('btnAccept').addEventListener("click", () => {
   if (linesVisible) toggleLines();
   gradientMesh.material = meshGradientMaterial;
   calculateHermiteSurface();
-  renderer.render(scene, sceneCamera);
+  renderer.render(scene, camera);
 
   var meshGradientBase64 = document.querySelector('canvas').toDataURL('image/png', 1.0).replace("data:image/png;base64,", "");
 
@@ -463,7 +393,7 @@ let linesVisible = false;
 
 //   }
 //   //calculateHermiteSurface(t);
-//   renderer.render(scene, sceneCamera);
+//   renderer.render(scene, camera);
 // }
 
 const toggleLines = () => {
@@ -479,7 +409,7 @@ const toggleLines = () => {
   });
 
 
-  renderer.render(scene, sceneCamera);
+  renderer.render(scene, camera);
 }
 
 const drawLines = () => {
@@ -541,7 +471,7 @@ const drawLines = () => {
   }
 
   calculateHermiteSurface();
-  renderer.render(scene, sceneCamera);
+  renderer.render(scene, camera);
 }
 
 const updateCPlines = (cp) => {
