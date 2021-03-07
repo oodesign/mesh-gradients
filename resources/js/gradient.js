@@ -37,7 +37,7 @@ parentElement.insertBefore(renderer.domElement, parentElement.firstChild);
 const patchDivCount = 20;
 const patchVertexCount = (patchDivCount + 1) * (patchDivCount + 1);
 const patchFaceCount = patchDivCount * patchDivCount * 2;
-var vertexCount = initialDivisionCount * initialDivisionCount * patchFaceCount * 3;//allPatches.length * patchFaceCount * 3;
+var vertexCount;
 
 let allPatches = null;
 let hermitePatches = new THREE.Group();
@@ -46,8 +46,8 @@ let colorBufferAttribute = new THREE.BufferAttribute(new Float32Array([]), 3);
 let gradientMeshGeometry = new THREE.BufferGeometry();
 
 let gradientMesh;
-var vertexArray = new Array(vertexCount * 3);
-var colorArray = new Array(vertexCount * 3);
+var vertexArray
+var colorArray;
 let surfaceElements = new Array(patchVertexCount * 3);
 let vertexColors = new Array(patchVertexCount * 3);
 let vertices;
@@ -197,11 +197,17 @@ function fillBufferAttributeByPatches(patches, positionAttr, colorAttr) {
   });
 }
 
-function initializeHermiteSurface() {
-
-  fillBufferAttributeByPatches(allPatches, positionBufferAttribute, colorBufferAttribute);
+function initializeHermiteSurface(recalc) {
+  allPatches = getPatches(editor.controlPointMatrix);
+  if (recalc) {
+    vertexCount = allPatches.length * patchFaceCount * 3;
+    vertexArray = new Array(vertexCount * 3);
+    colorArray = new Array(vertexCount * 3);
+  }
   vertices = new Float32Array(vertexArray);
   colors = new Float32Array(colorArray);
+
+  fillBufferAttributeByPatches(allPatches, positionBufferAttribute, colorBufferAttribute);
   positionBufferAttribute.setArray(vertices);
   positionBufferAttribute.setDynamic(true);
   gradientMeshGeometry.addAttribute('position', positionBufferAttribute);
@@ -222,9 +228,18 @@ function setBufferAttributeFromArray(attr, attrIndex, array, vertexIndex) {
 
 function calculateHermiteSurface(t) {
   allPatches = getPatches(editor.controlPointMatrix);
+  log2(allPatches.length + " // " + vertexCount)
   fillBufferAttributeByPatches(allPatches, gradientMesh.geometry.attributes.position, gradientMesh.geometry.attributes.color);
   gradientMesh.geometry.attributes.position.needsUpdate = true;
   gradientMesh.geometry.attributes.color.needsUpdate = true;
+}
+
+function log(message) {
+  window.postMessage("nativeLog", message);
+}
+
+function log2(message) {
+  document.getElementById("logger").innerHTML = " - " + message;
 }
 
 window.addEventListener('keydown', (e) => {
@@ -239,6 +254,8 @@ window.addEventListener('keydown', (e) => {
       break;
     case "KeyU":
       editor.changeDivisionCount(3);
+      initializeHermiteSurface(false);
+      editor.shouldRefresh = true;
       break;
   }
 });
@@ -347,13 +364,10 @@ window.LoadMesh = (meshGradientDefinition) => {
     initialDivisionCount = Math.sqrt(parsed.length) - 1
   }
   editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition, document.getElementById("btnSymmetric"), document.getElementById("btnAsymmetric"), document.getElementById("controlPointEditor"), customColors);
-  allPatches = getPatches(editor.controlPointMatrix);
-  vertexCount = allPatches.length * patchFaceCount * 3;
-  vertexArray = new Array(vertexCount * 3);
-  colorArray = new Array(vertexCount * 3);
-  initializeHermiteSurface();
+
+  initializeHermiteSurface(true);
   animate(0);
-  drawLines();
+  //drawLines();
 }
 
 let horizontalLines = new Map();
@@ -362,39 +376,6 @@ const coolmaterial = new THREE.LineBasicMaterial({ color: accentColor, linewidth
 let line;
 let linesVisible = false;
 
-
-// const drawTestLine = (log) => {
-//   if (!line) {
-//     let curve = new THREE.CubicBezierCurve3(
-//       new THREE.Vector3(0, 0, 0),
-//       new THREE.Vector3(0, 0.2, 0),
-//       new THREE.Vector3(1, 0.8, 0),
-//       new THREE.Vector3(1, 1, 0)
-//     );
-
-//     window.postMessage("nativeLog", "creating line")
-//     let geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(50));
-//     line = new THREE.Line(geometry, coolmaterial);
-//     line.curve = curve;
-//     scene.add(line);
-
-
-//   }
-//   {
-//     if (log) {
-//       window.postMessage("nativeLog", line.curve.v3)
-//       window.postMessage("nativeLog", "updating line to " + (editor.mouseX / editor.boundingRect.width) + "," + (editor.mouseY / editor.boundingRect.height))
-//     }
-
-//     line.curve.v3.x = (editor.mouseX - editor.boundingRect.x) / editor.boundingRect.width;
-//     line.curve.v3.y = (editor.mouseY - editor.boundingRect.y) / editor.boundingRect.height;
-//     line.geometry.setFromPoints(line.curve.getPoints(50));
-//     line.geometry.attributes.position.needsUpdate = true;
-
-//   }
-//   //calculateHermiteSurface(t);
-//   renderer.render(scene, camera);
-// }
 
 const toggleLines = () => {
   // window.postMessage("nativeLog", "toggle lines")
