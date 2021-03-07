@@ -36,8 +36,9 @@ export default class Editor {
     this.multipleSelectedCPs = [];
     this.mouseX = 0;
     this.mouseY = 0;
+    this.customColors = customColors;
     this.pointsMap = new Map();
-    if (meshGradientDefinition == null) this.initControlPoints(customColors);
+    if (meshGradientDefinition == null) this.initControlPoints();
     else this.loadControlPoints();
     this.initEventListeners();
     this.boundingRect = container.getBoundingClientRect();
@@ -48,14 +49,14 @@ export default class Editor {
     this.movingCpStartPos = { x: null, y: null };
   }
 
-  initControlPoints(customColors) {
+  initControlPoints() {
     this.controlPointArray = [];
     this.storePointArray = [];
     this.controlPointMatrix = new Array(this.divisionCount + 1);
     cpIdCounter = 0;
 
-    let colormap = interpolate([customColors[0], customColors[1]]);
-    let colormap2 = interpolate([customColors[2], customColors[3]]);
+    let colormap = interpolate([this.customColors[0], this.customColors[1]]);
+    let colormap2 = interpolate([this.customColors[2], this.customColors[3]]);
     let firstRowColors = [];
     let lastRowColors = [];
     for (let i = 0; i <= this.divisionCount; i++) {
@@ -71,7 +72,7 @@ export default class Editor {
       for (let j = 0; j <= this.divisionCount; j++) {
 
         let rgb = AColorPicker.parseColor(colormap3(j / this.divisionCount), "rgb");
-
+        let factor = 2;
         const cp = {
           x: i / this.divisionCount,
           y: j / this.divisionCount,
@@ -79,14 +80,14 @@ export default class Editor {
           g: rgb[1] / 255,
           b: rgb[2] / 255,
           id: `control-point-${cpIdCounter++}`,
-          uPosTanX: 1 / this.divisionCount,
+          uPosTanX: 1 / (this.divisionCount * factor),
           uPosTanY: 0,
-          uNegTanX: 1 / this.divisionCount,
+          uNegTanX: 1 / (this.divisionCount * factor),
           uNegTanY: 0,
           vPosTanX: 0,
-          vPosTanY: 1 / this.divisionCount,
+          vPosTanY: 1 / (this.divisionCount * factor),
           vNegTanX: 0,
-          vNegTanY: 1 / this.divisionCount,
+          vNegTanY: 1 / (this.divisionCount * factor),
         };
         const cpObject = new ControlPoint(cp, this, i, j);
         this.pointsMap.set(cpObject, { "i": i, "j": j });
@@ -96,6 +97,22 @@ export default class Editor {
 
       }
     }
+  }
+
+  changeDivisionCount(newDivisionCount) {
+
+    this.divisionCount = newDivisionCount;
+    window.postMessage("nativeLog", "-- Removing children");
+    this.controlPointArray.forEach(cp => {
+      this.container.removeChild(cp.cpElement);
+    });
+    window.postMessage("nativeLog", "-- Clear map");
+
+    this.pointsMap.clear();
+
+    window.postMessage("nativeLog", "-- Set divisionCount");
+    window.postMessage("nativeLog", "-- Init CPs");
+    this.initControlPoints();
   }
 
   updateColors(customColors) {
