@@ -47,7 +47,7 @@ export function EditGradient(context) {
   })
 
   webContents.on('did-finish-load', () => {
-    webContents.executeJavaScript(`LoadMesh(${JSON.stringify(layerMeshGradientDefinition)})`).catch(console.error);
+    webContents.executeJavaScript(`LoadMesh(${JSON.stringify(layerMeshGradientDefinition)}, ${JSON.stringify(reducedGradientCollection)})`).catch(console.error);
   })
 
   webContents.on('Cancel', () => {

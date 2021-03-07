@@ -23,6 +23,7 @@
     "@skpm/builder": "^0.7.4",
     "@skpm/extract-loader": "^2.0.2",
     "css-loader": "^3.2.0",
+    "file-loader": "^6.2.0",
     "html-loader": "^0.5.5"
   },
   "resources": [

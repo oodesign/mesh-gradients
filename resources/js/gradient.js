@@ -359,16 +359,31 @@ document.getElementById('btnCancel').addEventListener("click", () => {
 });
 
 
-window.LoadMesh = (meshGradientDefinition) => {
+window.LoadMesh = (meshGradientDefinition, gradientCollection, customGradientCollection) => {
 
   if (meshGradientDefinition != null) {
     var parsed = JSON.parse(meshGradientDefinition);
     initialDivisionCount = Math.sqrt(parsed.length) - 1
   }
   editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition, document.getElementById("btnSymmetric"), document.getElementById("btnAsymmetric"), document.getElementById("controlPointEditor"), customColors);
-
+  document.getElementById("collectionContent").innerHTML = "";
+  drawGradientCollection("Library", gradientCollection);
   initializeHermiteSurface();
   animate(0);
+}
+
+function drawGradientCollection(title, collection) {
+
+  var items = "";
+
+  collection.forEach(g => {
+    // items += `<div class="gradientThumbnail"><img class="imgThumbnail" src="../resources/images/thumbnails/${g.thumbnail}"/></div>`;
+    let img = document.createElement("img");
+    img.src = `../thumbnails/${g.thumbnail}`;
+    document.getElementById("collectionContent").appendChild(img);
+  });
+
+
 }
 
 let horizontalLines = new Map();
@@ -569,7 +584,7 @@ function addMeshSizeListeners() {
   }
 }
 
-function activateSizeElement(index){
+function activateSizeElement(index) {
   for (var i = 2; i < 10; i++) {
     document.getElementById('meshSize' + i).classList.remove("selected");
   }
