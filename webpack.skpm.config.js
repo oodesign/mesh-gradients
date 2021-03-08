@@ -29,12 +29,4 @@ module.exports = function (config, entry) {
     },
     ]
   })
-  config.module.rules.push({
-    test: /\.(jpeg|png)$/,
-    use: [
-      {
-        loader: 'file-loader',
-      },
-    ],
-  });
 }
