@@ -15,6 +15,11 @@ const gradientCollection = [
     "order": 3,
     "thumbnail": "thumbnail003.png",
     "meshGradientDefinition": `[{"x":0,"y":0,"r":1,"g":1,"b":1,"a":1,"id":"control-point-0","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0,"y":0.3333333333333333,"r":1,"g":1,"b":1,"a":1,"id":"control-point-1","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0,"y":0.6666666666666666,"r":0,"g":0.6666666666666666,"b":0.6666666666666666,"a":1,"id":"control-point-2","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0,"y":1,"r":0,"g":1,"b":1,"a":1,"id":"control-point-3","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.3333333333333333,"y":0,"r":1,"g":1,"b":1,"a":1,"id":"control-point-4","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.27647058823529413,"y":0.2485294117647059,"r":1,"g":1,"b":1,"a":1,"id":"control-point-5","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.26413690476190477,"y":0.5758928571428571,"r":0.3333333333333333,"g":0.6666666666666666,"b":0.6666666666666666,"a":1,"id":"control-point-6","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.3333333333333333,"y":1,"r":0.3333333333333333,"g":1,"b":1,"a":1,"id":"control-point-7","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.6666666666666666,"y":0,"r":1,"g":1,"b":1,"a":1,"id":"control-point-8","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.7,"y":0.2235294117647059,"r":1,"g":1,"b":1,"a":1,"id":"control-point-9","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.7328869047619048,"y":0.6845238095238095,"r":1,"g":1,"b":1,"a":1,"id":"control-point-10","uPosTanX":0.56,"uNegTanX":0.56,"uPosTanY":-0.44,"uNegTanY":-0.44,"vPosTanX":0.26,"vNegTanX":0.26,"vPosTanY":0.76,"vNegTanY":0.76},{"x":0.6666666666666666,"y":1,"r":0.6666666666666666,"g":1,"b":1,"a":1,"id":"control-point-11","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":1,"y":0,"r":1,"g":1,"b":1,"a":1,"id":"control-point-12","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":1,"y":0.3333333333333333,"r":1,"g":0.3333333333333333,"b":0.3333333333333333,"a":1,"id":"control-point-13","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":1,"y":0.6666666666666666,"r":1,"g":0.6666666666666666,"b":0.6666666666666666,"a":1,"id":"control-point-14","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":1,"y":1,"r":1,"g":1,"b":1,"a":1,"id":"control-point-15","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333}]`
+  },
+  {
+    "order": 4,
+    "thumbnail": "thumbnail002.png",
+    "meshGradientDefinition": `[{"x":0,"y":0,"r":1,"g":1,"b":1,"a":1,"id":"control-point-0","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0,"y":0.3333333333333333,"r":1,"g":1,"b":1,"a":1,"id":"control-point-1","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0,"y":0.6666666666666666,"r":0,"g":0.6666666666666666,"b":0.6666666666666666,"a":1,"id":"control-point-2","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0,"y":1,"r":0,"g":1,"b":1,"a":1,"id":"control-point-3","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.3333333333333333,"y":0,"r":1,"g":1,"b":1,"a":1,"id":"control-point-4","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.27647058823529413,"y":0.2485294117647059,"r":1,"g":1,"b":1,"a":1,"id":"control-point-5","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.26413690476190477,"y":0.5758928571428571,"r":0.3333333333333333,"g":0.6666666666666666,"b":0.6666666666666666,"a":1,"id":"control-point-6","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.3333333333333333,"y":1,"r":0.3333333333333333,"g":1,"b":1,"a":1,"id":"control-point-7","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.6666666666666666,"y":0,"r":1,"g":1,"b":1,"a":1,"id":"control-point-8","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.7,"y":0.2235294117647059,"r":1,"g":1,"b":1,"a":1,"id":"control-point-9","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.7328869047619048,"y":0.6845238095238095,"r":1,"g":1,"b":1,"a":1,"id":"control-point-10","uPosTanX":0.56,"uNegTanX":0.56,"uPosTanY":-0.44,"uNegTanY":-0.44,"vPosTanX":0.26,"vNegTanX":0.26,"vPosTanY":0.76,"vNegTanY":0.76},{"x":0.6666666666666666,"y":1,"r":0.6666666666666666,"g":1,"b":1,"a":1,"id":"control-point-11","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":1,"y":0,"r":1,"g":1,"b":1,"a":1,"id":"control-point-12","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":1,"y":0.3333333333333333,"r":1,"g":0.3333333333333333,"b":0.3333333333333333,"a":1,"id":"control-point-13","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":1,"y":0.6666666666666666,"r":1,"g":0.6666666666666666,"b":0.6666666666666666,"a":1,"id":"control-point-14","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":1,"y":1,"r":1,"g":1,"b":1,"a":1,"id":"control-point-15","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333}]`
   }
 ];
 
@@ -23,20 +28,20 @@ export const commands = {
 }
 
 export function getGradientCollection() {
-  return gradientCollection;
+  return gradientCollection.sort(compareOrder);
 }
 
 export function getReducedGradientCollection(collection) {
-  if(!collection) return null;
+  if (!collection) return null;
 
-  var reducedCollection =[];
+  var reducedCollection = [];
   collection.forEach(grad => {
     reducedCollection.push({
       "order": grad.order,
       "thumbnail": grad.thumbnail,
     });
   });
-  return reducedCollection;
+  return reducedCollection.sort(compareOrder);
 }
 
 export function getCustomGradientCollection() {
@@ -47,6 +52,16 @@ export function getCustomGradientCollection() {
     console.log("No custom gradients stored.");
     return null;
   }
+}
+
+function compareOrder(a, b) {
+  if (a.order < b.order) {
+    return -1;
+  }
+  if (a.order > b.order) {
+    return 1;
+  }
+  return 0;
 }
 
 

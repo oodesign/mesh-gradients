@@ -1183,6 +1183,10 @@ a {
   font-weight: 600;
 }
 
+.titleSpacing {
+  margin-bottom: 16px;
+}
+
 .collapsedPanelText {
   @include titleText;
   position: absolute;
@@ -1201,6 +1205,63 @@ a {
   margin-bottom: 32px;
 }
 
+.gradientCollectionContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  column-gap: 24px;
+  row-gap: 16px;
+  width: 272px;
+}
+
+.gradientThumbnail {
+  height: 60px;
+  border-radius: 4px;
+  padding: 4px;
+  transition: all 0.1s ease-in-out;
+
+  @include for-theme(light) {
+    background-color: $light_backgroundColor_300;
+  }
+  @include for-theme(dark) {
+    background-color: $dark_backgroundColor_300;
+  }
+
+  &:hover {
+    @include for-theme(light) {
+      background-color: $light_gray_400;
+    }
+    @include for-theme(dark) {
+      background-color: $dark_gray_400;
+    }
+  }
+
+  &:active {
+    @include for-theme(light) {
+      background-color: $light_backgroundColor_300;
+    }
+    @include for-theme(dark) {
+      background-color: $dark_backgroundColor_300;
+    }
+  }
+
+  img {
+    border: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  &.selected {
+    img {
+      @include for-theme(light) {
+        border: 1px solid $light_backgroundColor_500;
+      }
+      @include for-theme(dark) {
+        border: 1px solid $dark_backgroundColor_500;
+      }
+    }
+  }
+}
+
 // #endregion
 
 // #region Custom colors picker
@@ -1210,10 +1271,6 @@ a {
     @include secondaryText;
     font-family: AvenirNextLTPro-Demi, -apple-system, BlinkMacSystemFont, sans-serif;
     width: 100px;
-  }
-
-  .titleSpacing {
-    margin-bottom: 16px;
   }
 
   .colorField {

@@ -376,14 +376,30 @@ function drawGradientCollection(title, collection) {
 
   var items = "";
 
+  let section = document.createElement("div");
+  section.className = "rowAuto contentSection";
+  let verticalLayout = document.createElement("div");
+  verticalLayout.className = "verticalLayout";
+  let titleRow = document.createElement("div");
+  titleRow.className = "rowAuto primaryText titleSpacing";
+  titleRow.innerHTML = title;
+  let thumbnails = document.createElement("div");
+  thumbnails.className = "rowAuto gradientCollectionContainer";
+
+  verticalLayout.appendChild(titleRow);
+  verticalLayout.appendChild(thumbnails);
+  section.appendChild(verticalLayout);
+
   collection.forEach(g => {
-    // items += `<div class="gradientThumbnail"><img class="imgThumbnail" src="../resources/images/thumbnails/${g.thumbnail}"/></div>`;
+    let thumbnail = document.createElement("div");
+    thumbnail.className="gradientThumbnail"
     let img = document.createElement("img");
     img.src = `../thumbnails/${g.thumbnail}`;
-    document.getElementById("collectionContent").appendChild(img);
+    thumbnail.appendChild(img);
+    thumbnails.appendChild(thumbnail);
   });
 
-
+  document.getElementById("collectionContent").appendChild(section);
 }
 
 let horizontalLines = new Map();

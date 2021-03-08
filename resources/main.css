@@ -2344,6 +2344,10 @@ a {
   }
 }
 
+.titleSpacing {
+  margin-bottom: 16px;
+}
+
 .collapsedPanelText {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
@@ -2379,6 +2383,79 @@ a {
   margin-bottom: 32px;
 }
 
+.gradientCollectionContainer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(70px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  -webkit-column-gap: 24px;
+          column-gap: 24px;
+  row-gap: 16px;
+  width: 272px;
+}
+
+.gradientThumbnail {
+  height: 60px;
+  border-radius: 4px;
+  padding: 4px;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+@media (prefers-color-scheme: light) {
+  .gradientThumbnail {
+    background-color: #F9F9F9;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .gradientThumbnail {
+    background-color: #37373A;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .gradientThumbnail:hover {
+    background-color: #515255;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .gradientThumbnail:hover {
+    background-color: #515255;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .gradientThumbnail:active {
+    background-color: #F9F9F9;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .gradientThumbnail:active {
+    background-color: #37373A;
+  }
+}
+
+.gradientThumbnail img {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-color-scheme: light) {
+  .gradientThumbnail.selected img {
+    border: 1px solid #F9F9F9;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .gradientThumbnail.selected img {
+    border: 1px solid #28282A;
+  }
+}
+
 .customColors .label {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
@@ -2396,10 +2473,6 @@ a {
   .customColors .label {
     color: #87898E;
   }
-}
-
-.customColors .titleSpacing {
-  margin-bottom: 16px;
 }
 
 .customColors .colorField {
