@@ -5,6 +5,8 @@ const AColorPicker = require('a-color-picker');
 
 
 let initialDivisionCount = 2;
+let customDivisionCount = 2;
+let establishedCollectionGradientId = 1;
 var accentColor = 0x235FFF;
 let customColors = ["#FFffff", "#3a69fd", "#00ffa2", "#00FFFF"];
 var editor;
@@ -34,7 +36,7 @@ renderer.setSize(imageQuality, imageQuality);
 renderer.domElement.style = '';
 parentElement.insertBefore(renderer.domElement, parentElement.firstChild);
 
-const patchDivCount = 20;
+const patchDivCount = 30;
 const patchVertexCount = (patchDivCount + 1) * (patchDivCount + 1);
 const patchFaceCount = patchDivCount * patchDivCount * 2;
 var vertexCount;
@@ -358,8 +360,9 @@ document.getElementById('btnCancel').addEventListener("click", () => {
   cancelAssignation();
 });
 
+let gradientCollection = [], customGradientCollection = [];
 
-window.LoadMesh = (meshGradientDefinition, gradientCollection, customGradientCollection) => {
+window.LoadMesh = (meshGradientDefinition, gradients, customGradients) => {
 
   if (meshGradientDefinition != null) {
     var parsed = JSON.parse(meshGradientDefinition);
@@ -367,9 +370,24 @@ window.LoadMesh = (meshGradientDefinition, gradientCollection, customGradientCol
   }
   editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition, document.getElementById("btnSymmetric"), document.getElementById("btnAsymmetric"), document.getElementById("controlPointEditor"), customColors);
   document.getElementById("collectionContent").innerHTML = "";
+  gradientCollection = gradients;
+  customGradientCollection = customGradients;
   drawGradientCollection("Library", gradientCollection);
   initializeHermiteSurface();
   animate(0);
+}
+
+window.ChangeGradient = (meshGradientDefinition) => {
+  if (meshGradientDefinition != null) {
+    var parsed = JSON.parse(meshGradientDefinition);
+    let newDivisionCount = Math.sqrt(parsed.length) - 1;
+    editor.changeDivisionCount(newDivisionCount);
+    editor.loadControlPoints(meshGradientDefinition);
+    initializeHermiteSurface();
+    editor.shouldRefresh = true;
+
+
+  }
 }
 
 function drawGradientCollection(title, collection) {
@@ -392,14 +410,27 @@ function drawGradientCollection(title, collection) {
 
   collection.forEach(g => {
     let thumbnail = document.createElement("div");
-    thumbnail.className="gradientThumbnail"
+    thumbnail.id = "gradientThumbnail" + g.id;
+    thumbnail.className = "gradientThumbnail" + ((thumbnails.childElementCount == 0) ? " selected" : "");
     let img = document.createElement("img");
     img.src = `../thumbnails/${g.thumbnail}`;
+    thumbnail.addEventListener("click", function () { requestChangeGradient(g.id) })
     thumbnail.appendChild(img);
     thumbnails.appendChild(thumbnail);
   });
 
   document.getElementById("collectionContent").appendChild(section);
+}
+
+function requestChangeGradient(id) {
+  establishedCollectionGradientId = id;
+
+  gradientCollection.forEach(g => {
+    document.getElementById("gradientThumbnail" + g.id).classList.remove("selected");
+  });
+  document.getElementById("gradientThumbnail" + establishedCollectionGradientId).classList.add("selected");
+
+  window.postMessage("ChangeGradient", id);
 }
 
 let horizontalLines = new Map();
@@ -561,13 +592,29 @@ function changeTab(index) {
       document.getElementById("tabIndicator").style.left = "0";
       document.getElementById("collectionContent").style.display = "initial";
       document.getElementById("createYourOwnContent").style.display = "none";
+
+      loadCollectionGradientUI();
       break;
     case 1:
       document.getElementById("tabIndicator").style.left = "50%";
       document.getElementById("collectionContent").style.display = "none";
       document.getElementById("createYourOwnContent").style.display = "initial";
+
+      loadCustomGradientUI();
       break;
   }
+}
+
+function loadCollectionGradientUI() {
+  requestChangeGradient(establishedCollectionGradientId);
+}
+
+function loadCustomGradientUI() {
+  activateSizeElement(customDivisionCount)
+  editor.changeDivisionCount(customDivisionCount);
+  editor.initControlPoints();
+  initializeHermiteSurface();
+  editor.shouldRefresh = true;
 }
 
 let customColorPicker = AColorPicker.createPicker(document.getElementById('customColorPicker'), { showHSL: false, showAlpha: false });
@@ -610,7 +657,9 @@ function activateSizeElement(index) {
 function changeMeshDivisions(e) {
   activateSizeElement(e.target.value)
   let newDivisionCount = e.target.value;
+  customDivisionCount = newDivisionCount;
   editor.changeDivisionCount(newDivisionCount);
+  editor.initControlPoints();
   initializeHermiteSurface();
   editor.shouldRefresh = true;
 }

@@ -39,7 +39,7 @@ export default class Editor {
     this.customColors = customColors;
     this.pointsMap = new Map();
     if (meshGradientDefinition == null) this.initControlPoints();
-    else this.loadControlPoints();
+    else this.loadControlPoints(this.meshGradientDefinition);
     this.initEventListeners();
     this.boundingRect = container.getBoundingClientRect();
     this.colorEditor = AColorPicker.createPicker(this.colorPickerContainer, { showHSL: false, showAlpha: false });
@@ -100,19 +100,11 @@ export default class Editor {
   }
 
   changeDivisionCount(newDivisionCount) {
-
     this.divisionCount = newDivisionCount;
-    window.postMessage("nativeLog", "-- Removing children");
     this.controlPointArray.forEach(cp => {
       this.container.removeChild(cp.cpElement);
     });
-    window.postMessage("nativeLog", "-- Clear map");
-
     this.pointsMap.clear();
-
-    window.postMessage("nativeLog", "-- Set divisionCount");
-    window.postMessage("nativeLog", "-- Init CPs");
-    this.initControlPoints();
   }
 
   updateColors(customColors) {
@@ -138,8 +130,8 @@ export default class Editor {
     this.shouldRefresh = true;
   }
 
-  loadControlPoints() {
-    var parsed = JSON.parse(this.meshGradientDefinition);
+  loadControlPoints(meshGradientDefinition) {
+    var parsed = JSON.parse(meshGradientDefinition);
 
     //window.postMessage("nativeLog", parsed);
     this.controlPointArray = [];

@@ -905,12 +905,12 @@ body {
 }
 
 div::-webkit-scrollbar-track {
-  border-radius: 8px;
+  border-radius: 5px;
   background-color: transparent;
 }
 
 div::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
   background-color: transparent;
 }
 
@@ -1216,31 +1216,30 @@ a {
 .gradientThumbnail {
   height: 60px;
   border-radius: 4px;
-  padding: 4px;
-  transition: all 0.1s ease-in-out;
+  padding: 3px;
 
   @include for-theme(light) {
-    background-color: $light_backgroundColor_300;
+    background-color: $light_gray_400;
   }
   @include for-theme(dark) {
-    background-color: $dark_backgroundColor_300;
+    background-color: $dark_gray_400;
   }
 
   &:hover {
     @include for-theme(light) {
-      background-color: $light_gray_400;
+      background-color: $light_gray_300;
     }
     @include for-theme(dark) {
-      background-color: $dark_gray_400;
+      background-color: $dark_gray_300;
     }
   }
 
   &:active {
     @include for-theme(light) {
-      background-color: $light_backgroundColor_300;
+      background-color: $light_gray_500;
     }
     @include for-theme(dark) {
-      background-color: $dark_backgroundColor_300;
+      background-color: $dark_gray_500;
     }
   }
 
@@ -1251,6 +1250,15 @@ a {
   }
 
   &.selected {
+
+
+    @include for-theme(light) {
+      background-color: $accentColor;
+    }
+    @include for-theme(dark) {
+      background-color: $dark_primaryColor;
+    }
+
     img {
       @include for-theme(light) {
         border: 1px solid $light_backgroundColor_500;

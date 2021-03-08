@@ -24,6 +24,11 @@ export function EditGradient(context) {
   const webContents = browserWindow.webContents;
   var layerMeshGradientDefinition = null;
 
+  var gradientCollection = Helpers.getGradientCollection();
+  var reducedGradientCollection = Helpers.getReducedGradientCollection(gradientCollection);
+  var customGradientCollection = Helpers.getCustomGradientCollection();
+  var reducedCustomGradientCollection = Helpers.getReducedGradientCollection(customGradientCollection);
+
   var selectedLayer = null;
   if (document.selectedLayers.length > 0) {
     selectedLayer = document.selectedLayers.layers[0];
@@ -32,13 +37,9 @@ export function EditGradient(context) {
     }
   }
 
-  var gradientCollection = Helpers.getGradientCollection();
-  var reducedGradientCollection = Helpers.getReducedGradientCollection(gradientCollection);
-  var customGradientCollection = Helpers.getCustomGradientCollection();
-  var reducedCustomGradientCollection = Helpers.getReducedGradientCollection(customGradientCollection);
-
-
-  console.log(reducedGradientCollection);
+  if ((layerMeshGradientDefinition == null) && (gradientCollection.length > 0)) {
+    layerMeshGradientDefinition = gradientCollection[0].meshGradientDefinition;
+  }
 
   browserWindow.loadURL(require('../resources/meshgradients.html'));
 
@@ -52,6 +53,11 @@ export function EditGradient(context) {
 
   webContents.on('Cancel', () => {
     onShutdown(webviewIdentifier);
+  });
+
+  webContents.on('ChangeGradient', (gradientId) => {
+    let gradientDefinition = gradientCollection.find(g => g.id === gradientId).meshGradientDefinition;
+    webContents.executeJavaScript(`ChangeGradient(${JSON.stringify(gradientDefinition)})`).catch(console.error);
   });
 
   webContents.on('ConfirmMeshGradient', (meshGradientBase64, patchPoints) => {
@@ -87,7 +93,7 @@ export function EditGradient(context) {
       });
     }
 
-    console.log(patchPoints);
+    //console.log(patchPoints);
     Settings.setLayerSettingForKey(layer, 'MeshGradientDefinition', patchPoints);
     onShutdown(webviewIdentifier);
   });
