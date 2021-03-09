@@ -371,7 +371,8 @@ window.LoadMesh = (meshGradientDefinition, gradients, customGradients) => {
 
   if (meshGradientDefinition != null) {
     var parsed = JSON.parse(meshGradientDefinition);
-    initialDivisionCount = Math.sqrt(parsed.length) - 1
+    initialDivisionCount = Math.sqrt(parsed.length) - 1;
+    document.getElementById("btnAccept").innerHTML = "Save gradient";
   }
   editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition, document.getElementById("btnSymmetric"), document.getElementById("btnAsymmetric"), document.getElementById("controlPointEditor"), customColors);
   document.getElementById("collectionContent").innerHTML = "";

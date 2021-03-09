@@ -37,10 +37,6 @@ export function EditGradient(context) {
     }
   }
 
-  if ((layerMeshGradientDefinition == null) && (gradientCollection.length > 0)) {
-    layerMeshGradientDefinition = gradientCollection[0].meshGradientDefinition;
-  }
-
   browserWindow.loadURL(require('../resources/meshgradients.html'));
 
   browserWindow.once('ready-to-show', () => {
