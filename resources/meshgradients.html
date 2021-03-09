@@ -120,7 +120,8 @@
 												</div>
 												<div class="rowAuto ">
 													<button id="meshSize2" value="2" class="btnMesh">2x2</button>
-													<button id="meshSize3" value="3" class="btnMesh selected">3x3</button>
+													<button id="meshSize3" value="3"
+														class="btnMesh selected">3x3</button>
 													<button id="meshSize4" value="4" class="btnMesh">4x4</button>
 													<button id="meshSize5" value="5" class="btnMesh">5x5</button>
 													<button id="meshSize6" value="6" class="btnMesh">6x6</button>
@@ -216,11 +217,50 @@
 				</div>
 			</div>
 		</div>
-		<div class="draggableArea alignFullCenter" data-app-region="drag"><span id="windowTitle">Mesh gradients</span>
-
-			<span id="logger">logger</span>
+		<div class="draggableArea alignFullCenter" data-app-region="drag">
+			<span id="windowTitle">Mesh gradients - Beta</span>
+			<span id="gradientEdited"></span>
+			<span id="logger"></span>
 		</div>
 		<div id="customColorPicker" class="customColorPicker colorPicker"></div>
+		<div id="warning" class="overlay notDisplayed">
+			<div id="warningDialog" class="warning">
+				<div class="verticalLayout">
+					<div class="rowAuto">
+						<div class="icon">
+							<img src="../resources/images/Warning.png" />
+						</div>
+					</div>
+					<div class="rowAuto title">
+						Do you want to discard this gradient?
+					</div>
+					<div class="rowAuto description">
+						Looks like you’ve done some edits in the gradient. Switching to another gradient will discard
+						your changes.
+					</div>
+					<div class="rowAuto actions">
+						<div class="horizontalLayout">
+							<div class="colAuto">
+								<div class="roundCheckbox">
+									<input type="checkbox" id="checkSameFont"/>
+									<label class="labelCheck" for="checkSameFont">
+										<div class="padder"><span>Don't ask me again</span></div>
+									</label>
+								</div>
+							</div>
+							<div class="colAvailable">
+							</div>
+							<div class="colAuto">
+								<button id="btnCancelWarning" class="btnSecondary">Cancel</button>
+							</div>
+							<div class="colAuto">
+								<button id="btnAcceptWarning" class="btnPrimary">Discard</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<script src="../resources_js_gradient.js"></script>

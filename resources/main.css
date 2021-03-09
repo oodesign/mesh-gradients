@@ -1671,6 +1671,7 @@ body {
   cursor: pointer;
   height: 20px;
   width: 20px;
+  z-index: 30;
   left: 0;
   position: absolute;
   top: 0;
@@ -1682,45 +1683,57 @@ body {
 
 @media (prefers-color-scheme: light) {
   .roundCheckbox label {
-    border-color: #A9A9A9;
+    border-color: #454649;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .roundCheckbox label {
-    border-color: #6A6A6A;
+    border-color: #454649;
   }
 }
 
 @media (prefers-color-scheme: light) {
   .roundCheckbox label:hover {
-    border-color: #B6A8E4;
+    border-color: #545558;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .roundCheckbox label:hover {
-    border-color: #ffffff;
+    border-color: #545558;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .roundCheckbox label:active {
+    border-color: #35363a;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .roundCheckbox label:active {
+    border-color: #35363a;
   }
 }
 
 .roundCheckbox label span {
   left: 25px;
-  width: 120px;
+  width: 140px;
   position: absolute;
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 @media (prefers-color-scheme: light) {
   .roundCheckbox label span {
-    color: #212123;
+    color: #87898E;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .roundCheckbox label span {
-    color: #ffffff;
+    color: #87898E;
   }
 }
 
@@ -1774,6 +1787,7 @@ body {
   cursor: pointer;
   height: 20px;
   width: 20px;
+  z-index: 30;
   left: 0;
   position: absolute;
   top: 0;
@@ -1785,45 +1799,57 @@ body {
 
 @media (prefers-color-scheme: light) {
   .selectRoundCheckbox label {
-    border-color: #A9A9A9;
+    border-color: #454649;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .selectRoundCheckbox label {
-    border-color: #6A6A6A;
+    border-color: #454649;
   }
 }
 
 @media (prefers-color-scheme: light) {
   .selectRoundCheckbox label:hover {
-    border-color: #B6A8E4;
+    border-color: #545558;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .selectRoundCheckbox label:hover {
-    border-color: #ffffff;
+    border-color: #545558;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .selectRoundCheckbox label:active {
+    border-color: #35363a;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .selectRoundCheckbox label:active {
+    border-color: #35363a;
   }
 }
 
 .selectRoundCheckbox label span {
   left: 25px;
-  width: 120px;
+  width: 140px;
   position: absolute;
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 @media (prefers-color-scheme: light) {
   .selectRoundCheckbox label span {
-    color: #212123;
+    color: #87898E;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .selectRoundCheckbox label span {
-    color: #ffffff;
+    color: #87898E;
   }
 }
 
@@ -1897,7 +1923,7 @@ body {
 
 .squareCheckbox label span {
   left: 25px;
-  width: 120px;
+  width: 140px;
   position: absolute;
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
@@ -2702,5 +2728,93 @@ a {
   .colorPicker .a-color-picker input {
     border: 1px solid #454649;
   }
+}
+
+.overlay {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.15);
+  z-index: 20;
+}
+
+.warning {
+  width: 470px;
+  padding: 24px;
+  margin: 0 auto;
+  background-color: #212124;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 5px 10px 3px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 5px 10px 3px rgba(0, 0, 0, 0.5);
+}
+
+.warning .icon {
+  width: 52px;
+  height: 42px;
+  margin: 16px auto 24px auto;
+}
+
+.warning .icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.warning .title {
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+@media (prefers-color-scheme: light) {
+  .warning .title {
+    color: #212123;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .warning .title {
+    color: #ffffff;
+  }
+}
+
+.warning .description {
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 32px;
+  line-height: 18px;
+}
+
+@media (prefers-color-scheme: light) {
+  .warning .description {
+    color: #87898E;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .warning .description {
+    color: #87898E;
+  }
+}
+
+.warning .roundCheckbox {
+  top: 5px;
+  margin: 0;
+}
+
+.warning .actions button {
+  width: 90px;
 }
 /*# sourceMappingURL=main.css.map */

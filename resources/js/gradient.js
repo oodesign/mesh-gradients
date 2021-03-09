@@ -304,6 +304,8 @@ const animate = (t) => {
     renderer.render(scene, camera);
   }
   requestAnimationFrame(() => animate(t + 0.05));
+
+  document.getElementById("gradientEdited").innerHTML = editor.hasChanges ? "*" : "";
 };
 
 
@@ -324,6 +326,7 @@ document.getElementById('btnResetCurves').addEventListener("click", () => {
 });
 
 document.getElementById('btnSymmetric').addEventListener("click", () => {
+  editor.hasChanges = true;
   editor.multipleSelectedCPs.forEach(cp => {
     cp.setSymmetricTangents()
   });
@@ -331,6 +334,7 @@ document.getElementById('btnSymmetric').addEventListener("click", () => {
 });
 
 document.getElementById('btnAsymmetric').addEventListener("click", () => {
+  editor.hasChanges = true;
   editor.multipleSelectedCPs.forEach(cp => {
     cp.setAsymmetricTangents()
   });
@@ -385,8 +389,6 @@ window.ChangeGradient = (meshGradientDefinition) => {
     editor.loadControlPoints(meshGradientDefinition);
     initializeHermiteSurface();
     editor.shouldRefresh = true;
-
-
   }
 }
 
@@ -414,7 +416,7 @@ function drawGradientCollection(title, collection) {
     thumbnail.className = "gradientThumbnail" + ((thumbnails.childElementCount == 0) ? " selected" : "");
     let img = document.createElement("img");
     img.src = `../thumbnails/${g.thumbnail}`;
-    thumbnail.addEventListener("click", function () { requestChangeGradient(g.id) })
+    thumbnail.addEventListener("click", function () { confirmAction(requestChangeGradient, { "id": g.id }) })
     thumbnail.appendChild(img);
     thumbnails.appendChild(thumbnail);
   });
@@ -422,7 +424,8 @@ function drawGradientCollection(title, collection) {
   document.getElementById("collectionContent").appendChild(section);
 }
 
-function requestChangeGradient(id) {
+function requestChangeGradient(parameters) {
+  let id = parameters.id;
   establishedCollectionGradientId = id;
 
   gradientCollection.forEach(g => {
@@ -583,10 +586,42 @@ const updateCPlines = (cp) => {
 
 }
 
-document.getElementById('leftTab').addEventListener("click", function () { changeTab(0) });
-document.getElementById('rightTab').addEventListener("click", function () { changeTab(1) });
 
-function changeTab(index) {
+
+function closeWarning() {
+  document.getElementById("warning").classList.add("notDisplayed");
+}
+
+function showWarning() {
+  document.getElementById("warning").classList.remove("notDisplayed");
+}
+
+function acceptWarning() {
+  closeWarning();
+}
+
+document.getElementById('leftTab').addEventListener("click", function () { confirmAction(changeTab, { "index": 0 }) });
+document.getElementById('rightTab').addEventListener("click", function () { confirmAction(changeTab, { "index": 1 }) });
+
+function confirmAction(action, parameters) {
+  if (editor.hasChanges) {
+    let actionPromise = new Promise((resolve, reject) => {
+      showWarning();
+      document.getElementById('btnCancelWarning').addEventListener("click", function () { reject(); });
+      document.getElementById('btnAcceptWarning').addEventListener("click", function () { resolve(); });
+    }).then(function (val) {
+      action(parameters);
+      closeWarning();
+    }).catch(function (err) {
+      closeWarning();
+    });
+  }
+  else
+    action(parameters);
+}
+
+function changeTab(parameters) {
+  let index = parameters.index;
   switch (index) {
     case 0:
       document.getElementById("tabIndicator").style.left = "0";
@@ -606,7 +641,7 @@ function changeTab(index) {
 }
 
 function loadCollectionGradientUI() {
-  requestChangeGradient(establishedCollectionGradientId);
+  requestChangeGradient({ "id": establishedCollectionGradientId });
 }
 
 function loadCustomGradientUI() {

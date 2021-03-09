@@ -5,6 +5,7 @@ const interpolate = require('color-interpolate');
 
 let cpIdCounter = 0;
 
+
 function debounce(func, wait, immediate) {
   let timeout;
   return function () {
@@ -47,9 +48,14 @@ export default class Editor {
       this.setColorToCp(AColorPicker.parseColor(picker.color, "rgba"));
     })
     this.movingCpStartPos = { x: null, y: null };
+    this.handlingColorSelection = false;
+    this.hasChanges = false;
   }
 
   initControlPoints() {
+
+    this.resetMultipleSelection();
+
     this.controlPointArray = [];
     this.storePointArray = [];
     this.controlPointMatrix = new Array(this.divisionCount + 1);
@@ -97,6 +103,7 @@ export default class Editor {
 
       }
     }
+    this.hasChanges = false;
   }
 
   changeDivisionCount(newDivisionCount) {
@@ -105,6 +112,7 @@ export default class Editor {
       this.container.removeChild(cp.cpElement);
     });
     this.pointsMap.clear();
+    this.hasChanges = false;
   }
 
   updateColors(customColors) {
@@ -128,9 +136,13 @@ export default class Editor {
     }
 
     this.shouldRefresh = true;
+    this.hasChanges = true;
   }
 
   loadControlPoints(meshGradientDefinition) {
+
+    this.resetMultipleSelection();
+
     var parsed = JSON.parse(meshGradientDefinition);
 
     //window.postMessage("nativeLog", parsed);
@@ -167,6 +179,7 @@ export default class Editor {
         index++;
       }
     }
+    this.hasChanges = false;
   }
 
   initEventListeners() {
@@ -220,7 +233,6 @@ export default class Editor {
       if (e.target.parentElement.classList.contains('gradient-mesh') && this.selectedCp) {
         this.selectedCp.cpElement.classList.remove('active');
         this.resetMultipleSelection()
-        this.selectedCp = null;
       }
     }
 
@@ -248,6 +260,7 @@ export default class Editor {
       } else {
         this.currentlyMovingCp.setPosition(this.movingCpStartPos.x, this.movingCpStartPos.y);
       }
+      this.hasChanges = true;
     }
 
 
@@ -257,6 +270,7 @@ export default class Editor {
       const x = (e.clientX - this.boundingRect.x) - this.selectedCp.x * this.boundingRect.width;
       const y = (e.clientY - this.boundingRect.y) - this.selectedCp.y * this.boundingRect.height;
       this.selectedCp.moveTangent(this.currentlyMovingTangent, x, y);
+      this.hasChanges = true;
     }
 
 
@@ -268,6 +282,7 @@ export default class Editor {
   resetSelectedCpTangent() {
     if (this.editing && this.selectedCp) {
       this.selectedCp.resetTangents(this.divisionCount);
+      this.hasChanges = true;
       return true;
     }
     return false;
@@ -300,6 +315,7 @@ export default class Editor {
   toggleTangentBinding() {
     if (this.editing && this.selectedCp && this.currentlyMovingTangent) {
       this.currentlyMovingTangent.toggleBindTangents();
+      this.hasChanges = true;
     }
   }
 
@@ -331,7 +347,9 @@ export default class Editor {
     this.updateTangentButtons()
 
     if (this.multipleSelectedCPs.length == 1) {
+      this.handlingColorSelection = true;
       this.colorEditor.color = cp.getColor();
+      this.handlingColorSelection = false;
     }
 
     if (this.multipleSelectedCPs.length >= 1)
@@ -369,6 +387,8 @@ export default class Editor {
   resetMultipleSelection() {
     this.multipleSelectedCPs.forEach(cp => { cp.unhighlight(); });
     this.multipleSelectedCPs = [];
+    this.selectedCp = null;
+    this.hideControlPointEditor();
   }
 
 
@@ -380,7 +400,11 @@ export default class Editor {
   }
 
   setColorToCp(color) {
-    this.multipleSelectedCPs.forEach(cp => { cp.setColor(color); });
+    if (!this.handlingColorSelection) {
+      this.multipleSelectedCPs.forEach(cp => { cp.setColor(color); });
+      this.hasChanges = true;
+    }
+
     this.shouldRefresh = true;
   }
 

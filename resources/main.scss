@@ -762,6 +762,7 @@ body {
     cursor: pointer;
     height: 20px;
     width: 20px;
+    z-index: 30;
     left: 0;
     position: absolute;
     top: 0;
@@ -770,26 +771,35 @@ body {
     transition: all 0.1s;
 
     @include for-theme(light) {
-      border-color: $light_inputBorderColor;
+      border-color: $light_gray_500;
     }
     @include for-theme(dark) {
-      border-color: $dark_inputBorderColor;
+      border-color: $dark_gray_500;
     }
 
     &:hover {
       @include for-theme(light) {
-        border-color: $light_inputBorderColorHover;
+        border-color: $light_gray_500_hover;
       }
       @include for-theme(dark) {
-        border-color: $dark_inputBorderColorHover;
+        border-color: $dark_gray_500_hover;
+      }
+    }
+
+    &:active {
+      @include for-theme(light) {
+        border-color: $light_gray_500_pressed;
+      }
+      @include for-theme(dark) {
+        border-color: $dark_gray_500_pressed;
       }
     }
 
     span {
       left: 25px;
-      width: 120px;
+      width: 140px;
       position: absolute;
-      @include primaryText;
+      @include secondaryText;
 
       &.longLabel {
         width: 500px;
@@ -866,7 +876,7 @@ body {
 
     span {
       left: 25px;
-      width: 120px;
+      width: 140px;
       position: absolute;
       @include primaryText;
     }
@@ -1250,8 +1260,6 @@ a {
   }
 
   &.selected {
-
-
     @include for-theme(light) {
       background-color: $accentColor;
     }
@@ -1381,3 +1389,59 @@ a {
 }
 
 // #endregion
+
+// #region Warning dialog
+
+.overlay {
+  @include flex;
+  @include alignVerticalCenter;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.15);
+  z-index: 20;
+}
+
+.warning {
+  width: 470px;
+  padding: 24px;
+  margin: 0 auto;
+  background-color: $dark_backgroundColor;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px 3px rgba(0, 0, 0, 0.5);
+
+  .icon {
+    width: 52px;
+    height: 42px;
+    margin: 16px auto 24px auto;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .title {
+    @include primaryText;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .description {
+    @include secondaryText;
+    text-align: center;
+    margin-bottom: 32px;
+    line-height: 18px;
+  }
+
+  .roundCheckbox {
+    top: 5px;
+    margin: 0;
+  }
+
+  .actions {
+    button {
+      width: 90px;
+    }
+  }
+}
