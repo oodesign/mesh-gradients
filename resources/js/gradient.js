@@ -627,17 +627,17 @@ function changeTab(parameters) {
   switch (index) {
     case 0:
       document.getElementById("tabIndicator").style.left = "0";
-      document.getElementById("collectionContent").style.display = "initial";
-      document.getElementById("createYourOwnContent").style.display = "none";
+      document.getElementById("collectionContent").classList.add("notDisplayed");
+      document.getElementById("createYourOwnContent").classList.remove("notDisplayed");
 
-      loadCollectionGradientUI();
+      loadCustomGradientUI();
       break;
     case 1:
       document.getElementById("tabIndicator").style.left = "50%";
-      document.getElementById("collectionContent").style.display = "none";
-      document.getElementById("createYourOwnContent").style.display = "initial";
+      document.getElementById("collectionContent").classList.remove("notDisplayed");
+      document.getElementById("createYourOwnContent").classList.add("notDisplayed");
 
-      loadCustomGradientUI();
+      loadCollectionGradientUI();
       break;
   }
 }
