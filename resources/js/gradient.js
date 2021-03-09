@@ -615,6 +615,11 @@ function confirmAction(action, parameters) {
       document.getElementById('btnAcceptWarning').addEventListener("click", function () { resolve(); });
     }).then(function (val) {
       action(parameters);
+      let dontShowWarnings = document.getElementById("checkNoMoreWarnings").checked;
+      if (dontShowWarnings) {
+        window.postMessage("DontShowWarningsAgain");
+        globalShowWarnings = false;
+      }
       closeWarning();
     }).catch(function (err) {
       closeWarning();

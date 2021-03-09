@@ -54,7 +54,7 @@ export function getCustomGradientCollection() {
     // TODO
     let gradientJson = readFromFile(MSPluginManager.mainPluginsFolderURL().path() + '/meshgradients.json');
   } catch (e) {
-    console.log("No custom gradients stored.");
+    //console.log("No custom gradients stored.");
     return null;
   }
 }

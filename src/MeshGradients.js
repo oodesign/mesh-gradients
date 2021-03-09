@@ -47,6 +47,11 @@ export function EditGradient(context) {
     webContents.executeJavaScript(`LoadMesh(${JSON.stringify(layerMeshGradientDefinition)}, ${JSON.stringify(reducedGradientCollection)})`).catch(console.error);
   })
 
+  webContents.on('DontShowWarningsAgain', () => {
+    console.log("Saving showWarnings")
+    Settings.setGlobalSettingForKey('showWarnings', false);
+  });
+
   webContents.on('Cancel', () => {
     onShutdown(webviewIdentifier);
   });
