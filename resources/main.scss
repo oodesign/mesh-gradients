@@ -1445,3 +1445,37 @@ a {
     }
   }
 }
+
+// #endregion
+
+.shortcutHints {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  @include secondaryText;
+
+  .horizontalLayout {
+    position: relative;
+    left: -50%;
+
+    div {
+      width: 140px;
+      &:first-child {
+        margin-right: 48px;
+      }
+    }
+  }
+
+  .shortKey {
+    @include for-theme(light) {
+      border: 1px solid $light_secondaryColor;
+    }
+    @include for-theme(dark) {
+      border: 1px solid $dark_secondaryColor;
+    }
+
+    border-radius: 4px;
+    padding: 2px 4px;
+    margin-right: 4px;
+  }
+}

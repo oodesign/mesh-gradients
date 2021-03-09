@@ -255,6 +255,7 @@ window.addEventListener('keydown', (e) => {
   switch (e.code) {
     case "KeyM":
       gradientMesh.material = (gradientMesh.material == meshGradientMaterial) ? wireframeMeshMaterial : meshGradientMaterial;
+      document.getElementById("showMesh").innerHTML = (gradientMesh.material == meshGradientMaterial) ? "Show mesh" : "Hide mesh";
       calculateHermiteSurface();
       renderer.render(scene, camera);
       break;
@@ -281,8 +282,8 @@ function setEditorScenario() {
   var newSize = (meshEditor.clientWidth > meshEditor.clientHeight) ? meshEditor.clientHeight : meshEditor.clientWidth;
 
   gradientMesh.style.width = newSize - 60 + "px";
-  gradientMesh.style.height = newSize - 60 + "px";
-  gradientMesh.style.top = (meshEditor.clientHeight - newSize) / 2 + 30 + "px";
+  gradientMesh.style.height = newSize - 70 + "px";
+  gradientMesh.style.top = (meshEditor.clientHeight - newSize) / 2 + 20 + "px";
   gradientMesh.style.left = (meshEditor.clientWidth - newSize) / 2 + 30 + "px";
 
   if (!editor || !editor.controlPointArray)
@@ -446,6 +447,7 @@ let linesVisible = false;
 const toggleLines = () => {
   // window.postMessage("nativeLog", "toggle lines")
   linesVisible = !linesVisible;
+  document.getElementById("showGrid").innerHTML = linesVisible ? "Hide grid" : "Show grid";
 
   horizontalLines.forEach(hLine => {
     hLine.visible = linesVisible;

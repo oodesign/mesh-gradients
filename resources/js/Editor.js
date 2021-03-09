@@ -333,9 +333,7 @@ export default class Editor {
     this.shouldRefresh = true;
     this.movingCpStartPos.x = cp.x;
     this.movingCpStartPos.y = cp.y;
-    if (this.selectedCp) {
-      this.selectedCp.cpElement.classList.remove('active');
-    }
+    
     this.selectedCp = cp;
     this.selectedCp.cpElement.classList.add('active');
 
@@ -384,6 +382,9 @@ export default class Editor {
   }
 
   resetMultipleSelection() {
+    if (this.selectedCp) {
+      this.selectedCp.cpElement.classList.remove('active');
+    }
     this.multipleSelectedCPs.forEach(cp => { cp.unhighlight(); });
     this.multipleSelectedCPs = [];
     this.selectedCp = null;

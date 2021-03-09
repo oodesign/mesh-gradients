@@ -2817,4 +2817,55 @@ a {
 .warning .actions button {
   width: 90px;
 }
+
+.shortcutHints {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+}
+
+@media (prefers-color-scheme: light) {
+  .shortcutHints {
+    color: #87898E;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .shortcutHints {
+    color: #87898E;
+  }
+}
+
+.shortcutHints .horizontalLayout {
+  position: relative;
+  left: -50%;
+}
+
+.shortcutHints .horizontalLayout div {
+  width: 140px;
+}
+
+.shortcutHints .horizontalLayout div:first-child {
+  margin-right: 48px;
+}
+
+.shortcutHints .shortKey {
+  border-radius: 4px;
+  padding: 2px 4px;
+  margin-right: 4px;
+}
+
+@media (prefers-color-scheme: light) {
+  .shortcutHints .shortKey {
+    border: 1px solid #87898E;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .shortcutHints .shortKey {
+    border: 1px solid #87898E;
+  }
+}
 /*# sourceMappingURL=main.css.map */
