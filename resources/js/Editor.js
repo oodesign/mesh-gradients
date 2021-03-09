@@ -326,7 +326,8 @@ export default class Editor {
 
   onCpMouseDown(cp, e) {
 
-    //window.postMessage("nativeLog", "CP position and tangents: (" + cp.x + "," + cp.y + ") - UTAN:posDir(" + cp.uTangents.posDir.x + "," + cp.uTangents.posDir.y + ") - negDir(" + cp.uTangents.negDir.x + "," + cp.uTangents.negDir.y + ") - VTAN:posDir(" + cp.vTangents.posDir.x + "," + cp.vTangents.posDir.y + ") - negDir(" + cp.vTangents.negDir.x + "," + cp.vTangents.negDir.y + ")");
+    if (!e.shiftKey)
+      this.resetMultipleSelection();
 
     this.currentlyMovingCp = cp;
     this.shouldRefresh = true;
@@ -338,8 +339,6 @@ export default class Editor {
     this.selectedCp = cp;
     this.selectedCp.cpElement.classList.add('active');
 
-    if (!e.shiftKey)
-      this.resetMultipleSelection();
 
     this.multipleSelectedCPs.push(cp);
     cp.highlight();
