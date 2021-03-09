@@ -373,6 +373,7 @@ window.LoadMesh = (meshGradientDefinition, gradients, customGradients) => {
     var parsed = JSON.parse(meshGradientDefinition);
     initialDivisionCount = Math.sqrt(parsed.length) - 1;
     document.getElementById("btnAccept").innerHTML = "Save gradient";
+    hideLeftPanel();
   }
   editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition, document.getElementById("btnSymmetric"), document.getElementById("btnAsymmetric"), document.getElementById("controlPointEditor"), customColors);
   document.getElementById("collectionContent").innerHTML = "";
@@ -732,6 +733,12 @@ function showPicker(e, colorIndex) {
 }
 
 let redrawInterval;
+
+
+
+function hideLeftPanel() {
+  document.getElementById("leftPanel").classList.add("notDisplayed");
+}
 
 function toggleLeftPanel(e) {
   e.stopPropagation();
