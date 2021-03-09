@@ -58,7 +58,7 @@ export function EditGradient(context) {
 
   webContents.on('ConfirmMeshGradient', (meshGradientBase64, patchPoints) => {
 
-    var parent = (document.selectedLayers.length > 0) ? document.selectedLayers.layers[0].parent : document.selectedPage;
+    var parent = (document.selectedLayers.length > 0) ? ((document.selectedLayers.layers[0].type == "Artboard") ? document.selectedLayers.layers[0] : ((document.selectedLayers.layers[0].parent != null) ? document.selectedLayers.layers[0].parent : document.selectedPage)) : document.selectedPage;
     if (parent == null) parent = document.selectedPage;
 
     let layer;
