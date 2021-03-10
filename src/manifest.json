@@ -19,26 +19,12 @@
       "identifier": "newmeshgradient",
       "shortcut": "ctrl shift g",
       "icon": "icon-sr.png"
-    },
-    {
-      "script": "Main.js",
-      "name": "Log layer data",
-      "handlers": {
-        "run": "LogLayerData",
-        "actions": {
-          "Shutdown": "onShutdown"
-        }
-      },
-      "identifier": "loglayerdata",
-      "shortcut": "ctrl shift l",
-      "icon": "icon-sr.png"
     }
   ],
   "menu": {
     "title": "Mesh gradients ...",
     "items": [
-      "newmeshgradient",
-      "loglayerdata"
+      "newmeshgradient"
     ]
   }
 }

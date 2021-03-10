@@ -106,14 +106,6 @@ export function EditGradient(context) {
   })
 };
 
-export function LogLayerData(context) {
-  var layer = document.selectedLayers.layers[0];
-  var definition = Settings.layerSettingForKey(layer, 'MeshGradientDefinition');
-
-  var parsed = JSON.parse(definition);
-  console.log(parsed);
-};
-
 export function onShutdown(webviewID) {
   const existingWebview = getWebview(webviewID)
   if (existingWebview) {
