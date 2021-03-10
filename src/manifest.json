@@ -2,7 +2,7 @@
   "identifier": "com.oodesign.meshgradients",
   "name": "Mesh gradients",
   "icon": "icon.png",
-  "description": "Merge symbols or styles, replacing all instances and keeping overrides.",
+  "description": "Create awesome mesh gradients right inside Sketch.",
   "author": "oodesign",
   "homepage": "http://bit.ly/mergesymbolsinsketch",
   "compatibleVersion": 50,
