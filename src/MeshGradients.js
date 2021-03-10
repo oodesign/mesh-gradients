@@ -20,18 +20,18 @@ export function EditGradient(context) {
     show: false,
     titleBarStyle: 'hidden'
   }
+
   const browserWindow = new BrowserWindow(options);
   const webContents = browserWindow.webContents;
-  var layerMeshGradientDefinition = null;
-  var shouldShowWarnings = Settings.settingForKey('showWarnings');
-  console.log("Recovered showWarnings is:"+shouldShowWarnings)
+  let layerMeshGradientDefinition = null;
+  let shouldShowWarnings = Settings.settingForKey('showWarnings');
 
-  var gradientCollection = Helpers.getGradientCollection();
-  var reducedGradientCollection = Helpers.getReducedGradientCollection(gradientCollection);
-  var customGradientCollection = Helpers.getCustomGradientCollection();
-  var reducedCustomGradientCollection = Helpers.getReducedGradientCollection(customGradientCollection);
+  let gradientCollection = Helpers.getGradientCollection();
+  let reducedGradientCollection = Helpers.getReducedGradientCollection(gradientCollection);
+  let customGradientCollection = Helpers.getCustomGradientCollection();
+  let reducedCustomGradientCollection = Helpers.getReducedGradientCollection(customGradientCollection);
 
-  var selectedLayer = null;
+  let selectedLayer = null;
   if (document.selectedLayers.length > 0) {
     selectedLayer = document.selectedLayers.layers[0];
     if (Settings.layerSettingForKey(selectedLayer, 'MeshGradientDefinition')) {
@@ -54,10 +54,6 @@ export function EditGradient(context) {
     Settings.setSettingForKey('showWarnings', false);
   });
 
-  webContents.on('Cancel', () => {
-    onShutdown(webviewIdentifier);
-  });
-
   webContents.on('ChangeGradient', (gradientId) => {
     let gradientDefinition = gradientCollection.find(g => g.id === gradientId).meshGradientDefinition;
     webContents.executeJavaScript(`ChangeGradient(${JSON.stringify(gradientDefinition)})`).catch(console.error);
@@ -65,7 +61,7 @@ export function EditGradient(context) {
 
   webContents.on('ConfirmMeshGradient', (meshGradientBase64, patchPoints) => {
 
-    var parent = (document.selectedLayers.length > 0) ? ((document.selectedLayers.layers[0].type == "Artboard") ? document.selectedLayers.layers[0] : ((document.selectedLayers.layers[0].parent != null) ? document.selectedLayers.layers[0].parent : document.selectedPage)) : document.selectedPage;
+    let parent = (document.selectedLayers.length > 0) ? ((document.selectedLayers.layers[0].type == "Artboard") ? document.selectedLayers.layers[0] : ((document.selectedLayers.layers[0].parent != null) ? document.selectedLayers.layers[0].parent : document.selectedPage)) : document.selectedPage;
     if (parent == null) parent = document.selectedPage;
 
     let layer;
@@ -98,6 +94,10 @@ export function EditGradient(context) {
 
     //console.log(patchPoints);
     Settings.setLayerSettingForKey(layer, 'MeshGradientDefinition', patchPoints);
+    onShutdown(webviewIdentifier);
+  });
+
+  webContents.on('Cancel', () => {
     onShutdown(webviewIdentifier);
   });
 
