@@ -229,6 +229,7 @@ function initializeHermiteSurface() {
 
 
   drawLines();
+  document.getElementById("showMesh").innerHTML = "Show mesh";
 }
 
 function setBufferAttributeFromArray(attr, attrIndex, array, vertexIndex) {
