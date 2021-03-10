@@ -251,15 +251,15 @@ export default class Editor {
       let y = (e.clientY - this.boundingRect.y) / this.boundingRect.height;
       const deltaX = Math.abs(this.movingCpStartPos.x - x);
       const deltaY = Math.abs(this.movingCpStartPos.y - y);
-      if (e.shiftKey) {
-        x = deltaX > deltaY ? x : this.movingCpStartPos.x;
-        y = deltaX > deltaY ? this.movingCpStartPos.y : y;
-      }
-      if (deltaX + deltaY > 0.03 || e.ctrlKey) {
-        this.currentlyMovingCp.setPosition(x, y);
-      } else {
-        this.currentlyMovingCp.setPosition(this.movingCpStartPos.x, this.movingCpStartPos.y);
-      }
+      // if (e.shiftKey) {
+      //   x = deltaX > deltaY ? x : this.movingCpStartPos.x;
+      //   y = deltaX > deltaY ? this.movingCpStartPos.y : y;
+      // }
+      // if (deltaX + deltaY > 0.03 || e.ctrlKey) {
+      this.currentlyMovingCp.setPosition(x, y);
+      // } else {
+      //   this.currentlyMovingCp.setPosition(this.movingCpStartPos.x, this.movingCpStartPos.y);
+      // }
       this.hasChanges = true;
     }
 
@@ -333,7 +333,7 @@ export default class Editor {
     this.shouldRefresh = true;
     this.movingCpStartPos.x = cp.x;
     this.movingCpStartPos.y = cp.y;
-    
+
     this.selectedCp = cp;
     this.selectedCp.cpElement.classList.add('active');
 
