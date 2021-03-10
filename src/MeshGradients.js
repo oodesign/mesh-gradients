@@ -23,6 +23,8 @@ export function EditGradient(context) {
   const browserWindow = new BrowserWindow(options);
   const webContents = browserWindow.webContents;
   var layerMeshGradientDefinition = null;
+  var shouldShowWarnings = Settings.settingForKey('showWarnings');
+  console.log("Recovered showWarnings is:"+shouldShowWarnings)
 
   var gradientCollection = Helpers.getGradientCollection();
   var reducedGradientCollection = Helpers.getReducedGradientCollection(gradientCollection);
@@ -44,12 +46,12 @@ export function EditGradient(context) {
   })
 
   webContents.on('did-finish-load', () => {
-    webContents.executeJavaScript(`LoadMesh(${JSON.stringify(layerMeshGradientDefinition)}, ${JSON.stringify(reducedGradientCollection)})`).catch(console.error);
+    webContents.executeJavaScript(`LoadMesh(${JSON.stringify(layerMeshGradientDefinition)}, ${JSON.stringify(reducedGradientCollection)}, ${JSON.stringify(reducedCustomGradientCollection)}, ${shouldShowWarnings})`).catch(console.error);
   })
 
   webContents.on('DontShowWarningsAgain', () => {
     console.log("Saving showWarnings")
-    Settings.setGlobalSettingForKey('showWarnings', false);
+    Settings.setSettingForKey('showWarnings', false);
   });
 
   webContents.on('Cancel', () => {

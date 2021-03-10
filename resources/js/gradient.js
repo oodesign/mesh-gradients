@@ -307,6 +307,7 @@ const animate = (t) => {
   requestAnimationFrame(() => animate(t + 0.05));
 
   document.getElementById("gradientEdited").innerHTML = editor.hasChanges ? "*" : "";
+
 };
 
 
@@ -366,8 +367,11 @@ document.getElementById('btnCancel').addEventListener("click", () => {
 });
 
 let gradientCollection = [], customGradientCollection = [];
+let globalShouldShowWarnings = true;
 
-window.LoadMesh = (meshGradientDefinition, gradients, customGradients) => {
+window.LoadMesh = (meshGradientDefinition, gradients, customGradients, shouldShowWarnings) => {
+
+  globalShouldShowWarnings = shouldShowWarnings;
 
   if (meshGradientDefinition != null) {
     var parsed = JSON.parse(meshGradientDefinition);
@@ -600,15 +604,11 @@ function showWarning() {
   document.getElementById("warning").classList.remove("notDisplayed");
 }
 
-function acceptWarning() {
-  closeWarning();
-}
-
 document.getElementById('leftTab').addEventListener("click", function () { confirmAction(changeTab, { "index": 0 }) });
 document.getElementById('rightTab').addEventListener("click", function () { confirmAction(changeTab, { "index": 1 }) });
 
 function confirmAction(action, parameters) {
-  if (editor.hasChanges) {
+  if (editor.hasChanges && globalShouldShowWarnings) {
     let actionPromise = new Promise((resolve, reject) => {
       showWarning();
       document.getElementById('btnCancelWarning').addEventListener("click", function () { reject(); });
@@ -618,7 +618,7 @@ function confirmAction(action, parameters) {
       let dontShowWarnings = document.getElementById("checkNoMoreWarnings").checked;
       if (dontShowWarnings) {
         window.postMessage("DontShowWarningsAgain");
-        globalShowWarnings = false;
+        globalShouldShowWarnings = false;
       }
       closeWarning();
     }).catch(function (err) {
