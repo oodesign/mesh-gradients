@@ -23,6 +23,7 @@ function debounce(func, wait, immediate) {
 
 export default class Editor {
   constructor(initialDivisionCount, container, colorPickerContainer, meshGradientDefinition, btnSymmetric, btnAsymmetric, controlPointEditor, customColors) {
+    this.tangentFactor = 2;
     this.container = container;
     this.btnSymmetric = btnSymmetric;
     this.btnAsymmetric = btnAsymmetric;
@@ -78,7 +79,7 @@ export default class Editor {
       for (let j = 0; j <= this.divisionCount; j++) {
 
         let rgb = AColorPicker.parseColor(colormap3(j / this.divisionCount), "rgb");
-        let factor = 2;
+
         const cp = {
           x: i / this.divisionCount,
           y: j / this.divisionCount,
@@ -86,14 +87,14 @@ export default class Editor {
           g: rgb[1] / 255,
           b: rgb[2] / 255,
           id: `control-point-${cpIdCounter++}`,
-          uPosTanX: 1 / (this.divisionCount * factor),
+          uPosTanX: 1 / (this.divisionCount * this.tangentFactor),
           uPosTanY: 0,
-          uNegTanX: 1 / (this.divisionCount * factor),
+          uNegTanX: 1 / (this.divisionCount * this.tangentFactor),
           uNegTanY: 0,
           vPosTanX: 0,
-          vPosTanY: 1 / (this.divisionCount * factor),
+          vPosTanY: 1 / (this.divisionCount * this.tangentFactor),
           vNegTanX: 0,
-          vNegTanY: 1 / (this.divisionCount * factor),
+          vNegTanY: 1 / (this.divisionCount * this.tangentFactor),
         };
         const cpObject = new ControlPoint(cp, this, i, j);
         this.pointsMap.set(cpObject, { "i": i, "j": j });
@@ -281,7 +282,7 @@ export default class Editor {
 
   resetSelectedCpTangent() {
     if (this.editing && this.selectedCp) {
-      this.selectedCp.resetTangents(this.divisionCount);
+      this.selectedCp.resetTangents(this.divisionCount, this.tangentFactor);
       this.hasChanges = true;
       return true;
     }

@@ -92,11 +92,11 @@ export default class ControlPoint {
       return false;
   }
 
-  resetTangents(divisionCount) {
-    this.uTangents.posDir.setTangent(1 / divisionCount, 0);
-    this.uTangents.negDir.setTangent(1 / divisionCount, 0);
-    this.vTangents.posDir.setTangent(0, 1 / divisionCount);
-    this.vTangents.negDir.setTangent(0, 1 / divisionCount);
+  resetTangents(divisionCount, factor) {
+    this.uTangents.posDir.setTangent(1 / (divisionCount * factor), 0);
+    this.uTangents.negDir.setTangent(1 / (divisionCount * factor), 0);
+    this.vTangents.posDir.setTangent(0, 1 / (divisionCount * factor));
+    this.vTangents.negDir.setTangent(0, 1 / (divisionCount * factor));
     this.uTangents.posDir.setHidden(false);
     this.uTangents.negDir.setHidden(false);
     this.vTangents.posDir.setHidden(false);
