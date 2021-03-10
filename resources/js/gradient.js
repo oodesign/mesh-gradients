@@ -19,8 +19,7 @@ scene.add(ambientLight);
 
 const meshGradientMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, vertexColors: THREE.VertexColors, side: THREE.DoubleSide });
 const wireframeMeshMaterial = new THREE.MeshPhongMaterial({
-  color: 0xffffff,
-  opacity: 0.5,
+  color: 0x999999,
   polygonOffset: true,
   polygonOffsetFactor: 1, // positive value pushes polygon further away
   polygonOffsetUnits: 1,

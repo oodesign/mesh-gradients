@@ -76,7 +76,7 @@ body {
   letter-spacing: 0.3px;
   font-size: 22px;
   @include for-theme(light) {
-    color: $light_primaryColor;
+    color: $light_gray_900;
   }
   @include for-theme(dark) {
     color: $dark_primaryColor;
@@ -275,21 +275,6 @@ body {
   visibility: hidden;
 }
 
-.logo {
-  position: absolute;
-  top: 15px;
-  right: 23px;
-  width: 39px;
-  height: 36px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  @include for-theme(light) {
-    background-image: url("./images/LogoLight.png");
-  }
-  @include for-theme(dark) {
-    background-image: url("./images/LogoDark.png");
-  }
-}
 
 .btnApply {
   width: 100%;
@@ -494,9 +479,14 @@ body {
   background-color: $accentColor;
   color: $light_inverseColor;
 
-  img {
-    margin-top: 2px;
-    height: 13px;
+  svg {
+    #bg {
+      fill: #ffffff;
+    }
+    #lines,
+    #dots {
+      stroke: #ffffff;
+    }
   }
 
   &:hover {
@@ -521,14 +511,10 @@ body {
   font-size: 13px;
   transition: all 0.1s ease-out;
 
-  img {
-    margin-top: 2px;
-    height: 13px;
-  }
-
   @include for-theme(light) {
-    background-color: $light_gray_500;
-    color: $light_inverseColor;
+    background-color: rgba($light_gray_500, 0);
+    border: 1px solid $light_gray_500;
+    color: $light_primaryColor;
   }
   @include for-theme(dark) {
     background-color: $dark_gray_500;
@@ -537,7 +523,8 @@ body {
 
   &:hover {
     @include for-theme(light) {
-      background-color: $light_gray_500_hover;
+      background-color: rgba($light_gray_500_hover, 0.2);
+      border: 1px solid $light_gray_500_hover;
     }
     @include for-theme(dark) {
       background-color: $dark_gray_500_hover;
@@ -546,7 +533,8 @@ body {
   }
   &:active {
     @include for-theme(light) {
-      background-color: $light_gray_500_pressed;
+      background-color: rgba($light_gray_500_pressed, 0.1);
+      border: 1px solid $light_gray_500_pressed;
     }
     @include for-theme(dark) {
       background-color: $dark_gray_500_pressed;
@@ -567,20 +555,38 @@ body {
   font-size: 13px;
   transition: all 0.1s ease-out;
 
-  img {
-    margin-top: 2px;
-    height: 13px;
+  @include for-theme(light) {
+    svg {
+      #bg {
+        fill: #727272;
+      }
+      #lines,
+      #dots {
+        stroke: #727272;
+      }
+    }
+  }
+  @include for-theme(dark) {
+    svg {
+      #bg {
+        fill: #ffffff;
+      }
+      #lines,
+      #dots {
+        stroke: #ffffff;
+      }
+    }
   }
 
   @include for-theme(light) {
     background-color: rgba($light_gray_500, 0);
     border: 1px solid $light_gray_500;
-    color: $light_inverseColor;
+    color: $light_primaryColor;
   }
   @include for-theme(dark) {
     background-color: rgba($dark_gray_500, 0);
     border: 1px solid $dark_gray_500;
-    color: $dark_inverseColor;
+    color: $dark_primaryColor;
   }
 
   &:hover {
@@ -1166,10 +1172,22 @@ a {
   transition: background-color 0.1s ease-in-out;
 
   &:hover {
-    background-color: rgba($dark_primaryColor, 0.05);
+    @include for-theme(light) {
+      background-color: rgba($accentColor, 0.05);
+    }
+
+    @include for-theme(dark) {
+      background-color: rgba($dark_primaryColor, 0.05);
+    }
   }
   &:active {
-    background-color: rgba($dark_primaryColor, 0.01);
+    @include for-theme(light) {
+      background-color: rgba($accentColor, 0.1);
+    }
+
+    @include for-theme(dark) {
+      background-color: rgba($dark_primaryColor, 0.01);
+    }
   }
 }
 
@@ -1246,7 +1264,7 @@ a {
 
   &:active {
     @include for-theme(light) {
-      background-color: $light_gray_500;
+      background-color: rgba($accentColor, 0.3);
     }
     @include for-theme(dark) {
       background-color: $dark_gray_500;
@@ -1307,6 +1325,10 @@ a {
 
 .customColorPicker {
   position: absolute;
+  z-index: 40;
+  .a-color-picker {
+    box-shadow: rgba($color: #000000, $alpha: 0.15) 0 2px 16px 0 !important;
+  }
 }
 
 // #endregion

@@ -211,9 +211,16 @@ $headerSidesDistance: 18px;
 
 .dotted {
     background: transparent;
-    background-image: radial-gradient(#343434 1px, transparent 0);
     background-size: 20px 20px;
     background-position: -19px -19px;
+
+    @include for-theme(light) {
+        background-image: radial-gradient($light_backgroundColor_300 1px, transparent 0);
+    }
+
+    @include for-theme(dark) {
+        background-image: radial-gradient($dark_backgroundColor_300 1px, transparent 0);
+    }
 }
 
 .layoutPanel {
@@ -241,7 +248,13 @@ $headerSidesDistance: 18px;
         &:hover {
             .collapseLeftPanel {
                 div {
-                    background-color: $dark_backgroundColor_300_hover;
+                    @include for-theme(light) {
+                        background-color: $light_backgroundColor_300;
+                    }
+
+                    @include for-theme(dark) {
+                        background-color: $dark_backgroundColor_300_hover;
+                    }
                 }
             }
         }
@@ -257,18 +270,39 @@ $headerSidesDistance: 18px;
     z-index: 1;
 
     div {
-        background-color: $dark_backgroundColor_300;
+        box-shadow: rgba($color: #000000, $alpha: 0.15) 0 2px 16px 0;
+
+        @include for-theme(light) {
+            background-color: $light_inverseColor;
+        }
+
+        @include for-theme(dark) {
+            background-color: $dark_backgroundColor_300;
+        }
+
         border-radius: 4px;
         transform: rotate(45deg);
         width: 100%;
         height: 100%;
 
         &:hover {
-            background-color: $dark_backgroundColor_300_hover;
+            @include for-theme(light) {
+                background-color: $light_backgroundColor_300;
+            }
+
+            @include for-theme(dark) {
+                background-color: $dark_backgroundColor_300_hover;
+            }
         }
 
         &:active {
-            background-color: $dark_backgroundColor_300_pressed;
+            @include for-theme(light) {
+                background-color: $light_backgroundColor_200;
+            }
+
+            @include for-theme(dark) {
+                background-color: $dark_backgroundColor_300_pressed;
+            }
         }
     }
 

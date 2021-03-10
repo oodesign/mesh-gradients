@@ -172,9 +172,20 @@
 
 .dotted {
   background: transparent;
-  background-image: radial-gradient(#343434 1px, transparent 0);
   background-size: 20px 20px;
   background-position: -19px -19px;
+}
+
+@media (prefers-color-scheme: light) {
+  .dotted {
+    background-image: radial-gradient(#DFDFDF 1px, transparent 0);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .dotted {
+    background-image: radial-gradient(#37373A 1px, transparent 0);
+  }
 }
 
 .layoutPanel {
@@ -207,8 +218,16 @@
   width: 48px;
 }
 
-.leftPanel.collapsed:hover .collapseLeftPanel div {
-  background-color: #434346;
+@media (prefers-color-scheme: light) {
+  .leftPanel.collapsed:hover .collapseLeftPanel div {
+    background-color: #DFDFDF;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .leftPanel.collapsed:hover .collapseLeftPanel div {
+    background-color: #434346;
+  }
 }
 
 .collapseLeftPanel {
@@ -221,7 +240,8 @@
 }
 
 .collapseLeftPanel div {
-  background-color: #37373A;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
+          box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
   border-radius: 4px;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
@@ -229,12 +249,40 @@
   height: 100%;
 }
 
-.collapseLeftPanel div:hover {
-  background-color: #434346;
+@media (prefers-color-scheme: light) {
+  .collapseLeftPanel div {
+    background-color: #ffffff;
+  }
 }
 
-.collapseLeftPanel div:active {
-  background-color: #303033;
+@media (prefers-color-scheme: dark) {
+  .collapseLeftPanel div {
+    background-color: #37373A;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .collapseLeftPanel div:hover {
+    background-color: #DFDFDF;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .collapseLeftPanel div:hover {
+    background-color: #434346;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .collapseLeftPanel div:active {
+    background-color: #E9E9E9;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .collapseLeftPanel div:active {
+    background-color: #303033;
+  }
 }
 
 .collapseLeftPanel svg {
@@ -337,8 +385,8 @@
   cursor: grab;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 2px 6px 0;
-          box-shadow: rgba(0, 0, 0, 0.3) 0 2px 6px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px 0;
+          box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px 0;
 }
 
 .gradient-mesh.editing .control-point.highlighted {
@@ -479,7 +527,7 @@ body {
   html,
   body {
     background-color: #F9F9F9;
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -519,7 +567,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .heroHeaderText {
-    color: #212123;
+    color: #646464;
   }
 }
 
@@ -536,7 +584,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .primaryText {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -554,7 +602,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .primaryBoldText {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -572,7 +620,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .primaryMediumText {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -591,7 +639,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .primaryBigText {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -608,13 +656,13 @@ body {
 
 @media (prefers-color-scheme: light) {
   .secondaryText {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .secondaryText {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -627,7 +675,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .mainTitle {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -645,13 +693,13 @@ body {
 
 @media (prefers-color-scheme: light) {
   .descriptionTitle {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .descriptionTitle {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -674,13 +722,13 @@ body {
 
 @media (prefers-color-scheme: light) {
   .draggableArea span {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .draggableArea span {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -767,7 +815,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .registerHeader {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -787,13 +835,13 @@ body {
 
 @media (prefers-color-scheme: light) {
   .registerText {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .registerText {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -823,28 +871,6 @@ body {
   transition: opacity 0.2s linear, visibility 0s 0.2s;
   opacity: 0;
   visibility: hidden;
-}
-
-.logo {
-  position: absolute;
-  top: 15px;
-  right: 23px;
-  width: 39px;
-  height: 36px;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-@media (prefers-color-scheme: light) {
-  .logo {
-    background-image: url("./images/LogoLight.png");
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    background-image: url("./images/LogoDark.png");
-  }
 }
 
 .btnApply {
@@ -988,7 +1014,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .btnSecondary {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -1053,13 +1079,13 @@ body {
 
 @media (prefers-color-scheme: light) {
   .btnTertiary {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .btnTertiary {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -1113,9 +1139,13 @@ body {
   color: #ffffff;
 }
 
-.btnPrimaryRegular img {
-  margin-top: 2px;
-  height: 13px;
+.btnPrimaryRegular svg #bg {
+  fill: #ffffff;
+}
+
+.btnPrimaryRegular svg #lines,
+.btnPrimaryRegular svg #dots {
+  stroke: #ffffff;
 }
 
 .btnPrimaryRegular:hover {
@@ -1142,15 +1172,11 @@ body {
   transition: all 0.1s ease-out;
 }
 
-.btnSecondaryRegular img {
-  margin-top: 2px;
-  height: 13px;
-}
-
 @media (prefers-color-scheme: light) {
   .btnSecondaryRegular {
-    background-color: #454649;
-    color: #ffffff;
+    background-color: rgba(187, 187, 187, 0);
+    border: 1px solid #BBBBBB;
+    color: #323232;
   }
 }
 
@@ -1167,7 +1193,8 @@ body {
 
 @media (prefers-color-scheme: light) {
   .btnSecondaryRegular:hover {
-    background-color: #545558;
+    background-color: rgba(204, 204, 204, 0.2);
+    border: 1px solid #CCCCCC;
   }
 }
 
@@ -1183,7 +1210,8 @@ body {
 
 @media (prefers-color-scheme: light) {
   .btnSecondaryRegular:active {
-    background-color: #35363a;
+    background-color: rgba(170, 170, 170, 0.1);
+    border: 1px solid #AAAAAA;
   }
 }
 
@@ -1207,16 +1235,31 @@ body {
   transition: all 0.1s ease-out;
 }
 
-.btnTertiaryRegular img {
-  margin-top: 2px;
-  height: 13px;
+@media (prefers-color-scheme: light) {
+  .btnTertiaryRegular svg #bg {
+    fill: #727272;
+  }
+  .btnTertiaryRegular svg #lines,
+  .btnTertiaryRegular svg #dots {
+    stroke: #727272;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .btnTertiaryRegular svg #bg {
+    fill: #ffffff;
+  }
+  .btnTertiaryRegular svg #lines,
+  .btnTertiaryRegular svg #dots {
+    stroke: #ffffff;
+  }
 }
 
 @media (prefers-color-scheme: light) {
   .btnTertiaryRegular {
-    background-color: rgba(69, 70, 73, 0);
-    border: 1px solid #454649;
-    color: #ffffff;
+    background-color: rgba(187, 187, 187, 0);
+    border: 1px solid #BBBBBB;
+    color: #323232;
   }
 }
 
@@ -1234,8 +1277,8 @@ body {
 
 @media (prefers-color-scheme: light) {
   .btnTertiaryRegular:hover {
-    background-color: rgba(84, 85, 88, 0.2);
-    border: 1px solid #545558;
+    background-color: rgba(204, 204, 204, 0.2);
+    border: 1px solid #CCCCCC;
   }
 }
 
@@ -1252,8 +1295,8 @@ body {
 
 @media (prefers-color-scheme: light) {
   .btnTertiaryRegular:active {
-    background-color: rgba(53, 54, 58, 0.1);
-    border: 1px solid #35363a;
+    background-color: rgba(170, 170, 170, 0.1);
+    border: 1px solid #AAAAAA;
   }
 }
 
@@ -1282,16 +1325,31 @@ body {
   margin: 0 8px 8px 0;
 }
 
-.btnMesh img {
-  margin-top: 2px;
-  height: 13px;
+@media (prefers-color-scheme: light) {
+  .btnMesh svg #bg {
+    fill: #727272;
+  }
+  .btnMesh svg #lines,
+  .btnMesh svg #dots {
+    stroke: #727272;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .btnMesh svg #bg {
+    fill: #ffffff;
+  }
+  .btnMesh svg #lines,
+  .btnMesh svg #dots {
+    stroke: #ffffff;
+  }
 }
 
 @media (prefers-color-scheme: light) {
   .btnMesh {
-    background-color: rgba(69, 70, 73, 0);
-    border: 1px solid #454649;
-    color: #ffffff;
+    background-color: rgba(187, 187, 187, 0);
+    border: 1px solid #BBBBBB;
+    color: #323232;
   }
 }
 
@@ -1309,8 +1367,8 @@ body {
 
 @media (prefers-color-scheme: light) {
   .btnMesh:hover {
-    background-color: rgba(84, 85, 88, 0.2);
-    border: 1px solid #545558;
+    background-color: rgba(204, 204, 204, 0.2);
+    border: 1px solid #CCCCCC;
   }
 }
 
@@ -1327,8 +1385,8 @@ body {
 
 @media (prefers-color-scheme: light) {
   .btnMesh:active {
-    background-color: rgba(53, 54, 58, 0.1);
-    border: 1px solid #35363a;
+    background-color: rgba(170, 170, 170, 0.1);
+    border: 1px solid #AAAAAA;
   }
 }
 
@@ -1374,7 +1432,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .btnStartTrial {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -1478,13 +1536,13 @@ body {
 
 @media (prefers-color-scheme: light) {
   .btnAlreadyLicense {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .btnAlreadyLicense {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -1584,7 +1642,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .registerLogo path {
-    fill: #212123;
+    fill: #323232;
   }
 }
 
@@ -1602,7 +1660,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .settingsLogo path {
-    fill: #212123;
+    fill: #323232;
   }
 }
 
@@ -1629,7 +1687,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .infoIcon path {
-    fill: #212123;
+    fill: #323232;
   }
 }
 
@@ -1683,7 +1741,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .roundCheckbox label {
-    border-color: #454649;
+    border-color: #BBBBBB;
   }
 }
 
@@ -1695,7 +1753,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .roundCheckbox label:hover {
-    border-color: #545558;
+    border-color: #CCCCCC;
   }
 }
 
@@ -1707,7 +1765,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .roundCheckbox label:active {
-    border-color: #35363a;
+    border-color: #AAAAAA;
   }
 }
 
@@ -1727,13 +1785,13 @@ body {
 
 @media (prefers-color-scheme: light) {
   .roundCheckbox label span {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .roundCheckbox label span {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -1799,7 +1857,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .selectRoundCheckbox label {
-    border-color: #454649;
+    border-color: #BBBBBB;
   }
 }
 
@@ -1811,7 +1869,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .selectRoundCheckbox label:hover {
-    border-color: #545558;
+    border-color: #CCCCCC;
   }
 }
 
@@ -1823,7 +1881,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .selectRoundCheckbox label:active {
-    border-color: #35363a;
+    border-color: #AAAAAA;
   }
 }
 
@@ -1843,13 +1901,13 @@ body {
 
 @media (prefers-color-scheme: light) {
   .selectRoundCheckbox label span {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .selectRoundCheckbox label span {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -1931,7 +1989,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   .squareCheckbox label span {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -2117,7 +2175,7 @@ textarea {
 
 @media (prefers-color-scheme: light) {
   .tooltip .tooltipText span {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -2146,7 +2204,7 @@ textarea {
 
 @media (prefers-color-scheme: light) {
   .warningText {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -2179,7 +2237,7 @@ input[type="text"] {
 
 @media (prefers-color-scheme: light) {
   input[type="text"] {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -2317,7 +2375,7 @@ a {
 
 @media (prefers-color-scheme: light) {
   .tabButton {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -2327,12 +2385,28 @@ a {
   }
 }
 
-.tabButton:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+@media (prefers-color-scheme: light) {
+  .tabButton:hover {
+    background-color: rgba(35, 95, 255, 0.05);
+  }
 }
 
-.tabButton:active {
-  background-color: rgba(255, 255, 255, 0.01);
+@media (prefers-color-scheme: dark) {
+  .tabButton:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .tabButton:active {
+    background-color: rgba(35, 95, 255, 0.1);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .tabButton:active {
+    background-color: rgba(255, 255, 255, 0.01);
+  }
 }
 
 .tabIndicator {
@@ -2361,13 +2435,13 @@ a {
 
 @media (prefers-color-scheme: light) {
   .titleText {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .titleText {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -2392,13 +2466,13 @@ a {
 
 @media (prefers-color-scheme: light) {
   .collapsedPanelText {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .collapsedPanelText {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -2429,7 +2503,7 @@ a {
 
 @media (prefers-color-scheme: light) {
   .gradientThumbnail {
-    background-color: #515255;
+    background-color: #e9e9e9;
   }
 }
 
@@ -2441,7 +2515,7 @@ a {
 
 @media (prefers-color-scheme: light) {
   .gradientThumbnail:hover {
-    background-color: #656668;
+    background-color: #d9d9d9;
   }
 }
 
@@ -2453,7 +2527,7 @@ a {
 
 @media (prefers-color-scheme: light) {
   .gradientThumbnail:active {
-    background-color: #454649;
+    background-color: rgba(35, 95, 255, 0.3);
   }
 }
 
@@ -2502,13 +2576,13 @@ a {
 
 @media (prefers-color-scheme: light) {
   .customColors .label {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .customColors .label {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -2528,16 +2602,31 @@ a {
   padding: 2px;
 }
 
-.customColors .colorField img {
-  margin-top: 2px;
-  height: 13px;
+@media (prefers-color-scheme: light) {
+  .customColors .colorField svg #bg {
+    fill: #727272;
+  }
+  .customColors .colorField svg #lines,
+  .customColors .colorField svg #dots {
+    stroke: #727272;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .customColors .colorField svg #bg {
+    fill: #ffffff;
+  }
+  .customColors .colorField svg #lines,
+  .customColors .colorField svg #dots {
+    stroke: #ffffff;
+  }
 }
 
 @media (prefers-color-scheme: light) {
   .customColors .colorField {
-    background-color: rgba(69, 70, 73, 0);
-    border: 1px solid #454649;
-    color: #ffffff;
+    background-color: rgba(187, 187, 187, 0);
+    border: 1px solid #BBBBBB;
+    color: #323232;
   }
 }
 
@@ -2555,8 +2644,8 @@ a {
 
 @media (prefers-color-scheme: light) {
   .customColors .colorField:hover {
-    background-color: rgba(84, 85, 88, 0.2);
-    border: 1px solid #545558;
+    background-color: rgba(204, 204, 204, 0.2);
+    border: 1px solid #CCCCCC;
   }
 }
 
@@ -2573,8 +2662,8 @@ a {
 
 @media (prefers-color-scheme: light) {
   .customColors .colorField:active {
-    background-color: rgba(53, 54, 58, 0.1);
-    border: 1px solid #35363a;
+    background-color: rgba(170, 170, 170, 0.1);
+    border: 1px solid #AAAAAA;
   }
 }
 
@@ -2595,6 +2684,12 @@ a {
 
 .customColorPicker {
   position: absolute;
+  z-index: 40;
+}
+
+.customColorPicker .a-color-picker {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0 !important;
+          box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0 !important;
 }
 
 .controlPointEmptyState {
@@ -2609,13 +2704,13 @@ a {
 
 @media (prefers-color-scheme: light) {
   .controlPointEmptyState {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .controlPointEmptyState {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -2633,13 +2728,13 @@ a {
 
 @media (prefers-color-scheme: light) {
   .colorPicker .a-color-picker {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .colorPicker .a-color-picker {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -2708,7 +2803,7 @@ a {
 
 @media (prefers-color-scheme: light) {
   .colorPicker .a-color-picker input {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -2720,7 +2815,7 @@ a {
 
 @media (prefers-color-scheme: light) {
   .colorPicker .a-color-picker input {
-    border: 1px solid #454649;
+    border: 1px solid #BBBBBB;
   }
 }
 
@@ -2779,7 +2874,7 @@ a {
 
 @media (prefers-color-scheme: light) {
   .warning .title {
-    color: #212123;
+    color: #323232;
   }
 }
 
@@ -2799,13 +2894,13 @@ a {
 
 @media (prefers-color-scheme: light) {
   .warning .description {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .warning .description {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -2828,13 +2923,13 @@ a {
 
 @media (prefers-color-scheme: light) {
   .shortcutHints {
-    color: #87898E;
+    color: #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .shortcutHints {
-    color: #87898E;
+    color: #949494;
   }
 }
 
@@ -2859,13 +2954,13 @@ a {
 
 @media (prefers-color-scheme: light) {
   .shortcutHints .shortKey {
-    border: 1px solid #87898E;
+    border: 1px solid #868688;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .shortcutHints .shortKey {
-    border: 1px solid #87898E;
+    border: 1px solid #949494;
   }
 }
 /*# sourceMappingURL=main.css.map */
