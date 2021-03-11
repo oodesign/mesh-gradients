@@ -1,8 +1,6 @@
 @import "scss/_media";
 @import "scss/_colors";
 @import "scss/_layout";
-@import "scss/_meshgradients";
-
 
 // #region Font
 
@@ -150,7 +148,7 @@ body {
 
 // #endregion
 
-// #region Window
+// #region Window, backgrounds, and panels
 
 .draggableArea {
   position: absolute;
@@ -161,6 +159,34 @@ body {
 
   span {
     @include secondaryText();
+  }
+}
+
+.dotted {
+  background: transparent;
+  background-size: 20px 20px;
+  background-position: -19px -19px;
+
+  @include for-theme(light) {
+      background-image: radial-gradient($light_backgroundColor_300 1px, transparent 0);
+  }
+
+  @include for-theme(dark) {
+      background-image: radial-gradient($dark_backgroundColor_300 1px, transparent 0);
+  }
+}
+
+.layoutPanel {
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: rgba($color: #000000, $alpha: 0.15) 0 2px 16px 0;
+
+  @include for-theme(light) {
+      background-color: $light_backgroundColor_500;
+  }
+
+  @include for-theme(dark) {
+      background-color: $dark_backgroundColor_500;
   }
 }
 
@@ -997,6 +1023,92 @@ a {
 
 // #region Left Panel (Create own gradient, collection)
 
+.leftPanel {
+  width: 320px;
+  margin: 20px 0 50px 20px;
+  transition: width 0.3s ease-in-out;
+
+  &.collapsed {
+      width: 48px;
+
+      &:hover {
+          .collapseLeftPanel {
+              div {
+                  @include for-theme(light) {
+                      background-color: $light_backgroundColor_300;
+                  }
+
+                  @include for-theme(dark) {
+                      background-color: $dark_backgroundColor_300_hover;
+                  }
+              }
+          }
+      }
+  }
+}
+
+.collapseLeftPanel {
+  position: absolute;
+  right: -13px;
+  top: 15px;
+  width: 26px;
+  height: 26px;
+  z-index: 1;
+
+  div {
+      box-shadow: rgba($color: #000000, $alpha: 0.15) 0 2px 16px 0;
+
+      @include for-theme(light) {
+          background-color: $light_inverseColor;
+      }
+
+      @include for-theme(dark) {
+          background-color: $dark_backgroundColor_300;
+      }
+
+      border-radius: 4px;
+      transform: rotate(45deg);
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+          @include for-theme(light) {
+              background-color: $light_backgroundColor_300;
+          }
+
+          @include for-theme(dark) {
+              background-color: $dark_backgroundColor_300_hover;
+          }
+      }
+
+      &:active {
+          @include for-theme(light) {
+              background-color: $light_backgroundColor_200;
+          }
+
+          @include for-theme(dark) {
+              background-color: $dark_backgroundColor_300_pressed;
+          }
+      }
+  }
+
+  svg {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      pointer-events: none;
+      transition: transform 0.3s ease-in-out;
+  }
+
+  &.collapsed {
+      svg {
+          transform: rotate(180deg);
+          left: 11px;
+      }
+
+      right: 10px;
+  }
+}
 
 .titleText {
   @include titleText;
@@ -1140,6 +1252,23 @@ a {
   }
 }
 
+.cpActions {
+  margin: 12px 0 16px 0;
+
+  .btnPrimaryRegular,
+  .btnTertiaryRegular {
+      width: 56px;
+      margin-right: 8px;
+  }
+}
+
+.rightColorPicker {
+  margin: 20px 20px 0 0;
+  padding: 20px;
+  width: 272px;
+  height: 423px;
+}
+
 .colorPicker {
   .a-color-picker {
     @include secondaryText;
@@ -1264,6 +1393,83 @@ a {
 // #endregion
 
 // #region Editor
+
+.meshEditor {
+  margin: 20px 20px;
+  overflow: visible !important;
+  width: calc(100% - 40px);
+  height: calc(100% - 70px);
+  z-index: 10;
+}
+
+.gradient-mesh {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  cursor: pointer;
+
+  &.editing {
+    cursor: default;
+    user-select: none;
+
+    .control-point {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      top: 0;
+      left: 0;
+      background-color: transparent;
+      border: 2px solid white;
+      border-radius: 12px;
+      cursor: grab;
+      transform: translate(-50%, -50%);
+      box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px 0;
+    
+      &.highlighted {
+        background-color: #ffffff;
+      }
+    
+      &.moving {
+        cursor: grabbing;
+      }
+
+      &.active{
+        .tangent-point {
+          display: block;
+
+          &.hidden {
+            display: none;
+          }
+        }
+      } 
+    }
+
+    .tangent-point {
+      display: none;
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 5px;
+      background-color: white;
+      cursor: grab;
+      box-shadow: rgba(0, 0, 0, 0.3) 0 2px 6px 0;
+    
+      &.moving {
+        cursor: grabbing;
+      }
+    }
+  }
+
+  canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+  }
+}
 
 .shortcutHints {
   position: absolute;

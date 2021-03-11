@@ -163,334 +163,6 @@
   padding: 5px 10px 0 10px;
 }
 
-.rightColorPicker {
-  margin: 20px 20px 0 0;
-  padding: 20px;
-  width: 272px;
-  height: 423px;
-}
-
-.dotted {
-  background: transparent;
-  background-size: 20px 20px;
-  background-position: -19px -19px;
-}
-
-@media (prefers-color-scheme: light) {
-  .dotted {
-    background-image: radial-gradient(#DFDFDF 1px, transparent 0);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .dotted {
-    background-image: radial-gradient(#37373A 1px, transparent 0);
-  }
-}
-
-.layoutPanel {
-  overflow: hidden;
-  border-radius: 10px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
-          box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
-}
-
-@media (prefers-color-scheme: light) {
-  .layoutPanel {
-    background-color: #F9F9F9;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .layoutPanel {
-    background-color: #28282A;
-  }
-}
-
-.leftPanel {
-  width: 320px;
-  margin: 20px 0 50px 20px;
-  -webkit-transition: width 0.3s ease-in-out;
-  transition: width 0.3s ease-in-out;
-}
-
-.leftPanel.collapsed {
-  width: 48px;
-}
-
-@media (prefers-color-scheme: light) {
-  .leftPanel.collapsed:hover .collapseLeftPanel div {
-    background-color: #DFDFDF;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .leftPanel.collapsed:hover .collapseLeftPanel div {
-    background-color: #434346;
-  }
-}
-
-.collapseLeftPanel {
-  position: absolute;
-  right: -13px;
-  top: 15px;
-  width: 26px;
-  height: 26px;
-  z-index: 1;
-}
-
-.collapseLeftPanel div {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
-          box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
-  border-radius: 4px;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-  width: 100%;
-  height: 100%;
-}
-
-@media (prefers-color-scheme: light) {
-  .collapseLeftPanel div {
-    background-color: #ffffff;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .collapseLeftPanel div {
-    background-color: #37373A;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .collapseLeftPanel div:hover {
-    background-color: #DFDFDF;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .collapseLeftPanel div:hover {
-    background-color: #434346;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .collapseLeftPanel div:active {
-    background-color: #E9E9E9;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .collapseLeftPanel div:active {
-    background-color: #303033;
-  }
-}
-
-.collapseLeftPanel svg {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  pointer-events: none;
-  -webkit-transition: -webkit-transform 0.3s ease-in-out;
-  transition: -webkit-transform 0.3s ease-in-out;
-  transition: transform 0.3s ease-in-out;
-  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
-}
-
-.collapseLeftPanel.collapsed {
-  right: 10px;
-}
-
-.collapseLeftPanel.collapsed svg {
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
-  left: 11px;
-}
-
-.cpActions {
-  margin: 12px 0 16px 0;
-}
-
-.cpActions .btnPrimaryRegular,
-.cpActions .btnTertiaryRegular {
-  width: 56px;
-  margin-right: 8px;
-}
-
-.hotkey-button {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background-color: #0024;
-  border: none;
-  padding: 1rem;
-  border-radius: 3px;
-}
-
-.hotkeys {
-  position: absolute;
-  left: inherit;
-  margin: 3rem;
-}
-
-.meshEditor {
-  margin: 20px 20px;
-  overflow: visible !important;
-  width: calc(100% - 40px);
-  height: calc(100% - 70px);
-  z-index: 10;
-}
-
-.gradient-mesh {
-  position: absolute;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  cursor: pointer;
-}
-
-.gradient-mesh.editing {
-  cursor: default;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.gradient-mesh canvas {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  right: 0;
-}
-
-.gradient-mesh.editing .control-point {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  top: 0;
-  left: 0;
-  background-color: transparent;
-  border: 2px solid white;
-  border-radius: 12px;
-  cursor: -webkit-grab;
-  cursor: grab;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px 0;
-          box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px 0;
-}
-
-.gradient-mesh.editing .control-point.highlighted {
-  background-color: #ffffff;
-}
-
-.gradient-mesh.editing .control-point.moving {
-  cursor: -webkit-grabbing;
-  cursor: grabbing;
-}
-
-.gradient-mesh.editing .tangent-point {
-  display: none;
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  border-radius: 5px;
-  background-color: white;
-  cursor: -webkit-grab;
-  cursor: grab;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 2px 6px 0;
-          box-shadow: rgba(0, 0, 0, 0.3) 0 2px 6px 0;
-}
-
-.gradient-mesh.editing .tangent-point.moving {
-  cursor: -webkit-grabbing;
-  cursor: grabbing;
-}
-
-.gradient-mesh .control-point.active .tangent-point {
-  display: block;
-}
-
-.gradient-mesh .control-point.active .tangent-point.hidden {
-  display: none;
-}
-
-.color-editor {
-  position: absolute;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  right: 40px;
-  background-color: #0024;
-  padding: 24px 12px;
-  border-radius: 3px;
-}
-
-.color-editor.editing {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.color-editor input.slider {
-  margin-top: 30px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
-  width: 100%;
-  height: 2px;
-  border-radius: 1px;
-  background: #ffffff88;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: opacity 0.2s;
-  transition: opacity 0.2s;
-}
-
-.color-editor input.slider:hover {
-  opacity: 1;
-}
-
-.color-editor input.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 10px;
-  height: 10px;
-  background: #fff;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.color-editor input.slider::-moz-range-thumb {
-  width: 10px;
-  height: 10px;
-  background: #fff;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.color-editor__indicator {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #000;
-}
-
 @font-face {
   font-family: AvenirNextLTPro-Medium;
   src: url(./fonts/AvenirNextLTPro-Medium.ttf);
@@ -684,6 +356,43 @@ body {
 @media (prefers-color-scheme: dark) {
   .draggableArea span {
     color: #949494;
+  }
+}
+
+.dotted {
+  background: transparent;
+  background-size: 20px 20px;
+  background-position: -19px -19px;
+}
+
+@media (prefers-color-scheme: light) {
+  .dotted {
+    background-image: radial-gradient(#DFDFDF 1px, transparent 0);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .dotted {
+    background-image: radial-gradient(#37373A 1px, transparent 0);
+  }
+}
+
+.layoutPanel {
+  overflow: hidden;
+  border-radius: 10px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
+          box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
+}
+
+@media (prefers-color-scheme: light) {
+  .layoutPanel {
+    background-color: #F9F9F9;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .layoutPanel {
+    background-color: #28282A;
   }
 }
 
@@ -1965,6 +1674,105 @@ a {
   padding: 0 50px 15px 50px;
 }
 
+.leftPanel {
+  width: 320px;
+  margin: 20px 0 50px 20px;
+  -webkit-transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out;
+}
+
+.leftPanel.collapsed {
+  width: 48px;
+}
+
+@media (prefers-color-scheme: light) {
+  .leftPanel.collapsed:hover .collapseLeftPanel div {
+    background-color: #DFDFDF;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .leftPanel.collapsed:hover .collapseLeftPanel div {
+    background-color: #434346;
+  }
+}
+
+.collapseLeftPanel {
+  position: absolute;
+  right: -13px;
+  top: 15px;
+  width: 26px;
+  height: 26px;
+  z-index: 1;
+}
+
+.collapseLeftPanel div {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
+          box-shadow: rgba(0, 0, 0, 0.15) 0 2px 16px 0;
+  border-radius: 4px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-color-scheme: light) {
+  .collapseLeftPanel div {
+    background-color: #ffffff;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .collapseLeftPanel div {
+    background-color: #37373A;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .collapseLeftPanel div:hover {
+    background-color: #DFDFDF;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .collapseLeftPanel div:hover {
+    background-color: #434346;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .collapseLeftPanel div:active {
+    background-color: #E9E9E9;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .collapseLeftPanel div:active {
+    background-color: #303033;
+  }
+}
+
+.collapseLeftPanel svg {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  pointer-events: none;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+
+.collapseLeftPanel.collapsed {
+  right: 10px;
+}
+
+.collapseLeftPanel.collapsed svg {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  left: 11px;
+}
+
 .titleText {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
@@ -2259,6 +2067,23 @@ a {
   left: -50%;
 }
 
+.cpActions {
+  margin: 12px 0 16px 0;
+}
+
+.cpActions .btnPrimaryRegular,
+.cpActions .btnTertiaryRegular {
+  width: 56px;
+  margin-right: 8px;
+}
+
+.rightColorPicker {
+  margin: 20px 20px 0 0;
+  padding: 20px;
+  width: 272px;
+  height: 423px;
+}
+
 .colorPicker .a-color-picker {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
@@ -2452,6 +2277,98 @@ a {
 
 .warning .actions button {
   width: 90px;
+}
+
+.meshEditor {
+  margin: 20px 20px;
+  overflow: visible !important;
+  width: calc(100% - 40px);
+  height: calc(100% - 70px);
+  z-index: 10;
+}
+
+.gradient-mesh {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: pointer;
+}
+
+.gradient-mesh.editing {
+  cursor: default;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.gradient-mesh.editing .control-point {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 12px;
+  cursor: -webkit-grab;
+  cursor: grab;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px 0;
+          box-shadow: rgba(0, 0, 0, 0.5) 0 2px 6px 0;
+}
+
+.gradient-mesh.editing .control-point.highlighted {
+  background-color: #ffffff;
+}
+
+.gradient-mesh.editing .control-point.moving {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+.gradient-mesh.editing .control-point.active .tangent-point {
+  display: block;
+}
+
+.gradient-mesh.editing .control-point.active .tangent-point.hidden {
+  display: none;
+}
+
+.gradient-mesh.editing .tangent-point {
+  display: none;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: white;
+  cursor: -webkit-grab;
+  cursor: grab;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 2px 6px 0;
+          box-shadow: rgba(0, 0, 0, 0.3) 0 2px 6px 0;
+}
+
+.gradient-mesh.editing .tangent-point.moving {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+.gradient-mesh canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
 }
 
 .shortcutHints {
