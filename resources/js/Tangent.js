@@ -1,7 +1,7 @@
 const tangentClass = 'tangent-point';
 const tangentDistance = 200;
 
-export default class SingleTangent {
+export default class Tangent {
   constructor({ x = 0, y = 0, direction = true }, cp) {
     this.cp = cp;
     this.x = x;

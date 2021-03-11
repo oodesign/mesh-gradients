@@ -1,4 +1,4 @@
-import SingleTangent from './SingleTangent';
+import Tangent from './Tangent';
 const AColorPicker = require('a-color-picker');
 
 export default class ControlPoint {
@@ -18,13 +18,13 @@ export default class ControlPoint {
     this.originalPosYTangentLength = vPosTanY;
     this.originalNegYTangentLength = vNegTanY;
     this.uTangents = {
-      posDir: new SingleTangent({ x: uPosTanX, y: uPosTanY, direction: true }, this),
-      negDir: new SingleTangent({ x: uNegTanX, y: uNegTanY, direction: false }, this),
+      posDir: new Tangent({ x: uPosTanX, y: uPosTanY, direction: true }, this),
+      negDir: new Tangent({ x: uNegTanX, y: uNegTanY, direction: false }, this),
     };
 
     this.vTangents = {
-      posDir: new SingleTangent({ x: vPosTanX, y: vPosTanY, direction: true }, this),
-      negDir: new SingleTangent({ x: vNegTanX, y: vNegTanY, direction: false }, this),
+      posDir: new Tangent({ x: vPosTanX, y: vPosTanY, direction: true }, this),
+      negDir: new Tangent({ x: vNegTanX, y: vNegTanY, direction: false }, this),
     };
 
     if ((uPosTanX == uNegTanX) && (uPosTanY == uNegTanY) && (vPosTanX == vNegTanX) && (vPosTanY == vNegTanY)) {
