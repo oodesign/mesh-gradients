@@ -1,129 +1,80 @@
-$light_backgroundColor:#F9F9F9;
-$dark_backgroundColor:#212123;
-
-$light_backgroundColor_500:#F9F9F9;
-$dark_backgroundColor_500:#28282A;
-
-$light_backgroundColor_400:#F9F9F9;
-$dark_backgroundColor_400:#2F2F32;
-
-$light_backgroundColor_300:#DFDFDF;
-$dark_backgroundColor_300:#37373A;
-
-$light_backgroundColor_200:#E9E9E9;
-$dark_backgroundColor_200:#3e3b3b;
-
-$light_gray_900:#646464;
-$light_gray_500:#BBBBBB;
-$dark_gray_500:#454649;
-
-$light_gray_400:#e9e9e9;
-$dark_gray_400:#515255;
-
-$light_gray_300:#d9d9d9;
-$dark_gray_300:#656668;
-
-$light_primaryColor: #323232;
-$dark_primaryColor: #ffffff;
-
-$light_secondaryColor: #868688;
-$dark_secondaryColor: #949494;
-
-$light_inverseColor: #ffffff;
-$dark_inverseColor: #ffffff;
-
-$light_leftPanelBackgroundColor:#F0F0F0;
-$dark_leftPanelBackgroundColor:#28282D;
-
-
-$light_bottomBarBackgroundColor:#F0F0F0;
-$light_bottomBarBorderColor:#DDDDDD;
-$dark_bottomBarBackgroundColor:#28282D;
-$dark_bottomBarBorderColor:#4D4D4D;
-
 $accentColor: #235FFF;
 $accentColorHover:#4274ff;
 $accentColorActive: #1b4edb;
 $accentColorDarkText: #1b52e9;
 
-$complementaryColor: #52CF67;
+
+$light_backgroundColor:#F9F9F9;
+$light_backgroundColor_300:#DFDFDF;
+$light_backgroundColor_200:#E9E9E9;
+$light_gray_900:#646464;
+$light_gray_500:#BBBBBB;
+$light_gray_500_hover:#CCCCCC;
+$light_gray_500_pressed:#AAAAAA;
+
+$light_primaryColor: #323232;
+$light_secondaryColor: #868688;
+
+$light_inverseColor: #ffffff;
+
+$light_bottomBarBackgroundColor:#F0F0F0;
+$light_bottomBarBorderColor:#DDDDDD;
 
 $light_inputBorderColor:#D6D6E3;
-$dark_inputBorderColor:#6A6A78;
-
-$light_inputBorderColorHover:#B6A8E4;
-$dark_inputBorderColorHover:#ffffff;
 
 $light_btnSecondaryBorderColor: #9797A9;
 $light_btnSecondaryBackgroundHover: rgba($accentColor,0.1); 
 $light_btnSecondaryBackgroundActive: rgba($accentColor,0.2);
-$dark_btnSecondaryBorderColor: #9595A8;
-$dark_btnSecondaryBackgroundHover: rgba($accentColor,0.1);
-$dark_btnSecondaryBackgroundActive: rgba($accentColor,0.2);
 
-$light_lessWeightBorderColor: #B6B6C4; 
-$light_moreWeightBorderColor: #7D7D88;
-$dark_lessWeightBorderColor: #616170; 
-$dark_moreWeightBorderColor: #ffffff;
-
-$light_symbolPreviewListItemBg: transparent;
-$light_symbolPreviewListItemBgHover: #f0f0f0;
-$light_symbolPreviewListItemBgSelected: #dfdfdf;
-$dark_symbolPreviewListItemBg: transparent;
-$dark_symbolPreviewListItemBgHover: #28282D;
-$dark_symbolPreviewListItemBgSelected: #35353C;
-
-$light_SeparatorColor:#616170;
-$dark_SeparatorColor:#B6B6C4;
 
 $light_scrollThumbColor: #C9C9C9;
 $light_scrollThumbColorHover: #B9b9b9;
 $light_scrollThumbColorActive: #a9a9a9;
+
+$light_tooltipColor:#FFFFFF;
+
+$light_inputBackgroundColor: #FFFFFF;
+$light_inputBorderColor: #A9A9A9;
+
+
+
+$dark_backgroundColor:#212123;
+
+$dark_backgroundColor_500:#28282A;
+$dark_backgroundColor_400:#2F2F32;
+$dark_backgroundColor_300:#37373A;
+$dark_backgroundColor_300_hover:#434346;
+$dark_backgroundColor_300_pressed:#303033;
+$dark_backgroundColor_200:#3e3b3b;
+
+$dark_gray_500:#454649;
+$dark_gray_500_hover:#545558;
+$dark_gray_500_pressed:#35363a;
+$dark_gray_400:#515255;
+$dark_gray_300:#6A6A6A;
+
+$dark_primaryColor: #ffffff;
+$dark_secondaryColor: #949494;
+
+$dark_inverseColor: #ffffff;
+
+$dark_bottomBarBackgroundColor:#28282D;
+$dark_bottomBarBorderColor:#4D4D4D;
+
+$dark_btnSecondaryBorderColor: #9595A8;
+$dark_btnSecondaryBackgroundHover: rgba($accentColor,0.1);
+$dark_btnSecondaryBackgroundActive: rgba($accentColor,0.2);
+
 $dark_scrollThumbColor: #424242;
 $dark_scrollThumbColorHover: #606060;
 $dark_scrollThumbColorActive: #323232;
 
-
-$light_sliderBarColor: #C9C9C9;
-$light_sliderBarColorHover: #B9b9b9;
-$dark_sliderBarColor: #616170;
-$dark_sliderBarColorHover: #6C6C82;
-
-$light_emptyStateIcon: #c5c5cA;
-$dark_emptyStateIcon: #616170;
-
-$light_contrastModeColor: #c9c9c9;
-$dark_contrastModeColor: #727282;
-
-$light_tooltipColor:#FFFFFF;
 $dark_tooltipColor:#39393E;
 
-$light_backgroundColor:#F9F9F9;
-$dark_backgroundColor:#212124;
-
-$light_inputBackgroundColor: #FFFFFF;
 $dark_inputBackgroundColor: #28282A;
-$light_inputBorderColor: #A9A9A9;
-$dark_inputBorderColor: #6A6A6A;
 
 $warningColor: #FF6D6D;
 $confirmationColor: #9AEF6F;
 
-$light_leftListItemSeparatorColor:#D0D0D0;
-$dark_leftListItemSeparatorColor:#3A3A42;
-
-$light_leftListItemHoverBackgroundColor:#E9E9E9;
-$dark_leftListItemHoverBackgroundColor:#35353C;
-$light_leftListItemSelectedBackgroundColor:#DFDFDF;
-$dark_leftListItemSelectedBackgroundColor:#474750;
-
-$dark_backgroundColor_300_hover:#434346;
-$dark_backgroundColor_300_pressed:#303033;
-
-
-$light_gray_500_hover:#CCCCCC;
-$dark_gray_500_hover:#545558;
-$light_gray_500_pressed:#AAAAAA;
-$dark_gray_500_pressed:#35363a;
 
 

@@ -206,7 +206,7 @@ body {
 @media (prefers-color-scheme: dark) {
   html,
   body {
-    background-color: #212124;
+    background-color: #212123;
     color: #ffffff;
   }
 }
@@ -1852,7 +1852,7 @@ a {
 
 @media (prefers-color-scheme: light) {
   .gradientThumbnail {
-    background-color: #e9e9e9;
+    background-color: #E9E9E9;
   }
 }
 
@@ -1864,13 +1864,13 @@ a {
 
 @media (prefers-color-scheme: light) {
   .gradientThumbnail:hover {
-    background-color: #d9d9d9;
+    background-color: #DFDFDF;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .gradientThumbnail:hover {
-    background-color: #656668;
+    background-color: #6A6A6A;
   }
 }
 
@@ -2214,7 +2214,7 @@ a {
   width: 470px;
   padding: 24px;
   margin: 0 auto;
-  background-color: #212124;
+  background-color: #212123;
   border-radius: 8px;
   -webkit-box-shadow: 0 5px 10px 3px rgba(0, 0, 0, 0.5);
           box-shadow: 0 5px 10px 3px rgba(0, 0, 0, 0.5);

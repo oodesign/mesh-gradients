@@ -182,7 +182,7 @@ body {
   box-shadow: rgba($color: #000000, $alpha: 0.15) 0 2px 16px 0;
 
   @include for-theme(light) {
-      background-color: $light_backgroundColor_500;
+      background-color: $light_backgroundColor;
   }
 
   @include for-theme(dark) {
@@ -973,7 +973,7 @@ input[type="text"] {
   }
   @include for-theme(dark) {
     background-color: $dark_inputBackgroundColor;
-    border: 1px solid $dark_inputBorderColor;
+    border: 1px solid $dark_gray_300;
   }
 }
 
@@ -1152,7 +1152,7 @@ a {
   padding: 3px;
 
   @include for-theme(light) {
-    background-color: $light_gray_400;
+    background-color: $light_backgroundColor_200;
   }
   @include for-theme(dark) {
     background-color: $dark_gray_400;
@@ -1160,7 +1160,7 @@ a {
 
   &:hover {
     @include for-theme(light) {
-      background-color: $light_gray_300;
+      background-color: $light_backgroundColor_300;
     }
     @include for-theme(dark) {
       background-color: $dark_gray_300;
@@ -1192,7 +1192,7 @@ a {
 
     img {
       @include for-theme(light) {
-        border: 1px solid $light_backgroundColor_500;
+        border: 1px solid $light_backgroundColor;
       }
       @include for-theme(dark) {
         border: 1px solid $dark_backgroundColor_500;
@@ -1275,7 +1275,7 @@ a {
     border-radius: 10px;
     box-shadow: none;
     @include for-theme(light) {
-      background-color: $light_backgroundColor_400;
+      background-color: $light_backgroundColor;
     }
 
     @include for-theme(dark) {
