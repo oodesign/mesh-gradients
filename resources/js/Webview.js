@@ -3,13 +3,14 @@ import Editor from './Editor';
 var MeshLine = require('three.meshline');
 const AColorPicker = require('a-color-picker');
 
-
 let initialDivisionCount = 2;
 let customDivisionCount = 2;
 let establishedCollectionGradientId = 1;
 var accentColor = 0x235FFF;
 let customColors = ["#FFffff", "#3a69fd", "#00ffa2", "#00FFFF"];
 var editor;
+
+//#region Scene and mesh variables initialization
 
 const scene = new THREE.Scene();
 const camera = new THREE.OrthographicCamera(0, 1, 0, 1, 1, 1000);
@@ -21,7 +22,7 @@ const meshGradientMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, vert
 const wireframeMeshMaterial = new THREE.MeshPhongMaterial({
   color: 0x999999,
   polygonOffset: true,
-  polygonOffsetFactor: 1, // positive value pushes polygon further away
+  polygonOffsetFactor: 1, 
   polygonOffsetUnits: 1,
   transparent: true,
 });
@@ -29,7 +30,6 @@ const wireframeMeshMaterial = new THREE.MeshPhongMaterial({
 const renderer = new THREE.WebGLRenderer({ alpha: true });
 const parentElement = document.querySelector('.gradient-mesh');
 const colorPickerContainer = document.querySelector('.aColorPicker');
-// renderer.setSize(parentElement.clientWidth, parentElement.clientHeight);
 const imageQuality = 5000;
 renderer.setSize(imageQuality, imageQuality);
 renderer.domElement.style = '';
@@ -54,8 +54,35 @@ let vertexColors = new Array(patchVertexCount * 3);
 let vertices;
 let colors;
 
+//#endregion
+
+//#region Editor and UI variables initialization
+
+let lines = [];
+let horizontalLines = new Map();
+let verticalLines = new Map();
+const linesMaterial = new THREE.LineBasicMaterial({ color: accentColor, linewidth: 8 });
+let linesVisible = false;
+
+let redrawInterval;
+
+let gradientCollection = [], customGradientCollection = [];
+let globalShouldShowWarnings = true;
+
+let customColorPicker = AColorPicker.createPicker(document.getElementById('customColorPicker'), { showHSL: false, showAlpha: false });
+document.getElementById('customColorPicker').style.display = "none";
+let editingCustomColor = 0;
+let updateCustomPicker = true;
+customColorPicker.on('change', (picker, color) => {
+  if (updateCustomPicker) updateCustomPickerColor(picker);
+});
+
+//#endregion
+
 initializeCustomColors();
 addMeshSizeListeners();
+
+//#region Mesh calculation
 
 function transpose(matrix) {
   const w = matrix.length || 0;
@@ -243,13 +270,9 @@ function calculateHermiteSurface(t) {
   gradientMesh.geometry.attributes.color.needsUpdate = true;
 }
 
-function log(message) {
-  window.postMessage("nativeLog", message);
-}
+//#endregion
 
-function log2(message) {
-  document.getElementById("logger").innerHTML = " - " + message;
-}
+//#region Listeners for KeyDown, Load, and Resize
 
 window.addEventListener('keydown', (e) => {
   switch (e.code) {
@@ -265,7 +288,6 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-
 window.addEventListener('load', (e) => {
   setEditorScenario();
   setTimeout(setEditorScenario, 100);
@@ -274,6 +296,10 @@ window.addEventListener('load', (e) => {
 window.addEventListener('resize', (e) => {
   setEditorScenario();
 });
+
+//#endregion
+
+//#region Present and update scenario
 
 function setEditorScenario() {
   var meshEditor = document.getElementById("meshEditor");
@@ -310,8 +336,18 @@ const animate = (t) => {
 
 };
 
+//#endregion
 
-// UI Interaction
+//#region UI Interaction
+
+
+window.addEventListener("click", hidePicker);
+document.getElementById('collapseLeftPanel').addEventListener("click", toggleLeftPanel);
+document.getElementById('color1').addEventListener("click", function (e) { showPicker(e, 0); });
+document.getElementById('color2').addEventListener("click", function (e) { showPicker(e, 1); });
+document.getElementById('color3').addEventListener("click", function (e) { showPicker(e, 2); });
+document.getElementById('color4').addEventListener("click", function (e) { showPicker(e, 3); });
+document.getElementById('customColorPicker').addEventListener("click", stopPropagation);
 
 document.addEventListener('contextmenu', (e) => {
   //e.preventDefault()
@@ -366,8 +402,9 @@ document.getElementById('btnCancel').addEventListener("click", () => {
   cancelAssignation();
 });
 
-let gradientCollection = [], customGradientCollection = [];
-let globalShouldShowWarnings = true;
+//#endregion
+
+//#region Load and Change Gradient features
 
 window.LoadMesh = (meshGradientDefinition, gradients, customGradients, shouldShowWarnings) => {
 
@@ -398,6 +435,22 @@ window.ChangeGradient = (meshGradientDefinition) => {
     editor.shouldRefresh = true;
   }
 }
+
+function requestChangeGradient(parameters) {
+  let id = parameters.id;
+  establishedCollectionGradientId = id;
+
+  gradientCollection.forEach(g => {
+    document.getElementById("gradientThumbnail" + g.id).classList.remove("selected");
+  });
+  document.getElementById("gradientThumbnail" + establishedCollectionGradientId).classList.add("selected");
+
+  window.postMessage("ChangeGradient", id);
+}
+
+//#endregion
+
+//#region Plugin UI
 
 function drawGradientCollection(title, collection) {
 
@@ -431,27 +484,163 @@ function drawGradientCollection(title, collection) {
   document.getElementById("collectionContent").appendChild(section);
 }
 
-function requestChangeGradient(parameters) {
-  let id = parameters.id;
-  establishedCollectionGradientId = id;
-
-  gradientCollection.forEach(g => {
-    document.getElementById("gradientThumbnail" + g.id).classList.remove("selected");
-  });
-  document.getElementById("gradientThumbnail" + establishedCollectionGradientId).classList.add("selected");
-
-  window.postMessage("ChangeGradient", id);
+function closeWarning() {
+  document.getElementById("warning").classList.add("notDisplayed");
 }
 
-let horizontalLines = new Map();
-let verticalLines = new Map();
-const coolmaterial = new THREE.LineBasicMaterial({ color: accentColor, linewidth: 8 });
-let line;
-let linesVisible = false;
+function showWarning() {
+  document.getElementById("warning").classList.remove("notDisplayed");
+}
 
+document.getElementById('leftTab').addEventListener("click", function () { confirmAction(changeTab, { "index": 0 }) });
+document.getElementById('rightTab').addEventListener("click", function () { confirmAction(changeTab, { "index": 1 }) });
+
+function confirmAction(action, parameters) {
+  if (editor.hasChanges && globalShouldShowWarnings) {
+    let actionPromise = new Promise((resolve, reject) => {
+      showWarning();
+      document.getElementById('btnCancelWarning').addEventListener("click", function () { reject(); });
+      document.getElementById('btnAcceptWarning').addEventListener("click", function () { resolve(); });
+    }).then(function (val) {
+      action(parameters);
+      let dontShowWarnings = document.getElementById("checkNoMoreWarnings").checked;
+      if (dontShowWarnings) {
+        window.postMessage("DontShowWarningsAgain");
+        globalShouldShowWarnings = false;
+      }
+      closeWarning();
+    }).catch(function (err) {
+      closeWarning();
+    });
+  }
+  else
+    action(parameters);
+}
+
+function changeTab(parameters) {
+  let index = parameters.index;
+  switch (index) {
+    case 0:
+      document.getElementById("tabIndicator").style.left = "0";
+      document.getElementById("collectionContent").classList.add("notDisplayed");
+      document.getElementById("createYourOwnContent").classList.remove("notDisplayed");
+
+      loadCustomGradientUI();
+      break;
+    case 1:
+      document.getElementById("tabIndicator").style.left = "50%";
+      document.getElementById("collectionContent").classList.remove("notDisplayed");
+      document.getElementById("createYourOwnContent").classList.add("notDisplayed");
+
+      loadCollectionGradientUI();
+      break;
+  }
+}
+
+function loadCollectionGradientUI() {
+  requestChangeGradient({ "id": establishedCollectionGradientId });
+}
+
+function loadCustomGradientUI() {
+  activateSizeElement(customDivisionCount)
+  editor.changeDivisionCount(customDivisionCount);
+  editor.initControlPoints();
+  initializeHermiteSurface();
+  editor.shouldRefresh = true;
+}
+
+function updateCustomPickerColor(picker) {
+  customColors[editingCustomColor] = (AColorPicker.parseColor(picker.color, "hex"));
+  document.getElementById("color" + (editingCustomColor + 1) + "text").innerHTML = customColors[editingCustomColor];
+  document.getElementById("color" + (editingCustomColor + 1) + "thumbnail").style.backgroundColor = customColors[editingCustomColor];
+  editor.updateColors(customColors);
+}
+
+function addMeshSizeListeners() {
+  for (var i = 2; i < 10; i++) {
+    document.getElementById('meshSize' + i).addEventListener("click", function (e) { changeMeshDivisions(e); });
+  }
+}
+
+function activateSizeElement(index) {
+  for (var i = 2; i < 10; i++) {
+    document.getElementById('meshSize' + i).classList.remove("selected");
+  }
+  document.getElementById('meshSize' + index).classList.add("selected");
+}
+
+function initializeCustomColors() {
+  for (var i = 0; i < customColors.length; i++) {
+    document.getElementById("color" + (i + 1) + "text").innerHTML = customColors[i];
+    document.getElementById("color" + (i + 1) + "thumbnail").style.backgroundColor = customColors[i];
+  }
+}
+
+function stopPropagation(e) {
+  e.stopPropagation();
+}
+
+function hidePicker() {
+  document.getElementById('customColorPicker').style.display = "none";
+}
+
+function showPicker(e, colorIndex) {
+  stopPropagation(e);
+  updateCustomPicker = false;
+  customColorPicker.color = customColors[colorIndex];
+  updateCustomPicker = true;
+  editingCustomColor = colorIndex;
+
+  let fieldID = "color" + (colorIndex + 1);
+  let bRect = document.getElementById(fieldID).getBoundingClientRect();
+  document.getElementById('customColorPicker').style.left = bRect.x + "px";
+  document.getElementById('customColorPicker').style.top = (bRect.y + bRect.height) + "px";
+  document.getElementById('customColorPicker').style.display = "block";
+}
+
+function hideLeftPanel() {
+  document.getElementById("leftPanel").classList.add("notDisplayed");
+}
+
+function toggleLeftPanel(e) {
+  e.stopPropagation();
+
+  if (document.getElementById("leftPanel").classList.contains("collapsed")) {
+    document.getElementById("collapseLeftPanel").classList.remove("collapsed");
+    document.getElementById("collapsedPanelText").classList.remove("deferredFadeIn");
+    document.getElementById("collapsedPanelText").classList.add("quickFadeOut");
+    document.getElementById("leftPanel").classList.remove("collapsed");
+    document.getElementById("tabs").classList.remove("quickFadeOut");
+    document.getElementById("tabs").classList.add("deferredFadeIn");
+    document.getElementById("tabContent").classList.remove("quickFadeOut");
+    document.getElementById("tabContent").classList.add("deferredFadeIn");
+
+    document.getElementById('leftPanel').removeEventListener("click", toggleLeftPanel);
+  }
+  else {
+    document.getElementById("collapseLeftPanel").classList.add("collapsed");
+    document.getElementById("collapsedPanelText").classList.remove("quickFadeOut");
+    document.getElementById("collapsedPanelText").classList.add("deferredFadeIn");
+    document.getElementById("leftPanel").classList.add("collapsed");
+    document.getElementById("tabs").classList.remove("deferredFadeIn");
+    document.getElementById("tabs").classList.add("quickFadeOut");
+    document.getElementById("tabContent").classList.remove("deferredFadeIn");
+    document.getElementById("tabContent").classList.add("quickFadeOut");
+
+    document.getElementById('leftPanel').addEventListener("click", toggleLeftPanel);
+  }
+
+  redrawInterval = setInterval(setEditorScenario, 30);
+  setTimeout(function () {
+    clearInterval(redrawInterval);
+  }, 400);
+}
+
+//#endregion
+
+//#region Draw and update Editor lines
 
 const toggleLines = () => {
-  // window.postMessage("nativeLog", "toggle lines")
   linesVisible = !linesVisible;
   document.getElementById("showGrid").innerHTML = linesVisible ? "Hide grid" : "Show grid";
 
@@ -467,14 +656,11 @@ const toggleLines = () => {
   renderer.render(scene, camera);
 }
 
-let lines = [];
-
 const drawLines = () => {
 
   lines.forEach(line => { scene.remove(line); });
   lines = [];
 
-  // window.postMessage("nativeLog", "creating lines")
   for (let i = 0; i < editor.controlPointMatrix.length; i++) {
     for (let j = 0; j < editor.controlPointMatrix[i].length - 1; j++) {
 
@@ -494,7 +680,7 @@ const drawLines = () => {
       );
 
       let geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(50));
-      let curveObject = new THREE.Line(geometry, coolmaterial);
+      let curveObject = new THREE.Line(geometry, linesMaterial);
       curveObject.curve = curve;
       curveObject.visible = linesVisible;
       scene.add(curveObject);
@@ -521,9 +707,8 @@ const drawLines = () => {
         new THREE.Vector3(p2.x, p2.y, 2)
       );
 
-      //window.postMessage("nativeLog", "creating line")
       let geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(50));
-      let curveObject = new THREE.Line(geometry, coolmaterial);
+      let curveObject = new THREE.Line(geometry, linesMaterial);
       curveObject.visible = linesVisible;
       curveObject.curve = curve;
       scene.add(curveObject);
@@ -594,109 +779,9 @@ const updateCPlines = (cp) => {
 
 }
 
+//#endregion
 
-
-function closeWarning() {
-  document.getElementById("warning").classList.add("notDisplayed");
-}
-
-function showWarning() {
-  document.getElementById("warning").classList.remove("notDisplayed");
-}
-
-document.getElementById('leftTab').addEventListener("click", function () { confirmAction(changeTab, { "index": 0 }) });
-document.getElementById('rightTab').addEventListener("click", function () { confirmAction(changeTab, { "index": 1 }) });
-
-function confirmAction(action, parameters) {
-  if (editor.hasChanges && globalShouldShowWarnings) {
-    let actionPromise = new Promise((resolve, reject) => {
-      showWarning();
-      document.getElementById('btnCancelWarning').addEventListener("click", function () { reject(); });
-      document.getElementById('btnAcceptWarning').addEventListener("click", function () { resolve(); });
-    }).then(function (val) {
-      action(parameters);
-      let dontShowWarnings = document.getElementById("checkNoMoreWarnings").checked;
-      if (dontShowWarnings) {
-        window.postMessage("DontShowWarningsAgain");
-        globalShouldShowWarnings = false;
-      }
-      closeWarning();
-    }).catch(function (err) {
-      closeWarning();
-    });
-  }
-  else
-    action(parameters);
-}
-
-function changeTab(parameters) {
-  let index = parameters.index;
-  switch (index) {
-    case 0:
-      document.getElementById("tabIndicator").style.left = "0";
-      document.getElementById("collectionContent").classList.add("notDisplayed");
-      document.getElementById("createYourOwnContent").classList.remove("notDisplayed");
-
-      loadCustomGradientUI();
-      break;
-    case 1:
-      document.getElementById("tabIndicator").style.left = "50%";
-      document.getElementById("collectionContent").classList.remove("notDisplayed");
-      document.getElementById("createYourOwnContent").classList.add("notDisplayed");
-
-      loadCollectionGradientUI();
-      break;
-  }
-}
-
-function loadCollectionGradientUI() {
-  requestChangeGradient({ "id": establishedCollectionGradientId });
-}
-
-function loadCustomGradientUI() {
-  activateSizeElement(customDivisionCount)
-  editor.changeDivisionCount(customDivisionCount);
-  editor.initControlPoints();
-  initializeHermiteSurface();
-  editor.shouldRefresh = true;
-}
-
-let customColorPicker = AColorPicker.createPicker(document.getElementById('customColorPicker'), { showHSL: false, showAlpha: false });
-document.getElementById('customColorPicker').style.display = "none";
-let editingCustomColor = 0;
-let updateCustomPicker = true;
-customColorPicker.on('change', (picker, color) => {
-  if (updateCustomPicker) updateCustomPickerColor(picker);
-});
-
-function updateCustomPickerColor(picker) {
-  customColors[editingCustomColor] = (AColorPicker.parseColor(picker.color, "hex"));
-  document.getElementById("color" + (editingCustomColor + 1) + "text").innerHTML = customColors[editingCustomColor];
-  document.getElementById("color" + (editingCustomColor + 1) + "thumbnail").style.backgroundColor = customColors[editingCustomColor];
-  editor.updateColors(customColors);
-}
-
-window.addEventListener("click", hidePicker);
-document.getElementById('collapseLeftPanel').addEventListener("click", toggleLeftPanel);
-document.getElementById('color1').addEventListener("click", function (e) { showPicker(e, 0); });
-document.getElementById('color2').addEventListener("click", function (e) { showPicker(e, 1); });
-document.getElementById('color3').addEventListener("click", function (e) { showPicker(e, 2); });
-document.getElementById('color4').addEventListener("click", function (e) { showPicker(e, 3); });
-document.getElementById('customColorPicker').addEventListener("click", stopPropagation);
-
-
-function addMeshSizeListeners() {
-  for (var i = 2; i < 10; i++) {
-    document.getElementById('meshSize' + i).addEventListener("click", function (e) { changeMeshDivisions(e); });
-  }
-}
-
-function activateSizeElement(index) {
-  for (var i = 2; i < 10; i++) {
-    document.getElementById('meshSize' + i).classList.remove("selected");
-  }
-  document.getElementById('meshSize' + index).classList.add("selected");
-}
+//#region Editor interaction
 
 function changeMeshDivisions(e) {
   activateSizeElement(e.target.value)
@@ -708,74 +793,4 @@ function changeMeshDivisions(e) {
   editor.shouldRefresh = true;
 }
 
-function initializeCustomColors() {
-  for (var i = 0; i < customColors.length; i++) {
-    document.getElementById("color" + (i + 1) + "text").innerHTML = customColors[i];
-    document.getElementById("color" + (i + 1) + "thumbnail").style.backgroundColor = customColors[i];
-  }
-}
-
-function stopPropagation(e) {
-  e.stopPropagation();
-}
-
-function hidePicker() {
-  document.getElementById('customColorPicker').style.display = "none";
-}
-
-function showPicker(e, colorIndex) {
-  stopPropagation(e);
-  updateCustomPicker = false;
-  customColorPicker.color = customColors[colorIndex];
-  updateCustomPicker = true;
-  editingCustomColor = colorIndex;
-
-  let fieldID = "color" + (colorIndex + 1);
-  let bRect = document.getElementById(fieldID).getBoundingClientRect();
-  document.getElementById('customColorPicker').style.left = bRect.x + "px";
-  document.getElementById('customColorPicker').style.top = (bRect.y + bRect.height) + "px";
-  document.getElementById('customColorPicker').style.display = "block";
-}
-
-let redrawInterval;
-
-
-
-function hideLeftPanel() {
-  document.getElementById("leftPanel").classList.add("notDisplayed");
-}
-
-function toggleLeftPanel(e) {
-  e.stopPropagation();
-
-  if (document.getElementById("leftPanel").classList.contains("collapsed")) {
-    document.getElementById("collapseLeftPanel").classList.remove("collapsed");
-    document.getElementById("collapsedPanelText").classList.remove("deferredFadeIn");
-    document.getElementById("collapsedPanelText").classList.add("quickFadeOut");
-    document.getElementById("leftPanel").classList.remove("collapsed");
-    document.getElementById("tabs").classList.remove("quickFadeOut");
-    document.getElementById("tabs").classList.add("deferredFadeIn");
-    document.getElementById("tabContent").classList.remove("quickFadeOut");
-    document.getElementById("tabContent").classList.add("deferredFadeIn");
-
-    document.getElementById('leftPanel').removeEventListener("click", toggleLeftPanel);
-  }
-  else {
-    document.getElementById("collapseLeftPanel").classList.add("collapsed");
-    document.getElementById("collapsedPanelText").classList.remove("quickFadeOut");
-    document.getElementById("collapsedPanelText").classList.add("deferredFadeIn");
-    document.getElementById("leftPanel").classList.add("collapsed");
-    document.getElementById("tabs").classList.remove("deferredFadeIn");
-    document.getElementById("tabs").classList.add("quickFadeOut");
-    document.getElementById("tabContent").classList.remove("deferredFadeIn");
-    document.getElementById("tabContent").classList.add("quickFadeOut");
-
-    document.getElementById('leftPanel').addEventListener("click", toggleLeftPanel);
-  }
-
-  redrawInterval = setInterval(setEditorScenario, 30);
-  setTimeout(function () {
-    clearInterval(redrawInterval);
-  }, 400);
-}
-
+//#endregion
