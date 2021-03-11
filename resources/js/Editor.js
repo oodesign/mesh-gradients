@@ -107,39 +107,6 @@ export default class Editor {
     this.hasChanges = false;
   }
 
-  changeDivisionCount(newDivisionCount) {
-    this.divisionCount = newDivisionCount;
-    this.controlPointArray.forEach(cp => {
-      this.container.removeChild(cp.cpElement);
-    });
-    this.pointsMap.clear();
-    this.hasChanges = false;
-  }
-
-  updateColors(customColors) {
-    let colormap = interpolate([customColors[0], customColors[1]]);
-    let colormap2 = interpolate([customColors[2], customColors[3]]);
-    let firstRowColors = [];
-    let lastRowColors = [];
-    for (let i = 0; i <= this.divisionCount; i++) {
-      firstRowColors.push(colormap(i / this.divisionCount));
-      lastRowColors.push(colormap2(i / this.divisionCount));
-    }
-
-    for (let i = 0; i <= this.divisionCount; i++) {
-      let colormap3 = interpolate([firstRowColors[i], lastRowColors[i]]);
-      for (let j = 0; j <= this.divisionCount; j++) {
-        let rgb = AColorPicker.parseColor(colormap3(j / this.divisionCount), "rgb");
-        this.controlPointMatrix[i][j].r = rgb[0] / 255;
-        this.controlPointMatrix[i][j].g = rgb[1] / 255;
-        this.controlPointMatrix[i][j].b = rgb[2] / 255;
-      }
-    }
-
-    this.shouldRefresh = true;
-    this.hasChanges = true;
-  }
-
   loadControlPoints(meshGradientDefinition) {
 
     this.resetMultipleSelection();
@@ -184,13 +151,45 @@ export default class Editor {
   }
 
   initEventListeners() {
-    this.container.addEventListener('click', this.onClick.bind(this));
     this.container.addEventListener('mouseup', this.onMouseUp.bind(this));
     this.container.addEventListener('touchend', this.onTouchEnd.bind(this));
     window.addEventListener('mousemove', this.onMouseMove.bind(this));
     window.addEventListener('resize', debounce(() => {
       this.boundingRect = this.container.getBoundingClientRect();
     }, 500));
+  }
+
+  changeDivisionCount(newDivisionCount) {
+    this.divisionCount = newDivisionCount;
+    this.controlPointArray.forEach(cp => {
+      this.container.removeChild(cp.cpElement);
+    });
+    this.pointsMap.clear();
+    this.hasChanges = false;
+  }
+
+  updateColors(customColors) {
+    let colormap = interpolate([customColors[0], customColors[1]]);
+    let colormap2 = interpolate([customColors[2], customColors[3]]);
+    let firstRowColors = [];
+    let lastRowColors = [];
+    for (let i = 0; i <= this.divisionCount; i++) {
+      firstRowColors.push(colormap(i / this.divisionCount));
+      lastRowColors.push(colormap2(i / this.divisionCount));
+    }
+
+    for (let i = 0; i <= this.divisionCount; i++) {
+      let colormap3 = interpolate([firstRowColors[i], lastRowColors[i]]);
+      for (let j = 0; j <= this.divisionCount; j++) {
+        let rgb = AColorPicker.parseColor(colormap3(j / this.divisionCount), "rgb");
+        this.controlPointMatrix[i][j].r = rgb[0] / 255;
+        this.controlPointMatrix[i][j].g = rgb[1] / 255;
+        this.controlPointMatrix[i][j].b = rgb[2] / 255;
+      }
+    }
+
+    this.shouldRefresh = true;
+    this.hasChanges = true;
   }
 
   getStorePointArray() {
@@ -200,20 +199,6 @@ export default class Editor {
       storePointArray.push(cpStorePoint);
     }
     return storePointArray;
-  }
-
-  onClick(e) {
-    if (e.target === this.container) {
-      // if (this.editing) {
-      // this.editing = false;
-      //this.container.classList.remove('editing');
-      //this.colorEditor.wrapper.classList.remove('editing');
-      // } else {
-      // this.editing = true;
-      //this.container.classList.add('editing');
-      //this.colorEditor.wrapper.classList.add('editing');
-      // }
-    }
   }
 
   onMouseUp(e) {
@@ -287,30 +272,6 @@ export default class Editor {
       return true;
     }
     return false;
-  }
-
-  toggleCpXHandles() {
-    if (this.editing && this.selectedCp) {
-      this.selectedCp.toggleUHandles();
-    }
-  }
-
-  toggleCpYHandles() {
-    if (this.editing && this.selectedCp) {
-      this.selectedCp.toggleVHandles();
-    }
-  }
-
-  resetCpXHandles() {
-    if (this.editing && this.selectedCp) {
-      this.selectedCp.resetUHandles();
-    }
-  }
-
-  resetCpYHandles() {
-    if (this.editing && this.selectedCp) {
-      this.selectedCp.resetVHandles();
-    }
   }
 
   toggleTangentBinding() {
@@ -405,9 +366,6 @@ export default class Editor {
       this.multipleSelectedCPs.forEach(cp => { cp.setColor(color); });
       this.hasChanges = true;
     }
-
     this.shouldRefresh = true;
   }
-
-
 }
