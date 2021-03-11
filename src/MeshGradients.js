@@ -50,7 +50,6 @@ export function EditGradient(context) {
   })
 
   webContents.on('DontShowWarningsAgain', () => {
-    console.log("Saving showWarnings")
     Settings.setSettingForKey('showWarnings', false);
   });
 

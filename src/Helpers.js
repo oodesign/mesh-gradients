@@ -1,4 +1,20 @@
 var fs = require('@skpm/fs');
+var track = require("sketch-module-google-analytics");
+var Settings = require('sketch/settings')
+
+var acquiredLicense = "Single";
+var logsEnabled = false;
+
+export const commands = {
+  editgradient: 'editgradient',
+}
+
+export const valStatus = {
+  app: 'app',
+  no: 'no',
+  over: 'over',
+  noCon: 'nocon'
+}
 
 const gradientCollection = [
   {
@@ -20,10 +36,6 @@ const gradientCollection = [
     "meshGradientDefinition": `[{"x":0,"y":0,"r":1,"g":1,"b":1,"a":1,"id":"control-point-0","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0,"y":0.3333333333333333,"r":1,"g":1,"b":1,"a":1,"id":"control-point-1","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0,"y":0.6666666666666666,"r":0,"g":0.6666666666666666,"b":0.6666666666666666,"a":1,"id":"control-point-2","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0,"y":1,"r":0,"g":1,"b":1,"a":1,"id":"control-point-3","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.3333333333333333,"y":0,"r":1,"g":1,"b":1,"a":1,"id":"control-point-4","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.27647058823529413,"y":0.2485294117647059,"r":1,"g":1,"b":1,"a":1,"id":"control-point-5","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.26413690476190477,"y":0.5758928571428571,"r":0.3333333333333333,"g":0.6666666666666666,"b":0.6666666666666666,"a":1,"id":"control-point-6","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.3333333333333333,"y":1,"r":0.3333333333333333,"g":1,"b":1,"a":1,"id":"control-point-7","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.6666666666666666,"y":0,"r":1,"g":1,"b":1,"a":1,"id":"control-point-8","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.7,"y":0.2235294117647059,"r":1,"g":1,"b":1,"a":1,"id":"control-point-9","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":0.7328869047619048,"y":0.6845238095238095,"r":1,"g":1,"b":1,"a":1,"id":"control-point-10","uPosTanX":0.56,"uNegTanX":0.56,"uPosTanY":-0.44,"uNegTanY":-0.44,"vPosTanX":0.26,"vNegTanX":0.26,"vPosTanY":0.76,"vNegTanY":0.76},{"x":0.6666666666666666,"y":1,"r":0.6666666666666666,"g":1,"b":1,"a":1,"id":"control-point-11","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":1,"y":0,"r":1,"g":1,"b":1,"a":1,"id":"control-point-12","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":1,"y":0.3333333333333333,"r":1,"g":0.3333333333333333,"b":0.3333333333333333,"a":1,"id":"control-point-13","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":1,"y":0.6666666666666666,"r":1,"g":0.6666666666666666,"b":0.6666666666666666,"a":1,"id":"control-point-14","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333},{"x":1,"y":1,"r":1,"g":1,"b":1,"a":1,"id":"control-point-15","uPosTanX":0.3333333333333333,"uNegTanX":0.3333333333333333,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.3333333333333333,"vNegTanY":0.3333333333333333}]`
   },
 ];
-
-export const commands = {
-  meshgradients: 'meshgradients',
-}
 
 export function getGradientCollection() {
   return gradientCollection.sort(compareOrder);
@@ -53,6 +65,22 @@ export function getCustomGradientCollection() {
   }
 }
 
+export function clog(message) {
+  if (logsEnabled)
+    console.log(message);
+}
+
+export function getAcquiredLicense() {
+  return acquiredLicense;
+}
+
+export function analytics(action) {
+  var res = track("UA-191923189-1", "event", {
+    ec: "command",
+    ea: action,
+  });
+}
+
 function compareOrder(a, b) {
   if (a.order < b.order) {
     return -1;
@@ -67,3 +95,123 @@ function compareOrder(a, b) {
 function readFromFile(filePath) {
   return JSON.parse(fs.readFileSync(filePath, { encoding: 'utf8' }));
 }
+
+function tryParseJSON(jsonString) {
+  try {
+    var o = JSON.parse(jsonString);
+    if (o && typeof o === "object" && o !== null) {
+      return o;
+    }
+  }
+  catch (e) { }
+
+  return false;
+}
+
+
+//d9-03
+function curl_async(args, isRegistering) {
+  var task = NSTask.alloc().init();
+  task.setLaunchPath("/usr/bin/curl");
+  task.setArguments(args);
+  var outputPipe = NSPipe.pipe();
+  var errorPipe = NSPipe.pipe();
+  task.setStandardOutput(outputPipe);
+  task.setStandardError(errorPipe);
+  task.launch();
+  task.waitUntilExit();
+  var status = task.terminationStatus();
+
+  var errorData = errorPipe.fileHandleForReading().readDataToEndOfFile();
+  var errorString = NSString.alloc().initWithData_encoding(errorData, NSUTF8StringEncoding);
+
+  if (status == 0) {
+    var responseData = outputPipe.fileHandleForReading().readDataToEndOfFile();
+    var responseString = NSString.alloc().initWithData_encoding(responseData, NSUTF8StringEncoding);
+    var parsed = tryParseJSON(responseString);
+
+
+    if (parsed.success) {
+      if (!isRegistering) {
+        if (parsed.purchase != null) {
+          if (parsed.purchase.variants.indexOf("Team") > 0)
+            acquiredLicense = "Team license";
+          else
+            acquiredLicense = "Single";
+        }
+
+        return valStatus.app;
+      }
+      else {
+        if (parsed.purchase != null) {
+          if (parsed.purchase.variants.indexOf("Team") > 0) {
+            console.log("Merge Duplicates - Registering license: Team license");
+            return valStatus.app;
+          }
+          else {
+            var availableSeats = 1;
+            acquiredLicense = "Single";
+
+            if (parsed.uses > availableSeats) {
+              console.log("Merge Duplicates - Registering license: " + acquiredLicense + " - Seats (" + parsed.uses + ") exceeded license (" + availableSeats + ").");
+              return valStatus.over;
+            }
+            else {
+              console.log("Merge Duplicates - Registering license: " + acquiredLicense);
+              return valStatus.app;
+            }
+          }
+        }
+        else
+          return valStatus.app;
+      }
+    }
+    else
+      return valStatus.no;
+  } else {
+    return valStatus.noCon;
+  }
+}
+
+//d9-03
+
+
+
+//d9-04
+
+export function IsInTrial() {
+  try {
+    // const today = new Date()
+    // const tomorrow = new Date(today)
+    // tomorrow.setDate(tomorrow.getDate() - 7)
+    //Settings.setSettingForKey('meshGradients-startTime', tomorrow)
+    //Settings.setSettingForKey('meshGradients-startTime', null)
+
+    var startTime = Settings.settingForKey('meshGradients-startTime');
+    if (startTime)
+      return startTime;
+    else
+      return null;
+  } catch (e) {
+    return null;
+  }
+}
+
+export function ExiGuthrie() {
+  try {
+    var licenseKey = Settings.settingForKey('meshGradients-licenseKey');
+    if (licenseKey)
+      return Guthrie(licenseKey, false);
+    else
+      return false;
+  } catch (e) {
+    return false;
+  }
+}
+
+export function Guthrie(licenseKey, isRegistering) {
+  var args = ["-d", "product_permalink=meshgradients", "-d", "license_key=" + licenseKey + "", "-d", "increment_uses_count=" + isRegistering.toString() + "", "https://api.gumroad.com/v2/licenses/verify"];
+  return curl_async(args, isRegistering);
+}
+
+//d9-04
