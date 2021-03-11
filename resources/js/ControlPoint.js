@@ -1,5 +1,4 @@
 import Tangent from './Tangent';
-const AColorPicker = require('a-color-picker');
 
 export default class ControlPoint {
   constructor({ x, y, r, g, b, a = 1, id, uPosTanX = 0, uPosTanY = 0, uNegTanX = 0, uNegTanY = 0, vPosTanX = 0, vPosTanY = 0, vNegTanX = 0, vNegTanY = 0 }, editor) {
