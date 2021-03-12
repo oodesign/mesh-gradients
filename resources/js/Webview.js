@@ -599,9 +599,9 @@ function showPicker(e, colorIndex) {
 }
 
 function hideLeftPanel() {
-  editor.hasChanges = true;
-  //document.getElementById("leftPanel").classList.add("notDisplayed");
-  toggleLeftPanel();
+  document.getElementById("leftPanel").classList.add("notDisplayed");
+  //editor.hasChanges = true;
+  //toggleLeftPanel();
 }
 
 function toggleLeftPanel(e) {
