@@ -22,7 +22,7 @@ const meshGradientMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, vert
 const wireframeMeshMaterial = new THREE.MeshPhongMaterial({
   color: 0x999999,
   polygonOffset: true,
-  polygonOffsetFactor: 1, 
+  polygonOffsetFactor: 1,
   polygonOffsetUnits: 1,
   transparent: true,
 });
@@ -414,9 +414,9 @@ window.LoadMesh = (meshGradientDefinition, gradients, customGradients, shouldSho
     var parsed = JSON.parse(meshGradientDefinition);
     initialDivisionCount = Math.sqrt(parsed.length) - 1;
     document.getElementById("btnAccept").innerHTML = "Save gradient";
-    hideLeftPanel();
   }
   editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition, document.getElementById("btnSymmetric"), document.getElementById("btnAsymmetric"), document.getElementById("controlPointEditor"), customColors);
+  if (meshGradientDefinition != null) hideLeftPanel();
   document.getElementById("collectionContent").innerHTML = "";
   gradientCollection = gradients;
   customGradientCollection = customGradients;
@@ -599,11 +599,14 @@ function showPicker(e, colorIndex) {
 }
 
 function hideLeftPanel() {
-  document.getElementById("leftPanel").classList.add("notDisplayed");
+  editor.hasChanges = true;
+  //document.getElementById("leftPanel").classList.add("notDisplayed");
+  toggleLeftPanel();
 }
 
 function toggleLeftPanel(e) {
-  e.stopPropagation();
+  if (e)
+    e.stopPropagation();
 
   if (document.getElementById("leftPanel").classList.contains("collapsed")) {
     document.getElementById("collapseLeftPanel").classList.remove("collapsed");
