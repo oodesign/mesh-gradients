@@ -21,18 +21,24 @@ export function EditGradient(context) {
     titleBarStyle: 'hidden'
   }
 
+  Helpers.clog("Initializing Mesh editor");
+
   const browserWindow = new BrowserWindow(options);
   const webContents = browserWindow.webContents;
   let layerMeshGradientDefinition = null;
   let shouldShowWarnings = Settings.settingForKey('showWarnings');
+
+  Helpers.clog("Recovering gradient collections");
 
   let gradientCollection = Helpers.getGradientCollection();
   let reducedGradientCollection = Helpers.getReducedGradientCollection(gradientCollection);
   let customGradientCollection = Helpers.getCustomGradientCollection();
   let reducedCustomGradientCollection = Helpers.getReducedGradientCollection(customGradientCollection);
 
+
   let selectedLayer = null;
   if (document.selectedLayers.length > 0) {
+    Helpers.clog("Getting selected layer information");
     selectedLayer = document.selectedLayers.layers[0];
     if (Settings.layerSettingForKey(selectedLayer, 'MeshGradientDefinition')) {
       layerMeshGradientDefinition = Settings.layerSettingForKey(selectedLayer, 'MeshGradientDefinition');
@@ -46,28 +52,38 @@ export function EditGradient(context) {
   })
 
   webContents.on('did-finish-load', () => {
+    if (layerMeshGradientDefinition)
+      Helpers.clog("Editing mesh gradient");
+    else
+      Helpers.clog("Load mesh gradient editor");
+
     webContents.executeJavaScript(`LoadMesh(${JSON.stringify(layerMeshGradientDefinition)}, ${JSON.stringify(reducedGradientCollection)}, ${JSON.stringify(reducedCustomGradientCollection)}, ${shouldShowWarnings})`).catch(console.error);
   })
 
   webContents.on('DontShowWarningsAgain', () => {
+    Helpers.clog("Marked to not show warnings again");
     Settings.setSettingForKey('showWarnings', false);
   });
 
   webContents.on('ChangeGradient', (gradientId) => {
+    Helpers.clog("Switching to gradient:" + gradientId);
     let gradientDefinition = gradientCollection.find(g => g.id === gradientId).meshGradientDefinition;
     webContents.executeJavaScript(`ChangeGradient(${JSON.stringify(gradientDefinition)})`).catch(console.error);
   });
 
   webContents.on('ConfirmMeshGradient', (meshGradientBase64, patchPoints) => {
 
+    Helpers.clog("Saving gradient");
     let parent = (document.selectedLayers.length > 0) ? ((document.selectedLayers.layers[0].type == "Artboard") ? document.selectedLayers.layers[0] : ((document.selectedLayers.layers[0].parent != null) ? document.selectedLayers.layers[0].parent : document.selectedPage)) : document.selectedPage;
     if (parent == null) parent = document.selectedPage;
 
     let layer;
     if ((document.selectedLayers.length > 0) && (document.selectedLayers.layers[0].type == "ShapePath")) {
+      Helpers.clog("-- Applying to selected shape");
       layer = document.selectedLayers.layers[0];
     }
     else {
+      Helpers.clog("-- Creating new layer");
       layer = new ShapePath({
         name: "Mesh gradient",
         frame: new Rectangle(0, 0, 1000, 1000),
@@ -91,10 +107,12 @@ export function EditGradient(context) {
       },
     }];
 
+    Helpers.clog("-- Adding small noise to reduce gradient banding");
     layer.sketchObject.style().enabledFills()[1].contextSettings().setBlendMode(7);
     layer.sketchObject.style().enabledFills()[1].contextSettings().setOpacity(0.03);
 
     //console.log(patchPoints);
+    Helpers.clog("-- Storing mesh gradient definition in layer");
     Settings.setLayerSettingForKey(layer, 'MeshGradientDefinition', patchPoints);
     onShutdown(webviewIdentifier);
   });
