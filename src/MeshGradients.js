@@ -66,30 +66,33 @@ export function EditGradient(context) {
     let layer;
     if ((document.selectedLayers.length > 0) && (document.selectedLayers.layers[0].type == "ShapePath")) {
       layer = document.selectedLayers.layers[0];
-      layer.style.fills = [{
-        fillType: Style.FillType.Pattern,
-        pattern: {
-          patternType: Style.PatternFillType.Fill,
-          image: { base64: meshGradientBase64 }
-        },
-      }]
     }
     else {
       layer = new ShapePath({
         name: "Mesh gradient",
         frame: new Rectangle(0, 0, 1000, 1000),
-        style: {
-          fills: [{
-            fillType: Style.FillType.Pattern,
-            pattern: {
-              patternType: Style.PatternFillType.Fill,
-              image: { base64: meshGradientBase64 }
-            },
-          }]
-        },
         parent: parent
       });
     }
+
+    layer.style.fills = [{
+      fillType: Style.FillType.Pattern,
+      pattern: {
+        patternType: Style.PatternFillType.Fill,
+        image: { base64: meshGradientBase64 }
+      },
+    },
+    {
+      fillType: Style.FillType.Pattern,
+      pattern: {
+        tileScale: 0.5,
+        patternType: Style.PatternFillType.Tile,
+        image: { opacity: 0.05, base64: Helpers.noise1 }
+      },
+    }];
+
+    layer.sketchObject.style().enabledFills()[1].contextSettings().setBlendMode(7);
+    layer.sketchObject.style().enabledFills()[1].contextSettings().setOpacity(0.03);
 
     //console.log(patchPoints);
     Settings.setLayerSettingForKey(layer, 'MeshGradientDefinition', patchPoints);
