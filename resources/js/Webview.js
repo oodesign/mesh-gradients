@@ -5,7 +5,7 @@ const AColorPicker = require('a-color-picker');
 
 let initialDivisionCount = 2;
 let customDivisionCount = 2;
-let establishedCollectionGradientId = 1;
+let establishedCollectionGradientId = 4;
 var accentColor = 0x235FFF;
 let customColors = ["#FFffff", "#3a69fd", "#00ffa2", "#00FFFF"];
 var editor;
