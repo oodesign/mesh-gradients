@@ -111,7 +111,7 @@ export function EditGradient(context) {
     layer.sketchObject.style().enabledFills()[1].contextSettings().setBlendMode(7);
     layer.sketchObject.style().enabledFills()[1].contextSettings().setOpacity(0.03);
 
-    console.log(patchPoints);
+    // console.log(patchPoints);
     Helpers.clog("-- Storing mesh gradient definition in layer");
     Settings.setLayerSettingForKey(layer, 'MeshGradientDefinition', patchPoints);
     onShutdown(webviewIdentifier);
