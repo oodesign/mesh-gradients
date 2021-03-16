@@ -78,7 +78,7 @@ export function EditGradient(context) {
     if (parent == null) parent = document.selectedPage;
 
     let layer;
-    if ((document.selectedLayers.length > 0) && (document.selectedLayers.layers[0].type == "ShapePath")) {
+    if ((document.selectedLayers.length > 0) && ((document.selectedLayers.layers[0].type == "ShapePath")||(document.selectedLayers.layers[0].type == "Shape"))) {
       Helpers.clog("-- Applying to selected shape");
       layer = document.selectedLayers.layers[0];
     }
