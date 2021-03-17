@@ -1,6 +1,9 @@
 # build artefacts
 mesh-gradients.sketchplugin
 
+#Images
+Images
+
 # npm
 node_modules
 .npm
