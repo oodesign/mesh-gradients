@@ -19,12 +19,36 @@
       "identifier": "newmeshgradient",
       "shortcut": "ctrl shift g",
       "icon": "icon.png"
+    },
+    {
+      "script" : "Help.js",
+      "name" : "Report issue or an idea",
+      "identifier": "report_issue",
+      "handlers" : {
+        "run" : "report_issue"
+      }
+    },
+    {
+      "script" : "Help.js",
+      "name" : "I have an issue with my license",
+      "identifier": "report_licensing",
+      "handlers" : {
+        "run" : "report_licensing"
+      }
     }
   ],
   "menu": {
     "title": "Mesh gradients ...",
     "items": [
-      "newmeshgradient"
+      "newmeshgradient",
+      {
+        "title": "Help & Feedback ",
+        "items": [
+          "documentation",
+          "report_issue",
+          "report_licensing"
+        ]
+      }
     ]
   }
 }
