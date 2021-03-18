@@ -4,15 +4,13 @@
 
 # Mesh gradients
 
-Create awesome mesh gradients right inside of Sketch.
+Create awesome mesh gradients right inside of Sketch!
 
 Please find all the details on <a href="https://www.meshgradients.com">meshgradients.com</a>.
 
-Mesh gradients is available for purchase on <a href="https://gum.co/meshgradients">Gumroad</a>.
-
 <br/><br/>
 
-## Mesh gradients right inside of Sketch
+## Creating mesh gradients has never been this easy
 
 Set your mesh, pick some colors, and start creating some curvy gradients in a breeze!
 
@@ -44,10 +42,15 @@ Mesh gradients uses Three.js to create a real 3D mesh, and Hermite bicubic color
 
 No more playing with circles and tons of blur 😉 .
 
-
 <br/><br/>
 
 ## The collection
 
 Use a gradient from the collection to bootstrap your new creation! We keep adding more and more!
+
+<br/><br/>
+
+## How do I get it?
+
+Mesh gradients is available for purchase on <a href="https://gum.co/meshgradients">Gumroad</a>.
 
