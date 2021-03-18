@@ -6,7 +6,8 @@
 
 Create awesome mesh gradients right inside of Sketch.
 
-Please find all the details on <a href="https://www.meshgradients.com">meshgradients.com</a>
+Please find all the details on <a href="https://www.meshgradients.com">meshgradients.com</a>.
+
 Mesh gradients is available for purchase on <a href="https://gum.co/meshgradients">Gumroad</a>.
 
 <br/><br/>
