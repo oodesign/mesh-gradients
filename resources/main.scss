@@ -1503,4 +1503,14 @@ a {
   }
 }
 
+.rubberBand{
+  position: absolute;
+  background-color: rgba($accentColor, 0.1);
+  border:1px solid rgba($accentColor, 1);
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+}
+
+
 // #endregion

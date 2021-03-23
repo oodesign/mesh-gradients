@@ -288,6 +288,14 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
+document.getElementById("meshEditor").addEventListener('mousedown', (e) => {
+  editor.onGeneralMouseDown(e);
+});
+
+window.addEventListener('mouseup', (e) => {
+  editor.onGeneralMouseUp(e);
+});
+
 window.addEventListener('load', (e) => {
   setEditorScenario();
   setTimeout(setEditorScenario, 100);

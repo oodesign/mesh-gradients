@@ -38,6 +38,8 @@ export default class Editor {
     this.multipleSelectedCPs = [];
     this.mouseX = 0;
     this.mouseY = 0;
+    this.rubberBandX = 0;
+    this.rubberBandY = 0;
     this.customColors = customColors;
     this.pointsMap = new Map();
     if (meshGradientDefinition == null) this.initControlPoints();
@@ -227,6 +229,8 @@ export default class Editor {
       this.showControlPointEditor();
     else
       this.hideControlPointEditor();
+
+
   }
 
   onMouseMove(e) {
@@ -263,6 +267,23 @@ export default class Editor {
     this.mouseX = e.clientX;
     this.mouseY = e.clientY;
 
+    if (!this.currentlyMovingCp && !this.currentlyMovingTangent) {
+      let width = this.mouseX - this.rubberBandX;
+      let height = this.mouseY - this.rubberBandY;
+
+      if (width < 0) {
+        width = Math.abs(width);
+        document.getElementById("rubberBand").style.left = this.rubberBandX - width + "px";
+      }
+      if (height < 0) {
+        height = Math.abs(height);
+        document.getElementById("rubberBand").style.top = this.rubberBandY - height + "px";
+      }
+
+      document.getElementById("rubberBand").style.width = width + "px";
+      document.getElementById("rubberBand").style.height = height + "px";
+    }
+
   }
 
   resetSelectedCpTangent() {
@@ -286,7 +307,34 @@ export default class Editor {
     e.stopPropagation();
   }
 
+  onGeneralMouseDown(e) {
+    //Draw rubber band
+    document.getElementById("rubberBand").classList.remove("notDisplayed");
+    document.getElementById("rubberBand").style.left = this.mouseX + "px";
+    document.getElementById("rubberBand").style.top = this.mouseY + "px";
+    document.getElementById("rubberBand").style.width = 0;
+    document.getElementById("rubberBand").style.height = 0;
+
+    this.rubberBandX = this.mouseX;
+    this.rubberBandY = this.mouseY;
+
+
+  }
+
+  onGeneralMouseUp(e) {
+    //Hide rubber band
+    document.getElementById("rubberBand").classList.add("notDisplayed");
+    this.rubberBandX = 0;
+    this.rubberBandY = 0;
+  }
+
+
+
   onCpMouseDown(cp, e) {
+
+
+    e.preventDefault();
+    e.stopPropagation();
 
     if (!e.shiftKey)
       this.resetMultipleSelection();
