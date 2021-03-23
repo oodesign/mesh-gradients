@@ -350,7 +350,7 @@ document.getElementById('color4').addEventListener("click", function (e) { showP
 document.getElementById('customColorPicker').addEventListener("click", stopPropagation);
 
 document.addEventListener('contextmenu', (e) => {
-  e.preventDefault()
+  //e.preventDefault()
 });
 
 

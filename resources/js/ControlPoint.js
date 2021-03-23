@@ -132,5 +132,6 @@ export default class ControlPoint {
 
   unhighlight() {
     this.cpElement.classList.remove('highlighted');
+    this.cpElement.classList.remove('active');
   }
 }
