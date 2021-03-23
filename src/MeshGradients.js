@@ -41,7 +41,12 @@ export function EditGradient(context) {
     Helpers.clog("Getting selected layer information");
     selectedLayer = document.selectedLayers.layers[0];
     if (Settings.layerSettingForKey(selectedLayer, 'MeshGradientDefinition')) {
-      layerMeshGradientDefinition = Settings.layerSettingForKey(selectedLayer, 'MeshGradientDefinition');
+      let layersWithMeshGradientFill = selectedLayer.style.fills.filter(fill => ((fill.fillType == Style.FillType.Pattern) && (fill.pattern.image.size.width == 5000)))
+
+      if (layersWithMeshGradientFill.length > 0)
+        layerMeshGradientDefinition = Settings.layerSettingForKey(selectedLayer, 'MeshGradientDefinition');
+      else
+        Settings.setLayerSettingForKey(selectedLayer, 'MeshGradientDefinition', null);
     }
   }
 
@@ -78,7 +83,7 @@ export function EditGradient(context) {
     if (parent == null) parent = document.selectedPage;
 
     let layer;
-    if ((document.selectedLayers.length > 0) && ((document.selectedLayers.layers[0].type == "ShapePath")||(document.selectedLayers.layers[0].type == "Shape"))) {
+    if ((document.selectedLayers.length > 0) && ((document.selectedLayers.layers[0].type == "ShapePath") || (document.selectedLayers.layers[0].type == "Shape"))) {
       Helpers.clog("-- Applying to selected shape");
       layer = document.selectedLayers.layers[0];
     }
@@ -115,6 +120,7 @@ export function EditGradient(context) {
     Helpers.clog("-- Storing mesh gradient definition in layer");
     Settings.setLayerSettingForKey(layer, 'MeshGradientDefinition', patchPoints);
     onShutdown(webviewIdentifier);
+
   });
 
   webContents.on('Cancel', () => {
