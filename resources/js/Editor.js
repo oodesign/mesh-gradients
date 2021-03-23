@@ -40,6 +40,7 @@ export default class Editor {
     this.mouseY = 0;
     this.rubberBandX = 0;
     this.rubberBandY = 0;
+    this.drawingBand = false;
     this.customColors = customColors;
     this.pointsMap = new Map();
     if (meshGradientDefinition == null) this.initControlPoints();
@@ -309,6 +310,7 @@ export default class Editor {
 
   onGeneralMouseDown(e) {
     //Draw rubber band
+    this.drawingBand = true;
     document.getElementById("rubberBand").classList.remove("notDisplayed");
     document.getElementById("rubberBand").style.left = this.mouseX + "px";
     document.getElementById("rubberBand").style.top = this.mouseY + "px";
@@ -324,29 +326,43 @@ export default class Editor {
   onGeneralMouseUp(e) {
     //Hide rubber band
     document.getElementById("rubberBand").classList.add("notDisplayed");
-    this.rubberBandX = 0;
-    this.rubberBandY = 0;
+
+    if (this.drawingBand) {
+      var leftLimit = parseFloat(document.getElementById("rubberBand").style.left.replace("px", ""));
+      var rightLimit = leftLimit + parseFloat(document.getElementById("rubberBand").style.width.replace("px", ""));
+
+      var topLimit = parseFloat(document.getElementById("rubberBand").style.top.replace("px", ""));
+      var bottomLimit = topLimit + parseFloat(document.getElementById("rubberBand").style.height.replace("px", ""));
+
+      this.resetMultipleSelection();
+      this.multipleSelectedCPs = this.controlPointArray.filter(cp => {
+        let pointX = parseFloat((cp.x * this.boundingRect.width) + this.boundingRect.left);
+        let pointY = parseFloat((cp.y * this.boundingRect.height) + this.boundingRect.top);
+
+        return ((pointX > leftLimit) &&
+          (pointX < rightLimit) &&
+          (pointY > topLimit) &&
+          (pointY < bottomLimit)
+        )
+      });
+      this.multipleSelectedCPs.forEach(cp => { this.selectControlPoint(cp) });
+
+    }
+
+    this.drawingBand = false;
+
   }
 
+  selectControlPoint(cp, isActiveEditing) {
+    if (isActiveEditing)
+      this.currentlyMovingCp = cp;
 
-
-  onCpMouseDown(cp, e) {
-
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (!e.shiftKey)
-      this.resetMultipleSelection();
-
-    this.currentlyMovingCp = cp;
     this.shouldRefresh = true;
     this.movingCpStartPos.x = cp.x;
     this.movingCpStartPos.y = cp.y;
 
     this.selectedCp = cp;
     this.selectedCp.cpElement.classList.add('active');
-
 
     this.multipleSelectedCPs.push(cp);
     cp.highlight();
@@ -363,6 +379,18 @@ export default class Editor {
       this.showControlPointEditor();
     else
       this.hideControlPointEditor();
+  }
+
+  onCpMouseDown(cp, e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!e.shiftKey)
+      this.resetMultipleSelection();
+
+    this.selectControlPoint(cp, true);
+
+
   }
 
   showControlPointEditor() {
