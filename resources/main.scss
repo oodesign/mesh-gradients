@@ -1505,6 +1505,7 @@ a {
 
 .rubberBand{
   position: absolute;
+  pointer-events: none;
   background-color: rgba($accentColor, 0.1);
   border:1px solid rgba($accentColor, 1);
   width: 100px;

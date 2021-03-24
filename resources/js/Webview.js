@@ -341,6 +341,7 @@ const animate = (t) => {
   requestAnimationFrame(() => animate(t + 0.05));
 
   document.getElementById("gradientEdited").innerHTML = editor.hasChanges ? "*" : "";
+  document.getElementById("logger").innerHTML = editor.drawingBand;
 
 };
 
@@ -364,7 +365,7 @@ document.addEventListener('contextmenu', (e) => {
 
 document.getElementById('btnResetCurves').addEventListener("click", () => {
   editor.selectedCp.setSymmetricTangents();
-  editor.resetSelectedCpTangent();
+  editor.resetCPTangents();
   editor.updateTangentButtons();
   updateCPlines(editor.selectedCp);
   calculateHermiteSurface();

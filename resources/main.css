@@ -2424,6 +2424,7 @@ a {
 
 .rubberBand {
   position: absolute;
+  pointer-events: none;
   background-color: rgba(35, 95, 255, 0.1);
   border: 1px solid #235fff;
   width: 100px;

@@ -40,6 +40,7 @@ export default class Editor {
     this.mouseY = 0;
     this.rubberBandX = 0;
     this.rubberBandY = 0;
+    this.drawingBandStarted = false;
     this.drawingBand = false;
     this.customColors = customColors;
     this.pointsMap = new Map();
@@ -205,6 +206,7 @@ export default class Editor {
   }
 
   onMouseUp(e) {
+
     if (this.currentlyMovingCp)
       this.currentlyMovingCp.cpElement.classList.remove("moving");
 
@@ -269,6 +271,10 @@ export default class Editor {
     this.mouseY = e.clientY;
 
     if (!this.currentlyMovingCp && !this.currentlyMovingTangent) {
+
+      if (this.drawingBandStarted)
+        this.drawingBand = true;
+
       let width = this.mouseX - this.rubberBandX;
       let height = this.mouseY - this.rubberBandY;
 
@@ -287,9 +293,11 @@ export default class Editor {
 
   }
 
-  resetSelectedCpTangent() {
-    if (this.editing && this.selectedCp) {
-      this.selectedCp.resetTangents(this.divisionCount, this.tangentFactor);
+  resetCPTangents() {
+    if (this.editing && this.multipleSelectedCPs.length > 0) {
+      this.multipleSelectedCPs.forEach(cp => {
+        cp.resetTangents(this.divisionCount, this.tangentFactor);
+      });
       this.hasChanges = true;
       return true;
     }
@@ -310,7 +318,7 @@ export default class Editor {
 
   onGeneralMouseDown(e) {
     //Draw rubber band
-    this.drawingBand = true;
+    this.drawingBandStarted = true;
     document.getElementById("rubberBand").classList.remove("notDisplayed");
     document.getElementById("rubberBand").style.left = this.mouseX + "px";
     document.getElementById("rubberBand").style.top = this.mouseY + "px";
@@ -323,10 +331,7 @@ export default class Editor {
 
   }
 
-  onGeneralMouseUp(e) {
-    //Hide rubber band
-    document.getElementById("rubberBand").classList.add("notDisplayed");
-
+  checkRubberbandSelection() {
     if (this.drawingBand) {
       var leftLimit = parseFloat(document.getElementById("rubberBand").style.left.replace("px", ""));
       var rightLimit = leftLimit + parseFloat(document.getElementById("rubberBand").style.width.replace("px", ""));
@@ -345,10 +350,18 @@ export default class Editor {
           (pointY < bottomLimit)
         )
       });
-      this.multipleSelectedCPs.forEach(cp => { this.selectControlPoint(cp) });
-
+      this.multipleSelectedCPs.forEach(cp => { this.selectControlPoint(cp, false) });
     }
+  }
 
+  onGeneralMouseUp(e) {
+
+    //Hide rubber band
+    document.getElementById("rubberBand").classList.add("notDisplayed");
+
+    this.checkRubberbandSelection();
+
+    this.drawingBandStarted = false;
     this.drawingBand = false;
 
   }
