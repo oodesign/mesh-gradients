@@ -2345,6 +2345,12 @@ a {
   display: none;
 }
 
+.gradient-mesh.editing .control-point.active.noTangents .tangent-point {
+  display: block;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .gradient-mesh.editing .tangent-point {
   display: none;
   position: absolute;

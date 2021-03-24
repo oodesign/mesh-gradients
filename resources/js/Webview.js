@@ -341,7 +341,7 @@ const animate = (t) => {
   requestAnimationFrame(() => animate(t + 0.05));
 
   document.getElementById("gradientEdited").innerHTML = editor.hasChanges ? "*" : "";
-  document.getElementById("logger").innerHTML = editor.drawingBand;
+  document.getElementById("logger").innerHTML = editor.multipleSelectedCPs.length;
 
 };
 
@@ -364,12 +364,11 @@ document.addEventListener('contextmenu', (e) => {
 
 
 document.getElementById('btnResetCurves').addEventListener("click", () => {
+  editor.hasChanges = true;
   editor.selectedCp.setSymmetricTangents();
   editor.resetCPTangents();
   editor.updateTangentButtons();
   updateCPlines(editor.selectedCp);
-  calculateHermiteSurface();
-  renderer.render(scene, camera);
 });
 
 document.getElementById('btnSymmetric').addEventListener("click", () => {

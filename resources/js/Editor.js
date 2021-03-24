@@ -340,7 +340,7 @@ export default class Editor {
       var bottomLimit = topLimit + parseFloat(document.getElementById("rubberBand").style.height.replace("px", ""));
 
       this.resetMultipleSelection();
-      this.multipleSelectedCPs = this.controlPointArray.filter(cp => {
+      let targetedPoints = this.controlPointArray.filter(cp => {
         let pointX = parseFloat((cp.x * this.boundingRect.width) + this.boundingRect.left);
         let pointY = parseFloat((cp.y * this.boundingRect.height) + this.boundingRect.top);
 
@@ -350,7 +350,7 @@ export default class Editor {
           (pointY < bottomLimit)
         )
       });
-      this.multipleSelectedCPs.forEach(cp => { this.selectControlPoint(cp, false) });
+      targetedPoints.forEach(cp => { this.selectControlPoint(cp, false) });
     }
   }
 
@@ -375,9 +375,16 @@ export default class Editor {
     this.movingCpStartPos.y = cp.y;
 
     this.selectedCp = cp;
-    this.selectedCp.cpElement.classList.add('active');
-
     this.multipleSelectedCPs.push(cp);
+
+    this.selectedCp.cpElement.classList.add('active');
+    if (this.multipleSelectedCPs.length > 1) {
+      this.controlPointArray.forEach(cp => { cp.cpElement.classList.add('noTangents'); });
+    }
+    else {
+      this.controlPointArray.forEach(cp => { cp.cpElement.classList.remove('noTangents'); });
+    }
+
     cp.highlight();
 
     this.updateTangentButtons()
