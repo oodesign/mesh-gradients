@@ -1,6 +1,6 @@
 {
   "name": "mesh-gradients",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "engines": {
     "sketch": ">=3.0"
   },
