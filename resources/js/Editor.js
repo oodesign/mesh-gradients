@@ -117,7 +117,6 @@ export default class Editor {
 
     var parsed = JSON.parse(meshGradientDefinition);
 
-    //window.postMessage("nativeLog", parsed);
     this.controlPointArray = [];
     this.controlPointMatrix = new Array(Math.sqrt(parsed.length));
 

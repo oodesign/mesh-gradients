@@ -340,8 +340,7 @@ const animate = (t) => {
   }
   requestAnimationFrame(() => animate(t + 0.05));
 
-  document.getElementById("gradientEdited").innerHTML = editor.hasChanges ? "*" : "";
-  document.getElementById("logger").innerHTML = editor.multipleSelectedCPs.length;
+  document.getElementById("gradientEdited").innerHTML = editor.hasChanges ? " *" : "";
 
 };
 
@@ -406,7 +405,6 @@ window.cancelAssignation = () => {
 }
 
 document.getElementById('btnCancel').addEventListener("click", () => {
-  window.postMessage("nativeLog", "WV - Cancel");
   cancelAssignation();
 });
 
