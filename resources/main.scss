@@ -1265,13 +1265,14 @@ a {
   margin: 20px 20px 0 0;
   padding: 20px;
   width: 272px;
-  height: 423px;
+  height: 475px;
 }
 
 .colorPicker {
   .a-color-picker {
     @include secondaryText;
     border-radius: 10px;
+    padding: 0 0 10px 0;
     box-shadow: none;
     @include for-theme(light) {
       background-color: $light_backgroundColor;
@@ -1292,6 +1293,18 @@ a {
 
     .a-color-picker-row:not(:first-child) {
       padding: 10px 16px;
+    }
+
+    .a-color-picker-row{
+      label{
+        padding: 0 8px 0 0;
+      }
+      input{
+        margin: 0 8px 0 0;
+        &:last-child{
+          margin: 0;
+        }
+      }
     }
 
     .a-color-picker-dot {
@@ -1328,6 +1341,12 @@ a {
         border: 1px solid $dark_gray_500;
       }
     }
+  }
+
+  .a-color-picker-palette::before {
+    content: "Color variables";
+    width: 100%;
+    margin-bottom: 6px;
   }
 }
 

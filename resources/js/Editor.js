@@ -49,6 +49,7 @@ export default class Editor {
     this.initEventListeners();
     this.boundingRect = container.getBoundingClientRect();
     this.colorEditor = AColorPicker.createPicker(this.colorPickerContainer, { showHSL: false, showAlpha: false });
+    this.colorEditor.palette = ['red', '#00ff00', 'rgb(0, 0, 255)'];
     this.colorEditor.on('change', (picker, color) => {
       this.setColorToCp(AColorPicker.parseColor(picker.color, "rgba"));
     })
