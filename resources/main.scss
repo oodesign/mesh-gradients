@@ -1241,9 +1241,8 @@ a {
 
 .controlPointEmptyState {
   @include secondaryText();
-  position: absolute;
   left: 50%;
-  top: 150px;
+  margin-top: 150px;
   width: 200px;
   text-align: center;
   span {
@@ -1265,7 +1264,7 @@ a {
   margin: 20px 20px 0 0;
   padding: 20px;
   width: 272px;
-  height: 475px;
+  min-height: 475px;
 }
 
 .colorPicker {

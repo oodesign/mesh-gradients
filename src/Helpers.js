@@ -1,9 +1,14 @@
+const sketch = require('sketch');
+const dom = require('sketch/dom');
+
 var fs = require('@skpm/fs');
 var track = require("sketch-module-google-analytics");
 var Settings = require('sketch/settings')
 
 var acquiredLicense = "Single";
 var logsEnabled = false;
+var document = sketch.getSelectedDocument();
+var libraries = dom.getLibraries();
 
 export const commands = {
   editgradient: 'editgradient',
@@ -15,6 +20,7 @@ export const valStatus = {
   over: 'over',
   noCon: 'nocon'
 }
+
 
 const gradientCollection = [
   {
@@ -180,6 +186,82 @@ const gradientCollection = [
     "meshGradientDefinition": `[{"x":0,"y":0,"r":0.7725490196078432,"g":0.49411764705882355,"b":0.984313725490196,"a":1,"id":"control-point-0","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":0,"y":0.25,"r":0.7372549019607844,"g":0.611764705882353,"b":0.9254901960784314,"a":1,"id":"control-point-1","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":0,"y":0.5,"r":0.7411764705882353,"g":1,"b":0.9058823529411765,"a":1,"id":"control-point-2","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":0,"y":0.75,"r":0.8352941176470589,"g":0.8235294117647058,"b":0.807843137254902,"a":1,"id":"control-point-3","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":0,"y":1,"r":0.7529411764705882,"g":0.8470588235294118,"b":0.9450980392156862,"a":1,"id":"control-point-4","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":0.25,"y":0,"r":0.8901960784313725,"g":0.7019607843137254,"b":1,"a":1,"id":"control-point-5","uPosTanX":0.39625,"uNegTanX":0.39625,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":0.2622259696458685,"y":0.21783876500857632,"r":0.8745098039215686,"g":0.7803921568627451,"b":1,"a":1,"id":"control-point-6","uPosTanX":0.435,"uNegTanX":0.435,"uPosTanY":0.02,"uNegTanY":0.02,"vPosTanX":-0.005,"vNegTanX":-0.005,"vPosTanY":0.28,"vNegTanY":0.28},{"x":0.2487352445193929,"y":0.5145797598627787,"r":0.8588235294117647,"g":1,"b":0.984313725490196,"a":1,"id":"control-point-7","uPosTanX":0.39625,"uNegTanX":0.39625,"uPosTanY":-0.0175,"uNegTanY":-0.0175,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":0.19477234401349072,"y":0.8456260720411664,"r":0.8901960784313725,"g":0.9058823529411765,"b":0.9882352941176471,"a":1,"id":"control-point-8","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":0.25,"y":1,"r":0.9294117647058824,"g":0.7607843137254902,"b":0.6901960784313725,"a":1,"id":"control-point-9","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":0.6757532281205165,"y":-0.004366812227074236,"r":0.9254901960784314,"g":0.8784313725490196,"b":0.5137254901960784,"a":1,"id":"control-point-10","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":0.5150645624103299,"y":0.24599708879184862,"r":0.996078431372549,"g":0.9215686274509803,"b":0.7647058823529411,"a":1,"id":"control-point-11","uPosTanX":0.32,"uNegTanX":0.32,"uPosTanY":-0.225,"uNegTanY":-0.225,"vPosTanX":-0.52,"vNegTanX":-0.52,"vPosTanY":0.42,"vNegTanY":0.42},{"x":0.47776183644189385,"y":0.5065502183406113,"r":0.9254901960784314,"g":0.8588235294117647,"b":0.6941176470588235,"a":1,"id":"control-point-12","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":-0.02,"vNegTanX":-0.02,"vPosTanY":0.21,"vNegTanY":0.21},{"x":0.45784148397976393,"y":0.6792452830188679,"r":0.5019607843137255,"g":0.6588235294117647,"b":1,"a":1,"id":"control-point-13","uPosTanX":0.535,"uNegTanX":0.535,"uPosTanY":-0.41500000000000026,"uNegTanY":-0.41500000000000026,"vPosTanX":0.015000000000000284,"vNegTanX":0.015000000000000284,"vPosTanY":0.155,"vNegTanY":0.155},{"x":0.5,"y":1,"r":0.9098039215686274,"g":0.7019607843137254,"b":0.6274509803921569,"a":1,"id":"control-point-14","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":0.8866571018651362,"y":-0.001455604075691412,"r":0.9725490196078431,"g":1,"b":0.6588235294117647,"a":1,"id":"control-point-15","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":0.781618887015177,"y":0.20754716981132076,"r":0.9411764705882353,"g":1,"b":0.6588235294117647,"a":1,"id":"control-point-16","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0.015000000000000284,"vNegTanX":0.015000000000000284,"vPosTanY":0.225,"vNegTanY":0.225},{"x":0.8558178752107926,"y":0.40480274442538594,"r":0.5450980392156862,"g":0.4627450980392157,"b":0.9568627450980393,"a":1,"id":"control-point-17","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":0.7900505902192243,"y":0.5797598627787307,"r":0.7372549019607844,"g":0.42745098039215684,"b":0.8352941176470589,"a":1,"id":"control-point-18","uPosTanX":0.31,"uNegTanX":0.31,"uPosTanY":-0.095,"uNegTanY":-0.095,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":0.75,"y":1,"r":0.8941176470588236,"g":0.6392156862745098,"b":0.5686274509803921,"a":1,"id":"control-point-19","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":1.0028694404591105,"y":-0.001455604075691412,"r":1,"g":0.9176470588235294,"b":0.5882352941176471,"a":1,"id":"control-point-20","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":1,"y":0.25,"r":0.8588235294117647,"g":1,"b":0.6392156862745098,"a":1,"id":"control-point-21","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":1.0014347202295553,"y":0.5036390101892285,"r":0.4588235294117647,"g":0.35294117647058826,"b":0.807843137254902,"a":1,"id":"control-point-22","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":1,"y":0.75,"r":0.35294117647058826,"g":0.5490196078431373,"b":0.807843137254902,"a":1,"id":"control-point-23","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125},{"x":1,"y":1,"r":0.6431372549019608,"g":0.5058823529411764,"b":0.8745098039215686,"a":1,"id":"control-point-24","uPosTanX":0.125,"uNegTanX":0.125,"uPosTanY":0,"uNegTanY":0,"vPosTanX":0,"vNegTanX":0,"vPosTanY":0.125,"vNegTanY":0.125}]`
   }
 ];
+
+export function getDefinedColorVariables(includeAllStylesFromExternalLibraries) {
+  var colorVariables = getAllColorVariables(includeAllStylesFromExternalLibraries);
+  return colorVariables.sort(compareColorVariableArrays);
+  ;
+}
+
+
+function getAllColorVariables(includeAllStylesFromExternalLibraries) {
+  var allColorVariables = [];
+  const map = new Map();
+
+  document.swatches.forEach(function (swatch) {
+
+    var colorVariableObject = {
+      "colorVariable": swatch,
+      "name": "" + swatch.name,
+      "color": "" + swatch.color.substring(0, 7),
+      "libraryName": null,
+      "library": null,
+      "isForeign": false,
+      "isSelected": false,
+      "isChosen": false,
+      "description": "" + swatch.color.substring(0, 7),
+      // "thumbnail": getColorVariableThumbnail(swatch),
+      // "contrastMode": shouldEnableContrastMode(swatch.color.substring(1, 7)),
+      "duplicates": [],
+      "isSelected": false
+    }
+
+    allColorVariables.push(colorVariableObject);
+    map.set(swatch.id, true);
+  });
+
+  if (includeAllStylesFromExternalLibraries) {
+    libraries.forEach(function (lib) {
+      if (lib && lib.id && lib.enabled && context.document.documentData() && context.document.documentData().objectID().toString().localeCompare(lib.id) != 0) {
+        lib.getDocument().swatches.forEach(function (swatch) {
+          if (!map.has(swatch.id)) {
+            var colorVariableObject = {
+              "colorVariable": swatch,
+              "name": "" + swatch.name,
+              "color": "" + swatch.color.substring(0, 7),
+              "libraryName": lib.name,
+              "library": lib,
+              "isForeign": true,
+              "isSelected": false,
+              "isChosen": false,
+              "description": "" + swatch.color.substring(0, 7),
+              // "thumbnail": getColorVariableThumbnail(swatch),
+              // "contrastMode": shouldEnableContrastMode(swatch.color.substring(1, 7)),
+              "duplicates": [],
+              "isSelected": false
+            }
+            allColorVariables.push(colorVariableObject);
+          }
+        });
+      }
+    });
+  }
+
+  return allColorVariables;
+
+}
+
+
+function compareColorVariableArrays(a, b) {
+  if (a.name < b.name) {
+    return -1;
+  }
+  if (a.name > b.name) {
+    return 1;
+  }
+  return 0;
+}
+
 
 export function getGradientCollection() {
   return gradientCollection.sort(compareOrder);

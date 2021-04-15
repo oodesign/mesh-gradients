@@ -50,6 +50,8 @@ export function EditGradient(context) {
     }
   }
 
+  let allColorVariables = Helpers.getDefinedColorVariables(true);
+
   browserWindow.loadURL(require('../resources/meshgradients.html'));
 
   browserWindow.once('ready-to-show', () => {
@@ -62,7 +64,7 @@ export function EditGradient(context) {
     else
       Helpers.clog("Load mesh gradient editor");
 
-    webContents.executeJavaScript(`LoadMesh(${JSON.stringify(layerMeshGradientDefinition)}, ${JSON.stringify(reducedGradientCollection)}, ${JSON.stringify(reducedCustomGradientCollection)}, ${shouldShowWarnings})`).catch(console.error);
+    webContents.executeJavaScript(`LoadMesh(${JSON.stringify(layerMeshGradientDefinition)}, ${JSON.stringify(reducedGradientCollection)}, ${JSON.stringify(reducedCustomGradientCollection)}, ${shouldShowWarnings}, ${JSON.stringify(allColorVariables)})`).catch(console.error);
   })
 
   webContents.on('DontShowWarningsAgain', () => {

@@ -2044,9 +2044,8 @@ a {
 .controlPointEmptyState {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
-  position: absolute;
   left: 50%;
-  top: 150px;
+  margin-top: 150px;
   width: 200px;
   text-align: center;
 }
@@ -2081,13 +2080,14 @@ a {
   margin: 20px 20px 0 0;
   padding: 20px;
   width: 272px;
-  height: 423px;
+  min-height: 475px;
 }
 
 .colorPicker .a-color-picker {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   border-radius: 10px;
+  padding: 0 0 10px 0;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -2128,6 +2128,18 @@ a {
 
 .colorPicker .a-color-picker .a-color-picker-row:not(:first-child) {
   padding: 10px 16px;
+}
+
+.colorPicker .a-color-picker .a-color-picker-row label {
+  padding: 0 8px 0 0;
+}
+
+.colorPicker .a-color-picker .a-color-picker-row input {
+  margin: 0 8px 0 0;
+}
+
+.colorPicker .a-color-picker .a-color-picker-row input:last-child {
+  margin: 0;
 }
 
 .colorPicker .a-color-picker .a-color-picker-dot {
@@ -2189,6 +2201,12 @@ a {
   .colorPicker .a-color-picker input {
     border: 1px solid #454649;
   }
+}
+
+.colorPicker .a-color-picker-palette::before {
+  content: "Color variables";
+  width: 100%;
+  margin-bottom: 6px;
 }
 
 .overlay {

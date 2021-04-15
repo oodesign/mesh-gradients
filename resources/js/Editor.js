@@ -22,7 +22,7 @@ function debounce(func, wait, immediate) {
 }
 
 export default class Editor {
-  constructor(initialDivisionCount, container, colorPickerContainer, meshGradientDefinition, btnSymmetric, btnAsymmetric, controlPointEditor, customColors) {
+  constructor(initialDivisionCount, container, colorPickerContainer, meshGradientDefinition, btnSymmetric, btnAsymmetric, controlPointEditor, customColors, colorVariables) {
     this.tangentFactor = 2;
     this.container = container;
     this.btnSymmetric = btnSymmetric;
@@ -49,7 +49,14 @@ export default class Editor {
     this.initEventListeners();
     this.boundingRect = container.getBoundingClientRect();
     this.colorEditor = AColorPicker.createPicker(this.colorPickerContainer, { showHSL: false, showAlpha: false });
-    this.colorEditor.palette = ['red', '#00ff00', 'rgb(0, 0, 255)'];
+    let pickerColorVars = [];
+    colorVariables.forEach(colorVar => {
+      pickerColorVars.push({
+        "name": colorVar.name + ((colorVar.libraryName) ? " (" + colorVar.libraryName + ")" : ""),
+        "color": colorVar.color
+      });
+    });
+    this.colorEditor.palette = pickerColorVars;
     this.colorEditor.on('change', (picker, color) => {
       this.setColorToCp(AColorPicker.parseColor(picker.color, "rgba"));
     })

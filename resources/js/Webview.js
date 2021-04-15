@@ -68,6 +68,7 @@ let redrawInterval;
 
 let gradientCollection = [], customGradientCollection = [];
 let globalShouldShowWarnings = true;
+let globalColorVariables;
 
 let customColorPicker = AColorPicker.createPicker(document.getElementById('customColorPicker'), { showHSL: false, showAlpha: false });
 document.getElementById('customColorPicker').style.display = "none";
@@ -358,7 +359,7 @@ document.getElementById('color4').addEventListener("click", function (e) { showP
 document.getElementById('customColorPicker').addEventListener("click", stopPropagation);
 
 document.addEventListener('contextmenu', (e) => {
-  //e.preventDefault()
+  e.preventDefault()
 });
 
 
@@ -412,16 +413,26 @@ document.getElementById('btnCancel').addEventListener("click", () => {
 
 //#region Load and Change Gradient features
 
-window.LoadMesh = (meshGradientDefinition, gradients, customGradients, shouldShowWarnings) => {
+window.LoadMesh = (meshGradientDefinition, gradients, customGradients, shouldShowWarnings, colorVariables) => {
 
   globalShouldShowWarnings = shouldShowWarnings;
+  globalColorVariables = colorVariables;
+
+  let pickerColorVars = [];
+  colorVariables.forEach(colorVar => {
+    pickerColorVars.push({
+      "name": colorVar.name + ((colorVar.libraryName) ? " (" + colorVar.libraryName + ")" : ""),
+      "color": colorVar.color
+    });
+  });
+  customColorPicker.palette = pickerColorVars;
 
   if (meshGradientDefinition != null) {
     var parsed = JSON.parse(meshGradientDefinition);
     initialDivisionCount = Math.sqrt(parsed.length) - 1;
     document.getElementById("btnAccept").innerHTML = "Save gradient";
   }
-  editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition, document.getElementById("btnSymmetric"), document.getElementById("btnAsymmetric"), document.getElementById("controlPointEditor"), customColors);
+  editor = new Editor(initialDivisionCount, parentElement, colorPickerContainer, meshGradientDefinition, document.getElementById("btnSymmetric"), document.getElementById("btnAsymmetric"), document.getElementById("controlPointEditor"), customColors, globalColorVariables);
   if (meshGradientDefinition != null) hideLeftPanel();
   document.getElementById("collectionContent").innerHTML = "";
   gradientCollection = gradients;
