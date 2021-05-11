@@ -36,6 +36,7 @@
     "@skpm/fs": "^0.2.6",
     "a-color-picker": "github:oodesign/a-color-picker",
     "color-interpolate": "^1.0.5",
+    "sketch-module-google-analytics": "^0.2.2",
     "sketch-module-web-view": "^3.1.4",
     "three": "^0.108.0",
     "three.meshline": "^1.3.0"

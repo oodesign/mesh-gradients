@@ -2,7 +2,7 @@ const sketch = require('sketch');
 const dom = require('sketch/dom');
 
 var fs = require('@skpm/fs');
-// var track = require("sketch-module-google-analytics");
+var track = require("sketch-module-google-analytics");
 var Settings = require('sketch/settings')
 
 var acquiredLicense = "Single";
