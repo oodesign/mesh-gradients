@@ -1,0 +1,6922 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+    <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=1440, maximum-scale=1.0"/>
+    
+        <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png"/>
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://animaapp.s3.amazonaws.com/launchpad-static/launchpad.js"></script>
+    
+        <style>
+@font-face {
+    font-family: "Gilroy-Medium";
+	font-style: normal;
+	font-weight: 1 1000;
+    src: url('https://anima-uploads.s3.amazonaws.com/59dfb1260b1fed000d431d8f/Radomir Tinkov - Gilroy-Medium.otf') format("opentype");
+}
+
+@font-face {
+    font-family: "Gilroy-Bold";
+	font-style: normal;
+	font-weight: 1 1000;
+    src: url('https://anima-uploads.s3.amazonaws.com/59dfb1260b1fed000d431d8f/Radomir Tinkov - Gilroy-Bold.otf') format("opentype");
+}
+
+.component-wrapper a,
+.screen a {
+    text-decoration: none;
+    display: contents;
+}
+
+
+
+.full-width-a {
+    width: 100%;
+}
+
+.full-height-a {
+    height: 100%;
+}
+
+.screen textarea:focus,
+.screen input:focus {
+    outline: none;
+}
+
+.screen *,
+.component-wrapper *{
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+.screen div {
+    -webkit-text-size-adjust: none;
+}
+
+.container-center-vertical,
+.container-center-horizontal {
+    pointer-events: none;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+}
+
+.container-center-vertical {
+    align-items: center;
+    height: 100%;
+}
+
+.container-center-horizontal {
+    justify-content: center;
+    width: 100%;
+}
+
+.container-center-vertical > *,
+.container-center-horizontal > * {
+    pointer-events: auto;
+    flex-shrink: 0;
+}
+
+.component-wrapper,
+.screen {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all;
+    word-break: break-word;
+}
+
+.auto-animated div {
+    opacity: 0;
+    position: absolute;
+    --z-index: -1;
+}
+
+.auto-animated .container-center-vertical,
+.auto-animated .container-center-horizontal {
+    opacity: 1;
+}
+
+.overlay {
+position: absolute;
+opacity: 0;
+display: none;
+top: 0;
+width: 100%;
+height: 100%;
+position: fixed;
+}
+
+.animate-appear {
+    opacity: 0;
+    display: block;
+    animation: reveal 0.3s ease-in-out 1 normal forwards;
+}
+
+.animate-disappear {
+    opacity: 1;
+    display: block;
+    animation: reveal 0.3s ease-in-out 1 reverse forwards;
+}
+
+.animate-nodelay {
+    animation-delay: 0s;
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.align-self-flex-start {
+    align-self: flex-start;
+}
+.align-self-flex-end {
+    align-self: flex-end;
+}
+.align-self-flex-center {
+    align-self: center;
+}
+.valign-text-middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.valign-text-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+ input:focus {
+    outline: none;
+}
+.component-wrapper,
+.component-wrapper * {
+    pointer-events: none;
+}
+
+.component-wrapper a *,
+.component-wrapper a,
+.component-wrapper input,
+.component-wrapper video,
+.component-wrapper iframe,
+.listeners-active,
+.listeners-active * {
+    pointer-events: auto;
+}
+
+.hidden,
+.hidden * {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.smart-layers-pointers,
+.smart-layers-pointers * {
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.component-wrapper.not-ready,
+.component-wrapper.not-ready * {
+    visibility: hidden !important;
+}
+
+.listeners-active-click,
+.listeners-active-click * {
+    cursor: pointer;
+}
+
+/* screen - web */
+
+.bodynegativeleft {
+  font-family: "Gilroy-Medium", Helvetica;
+  font-size: 16px;
+  letter-spacing: 0.00px;
+}
+.bodyregularcenter {
+  font-family: "Gilroy-Medium", Helvetica;
+  font-size: 16px;
+  letter-spacing: 0.00px;
+}
+.bodyregularleft {
+  font-family: "Gilroy-Medium", Helvetica;
+  font-size: 20px;
+  letter-spacing: 0.00px;
+}
+.btnseecollection {
+  background-color: transparent;
+  height: 54px;
+  left: 2px;
+  opacity: 1;
+  pointer-events: auto;
+  position: absolute;
+  top: 461px;
+  transition: all 0.2s ease-in-out;
+  width: 201px;
+}
+.btnseecollection .rectangle-Z8L9Tj {
+  background-color: transparent;
+  height: 100%;
+  left: 0px;
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+.btnseecollection .see-the-collection-Z8L9Tj {
+  background-color: transparent;
+  color: rgba(0,114,225,1.0);
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 16px;
+  height: 30px;
+  left: 16.67%;
+  letter-spacing: 0.00px;
+  line-height: 30px;
+  opacity: 1;
+  position: absolute;
+  text-align: center;
+  top: 16.67%;
+  white-space: nowrap;
+  width: 66.67%;
+}
+.btnseecollection:hover {
+
+transform: scale(1.1);
+}
+.gilroy-normal-black-22px {
+  color: rgba(0,0,0,1.0);
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 22px;
+}
+.headlingcenter {
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 48px;
+  letter-spacing: 0.00px;
+}
+.headlingleft {
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 48px;
+  letter-spacing: 0.00px;
+}
+.headlingnegativeleft {
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 48px;
+  letter-spacing: 0.00px;
+}
+.herosubtitle {
+  font-family: "Gilroy-Medium", Helvetica;
+  font-size: 21px;
+  letter-spacing: 0.00px;
+}
+.herotitle {
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 64px;
+  letter-spacing: 0.00px;
+}
+.subheadlinecenter {
+  font-family: "Gilroy-Medium", Helvetica;
+  font-size: 21px;
+  letter-spacing: 0.00px;
+}
+.web {
+  background-color: rgba(255,255,255,1.0);
+  height: 100vh;
+  margin: 0px;
+  min-height: 10926px;
+  min-width: 1440px;
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+.web .a-real-mesh-a-real-sG5hw8 {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 634px;
+  line-height: 60px;
+  position: absolute;
+  text-align: left;
+  top: 68px;
+  width: 430px;
+}
+.web .a-shared-license-for-PuOQ2G {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 142px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: left;
+  top: 418px;
+  width: 282px;
+}
+.web .a-single-license-for-NpqHmX {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 106px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: left;
+  top: 484px;
+  width: 249px;
+}
+.web .actions-WYpMab {
+  background-color: transparent;
+  height: 54px;
+  left: 102px;
+  position: absolute;
+  top: 186px;
+  width: 423px;
+}
+.web .bg-1SDI6q {
+  background-color: transparent;
+  height: 53px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 320px;
+}
+.web .bg-3YALxd {
+  background-color: transparent;
+  height: 234px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 873px;
+}
+.web .bg-9Otz9C {
+  background-color: transparent;
+  height: 234px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 873px;
+}
+.web .bg-DCrBTk {
+  background-color: transparent;
+  height: 1763px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+.web .bg-H1nbfx {
+  background-color: transparent;
+  height: 234px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 873px;
+}
+.web .bg-QHVx29 {
+  background-color: transparent;
+  height: 234px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 873px;
+}
+.web .bg-ghsXdg {
+  background-color: transparent;
+  height: 54px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 204px;
+}
+.web .bg-rqxscA {
+  background-color: transparent;
+  height: 54px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 204px;
+}
+.web .bg-upigxI {
+  background-color: transparent;
+  height: 234px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 873px;
+}
+.web .bg-xjb0Rz {
+  background-color: transparent;
+  height: 51px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+.web .bg-ywZeAE {
+  background-color: transparent;
+  height: 234px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 873px;
+}
+.web .bitmap-8Nkypa {
+  background-color: transparent;
+  height: 529px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 479px;
+}
+.web .bitmap-9IBTbZ {
+  background-color: transparent;
+  height: 589px;
+  left: 527px;
+  position: absolute;
+  top: 0px;
+  width: 590px;
+}
+.web .bitmap-C61RwL {
+  background-color: transparent;
+  height: 931px;
+  position: absolute;
+  top: 651px;
+  width: 1326px;
+}
+.web .bitmap-NpqHmX {
+  background-color: transparent;
+  height: 134px;
+  left: 91px;
+  position: absolute;
+  top: 153px;
+  width: 338px;
+}
+.web .bitmap-O2JovS {
+  background-color: transparent;
+  height: 27px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 29px;
+}
+.web .bitmap-PuOQ2G {
+  background-color: transparent;
+  height: 206px;
+  left: 140px;
+  position: absolute;
+  top: 39px;
+  width: 275px;
+}
+.web .bitmap-WSJixW {
+  background-color: transparent;
+  height: 471px;
+  left: 604px;
+  position: absolute;
+  top: 0px;
+  width: 496px;
+}
+.web .bitmap-sG5hw8 {
+  background-color: transparent;
+  height: 471px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 496px;
+}
+.web .both-licenses-are-a-xZ2Z8c {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 79px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 1000px;
+  width: 772px;
+}
+.web .btn-get-single-NpqHmX {
+  background-color: transparent;
+  height: 72px;
+  left: 95px;
+  pointer-events: auto;
+  position: absolute;
+  top: 583px;
+  transition: all 0.2s ease-in-out;
+  width: 331px;
+}
+.web .btn-get-single-NpqHmX:hover {
+
+transform: scale(1.03);
+}
+.web .btn-get-team-PuOQ2G {
+  background-color: transparent;
+  height: 72px;
+  left: 127px;
+  pointer-events: auto;
+  position: absolute;
+  top: 515px;
+  transition: all 0.2s ease-in-out;
+  width: 321px;
+}
+.web .btn-get-team-PuOQ2G:hover {
+
+transform: scale(1.03);
+}
+.web .button-Uvh9oG {
+  background-color: transparent;
+  height: 53px;
+  left: 233px;
+  pointer-events: auto;
+  position: absolute;
+  top: 261px;
+  transition: all 0.2s ease-in-out;
+  width: 320px;
+}
+.web .button-Uvh9oG:hover {
+
+transform: scale(1.1);
+}
+.web .collection-C61RwL {
+  background-color: transparent;
+  height: 25px;
+  left: 0px;
+  position: absolute;
+  top: 4366px;
+  width: 100%;
+}
+.web .collection-VMr6Om {
+  background-color: transparent;
+  height: 2508px;
+  position: absolute;
+  top: 4458px;
+  width: 920px;
+}
+.web .componentsfa-qs-item-LWklBR {
+  background-color: transparent;
+  height: 266px;
+  left: -40px;
+  position: absolute;
+  top: 664px;
+  width: 873px;
+}
+.web .componentsfa-qs-item-XDsxUz {
+  background-color: transparent;
+  height: 234px;
+  left: -40px;
+  position: absolute;
+  top: 1120px;
+  width: 873px;
+}
+.web .componentsfa-qs-item-eRZDuO {
+  background-color: transparent;
+  height: 266px;
+  left: -40px;
+  position: absolute;
+  top: 436px;
+  width: 873px;
+}
+.web .componentsfa-qs-item-f7noql {
+  background-color: transparent;
+  height: 266px;
+  left: -40px;
+  position: absolute;
+  top: -20px;
+  width: 873px;
+}
+.web .componentsfa-qs-item-kEM1Ji {
+  background-color: transparent;
+  height: 266px;
+  left: -40px;
+  position: absolute;
+  top: 208px;
+  width: 873px;
+}
+.web .componentsfa-qs-item-zdVIln {
+  background-color: transparent;
+  height: 266px;
+  left: -40px;
+  position: absolute;
+  top: 892px;
+  width: 873px;
+}
+.web .content-3YALxd {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 115px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 95px;
+  width: 644px;
+}
+.web .content-6yINq5 {
+  background-color: transparent;
+  height: 240px;
+  position: relative;
+  top: 0px;
+  width: 627px;
+}
+.web .content-9Otz9C {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 115px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 95px;
+  width: 644px;
+}
+.web .content-DCrBTk {
+  background-color: transparent;
+  height: 1587px;
+  position: absolute;
+  top: 59px;
+  width: 793px;
+}
+.web .content-H1nbfx {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 115px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 95px;
+  width: 644px;
+}
+.web .content-QHVx29 {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 115px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 95px;
+  width: 644px;
+}
+.web .content-upigxI {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 115px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 95px;
+  width: 644px;
+}
+.web .content-ywZeAE {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 115px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 95px;
+  white-space: nowrap;
+  width: 644px;
+}
+.web .create-mesh-gradient-C61RwL {
+  background-color: transparent;
+  height: 589px;
+  position: absolute;
+  top: 1726px;
+  width: 1117px;
+}
+.web .creating-a-mesh-grad-9IBTbZ {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 0px;
+  line-height: 60px;
+  position: absolute;
+  text-align: left;
+  top: 47px;
+  width: 445px;
+}
+.web .creating-awesome-mes-Uvh9oG {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 0px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 106px;
+  width: 772px;
+}
+.web .cta-C61RwL {
+  background-color: transparent;
+  height: 451px;
+  position: absolute;
+  top: 10326px;
+  width: 772px;
+}
+.web .cta-Ly2aLU {
+  background-color: transparent;
+  height: 54px;
+  left: 0px;
+  pointer-events: auto;
+  position: absolute;
+  top: 0px;
+  transition: all 0.2s ease-in-out;
+  width: 204px;
+}
+.web .cta-Ly2aLU:hover {
+
+transform: scale(1.03);
+}
+.web .cta-mM2aZU {
+  background-color: transparent;
+  height: 32px;
+  pointer-events: auto;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  transition: all 0.2s ease-in-out;
+  width: 172px;
+}
+.web .cta-mM2aZU:hover {
+
+transform: scale(1.05);
+}
+.web .fa-qs-dIxyXG {
+  background-color: transparent;
+  height: 1294px;
+  left: 0px;
+  position: absolute;
+  top: 139px;
+  width: 793px;
+}
+.web .for-3999-PuOQ2G {
+  background-color: transparent;
+  color: rgba(84,12,250,1.0);
+  font-family: "Gilroy-Medium", Helvetica;
+  font-size: 27px;
+  height: auto;
+  left: 142px;
+  letter-spacing: 0.00px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: left;
+  top: 350px;
+  white-space: nowrap;
+  width: auto;
+}
+.web .for-999-NpqHmX {
+  background-color: transparent;
+  color: rgba(84,12,250,1.0);
+  font-family: "Gilroy-Medium", Helvetica;
+  font-size: 27px;
+  height: auto;
+  left: 106px;
+  letter-spacing: 0.00px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: left;
+  top: 416px;
+  white-space: nowrap;
+  width: auto;
+}
+.web .frequently-asked-que-dIxyXG {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 41px;
+  line-height: 63px;
+  position: absolute;
+  text-align: center;
+  top: 0px;
+  white-space: nowrap;
+  width: 710px;
+}
+.web .frequently-asked-questions-C61RwL {
+  background-color: transparent;
+  height: 1763px;
+  left: 0px;
+  position: absolute;
+  top: 8429px;
+  width: 100%;
+}
+.web .get-a-team-license-5tgu98 {
+  background-color: transparent;
+  color: var(--science-blue);
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 20px;
+  height: auto;
+  left: 71px;
+  letter-spacing: 0.00px;
+  line-height: 25px;
+  position: absolute;
+  text-align: center;
+  top: 28px;
+  white-space: nowrap;
+  width: auto;
+}
+.web .get-mesh-gradients-1SDI6q {
+  background-color: transparent;
+  color: rgba(255,255,255,1.0);
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 16px;
+  height: auto;
+  left: 86px;
+  letter-spacing: 0.00px;
+  line-height: 20px;
+  position: absolute;
+  text-align: center;
+  top: 19px;
+  white-space: nowrap;
+  width: auto;
+}
+.web .get-mesh-gradients-2f8Wxw {
+  background-color: transparent;
+  color: rgba(255,255,255,1.0);
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 14px;
+  height: auto;
+  left: 21px;
+  letter-spacing: 0.00px;
+  line-height: 17px;
+  position: absolute;
+  text-align: center;
+  top: 9px;
+  white-space: nowrap;
+  width: auto;
+}
+.web .get-mesh-gradients-rqxscA {
+  background-color: transparent;
+  color: rgba(255,255,255,1.0);
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 16px;
+  height: auto;
+  left: 28px;
+  letter-spacing: 0.00px;
+  line-height: 20px;
+  position: absolute;
+  text-align: center;
+  top: 19px;
+  white-space: nowrap;
+  width: auto;
+}
+.web .go-light-or-go-dark-C61RwL {
+  background-color: transparent;
+  color: var(--chicago);
+  height: auto;
+  line-height: 30px;
+  opacity: 0.61;
+  position: absolute;
+  text-align: center;
+  top: 1476px;
+  white-space: nowrap;
+  width: auto;
+}
+.web .go-play-with-it-XDsxUz {
+  background-color: transparent;
+  color: var(--science-blue);
+  height: auto;
+  left: 10px;
+  line-height: 32px;
+  opacity: 0.8;
+  pointer-events: auto;
+  position: absolute;
+  text-align: center;
+  top: 109px;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  width: 772px;
+}
+.web .go-play-with-it-XDsxUz:hover {
+
+color: #540CFA;
+}
+.web .have-any-further-que-dIxyXG {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 10px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 1521px;
+  white-space: nowrap;
+  width: 772px;
+}
+.web .hero-C61RwL {
+  background-color: transparent;
+  height: 240px;
+  position: absolute;
+  top: 210px;
+  width: 627px;
+}
+.web .hero-bg-C61RwL {
+  background-color: transparent;
+  height: 734px;
+  position: absolute;
+  right: 0px;
+  top: 51px;
+  width: 50.00%;
+}
+.web .how-it-works-C61RwL {
+  background-color: transparent;
+  height: 25px;
+  left: 0px;
+  position: absolute;
+  top: 1563px;
+  width: 100%;
+}
+.web .how-it-works-I6cUym {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  line-height: 19px;
+  margin: 0;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  width: auto;
+}
+.web .how-it-works-I6cUym:hover {
+
+color:#0073E2;
+}
+.web .i-want-a-single-lice-rKx0xm {
+  background-color: transparent;
+  color: rgba(255,255,255,1.0);
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 20px;
+  height: auto;
+  left: 62px;
+  letter-spacing: 0.00px;
+  line-height: 25px;
+  position: absolute;
+  text-align: center;
+  top: 28px;
+  white-space: nowrap;
+  width: auto;
+}
+.web .items-lrtxkz {
+  background-color: transparent;
+  height: 2180px;
+  position: absolute;
+  top: 192px;
+  width: 920px;
+}
+.web .just-drop-us-an-emai-XDsxUz {
+  background-color: transparent;
+  color: var(--science-blue);
+  height: auto;
+  left: 10px;
+  line-height: 32px;
+  opacity: 0.8;
+  pointer-events: auto;
+  position: absolute;
+  text-align: center;
+  top: 1022px;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  width: 772px;
+}
+.web .just-drop-us-an-emai-XDsxUz:hover {
+
+color: #540CFA;
+}
+.web .main-bar-mM2aZU {
+  background-color: transparent;
+  height: 27px;
+  left: 0px;
+  position: absolute;
+  top: 2px;
+  width: 381px;
+}
+.web .main-bar-xjb0Rz {
+  background-color: transparent;
+  height: 32px;
+  left: 144px;
+  position: absolute;
+  top: 9px;
+  width: calc(100.00% - 288px);
+}
+.web .mesh-gradients-WYpMab {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 83px;
+  line-height: 63px;
+  position: absolute;
+  text-align: center;
+  top: -1px;
+  white-space: nowrap;
+  width: auto;
+}
+.web .mesh-gradients-creat-8Nkypa {
+  background-color: transparent;
+  color: var(--chicago);
+  height: auto;
+  left: 634px;
+  line-height: 30px;
+  position: absolute;
+  text-align: left;
+  top: 205px;
+  width: 460px;
+}
+.web .mesh-gradients-uses-sG5hw8 {
+  background-color: transparent;
+  color: var(--chicago);
+  height: auto;
+  left: 634px;
+  line-height: 30px;
+  position: absolute;
+  text-align: left;
+  top: 232px;
+  width: 460px;
+}
+.web .more-coming-stay-tu-lrtxkz {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 74px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 2476px;
+  white-space: nowrap;
+  width: 772px;
+}
+.web .navigation-C61RwL {
+  background-color: transparent;
+  height: 51px;
+  left: 0px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+}
+.web .not-happy-with-the-g-WSJixW {
+  background-color: transparent;
+  color: var(--chicago);
+  height: auto;
+  left: 0px;
+  line-height: 30px;
+  position: absolute;
+  text-align: left;
+  top: 227px;
+  width: 460px;
+}
+.web .oodesign-all-right-Uvh9oG {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  font-family: "Gilroy-Medium", Helvetica;
+  font-size: 12px;
+  height: auto;
+  left: 313px;
+  letter-spacing: 0.00px;
+  line-height: 15px;
+  opacity: 0.3;
+  position: absolute;
+  text-align: center;
+  top: 439px;
+  white-space: nowrap;
+  width: auto;
+}
+.web .pricing-C61RwL {
+  background-color: transparent;
+  height: 25px;
+  left: 0px;
+  position: absolute;
+  top: 7069px;
+  width: 100%;
+}
+.web .pricing-I6cUym {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  line-height: 19px;
+  margin: 0 0 0 25px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  width: auto;
+}
+.web .pricing-I6cUym:hover {
+
+color:#0073E2;
+}
+.web .pricing-VMr6Om {
+  background-color: transparent;
+  height: 1064px;
+  position: absolute;
+  top: 7193px;
+  width: 943px;
+}
+.web .real-mesh-C61RwL {
+  background-color: transparent;
+  height: 471px;
+  position: absolute;
+  top: 3788px;
+  width: 1094px;
+}
+.web .rectangle-2-2f8Wxw {
+  background-color: transparent;
+  height: 32px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 172px;
+}
+.web .rectangle-2CPkGp {
+  background-color: transparent;
+  height: 220px;
+  left: 330px;
+  pointer-events: auto;
+  position: absolute;
+  top: 0px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-2CPkGp:hover {
+
+}
+.web .rectangle-5bfxaC {
+  background-color: transparent;
+  height: 220px;
+  left: 330px;
+  pointer-events: auto;
+  position: absolute;
+  top: 840px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-5bfxaC:hover {
+
+}
+.web .rectangle-5tgu98 {
+  background-color: transparent;
+  height: 72px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 321px;
+}
+.web .rectangle-98veKz {
+  background-color: transparent;
+  height: 220px;
+  left: 660px;
+  pointer-events: auto;
+  position: absolute;
+  top: 1400px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-98veKz:hover {
+
+}
+.web .rectangle-Arl532 {
+  background-color: transparent;
+  height: 220px;
+  left: 0px;
+  pointer-events: auto;
+  position: absolute;
+  top: 1400px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-Arl532:hover {
+
+}
+.web .rectangle-KNwluQ {
+  background-color: transparent;
+  height: 220px;
+  left: 0px;
+  pointer-events: auto;
+  position: absolute;
+  top: 840px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-KNwluQ:hover {
+
+}
+.web .rectangle-Lky1Ln {
+  background-color: transparent;
+  height: 220px;
+  left: 660px;
+  pointer-events: auto;
+  position: absolute;
+  top: 560px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-Lky1Ln:hover {
+
+}
+.web .rectangle-LlZBLa {
+  background-color: transparent;
+  height: 220px;
+  left: 0px;
+  pointer-events: auto;
+  position: absolute;
+  top: 560px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-LlZBLa:hover {
+
+}
+.web .rectangle-MtdLY9 {
+  background-color: transparent;
+  height: 220px;
+  left: 660px;
+  pointer-events: auto;
+  position: absolute;
+  top: 1960px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-MtdLY9:hover {
+
+}
+.web .rectangle-NpqHmX {
+  background-color: transparent;
+  height: 762px;
+  left: 1px;
+  position: absolute;
+  top: 2px;
+  width: 519px;
+}
+.web .rectangle-OhiNLK {
+  background-color: transparent;
+  height: 220px;
+  left: 660px;
+  pointer-events: auto;
+  position: absolute;
+  top: 0px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-OhiNLK:hover {
+
+}
+.web .rectangle-PiBt90 {
+  background-color: transparent;
+  height: 220px;
+  left: 660px;
+  pointer-events: auto;
+  position: absolute;
+  top: 280px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-PiBt90:hover {
+
+}
+.web .rectangle-PuOQ2G {
+  background-color: transparent;
+  height: 694px;
+  left: 1px;
+  position: absolute;
+  top: 1px;
+  width: 538px;
+}
+.web .rectangle-PxVOGW {
+  background-color: transparent;
+  height: 220px;
+  left: 330px;
+  pointer-events: auto;
+  position: absolute;
+  top: 560px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-PxVOGW:hover {
+
+}
+.web .rectangle-QLpS4o {
+  background-color: transparent;
+  height: 220px;
+  left: 660px;
+  pointer-events: auto;
+  position: absolute;
+  top: 1120px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-QLpS4o:hover {
+
+}
+.web .rectangle-Quc7OL {
+  background-color: transparent;
+  height: 220px;
+  left: 0px;
+  pointer-events: auto;
+  position: absolute;
+  top: 1960px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-Quc7OL:hover {
+
+}
+.web .rectangle-RKMomQ {
+  background-color: transparent;
+  height: 220px;
+  left: 330px;
+  pointer-events: auto;
+  position: absolute;
+  top: 1960px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-RKMomQ:hover {
+
+}
+.web .rectangle-TT1zG9 {
+  background-color: transparent;
+  height: 220px;
+  left: 330px;
+  pointer-events: auto;
+  position: absolute;
+  top: 1400px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-TT1zG9:hover {
+
+}
+.web .rectangle-Zrxfw1 {
+  background-color: transparent;
+  height: 220px;
+  left: 660px;
+  pointer-events: auto;
+  position: absolute;
+  top: 1680px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-Zrxfw1:hover {
+
+}
+.web .rectangle-brjn9s {
+  background-color: transparent;
+  height: 220px;
+  left: 330px;
+  pointer-events: auto;
+  position: absolute;
+  top: 1120px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-brjn9s:hover {
+
+}
+.web .rectangle-d8Eqzz {
+  background-color: transparent;
+  height: 220px;
+  left: 330px;
+  pointer-events: auto;
+  position: absolute;
+  top: 280px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-d8Eqzz:hover {
+
+}
+.web .rectangle-jGa7ty {
+  background-color: transparent;
+  height: 220px;
+  left: 0px;
+  pointer-events: auto;
+  position: absolute;
+  top: 1120px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-jGa7ty:hover {
+
+}
+.web .rectangle-m9FDox {
+  background-color: transparent;
+  height: 734px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 720px;
+}
+.web .rectangle-mP7fMM {
+  background-color: transparent;
+  height: 220px;
+  left: 0px;
+  pointer-events: auto;
+  position: absolute;
+  top: 280px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-mP7fMM:hover {
+
+}
+.web .rectangle-r8Ktq3 {
+  background-color: transparent;
+  height: 220px;
+  left: 330px;
+  pointer-events: auto;
+  position: absolute;
+  top: 1680px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-r8Ktq3:hover {
+
+}
+.web .rectangle-rKx0xm {
+  background-color: transparent;
+  height: 72px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 331px;
+}
+.web .rectangle-rNhXGR {
+  background-color: transparent;
+  height: 220px;
+  left: 0px;
+  pointer-events: auto;
+  position: absolute;
+  top: 1680px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-rNhXGR:hover {
+
+}
+.web .rectangle-vrKjLV {
+  background-color: transparent;
+  height: 220px;
+  left: 660px;
+  pointer-events: auto;
+  position: absolute;
+  top: 840px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-vrKjLV:hover {
+
+}
+.web .rectangle-xdD3Qg {
+  background-color: transparent;
+  height: 220px;
+  left: 0px;
+  pointer-events: auto;
+  position: absolute;
+  top: 0px;
+  transition: all 0.2s ease-in-out;
+  width: 260px;
+}
+.web .rectangle-xdD3Qg:hover {
+
+}
+.web .right-inside-of-sket-WYpMab {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: -1px;
+  line-height: 63px;
+  position: absolute;
+  text-align: center;
+  top: 76px;
+  white-space: nowrap;
+  width: auto;
+}
+.web .set-your-mesh-pick-9IBTbZ {
+  background-color: transparent;
+  color: var(--chicago);
+  height: auto;
+  left: 0px;
+  line-height: 30px;
+  position: absolute;
+  text-align: left;
+  top: 269px;
+  width: 460px;
+}
+.web .single-license-NpqHmX {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 38px;
+  height: auto;
+  left: 105px;
+  letter-spacing: 0.00px;
+  line-height: 63px;
+  position: absolute;
+  text-align: left;
+  top: 345px;
+  white-space: nowrap;
+  width: auto;
+}
+.web .single-license-content-xZ2Z8c {
+  background-color: transparent;
+  height: 765px;
+  left: 0px;
+  pointer-events: auto;
+  position: absolute;
+  top: 168px;
+  transition: all 0.2s ease-in-out;
+  width: 521px;
+}
+.web .single-license-content-xZ2Z8c:hover {
+
+transform: scale(1.01);
+}
+.web .span1-YNM1fL {
+  letter-spacing: 0.00px;
+}
+.web .span2-YNM1fL {
+  font-family: "AppleColorEmoji", Helvetica;
+  letter-spacing: 0.00px;
+}
+.web .span3-YNM1fL {
+  letter-spacing: 0.00px;
+}
+.web .stacked-group-O2JovS {
+  align-items: center;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  height: 16px;
+  justify-content: flex-start;
+  left: 85px;
+  position: absolute;
+  top: 8px;
+  width: auto;
+}
+.web .start-creating-aweso-xZ2Z8c {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 102px;
+  line-height: 63px;
+  position: absolute;
+  text-align: center;
+  top: 0px;
+  width: 710px;
+}
+.web .start-meshing-now-Uvh9oG {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 23px;
+  line-height: 63px;
+  position: absolute;
+  text-align: center;
+  top: 0px;
+  white-space: nowrap;
+  width: 710px;
+}
+.web .team-license-PuOQ2G {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 38px;
+  height: auto;
+  left: 141px;
+  letter-spacing: 0.00px;
+  line-height: 63px;
+  position: absolute;
+  text-align: left;
+  top: 279px;
+  white-space: nowrap;
+  width: auto;
+}
+.web .team-license-content-xZ2Z8c {
+  background-color: transparent;
+  height: 696px;
+  left: 403px;
+  pointer-events: auto;
+  position: absolute;
+  top: 210px;
+  transition: all 0.2s ease-in-out;
+  width: 540px;
+}
+.web .team-license-content-xZ2Z8c:hover {
+
+transform: scale(1.01);
+}
+.web .the-collection-I6cUym {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  line-height: 19px;
+  margin: 0 0 0 25px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  width: auto;
+}
+.web .the-collection-I6cUym:hover {
+
+color:#0073E2;
+}
+.web .the-collection-lrtxkz {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 105px;
+  line-height: 63px;
+  position: absolute;
+  text-align: center;
+  top: 0px;
+  white-space: nowrap;
+  width: 710px;
+}
+.web .title-3YALxd {
+  background-color: transparent;
+  height: auto;
+  left: 63px;
+  letter-spacing: 0.00px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 48px;
+  white-space: nowrap;
+  width: 748px;
+}
+.web .title-9Otz9C {
+  background-color: transparent;
+  height: auto;
+  left: 63px;
+  letter-spacing: 0.00px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 48px;
+  white-space: nowrap;
+  width: 748px;
+}
+.web .title-H1nbfx {
+  background-color: transparent;
+  height: auto;
+  left: 63px;
+  letter-spacing: 0.00px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 48px;
+  white-space: nowrap;
+  width: 748px;
+}
+.web .title-QHVx29 {
+  background-color: transparent;
+  height: auto;
+  left: 63px;
+  letter-spacing: 0.00px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 48px;
+  white-space: nowrap;
+  width: 748px;
+}
+.web .title-upigxI {
+  background-color: transparent;
+  height: auto;
+  left: 63px;
+  letter-spacing: 0.00px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 48px;
+  white-space: nowrap;
+  width: 748px;
+}
+.web .title-ywZeAE {
+  background-color: transparent;
+  height: auto;
+  left: 63px;
+  letter-spacing: 0.00px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 48px;
+  white-space: nowrap;
+  width: 748px;
+}
+.web .top-C61RwL {
+  background-color: transparent;
+  height: 25px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+.web .try-it-Ly2aLU {
+  background-color: transparent;
+  height: 54px;
+  left: 219px;
+  pointer-events: auto;
+  position: absolute;
+  top: 0px;
+  transition: all 0.2s ease-in-out;
+  width: 204px;
+}
+.web .try-it-Ly2aLU:hover {
+
+transform: scale(1.03);
+}
+.web .try-it-for-free-ghsXdg {
+  background-color: transparent;
+  color: var(--science-blue);
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 16px;
+  height: auto;
+  left: 53px;
+  letter-spacing: 0.00px;
+  line-height: 20px;
+  position: absolute;
+  text-align: center;
+  top: 19px;
+  white-space: nowrap;
+  width: auto;
+}
+.web .tweak-C61RwL {
+  background-color: transparent;
+  height: 471px;
+  position: absolute;
+  top: 3112px;
+  width: 1100px;
+}
+.web .tweak-the-gradient-a-WSJixW {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 0px;
+  line-height: 60px;
+  position: absolute;
+  text-align: left;
+  top: 7px;
+  width: 445px;
+}
+.web .use-a-gradient-from-lrtxkz {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 74px;
+  line-height: 32px;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  top: 83px;
+  white-space: nowrap;
+  width: 772px;
+}
+.web .use-as-fill-C61RwL {
+  background-color: transparent;
+  height: 529px;
+  position: absolute;
+  top: 2442px;
+  width: 1094px;
+}
+.web .use-them-on-any-shap-8Nkypa {
+  background-color: transparent;
+  color: rgba(0,0,0,1.0);
+  height: auto;
+  left: 634px;
+  line-height: 60px;
+  position: absolute;
+  text-align: left;
+  top: 43px;
+  width: 430px;
+}
+.web .wed-love-to-hear-fr-dIxyXG {
+  background-color: transparent;
+  color: var(--science-blue);
+  height: auto;
+  left: 10px;
+  line-height: 32px;
+  opacity: 0.8;
+  pointer-events: auto;
+  position: absolute;
+  text-align: center;
+  top: 1555px;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  width: 772px;
+}
+.web .wed-love-to-hear-fr-dIxyXG:hover {
+
+color: #540CFA;
+}
+:root {
+  --: rgba(255,255,255,1.0);
+  --1: rgba(0,0,0,1.0);
+  --12: rgba(84,12,250,1.0);
+  --chicago: rgba(87,87,87,1.0);
+  --science-blue: rgba(0,114,225,1.0);
+}
+/* component - btnseecollection */
+
+.btnseecollection .rectangle-Z8L9Tj {
+  background-color: transparent;
+  height: 100%;
+  left: 0px;
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+.btnseecollection .see-the-collection-Z8L9Tj {
+  background-color: transparent;
+  color: rgba(0,114,225,1.0);
+  font-family: "Gilroy-Bold", Helvetica;
+  font-size: 16px;
+  height: 30px;
+  left: 16.67%;
+  letter-spacing: 0.00px;
+  line-height: 30px;
+  opacity: 1;
+  position: absolute;
+  text-align: center;
+  top: 16.67%;
+  white-space: nowrap;
+  width: 66.67%;
+}
+</style>
+    
+    
+    
+    <meta name="author" content="AnimaApp.com - Design to code, Automated.">
+</head>
+<body style="margin: 0;background: rgba(255,255,255,1.0);">
+<input type="hidden" id="anPageName" name="page" value="web"/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="web screen " >
+    
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="how-it-works-C61RwL"  id="how-it-works" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+>
+</div>
+
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="collection-C61RwL"  id="collection" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+>
+</div>
+
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="pricing-C61RwL"  id="pricing" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+>
+</div>
+
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="top-C61RwL"  id="top" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+>
+</div>
+<div class=" 
+        container-center-horizontal">
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="cta-C61RwL"  show-on-scroll 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="creating-awesome-mes-Uvh9oG subheadlinecenter herosubtitle" 
+>Creating awesome mesh gradients has never been this easy. <br/>And right inside of Sketch.</div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="oodesign-all-right-Uvh9oG" 
+>oodesign - All rights reserved</div>
+<a href="https://gum.co/meshgradients?variant=Single%20license"  target="_blank" >
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="button-Uvh9oG smart-layers-pointers " 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bg-1SDI6q"  show-on-scroll  
+src="./web-bg-A10C0569-3E12-4E2E-A7CD-9DF79FE7E120.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="get-mesh-gradients-1SDI6q" 
+>Get Mesh gradients</div>
+
+</div></a>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="start-meshing-now-Uvh9oG headlingnegativeleft headlingcenter headlingleft" 
+>Start meshing now</div>
+
+</div>
+</div> 
+<div class=" 
+        container-center-horizontal">
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="pricing-VMr6Om"  show-on-scroll 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="both-licenses-are-a-xZ2Z8c subheadlinecenter herosubtitle" 
+>Both licenses are a one-time purchase, and all updates are included with it. <br/>No subscriptions, and no further surprises :)</div>
+<a href="https://gum.co/meshgradients?variant=Team%20license"  target="_blank" >
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="team-license-content-xZ2Z8c smart-layers-pointers " 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-PuOQ2G"  
+src="./web-rectangle-C9EC02B7-EFF6-4DE6-B4C7-F043F170CC86.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="team-license-PuOQ2G" 
+>Team license</div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="a-shared-license-for-PuOQ2G subheadlinecenter herosubtitle" 
+>A shared license for the team, no matter how bit it is.</div>
+<a href="https://gum.co/meshgradients?variant=Team%20license"  onclick="window.event.stopPropagation()"  target="_blank" >
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="btn-get-team-PuOQ2G smart-layers-pointers " 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-5tgu98"  
+src="./web-rectangle-800F8CAA-0098-493D-8F65-DC28C3C6CD85.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="get-a-team-license-5tgu98" 
+>Get a team license</div>
+
+</div></a>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="for-3999-PuOQ2G" 
+>for $39.99</div>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bitmap-PuOQ2G"  
+src="./web-bitmap-B868AEC3-D7D2-44EB-9477-F5416B77142B@2x.png"
+/>
+
+</div></a>
+<a href="https://gum.co/meshgradients?variant=Single%20license"  target="_blank" >
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="single-license-content-xZ2Z8c smart-layers-pointers " 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-NpqHmX"  
+src="./web-rectangle-42FE8C86-76A3-4BC4-B6C0-CB261C70F59C.png"
+/>
+<a href="https://gum.co/meshgradients?variant=Single%20license"  onclick="window.event.stopPropagation()"  target="_blank" >
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="btn-get-single-NpqHmX smart-layers-pointers " 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-rKx0xm"  
+src="./web-rectangle-0D1264C2-8068-4AF9-97A0-167346EF37B4.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="i-want-a-single-lice-rKx0xm" 
+>I want a single license</div>
+
+</div></a>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="single-license-NpqHmX" 
+>Single license</div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="a-single-license-for-NpqHmX subheadlinecenter herosubtitle" 
+>A single license for a single device.</div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="for-999-NpqHmX" 
+>for $9.99</div>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bitmap-NpqHmX"  
+src="./web-bitmap-7B4D8C67-B88D-4F5A-AEC5-4C6F0E534CFB.png"
+/>
+
+</div></a>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="start-creating-aweso-xZ2Z8c headlingnegativeleft headlingcenter headlingleft" 
+>Start creating awesome mesh gradients in minutes</div>
+
+</div>
+</div> 
+
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="frequently-asked-questions-C61RwL"  show-on-scroll 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bg-DCrBTk"  
+src="./web-bg-D3F5304D-53C0-49E9-BA5E-F8DEF57994E9.png"
+/>
+<div class=" 
+        container-center-horizontal">
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="content-DCrBTk" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><a href="mailto:support@oodesign.me"  target="_blank" ><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="wed-love-to-hear-fr-dIxyXG subheadlinecenter herosubtitle smart-layers-pointers " 
+>We’d love to hear from you!</div></a>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="have-any-further-que-dIxyXG subheadlinecenter herosubtitle" 
+>Have any further question? </div>
+
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="fa-qs-dIxyXG" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="componentsfa-qs-item-XDsxUz" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bg-ywZeAE"  
+src="./web-bg-B2CBD86E-3E22-48D0-AD4E-1A935D1BFC86.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="content-ywZeAE subheadlinecenter herosubtitle" 
+>Mmmaybe? Interested? Let us know!</div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="title-ywZeAE gilroy-normal-black-22px" 
+>Any plans to have it in Figma?</div>
+
+</div>
+
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="componentsfa-qs-item-zdVIln" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bg-9Otz9C"  
+src="./web-bg-527CD511-8298-4613-9A09-2066FEF2DCE4.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="content-9Otz9C subheadlinecenter herosubtitle" 
+>Absolutely! We&#39;re always happy to support! <br/></div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="title-9Otz9C gilroy-normal-black-22px" 
+>Are there any discounts for students, beginners, or so?</div>
+
+</div>
+<a href="mailto:support@oodesign.me"  target="_blank" ><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="just-drop-us-an-emai-XDsxUz subheadlinecenter herosubtitle smart-layers-pointers " 
+>Just drop us an email and tell us your case.</div></a>
+
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="componentsfa-qs-item-LWklBR" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bg-upigxI"  
+src="./web-bg-67DA9B00-A8CB-4D2E-B2DD-F53FB86A8CEA.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="content-upigxI subheadlinecenter herosubtitle" 
+>It&#39;s a one-time purchase, and all updates are included with it. No subscriptions, and no further surprises :)</div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="title-upigxI gilroy-normal-black-22px" 
+>What does the license include?</div>
+
+</div>
+
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="componentsfa-qs-item-eRZDuO" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bg-H1nbfx"  
+src="./web-bg-58208845-0938-4DDC-A5F4-0C1CE0A91E78.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="content-H1nbfx subheadlinecenter herosubtitle" 
+>The team license enables you to activate Mesh gradients on as many devices (in your team) as needed.</div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="title-H1nbfx gilroy-normal-black-22px" 
+>Can I use it in multiple devices?</div>
+
+</div>
+
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="componentsfa-qs-item-kEM1Ji" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bg-QHVx29"  
+src="./web-bg-5AAC267E-F833-4DD2-BB55-9E18288CC2EF.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="content-QHVx29 subheadlinecenter herosubtitle" 
+>The Mesh gradients license is per device. You may need a license for each device you want to activate it on.</div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="title-QHVx29 gilroy-normal-black-22px" 
+>How does the license work?</div>
+
+</div>
+
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="componentsfa-qs-item-f7noql" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bg-3YALxd"  
+src="./web-bg-786D73E1-0565-43D7-98D2-17F43719654C.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="content-3YALxd subheadlinecenter herosubtitle" 
+>Sure! Mesh gradients has a completely functional 7-day free trial. <br/></div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="title-3YALxd gilroy-normal-black-22px" 
+>May I try it out before getting it?</div>
+
+</div>
+<a href="https://github.com/oodesign/mesh-gradients/releases"  target="_blank" ><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="go-play-with-it-XDsxUz subheadlinecenter herosubtitle smart-layers-pointers " 
+>Go play with it!</div></a>
+
+</div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="frequently-asked-que-dIxyXG headlingnegativeleft headlingcenter headlingleft" 
+>Frequently Asked Questions</div>
+
+</div>
+</div> 
+
+</div>
+<div class=" 
+        container-center-horizontal">
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="collection-VMr6Om"  show-on-scroll 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="more-coming-stay-tu-lrtxkz subheadlinecenter herosubtitle" 
+>More coming! Stay tuned for updates!</div>
+<div class=" 
+        container-center-horizontal">
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="items-lrtxkz" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-MtdLY9 smart-layers-pointers "  
+src="./web-rectangle-68A3F2F0-2709-4F58-BFC7-C609074F714C@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-RKMomQ smart-layers-pointers "  
+src="./web-rectangle-1DB94AD9-82BA-4114-B061-E4305063626F@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-Quc7OL smart-layers-pointers "  
+src="./web-rectangle-23C51538-328E-486F-B9F1-62C083F8D849@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-Zrxfw1 smart-layers-pointers "  
+src="./web-rectangle-B4E35DD7-1386-43B4-AFD9-77DD201E2259@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-r8Ktq3 smart-layers-pointers "  
+src="./web-rectangle-FB731FC8-D70B-4ABE-A4FD-204E602B6338@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-rNhXGR smart-layers-pointers "  
+src="./web-rectangle-4FD21D35-D4EF-4463-A8B6-4EE7B2A5A029@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-98veKz smart-layers-pointers "  
+src="./web-rectangle-3399561D-574B-4481-97F1-1BAFF26F2B04@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-TT1zG9 smart-layers-pointers "  
+src="./web-rectangle-9632EAC7-D9C4-49E2-9F0F-90705CFD6ABD@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-Arl532 smart-layers-pointers "  
+src="./web-rectangle-92F3A56E-4041-4F46-ABCA-B5052F1F4376@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-QLpS4o smart-layers-pointers "  
+src="./web-rectangle-23151A78-E6D5-4A53-80C8-D3240859D10F@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-brjn9s smart-layers-pointers "  
+src="./web-rectangle-879038BD-3C7D-4BA2-92AC-56A55114D311@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-jGa7ty smart-layers-pointers "  
+src="./web-rectangle-A491AA88-2B72-4CD7-86E8-51DFC43332E5@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-vrKjLV smart-layers-pointers "  
+src="./web-rectangle-96595D50-925A-457D-998D-A00F3A0DF732@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-5bfxaC smart-layers-pointers "  
+src="./web-rectangle-4E9AAF3D-B08E-44EC-8286-2174E1858F19@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-KNwluQ smart-layers-pointers "  
+src="./web-rectangle-7980B349-C8CB-4610-B689-60E57CD06E61@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-Lky1Ln smart-layers-pointers "  
+src="./web-rectangle-DD739CEA-73AA-420D-B22B-B533140FDC03@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-PxVOGW smart-layers-pointers "  
+src="./web-rectangle-311EB701-AF51-4A72-B6D2-9ABAF0067886@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-LlZBLa smart-layers-pointers "  
+src="./web-rectangle-25FFB44F-CE25-473F-A92B-284D4B76789B@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-PiBt90 smart-layers-pointers "  
+src="./web-rectangle-8A0437FD-5D01-4D01-A5E5-BEBF1BB5A8D8@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-d8Eqzz smart-layers-pointers "  
+src="./web-rectangle-EA790A2A-B994-4EA6-BFA7-BB448E647BBA@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-mP7fMM smart-layers-pointers "  
+src="./web-rectangle-B5F4D1FD-4D65-44D7-82B9-6029169D68C4@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-OhiNLK smart-layers-pointers "  
+src="./web-rectangle-9CEBBC48-B566-4E4D-8A8C-38B3FD3E11C3@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-2CPkGp smart-layers-pointers "  
+src="./web-rectangle-7CB5DF08-7959-435F-A299-EC9810C8C1A9@2x.png"
+/>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-xdD3Qg smart-layers-pointers "  
+src="./web-rectangle-2A3BEF13-ED91-4D33-9B87-E80675CD71C5@2x.png"
+/>
+
+</div>
+</div> 
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="use-a-gradient-from-lrtxkz subheadlinecenter herosubtitle" 
+>Use a gradient from the collection to bootstrap your new creation!</div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="the-collection-lrtxkz headlingnegativeleft headlingcenter headlingleft" 
+>The collection</div>
+
+</div>
+</div> 
+<div class=" 
+        container-center-horizontal">
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="real-mesh-C61RwL"  show-on-scroll 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="mesh-gradients-uses-sG5hw8 bodyregularleft" 
+><span class="span1-YNM1fL">Mesh gradients uses Three.js to create a real 3D mesh, and Hermite bicubic color interpolation to generate awesome real mesh gradients.<br/><br/>No more playing with circles and tons of blur </span><span class="span2-YNM1fL">😉</span><span class="span3-YNM1fL"> .</span></div>
+<a href="https://vimeo.com/5164733"  target="_blank" ><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="a-real-mesh-a-real-sG5hw8 headlingnegativeleft headlingcenter headlingleft" 
+>A real mesh. A real gradient.</div></a>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bitmap-sG5hw8"  
+src="./web-bitmap-D119EBA1-D343-4761-B5A7-F2FBF29E7896.png"
+/>
+
+</div>
+</div> 
+<div class=" 
+        container-center-horizontal">
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="tweak-C61RwL"  show-on-scroll 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bitmap-WSJixW"  
+src="./web-bitmap-05A7892F-CDB8-4FB5-A9C4-62A499891F31.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="not-happy-with-the-g-WSJixW bodyregularleft" 
+>Not happy with the gradient yet? Select the shape, launch Mesh gradients again, and tweak it ’til it’s perfect!<br/><br/>The gradient is safely stored in the Sketch file. This way you (or anyone with Mesh gradients installed) will be able to tweak it as needed.</div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="tweak-the-gradient-a-WSJixW headlingnegativeleft headlingcenter headlingleft" 
+>Tweak the gradient as many times as you wish</div>
+
+</div>
+</div> 
+<div class=" 
+        container-center-horizontal">
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="use-as-fill-C61RwL"  show-on-scroll 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="mesh-gradients-creat-8Nkypa bodyregularleft" 
+>Mesh gradients creates an Image Fill that can be used on any layer, and that you can extend by playing with additional properties right from the Inspector Panel.<br/><br/>And, as any Image Fill, can be adjusted to Fill, Fit, Tile, or Stretch. <br/></div>
+<a href="https://vimeo.com/5164733"  target="_blank" ><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="use-them-on-any-shap-8Nkypa headlingnegativeleft headlingcenter headlingleft" 
+>Use them on any shape as a Fill</div></a>
+<img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bitmap-8Nkypa"  
+src="./web-bitmap-E5125707-6A3F-466E-8974-C218FE2CDA46.png"
+/>
+
+</div>
+</div> 
+<div class=" 
+        container-center-horizontal">
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="create-mesh-gradient-C61RwL"  show-on-scroll 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bitmap-9IBTbZ"  
+src="./web-bitmap-A5F16CE8-C6BC-4128-A6F9-EF8989D8C74C.png"
+/>
+<a href="#collection" >
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="btnseecollection component component-wrapper not-ready smart-layers-pointers " 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-Z8L9Tj"  
+src="./web-rectangle-DA74BFAE-9467-4D94-88C5-535F3DFA5FB5@2x.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="see-the-collection-Z8L9Tj" 
+>See the collection</div>
+
+</div></a>
+<script defer>document.querySelector('.btnseecollection.component-wrapper').timeline_data=[
+  {
+    "initial_state_name": "state1",
+    "root_element": ".btnseecollection",
+    "states_flow": {
+      "state1": {
+        "listeners": [],
+        "overrides": {}
+      },
+      "state2": {
+        "listeners": [],
+        "overrides": {}
+      }
+    }
+  }
+]</script><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="set-your-mesh-pick-9IBTbZ bodyregularleft" 
+>Set your mesh, pick some colors, and start creating some curvy gradients in a breeze!<br/><br/>Or if you feel more like it, use any of the Collection gradients to bootstrap your new creation!</div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="creating-a-mesh-grad-9IBTbZ headlingnegativeleft headlingcenter headlingleft" 
+>Creating a mesh gradient has never been this easy</div>
+
+</div>
+</div> 
+
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="hero-bg-C61RwL" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-m9FDox"  
+src="./web-rectangle-7AA054B5-8A48-4857-B5F2-A7469E208313.png"
+/>
+
+</div>
+<div class=" 
+        container-center-horizontal"><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="go-light-or-go-dark-C61RwL bodyregularcenter bodynegativeleft" 
+>Go light or go dark. Mesh gradient will follow.</div>
+</div> 
+<div class=" 
+        container-center-horizontal"><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bitmap-C61RwL"  
+src="./web-bitmap-364885F9-C8FC-4CD6-8B57-54B2D8B0D1E8.png"
+/>
+</div> 
+<div class=" 
+        container-center-horizontal">
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="hero-C61RwL"  show-on-scroll 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><div class=" 
+        container-center-horizontal">
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="content-6yINq5" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="actions-WYpMab" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><a href="https://gum.co/meshgradients?variant=Single%20license"  target="_blank" >
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="cta-Ly2aLU smart-layers-pointers " 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bg-rqxscA"  
+src="./web-bg-4FBD80CD-F395-4801-9FF1-60F8E6CF8C84@2x.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="get-mesh-gradients-rqxscA" 
+>Get Mesh gradients</div>
+
+</div></a>
+<a href="https://github.com/oodesign/mesh-gradients/releases"  target="_blank" >
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="try-it-Ly2aLU smart-layers-pointers " 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bg-ghsXdg"  
+src="./web-bg-6B713E4C-5291-42F9-BFBC-75B782237D77@2x.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="try-it-for-free-ghsXdg" 
+>Try it for free</div>
+
+</div></a>
+
+</div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="mesh-gradients-WYpMab herotitle" 
+>Mesh gradients</div>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="right-inside-of-sket-WYpMab herotitle" 
+>right inside of Sketch</div>
+
+</div>
+</div> 
+
+</div>
+</div> 
+
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="navigation-C61RwL" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bg-xjb0Rz"  
+src="./web-bg-949DAD45-E6DB-4C7F-8C58-F1681715878D.png"
+/>
+
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="main-bar-xjb0Rz" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><a href="https://gum.co/meshgradients?variant=Single%20license"  target="_blank" >
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="cta-mM2aZU smart-layers-pointers " 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="rectangle-2-2f8Wxw"  
+src="./web-rectangle-2-9B3D55DA-C561-47A2-9810-2EC60C4CDE41@2x.png"
+/>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="get-mesh-gradients-2f8Wxw" 
+>Get Mesh gradients</div>
+
+</div></a>
+
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="main-bar-mM2aZU" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+>
+<div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="stacked-group-O2JovS" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+><a href="#how-it-works" ><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="how-it-works-I6cUym bodyregularcenter bodynegativeleft smart-layers-pointers " 
+>How it works</div></a>
+<a href="#collection" ><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="the-collection-I6cUym bodyregularcenter bodynegativeleft smart-layers-pointers " 
+>The collection</div></a>
+<a href="#pricing" ><div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="pricing-I6cUym bodyregularcenter bodynegativeleft smart-layers-pointers " 
+>Pricing</div></a>
+
+</div>
+<a href="#top" ><img
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        class="bitmap-O2JovS"  
+src="./web-bitmap-BFA34E7D-F685-418C-AC73-5C77F46E7790@2x.png"
+/></a>
+
+</div>
+
+</div>
+
+</div>
+
+ </div>
+
+
+<script src="https://gumroad.com/js/gumroad.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-143977399-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-143977399-1');
+</script>
+
+    <script>"use strict";
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+(function () {
+  var sides_opposites = {
+    left: 'right',
+    right: 'left',
+    top: 'bottom',
+    bottom: 'top'
+  };
+  var sides_containers = {
+    left: 'width',
+    right: 'width',
+    top: 'height',
+    bottom: 'height'
+  };
+  var containers = ['height', 'width'];
+  var autoanimated_properties = ["left", "right", "top", "bottom", "width", "height", "background-color", "color", "font-size", "line-height", "letter-spacing", "border", "border-size", "border-color", "margin", "margin-right", "margin-left", "margin-top", "margin-bottom", "opacity", "font-family", "transform", "rotate"];
+  var autoanimated_properties_from_zero = ["opacity", "rotate"];
+  var last_set_hash = '';
+
+  function normalize_to_percent_and_offset(value) {
+    var percent = 0.0;
+    var pixel_offset = 0;
+    var calc_match = value.match(/calc\(\s*([0-9.]*)%\s*([-+])\s*([0-9]*)px/);
+
+    if (calc_match) {
+      percent = parseFloat(calc_match[1]);
+      pixel_offset = parseInt(calc_match[3]);
+
+      if (calc_match[2] === "-") {
+        pixel_offset = -pixel_offset;
+      }
+    } else if (String(value).includes('%')) {
+      percent = parseFloat(value.replace('%', ''));
+    } else {
+      pixel_offset = parseInt(value, 10);
+    }
+
+    return {
+      percent: percent,
+      pixel_offset: pixel_offset
+    };
+  }
+
+  function to_relative_percent(element, property, value) {
+    var offsetParent = element.offsetParent;
+
+    if (!offsetParent) {
+      return 0;
+    }
+
+    var target_style_property = property;
+
+    if (sides_containers.hasOwnProperty(property)) {
+      target_style_property = sides_containers[property];
+    }
+
+    var parent_size = Math.max(1, parseInt(getComputedStyle(offsetParent)[target_style_property], 10));
+    return parseFloat(100 * value / parent_size);
+  }
+
+  function convert_to_matching_positioning(element, new_props) {
+    var computed_element_style = getComputedStyle(element);
+    Object.entries(new_props).forEach(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 2),
+          property = _ref2[0],
+          value = _ref2[1];
+
+      if (sides_opposites.hasOwnProperty(property)) {
+        var to_percent = String(value).includes('%');
+        var new_prop_value = parseInt(computed_element_style[property], 10) + parseInt(computed_element_style['margin-' + property], 10);
+
+        if (to_percent) {
+          new_prop_value = to_relative_percent(element, property, new_prop_value).toFixed(4) + '%';
+        } else {
+          new_prop_value += 'px';
+        }
+
+        element.style[property] = new_prop_value;
+        element.style['margin-' + property] = 0;
+        element.style['margin-' + sides_opposites[property]] = 0;
+
+        if (element.style[sides_opposites[property]]) {
+          element.style[sides_opposites[property]] = 'auto';
+        }
+      } else if (containers.includes(property)) {
+        var _to_percent = String(value).includes('%');
+
+        var _new_prop_value = parseInt(computed_element_style[property]);
+
+        if (_to_percent) {
+          _new_prop_value = to_relative_percent(element, property, _new_prop_value).toFixed(4) + '%';
+        } else {
+          _new_prop_value += 'px';
+        }
+
+        element.style[property] = _new_prop_value;
+      }
+    });
+  }
+
+  function setup_listener(root_element, listener_specs, event_handler) {
+    var cleaner = null;
+
+    if (listener_specs.listener_type === "timer") {
+      var timeout = setTimeout(event_handler, listener_specs.delay);
+
+      cleaner = function cleaner() {
+        return clearTimeout(timeout);
+      };
+    } else if (['click', 'mouseenter', 'mouseleave'].includes(listener_specs.listener_type)) {
+      var target_element = listener_specs.target_selector === "" ? root_element : root_element.querySelector(listener_specs.target_selector);
+
+      if (!target_element) {
+        return function () {};
+      }
+
+      var event_handler_fixed = function event_handler_fixed(event) {
+        if (event.type === 'click' || event.target === target_element) {
+          event.stopPropagation();
+          event_handler();
+        }
+      };
+
+      target_element.classList.add('listeners-active');
+
+      if (listener_specs.listener_type === "click") {
+        target_element.classList.add('listeners-active-click');
+      }
+
+      target_element.addEventListener(listener_specs.listener_type, event_handler_fixed, true);
+
+      cleaner = function cleaner() {
+        target_element.removeEventListener(listener_specs.listener_type, event_handler_fixed, true);
+        target_element.classList.remove('listeners-active');
+        target_element.classList.remove('listeners-active-click');
+      };
+    }
+
+    return cleaner;
+  }
+
+  function animate_elements(root_element, selector_to_properties_map, transition_props, on_done) {
+    var from_current_position = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
+    var hide_low_opacity = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : true;
+    var entries = selector_to_properties_map.entries ? selector_to_properties_map.entries() : Object.entries(selector_to_properties_map);
+
+    var _iterator = _createForOfIteratorHelper(entries),
+        _step;
+
+    try {
+      var _loop = function _loop() {
+        var _step$value = _slicedToArray(_step.value, 2),
+            selector_or_element = _step$value[0],
+            prop_values_map = _step$value[1];
+
+        var element = root_element;
+
+        if (typeof selector_or_element === 'string') {
+          if (selector_or_element !== '') {
+            element = root_element.querySelector(selector_or_element);
+          }
+        } else {
+          element = selector_or_element;
+        }
+
+        if (element) {
+          var update_element_visibility = function update_element_visibility(visible) {
+            if (visible) {
+              element.classList.toggle("hidden", false);
+            } else {
+              element.classList.toggle("hidden", true);
+            }
+          };
+
+          if (hide_low_opacity) {
+            update_element_visibility(prop_values_map['opacity'] > 0 || getComputedStyle(element).opacity > 0.001);
+          }
+
+          anime.remove(element);
+
+          var full_params = _objectSpread(_objectSpread(_objectSpread({}, transition_props), prop_values_map), {}, {
+            targets: [element],
+            complete: function complete() {
+              if (hide_low_opacity) {
+                update_element_visibility(getComputedStyle(element).opacity > 0.001);
+              }
+
+              if (on_done) {
+                on_done(element);
+              }
+            }
+          });
+
+          if (prop_values_map.hasOwnProperty("transform")) {
+            var transform_val = full_params.transform;
+            delete full_params.transform;
+
+            if (!Array.isArray(transform_val)) {
+              transform_val.match(/\S*\([^)]*/g).map(function (x) {
+                return x.split('(');
+              }).forEach(function (_ref3) {
+                var _ref4 = _slicedToArray(_ref3, 2),
+                    key = _ref4[0],
+                    val = _ref4[1];
+
+                full_params[key] = val;
+              });
+            }
+          }
+
+          if (full_params.hasOwnProperty("easing")) {
+            var mapping = {
+              '': 'linear',
+              'none': 'linear',
+              'bounce': 'easeOutBounce',
+              'wind-up': 'cubicBezier(0.4, -0.25, 0.8, 0.8)',
+              'snap': 'cubicBezier(0.8, 0.85, 0.7, 1.15)',
+              "ease-in-out": "cubicBezier(0.42, 0, 0.58, 1)",
+              "ease-in": "cubicBezier(0.42, 0, 1, 1)",
+              "ease-out": "cubicBezier(0, 0, 0.58, 1)"
+            };
+            var easing = full_params["easing"].trim().toLowerCase();
+
+            if (mapping.hasOwnProperty(easing)) {
+              easing = mapping[easing];
+            } else if (easing.startsWith('cubic-bezier')) {
+              easing = easing.replace('cubic-bezier', 'cubicBezier');
+            }
+
+            full_params["easing"] = easing;
+          }
+
+          if (from_current_position) {
+            convert_to_matching_positioning(element, full_params);
+            Object.keys(sides_opposites).forEach(function (side) {
+              if (full_params.hasOwnProperty(side)) {
+                var value = full_params[side];
+
+                var _normalize_to_percent = normalize_to_percent_and_offset(value),
+                    percent = _normalize_to_percent.percent,
+                    pixel_offset = _normalize_to_percent.pixel_offset;
+
+                if (Math.abs(percent) < 0.001) {
+                  full_params[side] = pixel_offset + 'px';
+                } else {
+                  full_params[side] = percent + '%';
+                  full_params['margin-' + side] = pixel_offset + 'px';
+                }
+
+                element.style[sides_opposites[side]] = 'auto';
+              }
+            });
+            containers.forEach(function (container) {
+              if (full_params.hasOwnProperty(container)) {
+                var value = full_params[container];
+
+                var _normalize_to_percent2 = normalize_to_percent_and_offset(value),
+                    percent = _normalize_to_percent2.percent,
+                    pixel_offset = _normalize_to_percent2.pixel_offset;
+
+                if (Math.abs(percent) < 0.001) {
+                  full_params[container] = pixel_offset + 'px';
+                } else {
+                  if (Math.abs(pixel_offset) > 0) {
+                    percent += to_relative_percent(element, container, pixel_offset);
+                    percent = Math.max(0, percent);
+                  }
+
+                  full_params[container] = percent + '%';
+                }
+              }
+            });
+          }
+
+          anime(full_params);
+        }
+      };
+
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        _loop();
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  }
+
+  function timeline_get_changed_properties_between_states(initial_element_state, from_state_element_state, to_state_element_state) {
+    var selector_to_props = {};
+    Object.entries(from_state_element_state).forEach(function (_ref5) {
+      var _ref6 = _slicedToArray(_ref5, 2),
+          selector = _ref6[0],
+          properties = _ref6[1];
+
+      selector_to_props[selector] = selector_to_props[selector] || {};
+      Object.entries(properties).forEach(function (_ref7) {
+        var _ref8 = _slicedToArray(_ref7, 2),
+            property = _ref8[0],
+            value = _ref8[1];
+
+        selector_to_props[selector][property] = initial_element_state[selector][property];
+      });
+    });
+    Object.entries(to_state_element_state).forEach(function (_ref9) {
+      var _ref10 = _slicedToArray(_ref9, 2),
+          selector = _ref10[0],
+          properties = _ref10[1];
+
+      selector_to_props[selector] = selector_to_props[selector] || {};
+      Object.entries(properties).forEach(function (_ref11) {
+        var _ref12 = _slicedToArray(_ref11, 2),
+            property = _ref12[0],
+            value = _ref12[1];
+
+        selector_to_props[selector][property] = value;
+      });
+    });
+    return selector_to_props;
+  }
+
+  function timeline_transitioning_to_state(root_element, initial_properties, states_flow, now_state_name, transition_animation_time) {
+    var new_state_flow = states_flow[now_state_name];
+    var listener_cleanup_callbacks = [];
+
+    var _iterator2 = _createForOfIteratorHelper(new_state_flow.listeners),
+        _step2;
+
+    try {
+      var _loop2 = function _loop2() {
+        var listener_specs = _step2.value;
+
+        function on_listener_run() {
+          listener_cleanup_callbacks.forEach(function (callback) {
+            return callback();
+          });
+          listener_cleanup_callbacks = [];
+          var next_state_name = listener_specs.change_to_state;
+          var this_state_element_state = states_flow[now_state_name].overrides;
+          var next_state_element_state = states_flow[next_state_name].overrides;
+          var element_selector_to_changed_properties = timeline_get_changed_properties_between_states(initial_properties, this_state_element_state, next_state_element_state);
+          var longest_animation_time_ms = 0;
+          Object.entries(listener_specs.animations).forEach(function (_ref13) {
+            var _ref14 = _slicedToArray(_ref13, 2),
+                selector = _ref14[0],
+                animation_specs = _ref14[1];
+
+            var filtered_props = {};
+
+            if (element_selector_to_changed_properties.hasOwnProperty(selector)) {
+              filtered_props[selector] = element_selector_to_changed_properties[selector];
+              longest_animation_time_ms = Math.max(longest_animation_time_ms, animation_specs.delay + animation_specs.duration);
+              animate_elements(root_element, filtered_props, animation_specs);
+            }
+          });
+          timeline_transitioning_to_state(root_element, initial_properties, states_flow, next_state_name, longest_animation_time_ms);
+        }
+
+        var final_listener_specs = _objectSpread({}, listener_specs);
+
+        if (listener_specs.listener_type === 'timer') {
+          final_listener_specs.delay += transition_animation_time;
+        }
+
+        var cleanup_callback = setup_listener(root_element, final_listener_specs, on_listener_run);
+        listener_cleanup_callbacks.push(cleanup_callback);
+      };
+
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        _loop2();
+      }
+    } catch (err) {
+      _iterator2.e(err);
+    } finally {
+      _iterator2.f();
+    }
+  }
+
+  function run_when_doc_ready(fn) {
+    if (!document.getElementById('anime-js-script')) {
+      var animejs_element = document.createElement('script');
+      animejs_element.id = "anime-js-script";
+      animejs_element.setAttribute('src', 'https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js');
+      animejs_element.setAttribute('integrity', 'sha256-98Q574VkbV+PkxXCKSgL6jVq9mrVbS7uCdA+vt0sLS8=');
+      animejs_element.setAttribute('crossorigin', 'anonymous');
+      document.head.appendChild(animejs_element);
+    }
+
+    if (!document.getElementById('imgloaded-js-script')) {
+      var imgloaded_element = document.createElement('script');
+      imgloaded_element.id = "imgloaded-js-script";
+      imgloaded_element.setAttribute('src', 'https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js');
+      document.head.appendChild(imgloaded_element);
+    }
+
+    if (window.anime === undefined || window.imagesLoaded === undefined) {
+      setTimeout(function () {
+        return run_when_doc_ready(fn);
+      }, 50);
+      return;
+    }
+
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+      setTimeout(fn, 1);
+    } else {
+      document.addEventListener("DOMContentLoaded", fn);
+    }
+  }
+
+  function timeline_load_initial_values(components) {
+    components.forEach(function (component) {
+      var root_element = document.querySelector(component.root_element);
+      var states_flow = component.states_flow;
+      var initial_state_name = component.initial_state_name;
+      var initial_properties = {};
+      Object.values(component.states_flow).forEach(function (state_spec) {
+        Object.entries(state_spec.overrides).forEach(function (_ref15) {
+          var _ref16 = _slicedToArray(_ref15, 2),
+              selector = _ref16[0],
+              properties = _ref16[1];
+
+          initial_properties[selector] = initial_properties[selector] || {};
+          var element = selector === "" ? root_element : root_element.querySelector(selector);
+          Object.keys(properties).forEach(function (property) {
+            initial_properties[selector][property] = element.style[property] || property === 'transform' && 'rotate(0deg)' || window.getComputedStyle(element)[property];
+          });
+        });
+      });
+      Object.entries(component.states_flow[initial_state_name].overrides).forEach(function (_ref17) {
+        var _ref18 = _slicedToArray(_ref17, 2),
+            selector = _ref18[0],
+            properties = _ref18[1];
+
+        var element = selector === "" ? root_element : root_element.querySelector(selector);
+        animate_elements(element, {
+          "": properties
+        }, {
+          duration: 0
+        });
+      });
+      timeline_transitioning_to_state(root_element, initial_properties, states_flow, initial_state_name, 0);
+    });
+    document.querySelectorAll('.not-ready').forEach(function (x) {
+      return x.classList.remove('not-ready');
+    });
+  }
+
+  function autoanim_get_current_view() {
+    var hash = window.location.hash && window.location.hash.slice(1);
+    var screen_element = document.querySelector('.screen');
+    var screens_slugs = screen_element.getAttribute('data-screens').split(',');
+    var page = screen_element.getAttribute('data-page');
+
+    if (screens_slugs.indexOf(hash) !== -1) {
+      return [page, hash];
+    }
+
+    var _iterator3 = _createForOfIteratorHelper(screens_slugs),
+        _step3;
+
+    try {
+      for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+        var slug = _step3.value;
+
+        if (screen_element.classList.contains(slug)) {
+          return [page, slug];
+        }
+      }
+    } catch (err) {
+      _iterator3.e(err);
+    } finally {
+      _iterator3.f();
+    }
+
+    return [page, page];
+  }
+
+  function autoanim_redirect(specs, event) {
+    var actions = specs.split(';');
+
+    var _autoanim_get_current = autoanim_get_current_view(),
+        _autoanim_get_current2 = _slicedToArray(_autoanim_get_current, 2),
+        page = _autoanim_get_current2[0],
+        current_screen = _autoanim_get_current2[1];
+
+    var _iterator4 = _createForOfIteratorHelper(actions),
+        _step4;
+
+    try {
+      for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+        var action = _step4.value;
+
+        var _action$split = action.split(','),
+            _action$split2 = _slicedToArray(_action$split, 5),
+            from_screen = _action$split2[0],
+            target_url = _action$split2[1],
+            link_target_attribute = _action$split2[2],
+            easing = _action$split2[3],
+            duration = _action$split2[4];
+
+        from_screen = decodeURIComponent(from_screen);
+        target_url = decodeURIComponent(target_url);
+        duration = parseInt(duration, 10);
+
+        if (from_screen === '*' || from_screen === current_screen) {
+          var js_run = target_url.match(/\s*javascript\:(.*)/);
+
+          if (js_run) {
+            eval(js_run[1]);
+            event.stopPropagation();
+            return false;
+          } else if (target_url.indexOf(page + '#') === 0) {
+            autoanim_change_to_screen(current_screen, target_url.split('#')[1], easing, duration);
+            event.stopPropagation();
+            return false;
+          } else {
+            window.open(target_url, link_target_attribute);
+            event.stopPropagation();
+            return false;
+          }
+        }
+      }
+    } catch (err) {
+      _iterator4.e(err);
+    } finally {
+      _iterator4.f();
+    }
+
+    return false;
+  }
+
+  function autoanim_reorder_by_z_indexes() {
+    var parents_contained_z_values = new Map();
+    var children_z = new Map();
+
+    var _iterator5 = _createForOfIteratorHelper(document.querySelectorAll('.screen[data-screens] *')),
+        _step5;
+
+    try {
+      for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+        var element = _step5.value;
+        var computed_style = getComputedStyle(element);
+
+        if (['br', '#text', '#comment', 'svg'].includes(element.nodeName && element.nodeName.toLowerCase())) {
+          continue;
+        }
+
+        var z = parseInt(computed_style.getPropertyValue('--z-index'));
+
+        if (z !== -1) {
+          if (!parents_contained_z_values.has(element.parentNode)) {
+            parents_contained_z_values.set(element.parentNode, {});
+          }
+
+          var parent_z_values = parents_contained_z_values.get(element.parentNode);
+          parent_z_values[z] = true;
+          children_z.set(element, z);
+        }
+      }
+    } catch (err) {
+      _iterator5.e(err);
+    } finally {
+      _iterator5.f();
+    }
+
+    var _iterator6 = _createForOfIteratorHelper(parents_contained_z_values.entries()),
+        _step6;
+
+    try {
+      for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+        var comparator = function comparator(a, b) {
+          var a_z = children_z.has(a) ? parseInt(children_z.get(a)) : -1;
+          var b_z = children_z.has(b) ? parseInt(children_z.get(b)) : -1;
+
+          if (a_z > b_z) {
+            return 1;
+          } else if (a_z < b_z) {
+            return -1;
+          }
+
+          return 0;
+        };
+
+        var _step6$value = _slicedToArray(_step6.value, 2),
+            parent = _step6$value[0],
+            z_values = _step6$value[1];
+
+        if (Object.keys(z_values).length <= 1) {
+          continue;
+        }
+
+        var children_sorted = _toConsumableArray(parent.children);
+
+        children_sorted.sort(comparator);
+
+        var _iterator7 = _createForOfIteratorHelper(children_sorted),
+            _step7;
+
+        try {
+          for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+            var child = _step7.value;
+            parent.appendChild(child);
+          }
+        } catch (err) {
+          _iterator7.e(err);
+        } finally {
+          _iterator7.f();
+        }
+      }
+    } catch (err) {
+      _iterator6.e(err);
+    } finally {
+      _iterator6.f();
+    }
+  }
+
+  function autoanim_change_to_screen(current_slug, target_slug, easing, duration) {
+    var push_history = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
+    var screen_node = document.querySelector('.screen[data-screens]');
+
+    if (screen_node.current_timed_transition) {
+      window.clearTimeout(screen_node.current_timed_transition);
+      screen_node.current_timed_transition = null;
+    }
+
+    var autoanim_data = screen_node.autoanim;
+    var new_styles = autoanim_data[target_slug];
+    var old_styles = autoanim_data[current_slug];
+
+    if (duration) {
+      var per_element_animated_props = new Map();
+      var all_elements = new Set([].concat(_toConsumableArray(new_styles.keys()), _toConsumableArray(old_styles.keys())));
+
+      var _iterator8 = _createForOfIteratorHelper(all_elements.values()),
+          _step8;
+
+      try {
+        for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
+          var element = _step8.value;
+          var new_element_style = new_styles.get(element);
+          var old_element_style = old_styles.get(element);
+
+          if (!new_element_style && !old_element_style) {
+            continue;
+          }
+
+          var this_element_animated_props = {};
+
+          var _iterator9 = _createForOfIteratorHelper(autoanimated_properties),
+              _step9;
+
+          try {
+            for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
+              var prop = _step9.value;
+              var new_value = new_element_style === null || new_element_style === void 0 ? void 0 : new_element_style[prop];
+              var old_value = old_element_style === null || old_element_style === void 0 ? void 0 : old_element_style[prop];
+
+              if (new_value == null && old_value == null) {
+                continue;
+              }
+
+              if (autoanimated_properties_from_zero.includes(prop)) {
+                new_value = new_value || 0;
+                old_value = old_value || 0;
+              } else {
+                new_value = new_value !== undefined ? new_value : old_value;
+                old_value = old_value !== undefined ? old_value : new_value;
+              }
+
+              this_element_animated_props[prop] = [old_value, new_value];
+            }
+          } catch (err) {
+            _iterator9.e(err);
+          } finally {
+            _iterator9.f();
+          }
+
+          if (Object.keys(this_element_animated_props).length !== 0) {
+            per_element_animated_props.set(element, this_element_animated_props);
+          }
+        }
+      } catch (err) {
+        _iterator8.e(err);
+      } finally {
+        _iterator8.f();
+      }
+
+      var has_reordered = false;
+      var root_element = document.querySelector('.screen');
+      animate_elements(root_element, per_element_animated_props, {
+        duration: duration,
+        easing: easing
+      }, function (element) {
+        element.removeAttribute('style');
+
+        if (!has_reordered) {
+          autoanim_reorder_by_z_indexes();
+          has_reordered = true;
+        }
+      }, false, false);
+    } else {
+      setTimeout(autoanim_reorder_by_z_indexes);
+    }
+
+    var screen_element = document.querySelector('.screen');
+    var screens_slugs = screen_element.getAttribute('data-screens').split(',');
+
+    var _iterator10 = _createForOfIteratorHelper(screens_slugs),
+        _step10;
+
+    try {
+      for (_iterator10.s(); !(_step10 = _iterator10.n()).done;) {
+        var slug = _step10.value;
+        screen_element.classList.toggle(slug, slug === target_slug);
+      }
+    } catch (err) {
+      _iterator10.e(err);
+    } finally {
+      _iterator10.f();
+    }
+
+    last_set_hash = '#' + target_slug;
+
+    if (history.pushState && current_slug && push_history) {
+      history.pushState(null, null, last_set_hash);
+    } else if (push_history) {
+      location.hash = last_set_hash;
+    } else {
+      window.location.replace(('' + window.location).split('#')[0] + last_set_hash);
+    }
+
+    var timed_transitions = screen_node.getAttribute('data-transitions');
+
+    if (timed_transitions) {
+      var _iterator11 = _createForOfIteratorHelper(timed_transitions.split(';')),
+          _step11;
+
+      try {
+        var _loop3 = function _loop3() {
+          var transition = _step11.value;
+
+          var _transition$split = transition.split(','),
+              _transition$split2 = _slicedToArray(_transition$split, 5),
+              transition_from_screen = _transition$split2[0],
+              transition_to_screen = _transition$split2[1],
+              delay = _transition$split2[2],
+              easing = _transition$split2[3],
+              duration_next = _transition$split2[4];
+
+          delay = parseInt(delay, 10);
+          easing = decodeURIComponent(easing);
+
+          if (target_slug === transition_from_screen) {
+            if (duration) {
+              delay += duration;
+            }
+
+            var delayed_exec_cb = function delayed_exec_cb() {
+              screen_node.current_timed_transition = setTimeout(function () {
+                autoanim_change_to_screen(transition_from_screen, transition_to_screen, easing, parseInt(duration_next, 10), false);
+              }, Math.max(delay, 1));
+              window.Lib.imagesLoadedFinished = true;
+            };
+
+            if (window.Lib.imagesLoadedFinished) {
+              delayed_exec_cb();
+            } else {
+              imagesLoaded('.screen *', {
+                background: true
+              }, delayed_exec_cb);
+            }
+
+            return "break";
+          }
+        };
+
+        for (_iterator11.s(); !(_step11 = _iterator11.n()).done;) {
+          var _ret = _loop3();
+
+          if (_ret === "break") break;
+        }
+      } catch (err) {
+        _iterator11.e(err);
+      } finally {
+        _iterator11.f();
+      }
+    }
+  }
+
+  function transform_matrix_to_rotation(matrix_str) {
+    if (!matrix_str) {
+      return 0;
+    }
+
+    var split = matrix_str.split(/,|\(/);
+
+    if (!split || split.length !== 7) {
+      return 0;
+    }
+
+    var a = parseFloat(split[1]);
+    var b = parseFloat(split[2]);
+    return Math.round(Math.atan2(b, a) * (180 / Math.PI));
+  }
+
+  function autoanim_collect_styles(root_element) {
+    var css_by_screen = {};
+    var screens_slugs = root_element.getAttribute('data-screens').split(',');
+
+    var _iterator12 = _createForOfIteratorHelper(screens_slugs),
+        _step12;
+
+    try {
+      for (_iterator12.s(); !(_step12 = _iterator12.n()).done;) {
+        var target_slug = _step12.value;
+
+        var _iterator13 = _createForOfIteratorHelper(screens_slugs),
+            _step13;
+
+        try {
+          for (_iterator13.s(); !(_step13 = _iterator13.n()).done;) {
+            var slug = _step13.value;
+            root_element.classList.toggle(slug, slug === target_slug);
+          }
+        } catch (err) {
+          _iterator13.e(err);
+        } finally {
+          _iterator13.f();
+        }
+
+        css_by_screen[target_slug] = new Map();
+
+        var _iterator14 = _createForOfIteratorHelper(root_element.querySelectorAll('*')),
+            _step14;
+
+        try {
+          for (_iterator14.s(); !(_step14 = _iterator14.n()).done;) {
+            var animated_obj = _step14.value;
+            var computed_style = getComputedStyle(animated_obj);
+
+            if (computed_style.backgroundImage !== 'none') {
+              var pic = new Image();
+              pic.src = computed_style.backgroundImage;
+            }
+
+            var zindex = parseInt(computed_style.getPropertyValue('--z-index'));
+
+            if (zindex === -1) {
+              continue;
+            }
+
+            var autoanim_props = {};
+
+            var _iterator15 = _createForOfIteratorHelper(autoanimated_properties),
+                _step15;
+
+            try {
+              for (_iterator15.s(); !(_step15 = _iterator15.n()).done;) {
+                var prop = _step15.value;
+                var val = computed_style.getPropertyValue(prop);
+
+                if (prop === 'transform') {
+                  var rotation = transform_matrix_to_rotation(val);
+
+                  if (rotation) {
+                    autoanim_props['rotate'] = rotation;
+                  }
+                } else if (val && val !== 'none') {
+                  autoanim_props[prop] = computed_style.getPropertyValue(prop);
+                }
+              }
+            } catch (err) {
+              _iterator15.e(err);
+            } finally {
+              _iterator15.f();
+            }
+
+            autoanim_props['--z-index'] = zindex;
+            css_by_screen[target_slug].set(animated_obj, autoanim_props);
+          }
+        } catch (err) {
+          _iterator14.e(err);
+        } finally {
+          _iterator14.f();
+        }
+      }
+    } catch (err) {
+      _iterator12.e(err);
+    } finally {
+      _iterator12.f();
+    }
+
+    root_element.autoanim = css_by_screen;
+  }
+
+  function init_timeline_components() {
+    run_when_doc_ready(function () {
+      var _iterator16 = _createForOfIteratorHelper(document.querySelectorAll('.component-wrapper')),
+          _step16;
+
+      try {
+        for (_iterator16.s(); !(_step16 = _iterator16.n()).done;) {
+          var element = _step16.value;
+
+          if (element.timeline_data) {
+            timeline_load_initial_values(element.timeline_data);
+          }
+        }
+      } catch (err) {
+        _iterator16.e(err);
+      } finally {
+        _iterator16.f();
+      }
+    });
+  }
+
+  function init_auto_animate() {
+    var screen_element = document.querySelector('.screen[data-screens]');
+
+    if (!screen_element) {
+      return;
+    }
+
+    screen_element.style.opacity = 0;
+    run_when_doc_ready(function () {
+      var _iterator17 = _createForOfIteratorHelper(document.querySelectorAll('.hidden')),
+          _step17;
+
+      try {
+        for (_iterator17.s(); !(_step17 = _iterator17.n()).done;) {
+          var element = _step17.value;
+          element.classList.remove('hidden');
+        }
+      } catch (err) {
+        _iterator17.e(err);
+      } finally {
+        _iterator17.f();
+      }
+
+      var screen_element = document.querySelector('.screen[data-screens]');
+      screen_element.style.opacity = 1;
+
+      if (screen_element) {
+        var initial_screen = autoanim_get_current_view()[1];
+        autoanim_collect_styles(screen_element);
+        autoanim_change_to_screen(null, initial_screen);
+
+        window.onhashchange = function () {
+          if (last_set_hash !== location.hash) {
+            autoanim_change_to_screen(null, autoanim_get_current_view()[1]);
+          }
+        };
+      }
+    });
+  }
+
+  window.Lib = {
+    autoanim_redirect: autoanim_redirect
+  };
+  setTimeout(init_timeline_components, 0);
+  setTimeout(init_auto_animate, 0);
+})();</script>
+
+    <!-- V 80376c767da89ba06d4ddad60bf2f3cb229434a9 Wed Mar 17 13:36:47 UTC 2021 -->
+</body>
+</html>
