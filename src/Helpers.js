@@ -17,8 +17,9 @@ export const commands = {
 export const valStatus = {
   app: 'app',
   no: 'no',
+  trial: 'trial',
   over: 'over',
-  noCon: 'nocon'
+  noCon: 'noCon'
 }
 
 
@@ -357,7 +358,7 @@ function tryParseJSON(jsonString) {
 }
 
 export function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
@@ -401,38 +402,39 @@ function curl_async(args, isRegistering) {
 
 //#region d9-04
 
-export function IsInTrial() {
-  try {
-    // const today = new Date()
-    // const tomorrow = new Date(today)
-    // tomorrow.setDate(tomorrow.getDate() - 7)
-    //Settings.setSettingForKey('meshGradients-startTime', tomorrow)
-    //Settings.setSettingForKey('meshGradients-startTime', null)
 
-    var startTime = Settings.settingForKey('meshGradients-startTime');
-    if (startTime)
-      return startTime;
-    else
-      return null;
-  } catch (e) {
-    return null;
-  }
+export function calculateRemainingDays(date1, date2) {
+  var trialAllowedDays = 7;
+  var timeDiff = date1 - date2;
+  var daysDiff = Math.floor(Math.abs(timeDiff / (1000 * 3600 * 24)));
+  return (trialAllowedDays - daysDiff);
 }
 
-export function ExiGuthrie() {
+export function VerifyLicense() {
   try {
-    var licenseKey = Settings.settingForKey('meshGradients-licenseKey');
-    if (licenseKey)
-      return CheckGumroad(licenseKey, false);
-    else {
-      var licenseJson = readFromFile(MSPluginManager.mainPluginsFolderURL().path() + '/mesh.json');
-      if ((licenseJson != null) && (licenseJson.licenseKey != null))
-        return CheckGumroad(licenseJson.licenseKey, false);
-      else
-        return false;
+    var license = Settings.settingForKey('oo.meshGradients.session');
+    if (license) {
+      var licenseDoc = CheckGumroad(license.licenseKey, false);
+      if (licenseDoc.success) {
+        return valStatus.app;
+      }
     }
+    else {
+      var trialStart = Settings.settingForKey('oo.meshGradients.trial');
+      if (trialStart) {
+        var remainingDays = calculateRemainingDays(new Date(trialStart), Date.now());
+        if (remainingDays > 0)
+          return valStatus.trial;
+        else
+          return valStatus.over;
+      }
+      else
+        return valStatus.no;
+    }
+    return valStatus.no;
+
   } catch (e) {
-    return false;
+    return valStatus.no;
   }
 }
 

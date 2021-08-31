@@ -47,34 +47,36 @@ export function triggerMethod(context) {
 
 function onValidate(context) {
 
-  var state = Helpers.ExiGuthrie();
-  if ((state == Helpers.valStatus.app) || (state == Helpers.valStatus.noCon)) {
-    triggerMethod(context)
-  }
-  else {
-    if (state == Helpers.valStatus.over) {
+  console.log("Stored session");
+  console.log(Settings.settingForKey('oo.meshGradients.session'));
+  console.log("Stored trial: " + Settings.settingForKey('oo.meshGradients.trial'));
+
+  Settings.setSettingForKey('oo.meshGradients.session', null);
+
+  var state = Helpers.VerifyLicense();
+  console.log("Verifying local license:");
+  console.log(Settings.settingForKey('oo.meshGradients.session'));
+
+  console.log(state);
+  switch (state) {
+    case Helpers.valStatus.app:
+      triggerMethod(context);
+      break;
+    case Helpers.valStatus.trial:
+      globalRemainingDays = Helpers.calculateRemainingDays(new Date(Settings.settingForKey('oo.meshGradients.trial')),Date.now());
+      globalIsInTrial = true;
+      showRegistration(context);
+      break;
+    case Helpers.valStatus.over:
       globalIsOver = true;
       showRegistration(context);
-    }
-    else {
-      var trialDate = Helpers.IsInTrial();
-      var startTrialDate = new Date(trialDate);
-      if (trialDate != null) {
-        var Difference_In_Time = startTrialDate - Date.now();
-        var Difference_In_Days = Math.floor(Math.abs(Difference_In_Time / (1000 * 3600 * 24)));
-        globalRemainingDays = 7 - Difference_In_Days;
-        if (globalRemainingDays > 0)
-          globalIsInTrial = true;
-        else
-          globalIsExpired = true;
-
-
-        showRegistration(context);
-      }
-      else {
-        showRegistration(context);
-      }
-    }
+      break;
+    case Helpers.valStatus.no:
+      showRegistration(context);
+      break;
+    case Helpers.valStatus.noCon:
+      triggerMethod(context);
+      break;
   }
 }
 
@@ -139,18 +141,7 @@ export function showRegistration(context) {
       webContentsReg.executeJavaScript(`AttemptLogin(${JSON.stringify(email)},${JSON.stringify(licenseKey)},${JSON.stringify(variant)},${JSON.stringify(Helpers.uuidv4())})`).catch(console.error);
     }
 
-    // if (state == Helpers.valStatus.app) {
-    //   Settings.setSettingForKey('meshGradients-licenseKey', parameters.licenseKey)
-    //   webContentsReg.executeJavaScript(`ShowRegistrationComplete()`).catch(console.error);
-    // }
-    // else {
-    //   if (state == Helpers.valStatus.over) {
-    //     webContentsReg.executeJavaScript(`SetOverMode()`).catch(console.error);
-    //     webContentsReg.executeJavaScript(`SetOverModeInReg()`).catch(console.error);
-    //   }
-    //   else
-    //     webContentsReg.executeJavaScript(`ShowRegistrationFail()`).catch(console.error);
-    // }
+
   });
 
   webContentsReg.on('OpenURL', (url) => {
@@ -158,7 +149,7 @@ export function showRegistration(context) {
   });
 
   webContentsReg.on('StartTrial', (licenseKey) => {
-    Settings.setSettingForKey('meshGradients-startTime', new Date())
+    Settings.setSettingForKey('oo.meshGradients.trial', new Date())
     webContentsReg.executeJavaScript(`ShowTrialStarted()`).catch(console.error);
   });
 
@@ -180,6 +171,30 @@ export function showRegistration(context) {
     onShutdown(webviewRegIdentifier);
     triggerMethod(context);
   });
+
+  webContentsReg.on('OnLoginSuccessful', (email, licenseKey) => {
+    Settings.setSettingForKey('oo.meshGradients.session', {
+      "active": true,
+      "timeStamp": Date.now(),
+      "email": email,
+      "licenseKey": licenseKey
+    });
+
+    webContentsReg.executeJavaScript(`ShowRegistrationComplete()`).catch(console.error);
+    // }
+    // else {
+    //   if (state == Helpers.valStatus.over) {
+    //     
+    //     
+    //   }
+    //   else
+    //     webContentsReg.executeJavaScript(`ShowRegistrationFail()`).catch(console.error);
+    // }
+
+
+  });
+
+
 
   //#endregion d9-02
 

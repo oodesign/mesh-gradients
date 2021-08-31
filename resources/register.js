@@ -64,13 +64,8 @@ document.getElementById('btnRegister').addEventListener('click', () => {
 window.AttemptLogin = (email, licenseKey, variant, ref) => {
   console.log("Gonna attempt login:" + email + " - " + licenseKey + " - " + variant + " - " + ref);
 
-  console.log("1.0")
   firebase.initializeApp(firebaseConfig);
-  console.log("2.0")
-  try{
   var db = firebase.firestore();
-  }catch(e){console.error(e)}
-  console.log("3.0")
 
   db.collection("loginAttempts").doc(ref).set({
     email: email,
@@ -83,13 +78,9 @@ window.AttemptLogin = (email, licenseKey, variant, ref) => {
   })
 
   db.collection("loginAttempts").doc(ref).onSnapshot((doc) => {
-    console.log("Initializing config -- Init 3.1");
-    console.log("Current data for [" + ref + "]: ", doc.data());
 
     if (doc.data().status == 200) {
-      console.log("AUTHORIZED!");
-
-      //TODO Log in
+      window.postMessage("OnLoginSuccessful", email, licenseKey);
     }
   });
 
