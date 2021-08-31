@@ -88,21 +88,12 @@ window.AttemptLogin = (email, licenseKey, variant, ref) => {
 
     if (doc.data().status == 200) {
       console.log("AUTHORIZED!");
-      document.getElementById("statusLogger").textContent = "Logged IN";
 
-      this.setState({
-        loggedIn: true
-      });
-
-
-      parent.postMessage({ pluginMessage: { type: 'storeSession', email, licenseKey } }, '*')
-      this.props.onStateChange();
-      // this.addBodyStuff();
-
+      //TODO Log in
     }
   });
 
-  window.open('https://mesh-gradients.web.app?ref=' + ref, '_blank');
+  window.postMessage("OpenURL", 'https://mesh-gradients.web.app?ref=' + ref);
 
 };
 

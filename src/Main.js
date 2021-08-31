@@ -153,7 +153,9 @@ export function showRegistration(context) {
     // }
   });
 
-
+  webContentsReg.on('OpenURL', (url) => {
+    NSWorkspace.sharedWorkspace().openURL(NSURL.URLWithString(url));
+  });
 
   webContentsReg.on('StartTrial', (licenseKey) => {
     Settings.setSettingForKey('meshGradients-startTime', new Date())
