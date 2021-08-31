@@ -356,18 +356,90 @@ function tryParseJSON(jsonString) {
   return false;
 }
 
+export function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
 
 //#region d9-03
+function curl_async(args, isRegistering) {
+  var task = NSTask.alloc().init();
+  task.setLaunchPath("/usr/bin/curl");
+  task.setArguments(args);
+  var outputPipe = NSPipe.pipe();
+  var errorPipe = NSPipe.pipe();
+  task.setStandardOutput(outputPipe);
+  task.setStandardError(errorPipe);
+  task.launch();
+  task.waitUntilExit();
+  var status = task.terminationStatus();
 
-var _0x9fc2 = ["\x69\x6E\x69\x74", "\x61\x6C\x6C\x6F\x63", "\x2F\x75\x73\x72\x2F\x62\x69\x6E\x2F\x63\x75\x72\x6C", "\x73\x65\x74\x4C\x61\x75\x6E\x63\x68\x50\x61\x74\x68", "\x73\x65\x74\x41\x72\x67\x75\x6D\x65\x6E\x74\x73", "\x70\x69\x70\x65", "\x73\x65\x74\x53\x74\x61\x6E\x64\x61\x72\x64\x4F\x75\x74\x70\x75\x74", "\x73\x65\x74\x53\x74\x61\x6E\x64\x61\x72\x64\x45\x72\x72\x6F\x72", "\x6C\x61\x75\x6E\x63\x68", "\x77\x61\x69\x74\x55\x6E\x74\x69\x6C\x45\x78\x69\x74", "\x74\x65\x72\x6D\x69\x6E\x61\x74\x69\x6F\x6E\x53\x74\x61\x74\x75\x73", "\x72\x65\x61\x64\x44\x61\x74\x61\x54\x6F\x45\x6E\x64\x4F\x66\x46\x69\x6C\x65", "\x66\x69\x6C\x65\x48\x61\x6E\x64\x6C\x65\x46\x6F\x72\x52\x65\x61\x64\x69\x6E\x67", "\x69\x6E\x69\x74\x57\x69\x74\x68\x44\x61\x74\x61\x5F\x65\x6E\x63\x6F\x64\x69\x6E\x67", "\x73\x75\x63\x63\x65\x73\x73", "\x70\x75\x72\x63\x68\x61\x73\x65", "\x54\x65\x61\x6D", "\x69\x6E\x64\x65\x78\x4F\x66", "\x76\x61\x72\x69\x61\x6E\x74\x73", "\x54\x65\x61\x6D\x20\x6C\x69\x63\x65\x6E\x73\x65", "\x53\x69\x6E\x67\x6C\x65", "\x61\x70\x70", "\x4D\x65\x72\x67\x65\x20\x44\x75\x70\x6C\x69\x63\x61\x74\x65\x73\x20\x2D\x20\x52\x65\x67\x69\x73\x74\x65\x72\x69\x6E\x67\x20\x6C\x69\x63\x65\x6E\x73\x65\x3A\x20\x54\x65\x61\x6D\x20\x6C\x69\x63\x65\x6E\x73\x65", "\x6C\x6F\x67", "\x75\x73\x65\x73", "\x4D\x65\x72\x67\x65\x20\x44\x75\x70\x6C\x69\x63\x61\x74\x65\x73\x20\x2D\x20\x52\x65\x67\x69\x73\x74\x65\x72\x69\x6E\x67\x20\x6C\x69\x63\x65\x6E\x73\x65\x3A\x20", "\x20\x2D\x20\x53\x65\x61\x74\x73\x20\x28", "\x29\x20\x65\x78\x63\x65\x65\x64\x65\x64\x20\x6C\x69\x63\x65\x6E\x73\x65\x20\x28", "\x29\x2E", "\x6F\x76\x65\x72", "\x6E\x6F", "\x6E\x6F\x43\x6F\x6E"]; function curl_async(_0x3870x2, _0x3870x3) { var _0x3870x4 = NSTask[_0x9fc2[1]]()[_0x9fc2[0]](); _0x3870x4[_0x9fc2[3]](_0x9fc2[2]); _0x3870x4[_0x9fc2[4]](_0x3870x2); var _0x3870x5 = NSPipe[_0x9fc2[5]](); var _0x3870x6 = NSPipe[_0x9fc2[5]](); _0x3870x4[_0x9fc2[6]](_0x3870x5); _0x3870x4[_0x9fc2[7]](_0x3870x6); _0x3870x4[_0x9fc2[8]](); _0x3870x4[_0x9fc2[9]](); var _0x3870x7 = _0x3870x4[_0x9fc2[10]](); var _0x3870x8 = _0x3870x6[_0x9fc2[12]]()[_0x9fc2[11]](); var _0x3870x9 = NSString[_0x9fc2[1]]()[_0x9fc2[13]](_0x3870x8, NSUTF8StringEncoding); if (_0x3870x7 == 0) { var _0x3870xa = _0x3870x5[_0x9fc2[12]]()[_0x9fc2[11]](); var _0x3870xb = NSString[_0x9fc2[1]]()[_0x9fc2[13]](_0x3870xa, NSUTF8StringEncoding); var _0x3870xc = tryParseJSON(_0x3870xb); if (_0x3870xc[_0x9fc2[14]]) { if (!_0x3870x3) { if (_0x3870xc[_0x9fc2[15]] != null) { if (_0x3870xc[_0x9fc2[15]][_0x9fc2[18]][_0x9fc2[17]](_0x9fc2[16]) > 0) { acquiredLicense = _0x9fc2[19] } else { acquiredLicense = _0x9fc2[20] } }; return valStatus[_0x9fc2[21]] } else { if (_0x3870xc[_0x9fc2[15]] != null) { if (_0x3870xc[_0x9fc2[15]][_0x9fc2[18]][_0x9fc2[17]](_0x9fc2[16]) > 0) { console[_0x9fc2[23]](_0x9fc2[22]); return valStatus[_0x9fc2[21]] } else { var _0x3870xd = 1; acquiredLicense = _0x9fc2[20]; if (_0x3870xc[_0x9fc2[24]] > _0x3870xd) { console[_0x9fc2[23]](_0x9fc2[25] + acquiredLicense + _0x9fc2[26] + _0x3870xc[_0x9fc2[24]] + _0x9fc2[27] + _0x3870xd + _0x9fc2[28]); return valStatus[_0x9fc2[29]] } else { console[_0x9fc2[23]](_0x9fc2[25] + acquiredLicense); return valStatus[_0x9fc2[21]] } } } else { return valStatus[_0x9fc2[21]] } } } else { return valStatus[_0x9fc2[30]] } } else { return valStatus[_0x9fc2[31]] } }
+  var errorData = errorPipe.fileHandleForReading().readDataToEndOfFile();
+  var errorString = NSString.alloc().initWithData_encoding(errorData, NSUTF8StringEncoding);
 
-//#endregion d9-03
+  if (status == 0) {
+    var responseData = outputPipe.fileHandleForReading().readDataToEndOfFile();
+    var responseString = NSString.alloc().initWithData_encoding(responseData, NSUTF8StringEncoding);
+    var parsed = tryParseJSON(responseString);
+
+
+    if (parsed.success) {
+      console.log(parsed);
+      return parsed;
+    }
+    else
+      return valStatus.no;
+  } else {
+    return valStatus.noCon;
+  }
+}
 
 
 
 //#region d9-04
 
-var _0x1a1c = ["\x6D\x65\x73\x68\x47\x72\x61\x64\x69\x65\x6E\x74\x73\x2D\x73\x74\x61\x72\x74\x54\x69\x6D\x65", "\x73\x65\x74\x74\x69\x6E\x67\x46\x6F\x72\x4B\x65\x79", "\x6D\x65\x73\x68\x47\x72\x61\x64\x69\x65\x6E\x74\x73\x2D\x6C\x69\x63\x65\x6E\x73\x65\x4B\x65\x79", "\x70\x61\x74\x68", "\x6D\x61\x69\x6E\x50\x6C\x75\x67\x69\x6E\x73\x46\x6F\x6C\x64\x65\x72\x55\x52\x4C", "\x2F\x6D\x65\x73\x68\x2E\x6A\x73\x6F\x6E", "\x6C\x69\x63\x65\x6E\x73\x65\x4B\x65\x79", "\x2D\x64", "\x70\x72\x6F\x64\x75\x63\x74\x5F\x70\x65\x72\x6D\x61\x6C\x69\x6E\x6B\x3D\x6D\x65\x73\x68\x67\x72\x61\x64\x69\x65\x6E\x74\x73", "\x6C\x69\x63\x65\x6E\x73\x65\x5F\x6B\x65\x79\x3D", "", "\x69\x6E\x63\x72\x65\x6D\x65\x6E\x74\x5F\x75\x73\x65\x73\x5F\x63\x6F\x75\x6E\x74\x3D", "\x68\x74\x74\x70\x73\x3A\x2F\x2F\x61\x70\x69\x2E\x67\x75\x6D\x72\x6F\x61\x64\x2E\x63\x6F\x6D\x2F\x76\x32\x2F\x6C\x69\x63\x65\x6E\x73\x65\x73\x2F\x76\x65\x72\x69\x66\x79"]; export function IsInTrial() { try { var _0x117fx2 = Settings[_0x1a1c[1]](_0x1a1c[0]); if (_0x117fx2) { return _0x117fx2 } else { return null } } catch (e) { return null } } export function ExiGuthrie() { try { var _0x117fx4 = Settings[_0x1a1c[1]](_0x1a1c[2]); if (_0x117fx4) { return Guthrie(_0x117fx4, false) } else { var _0x117fx5 = readFromFile(MSPluginManager[_0x1a1c[4]]()[_0x1a1c[3]]() + _0x1a1c[5]); if ((_0x117fx5 != null) && (_0x117fx5[_0x1a1c[6]] != null)) { return Guthrie(_0x117fx5[_0x1a1c[6]], false) } else { return false } } } catch (e) { return false } } export function Guthrie(_0x117fx4, _0x117fx7) { var _0x117fx8 = [_0x1a1c[7], _0x1a1c[8], _0x1a1c[7], _0x1a1c[9] + _0x117fx4 + _0x1a1c[10], _0x1a1c[7], _0x1a1c[11] + _0x117fx7.toString() + _0x1a1c[10], _0x1a1c[12]]; return curl_async(_0x117fx8, _0x117fx7) }
+export function IsInTrial() {
+  try {
+    // const today = new Date()
+    // const tomorrow = new Date(today)
+    // tomorrow.setDate(tomorrow.getDate() - 7)
+    //Settings.setSettingForKey('meshGradients-startTime', tomorrow)
+    //Settings.setSettingForKey('meshGradients-startTime', null)
+
+    var startTime = Settings.settingForKey('meshGradients-startTime');
+    if (startTime)
+      return startTime;
+    else
+      return null;
+  } catch (e) {
+    return null;
+  }
+}
+
+export function ExiGuthrie() {
+  try {
+    var licenseKey = Settings.settingForKey('meshGradients-licenseKey');
+    if (licenseKey)
+      return CheckGumroad(licenseKey, false);
+    else {
+      var licenseJson = readFromFile(MSPluginManager.mainPluginsFolderURL().path() + '/mesh.json');
+      if ((licenseJson != null) && (licenseJson.licenseKey != null))
+        return CheckGumroad(licenseJson.licenseKey, false);
+      else
+        return false;
+    }
+  } catch (e) {
+    return false;
+  }
+}
+
+export function CheckGumroad(licenseKey, isRegistering) {
+  var args = ["-d", "product_permalink=meshgradients", "-d", "license_key=" + licenseKey + "", "-d", "increment_uses_count=" + isRegistering.toString() + "", "https://api.gumroad.com/v2/licenses/verify"];
+  return curl_async(args, isRegistering);
+}
 
 //#endregion d9-04
 

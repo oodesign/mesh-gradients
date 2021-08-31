@@ -1,6 +1,21 @@
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBdAfT4qOkyIvkgNdITXM6rxc9ZSig0ih4",
+  authDomain: "mesh-gradients.firebaseapp.com",
+  projectId: "mesh-gradients",
+  storageBucket: "mesh-gradients.appspot.com",
+  messagingSenderId: "759056882382",
+  appId: "1:759056882382:web:bb1814e7ebda17f7eece9f",
+  measurementId: "G-2V9WY6B83Y"
+};
+
+
 // disable the context menu (eg. the right click menu) to have a more native feel
 document.addEventListener('contextmenu', (e) => {
-  e.preventDefault()
+  //e.preventDefault()
 })
 
 document.getElementById('btnGetPlugin').addEventListener('click', () => {
@@ -37,8 +52,59 @@ document.getElementById('btnGoBack').addEventListener('click', () => {
 
 document.getElementById('btnRegister').addEventListener('click', () => {
   document.getElementById('warningMessage').className = "rowAuto warningText";
-  window.postMessage('RegisterKey', document.getElementById("inputLicense").value);
+
+  window.postMessage("RegisterKey", {
+    email: document.getElementById("inputEmail").value,
+    licenseKey: document.getElementById("inputLicense").value
+  });
 })
+
+
+
+window.AttemptLogin = (email, licenseKey, variant, ref) => {
+  console.log("Gonna attempt login:" + email + " - " + licenseKey + " - " + variant + " - " + ref);
+
+  console.log("1.0")
+  firebase.initializeApp(firebaseConfig);
+  console.log("2.0")
+  try{
+  var db = firebase.firestore();
+  }catch(e){console.error(e)}
+  console.log("3.0")
+
+  db.collection("loginAttempts").doc(ref).set({
+    email: email,
+    licenseKey: licenseKey,
+    variant: variant,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    linkUsed: false,
+    linkExpired: false,
+    app: "Sketch"
+  })
+
+  db.collection("loginAttempts").doc(ref).onSnapshot((doc) => {
+    console.log("Initializing config -- Init 3.1");
+    console.log("Current data for [" + ref + "]: ", doc.data());
+
+    if (doc.data().status == 200) {
+      console.log("AUTHORIZED!");
+      document.getElementById("statusLogger").textContent = "Logged IN";
+
+      this.setState({
+        loggedIn: true
+      });
+
+
+      parent.postMessage({ pluginMessage: { type: 'storeSession', email, licenseKey } }, '*')
+      this.props.onStateChange();
+      // this.addBodyStuff();
+
+    }
+  });
+
+  window.open('https://mesh-gradients.web.app?ref=' + ref, '_blank');
+
+};
 
 window.ShowRegistrationComplete = () => {
   document.getElementById('ctaForm').className = "yFadeOut";
@@ -78,7 +144,7 @@ window.SetExpiredMode = () => {
 
 window.SetOverMode = () => {
   document.getElementById('registerHeader').innerHTML = `All seats are busy 🙈!`;
-                                                          
+
   document.getElementById('registerMessage').innerHTML = `Looks like this license has already been installed on as many devices as it was purchased for. Maybe it's a good time to get another one? <br/><br/>
                                                           If you think this is a mistake please <a href="mailto:licensing@oodesign.me">contact us</a>.`;
 
@@ -92,4 +158,7 @@ window.SetOverModeInReg = () => {
   document.getElementById('ctaForm').className = "yFadeIn";
   document.getElementById('warningMessage').className = "rowAuto warningText";
 }
+
+document.getElementById("inputEmail").value = "ootomir@gmail.com"
+document.getElementById("inputLicense").value = "B2721513-41D547DB-BFF282F4-79B67612"
 
