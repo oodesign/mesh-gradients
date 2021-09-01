@@ -77,12 +77,21 @@ window.AttemptLogin = (email, licenseKey, variant, ref) => {
     app: "Sketch"
   })
 
-  db.collection("loginAttempts").doc(ref).onSnapshot((doc) => {
+  const unsubscribe = db.collection("loginAttempts").doc(ref).onSnapshot((doc) => {
 
     if (doc.data().status == 200) {
       window.postMessage("OnLoginSuccessful", email, licenseKey);
+      console.log("Unsubscribing");
+      unsubscribe();
+      console.log("Unsubscribed it");
     }
   });
+
+  setTimeout(() => {
+    unsubscribe();
+    console.log("Unsubscribed it due to timeout");
+    //TODO Handle Timeout in UI
+  }, 60000);
 
   window.postMessage("OpenURL", 'https://mesh-gradients.web.app?ref=' + ref);
 
