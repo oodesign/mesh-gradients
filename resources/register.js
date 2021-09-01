@@ -93,7 +93,7 @@ window.AttemptLogin = (email, licenseKey, variant, ref) => {
     //TODO Handle Timeout in UI
   }, 60000);
 
-  window.postMessage("OpenURL", 'https://mesh-gradients.web.app?ref=' + ref);
+  window.postMessage("OpenURL", 'https://auth.meshgradients.com?ref=' + ref);
 
 };
 
