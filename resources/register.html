@@ -30,7 +30,7 @@
         </g>
       </svg>
     </div>
-    <div class="rowAuto animatedDiv" style="height:250px">
+    <div class="rowAuto animatedDiv" style="height:350px">
       <div id="ctaForm">
         <div class="verticalLayout alignFullCenter">
           <div id="registerHeader" class="rowAuto registerHeader">
@@ -62,18 +62,24 @@
       </div>
       <div id="registerForm">
         <div class="verticalLayout alignFullCenter">
-          <div class="rowAuto registerText">
+          <!-- <div class="rowAuto registerText">
             <span id="registerMessage">
               Please, type your license key. You may find it in the receipt e-mail you received from Gumroad.
             </span>
-          </div>
+          </div> -->
           <div class="rowAuto">
+            <div class="inputLabel">Your e-mail</div>
             <div>
-              <input type="text" placeholder="E-mail2" id="inputEmail" defaultValue="ootomir@gmail.com"/>
+              <input type="text" placeholder="E-mail" id="inputEmail" defaultValue="ootomir@gmail.com"/>
             </div>
+            <div class="inputMessage">We'll send you a magic link to sign in.</div>
+
+            <div class="inputLabel">License key</div>
             <div>
               <input type="text" placeholder="License key" id="inputLicense" defaultValue="B2721513-41D547DB-BFF282F4-79B67612"/>
             </div>
+            <div class="inputMessage">You may find it in the receipt e-mail you received from Gumroad.</div>
+
             <button class="btnPrimary" id="btnRegister">Register</button>
           </div>
           <div id="warningMessage" class="rowAuto warningText">
@@ -83,7 +89,7 @@
             </span>
           </div>
           <div class="rowAuto">
-            <button class="btnAlreadyLicense" id="btnGoBack">Back</button>
+            <button class="btnBack" id="btnGoBack">Back</button>
           </div>
         </div>
       </div>

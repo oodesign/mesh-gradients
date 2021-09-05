@@ -63,7 +63,7 @@ function onValidate(context) {
       triggerMethod(context);
       break;
     case Helpers.valStatus.trial:
-      globalRemainingDays = Helpers.calculateRemainingDays(new Date(Settings.settingForKey('oo.meshGradients.trial')),Date.now());
+      globalRemainingDays = Helpers.calculateRemainingDays(new Date(Settings.settingForKey('oo.meshGradients.trial')), Date.now());
       globalIsInTrial = true;
       showRegistration(context);
       break;
@@ -88,6 +88,7 @@ export function showRegistration(context) {
     identifier: webviewRegIdentifier,
     width: 1200,
     height: 700,
+    hidesOnDeactivate: false,
     show: false,
     titleBarStyle: 'hidden'
   }
@@ -135,10 +136,16 @@ export function showRegistration(context) {
 
 
     var gumroadResponse = Helpers.CheckGumroad(parameters.licenseKey, false);
+    console.log(gumroadResponse);
     if (gumroadResponse) {
-      const variant = gumroadResponse.purchase.variants;
-      console.log("Variant is:" + variant);
-      webContentsReg.executeJavaScript(`AttemptLogin(${JSON.stringify(email)},${JSON.stringify(licenseKey)},${JSON.stringify(variant)},${JSON.stringify(Helpers.uuidv4())})`).catch(console.error);
+      if (gumroadResponse == Helpers.valStatus.no) {
+        webContentsReg.executeJavaScript(`ShowRegistrationFail()`).catch(console.error);
+      }
+      else {
+        const variant = gumroadResponse.purchase.variants;
+        console.log("Variant is:" + variant);
+        webContentsReg.executeJavaScript(`AttemptLogin(${JSON.stringify(email)},${JSON.stringify(licenseKey)},${JSON.stringify(variant)},${JSON.stringify(Helpers.uuidv4())})`).catch(console.error);
+      }
     }
 
 

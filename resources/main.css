@@ -1106,9 +1106,73 @@ body {
   }
 }
 
+.btnBack {
+  border: 1px solid transparent;
+  background-color: transparent;
+  width: 100px;
+  height: 34px;
+  border-radius: 17px;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  margin: 0 auto;
+  outline: none;
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+  width: 150px;
+  margin-top: 16px;
+}
+
+@media (prefers-color-scheme: light) {
+  .btnBack {
+    color: #868688;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .btnBack {
+    color: #949494;
+  }
+}
+
+.btnBack:hover {
+  outline: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .btnBack:hover {
+    border-color: #4274ff;
+    color: #1b52e9;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .btnBack:hover {
+    border-color: #4274ff;
+    color: #ffffff;
+  }
+}
+
+.btnBack:active {
+  outline: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .btnBack:active {
+    border-color: #1b4edb;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .btnBack:active {
+    border-color: #1b4edb;
+  }
+}
+
 .registerLogo {
   margin-bottom: 20px;
-  width: 160px;
+  width: 128px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -1136,6 +1200,7 @@ body {
 }
 
 #registerForm {
+  width: 400px;
   position: absolute;
   left: 50%;
   visibility: hidden;
@@ -1144,6 +1209,10 @@ body {
           transform: translate(-50%, 50px);
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
+}
+
+#registerForm input {
+  width: 100%;
 }
 
 #confirmationForm {
@@ -1492,6 +1561,44 @@ textarea {
        user-select: auto;
 }
 
+.inputLabel {
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  text-align: left;
+  margin: 0 0 8px 0;
+}
+
+@media (prefers-color-scheme: light) {
+  .inputLabel {
+    color: #868688;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .inputLabel {
+    color: #949494;
+  }
+}
+
+.inputMessage {
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  text-align: left;
+  margin: 0 0 24px 0;
+}
+
+@media (prefers-color-scheme: light) {
+  .inputMessage {
+    color: #868688;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .inputMessage {
+    color: #949494;
+  }
+}
+
 .tooltip {
   position: relative;
   display: inline-block;
@@ -1607,7 +1714,7 @@ input[type="text"] {
   padding: 8px 12px;
   width: 305px;
   height: 34px;
-  margin: 8px 0;
+  margin: 0 0 8px 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   border-radius: 3px;
@@ -1640,6 +1747,10 @@ input[type="text"] {
     background-color: #28282A;
     border: 1px solid #6A6A6A;
   }
+}
+
+input[type="text"].hasMessage {
+  margin: 0;
 }
 
 a {

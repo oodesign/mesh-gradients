@@ -568,9 +568,15 @@ body {
   margin-top: 30px;
 }
 
+.btnBack {
+  @include btnTertiary;
+  width: 150px;
+  margin-top: 16px;
+}
+
 .registerLogo {
   margin-bottom: 20px;
-  width: 160px;
+  width: 128px;
 
   path {
     @include for-theme(light) {
@@ -592,12 +598,21 @@ body {
 }
 
 #registerForm {
+  width: 400px;
   position: absolute;
   left: 50%;
   visibility: hidden;
   opacity: 0;
   transform: translate(-50%, 50px);
   transition: all 0.3s ease-out;
+
+  input {
+    width: 100%;
+  }
+
+  // button {
+  //   margin-top: 12px;
+  // }
 }
 
 #confirmationForm {
@@ -888,6 +903,18 @@ textarea {
   user-select: auto;
 }
 
+.inputLabel {
+  @include secondaryText;
+  text-align: left;
+  margin: 0 0 8px 0;
+}
+
+.inputMessage {
+  @include secondaryText;
+  text-align: left;
+  margin: 0 0 24px 0;
+}
+
 .tooltip {
   position: relative;
   display: inline-block;
@@ -961,7 +988,7 @@ input[type="text"] {
   padding: 8px 12px;
   width: 305px;
   height: 34px;
-  margin: 8px 0;
+  margin: 0 0 8px 0;
   box-sizing: border-box;
   border-radius: 3px;
   outline: none;
@@ -973,6 +1000,10 @@ input[type="text"] {
   @include for-theme(dark) {
     background-color: $dark_inputBackgroundColor;
     border: 1px solid $dark_gray_300;
+  }
+
+  &.hasMessage {
+    margin: 0;
   }
 }
 
@@ -1294,13 +1325,13 @@ a {
       padding: 10px 16px;
     }
 
-    .a-color-picker-row{
-      label{
+    .a-color-picker-row {
+      label {
         padding: 0 8px 0 0;
       }
-      input{
+      input {
         margin: 0 8px 0 0;
-        &:last-child{
+        &:last-child {
           margin: 0;
         }
       }

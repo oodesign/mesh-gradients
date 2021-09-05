@@ -17,6 +17,7 @@ export function EditGradient(context) {
     width: 1200,
     height: 700,
     remembersWindowFrame: true,
+    hidesOnDeactivate: false,
     show: false,
     titleBarStyle: 'hidden'
   }
@@ -64,6 +65,7 @@ export function EditGradient(context) {
     else
       Helpers.clog("Load mesh gradient editor");
 
+      // console.log(layerMeshGradientDefinition)
     webContents.executeJavaScript(`LoadMesh(${JSON.stringify(layerMeshGradientDefinition)}, ${JSON.stringify(reducedGradientCollection)}, ${JSON.stringify(reducedCustomGradientCollection)}, ${shouldShowWarnings}, ${JSON.stringify(allColorVariables)})`).catch(console.error);
   })
 
