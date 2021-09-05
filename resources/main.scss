@@ -624,6 +624,15 @@ body {
   transition: all 0.3s ease-out;
 }
 
+#awaitingForm {
+  position: absolute;
+  left: 50%;
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, 50px);
+  transition: all 0.3s ease-out;
+}
+
 #startTrialForm {
   position: absolute;
   left: 50%;

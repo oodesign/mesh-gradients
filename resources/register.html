@@ -70,13 +70,14 @@
           <div class="rowAuto">
             <div class="inputLabel">Your e-mail</div>
             <div>
-              <input type="text" placeholder="E-mail" id="inputEmail" defaultValue="ootomir@gmail.com"/>
+              <input type="text" placeholder="E-mail" id="inputEmail" defaultValue="ootomir@gmail.com" />
             </div>
             <div class="inputMessage">We'll send you a magic link to sign in.</div>
 
             <div class="inputLabel">License key</div>
             <div>
-              <input type="text" placeholder="License key" id="inputLicense" defaultValue="B2721513-41D547DB-BFF282F4-79B67612"/>
+              <input type="text" placeholder="License key" id="inputLicense"
+                defaultValue="B2721513-41D547DB-BFF282F4-79B67612" />
             </div>
             <div class="inputMessage">You may find it in the receipt e-mail you received from Gumroad.</div>
 
@@ -89,7 +90,24 @@
             </span>
           </div>
           <div class="rowAuto">
-            <button class="btnBack" id="btnGoBack">Back</button>
+            <button class="btnBack" id="btnRegisterGoBack">Back</button>
+          </div>
+        </div>
+      </div>
+      <div id="awaitingForm">
+        <div class="verticalLayout alignFullCenter">
+          <div class="rowAuto registerText">
+            <span id="magicLinkEmail">
+              We've sent you a magic link. 
+            </span>
+            <br/>
+            <span>Click on it to sign in.</span>
+          </div>
+          <div class="rowAuto registerText">
+            <span>This page will auto update when you are in 😉 .</span>
+          </div>
+          <div class="rowAuto">
+            <button class="btnBack" id="btnAwaitingGoBack">Back</button>
           </div>
         </div>
       </div>

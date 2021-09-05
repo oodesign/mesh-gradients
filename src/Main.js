@@ -144,7 +144,9 @@ export function showRegistration(context) {
       else {
         const variant = gumroadResponse.purchase.variants;
         console.log("Variant is:" + variant);
-        webContentsReg.executeJavaScript(`AttemptLogin(${JSON.stringify(email)},${JSON.stringify(licenseKey)},${JSON.stringify(variant)},${JSON.stringify(Helpers.uuidv4())})`).catch(console.error);
+
+        webContentsReg.executeJavaScript(`ShowRegistrationInProgress()`).catch(console.error);
+        //webContentsReg.executeJavaScript(`AttemptLogin(${JSON.stringify(email)},${JSON.stringify(licenseKey)},${JSON.stringify(variant)},${JSON.stringify(Helpers.uuidv4())})`).catch(console.error);
       }
     }
 
@@ -188,16 +190,6 @@ export function showRegistration(context) {
     });
 
     webContentsReg.executeJavaScript(`ShowRegistrationComplete()`).catch(console.error);
-    // }
-    // else {
-    //   if (state == Helpers.valStatus.over) {
-    //     
-    //     
-    //   }
-    //   else
-    //     webContentsReg.executeJavaScript(`ShowRegistrationFail()`).catch(console.error);
-    // }
-
 
   });
 

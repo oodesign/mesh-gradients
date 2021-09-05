@@ -44,15 +44,22 @@ document.getElementById('btnNavRegistration').addEventListener('click', () => {
   document.getElementById('inputLicense').focus();
 })
 
-document.getElementById('btnGoBack').addEventListener('click', () => {
+document.getElementById('btnRegisterGoBack').addEventListener('click', () => {
   document.getElementById('registerForm').className = "";
   document.getElementById('ctaForm').className = "yFadeIn";
   document.getElementById('warningMessage').className = "rowAuto warningText";
 })
 
+document.getElementById('btnAwaitingGoBack').addEventListener('click', () => {
+  document.getElementById('awaitingForm').className = "";
+  document.getElementById('registerForm').className = "yFadeIn";
+  document.getElementById('warningMessage').className = "rowAuto warningText";
+})
+
 document.getElementById('btnRegister').addEventListener('click', () => {
   document.getElementById('warningMessage').className = "rowAuto warningText";
-
+  document.getElementById('magicLinkEmail').textContent = "We've sent you a magic link to "+document.getElementById("inputEmail").value+".";
+  
   window.postMessage("RegisterKey", {
     email: document.getElementById("inputEmail").value,
     licenseKey: document.getElementById("inputLicense").value
@@ -97,9 +104,17 @@ window.AttemptLogin = (email, licenseKey, variant, ref) => {
 
 };
 
+window.ShowRegistrationInProgress = () => {
+  document.getElementById('ctaForm').className = "yFadeOut";
+  document.getElementById('registerForm').className = "yFadeOut";
+  document.getElementById('awaitingForm').className = "yFadeIn";
+  document.getElementById('confirmationForm').className = "yFadeOut";
+};
+
 window.ShowRegistrationComplete = () => {
   document.getElementById('ctaForm').className = "yFadeOut";
   document.getElementById('registerForm').className = "yFadeOut";
+  document.getElementById('awaitingForm').className = "yFadeOut";
   document.getElementById('confirmationForm').className = "yFadeIn";
 };
 
