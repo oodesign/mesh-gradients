@@ -546,9 +546,15 @@ body {
 
 .registerText {
   @include secondaryText;
-
   width: 400px;
-  margin: 10px 0 30px 0;
+  margin: 30px 0 30px 0;
+  text-align: center;
+}
+
+.awaitingText{
+  @include primaryText;
+  width: 400px;
+  margin: 30px 0 30px 0;
   text-align: center;
 }
 

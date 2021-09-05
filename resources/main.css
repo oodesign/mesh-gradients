@@ -912,7 +912,7 @@ body {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   width: 400px;
-  margin: 10px 0 30px 0;
+  margin: 30px 0 30px 0;
   text-align: center;
 }
 
@@ -925,6 +925,26 @@ body {
 @media (prefers-color-scheme: dark) {
   .registerText {
     color: #949494;
+  }
+}
+
+.awaitingText {
+  font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  width: 400px;
+  margin: 30px 0 30px 0;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: light) {
+  .awaitingText {
+    color: #323232;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .awaitingText {
+    color: #ffffff;
   }
 }
 

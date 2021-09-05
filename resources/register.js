@@ -58,8 +58,8 @@ document.getElementById('btnAwaitingGoBack').addEventListener('click', () => {
 
 document.getElementById('btnRegister').addEventListener('click', () => {
   document.getElementById('warningMessage').className = "rowAuto warningText";
-  document.getElementById('magicLinkEmail').textContent = "We've sent you a magic link to "+document.getElementById("inputEmail").value+".";
-  
+  document.getElementById('magicLinkEmail').textContent = "We've sent you a magic link to " + document.getElementById("inputEmail").value + ".";
+
   window.postMessage("RegisterKey", {
     email: document.getElementById("inputEmail").value,
     licenseKey: document.getElementById("inputLicense").value
@@ -123,7 +123,14 @@ window.ShowTrialStarted = () => {
   document.getElementById('startTrialForm').className = "yFadeIn";
 };
 
-window.ShowRegistrationFail = () => {
+window.ShowRegistrationFail = (emailValid, licenseValid) => {
+  if (!emailValid && licenseValid)
+    document.getElementById('validationMessage').textContent = "Looks like the e-mail is not valid. May you try again?";
+  else if (!emailValid && !licenseValid)
+    document.getElementById('validationMessage').textContent = "Looks like the license key is not valid. May you try again?";
+  else if (emailValid && !licenseValid)
+    document.getElementById('validationMessage').textContent = "Looks like the license key is not valid. May you try again?";
+
   document.getElementById('warningMessage').className = "rowAuto warningText warningTextVisible";
 };
 
@@ -132,8 +139,8 @@ window.cancelAssignation = () => {
 }
 
 window.SetTrialMode = (remainingDays) => {
-  document.getElementById('registerMessage').innerHTML = `Merge Duplicates helps you remove duplicate symbols and styles.<br/>
-                                                        You still have <span class="primaryText"><b>`+ remainingDays + ` days</b></span> to push it to the limit. Go merge everything! `;
+  document.getElementById('registerMessage').innerHTML = `Mesh gradients helps you create awesome real mesh gradients.<br/>
+                                                        You still have <span class="primaryText"><b>`+ remainingDays + ` days</b></span> to push it to the limit. Go mesh everything! `;
 
   document.getElementById('btnStartTrial').className = "btnStartTrial notDisplayed";
   document.getElementById('btnContinueTrial').className = "btnStartTrial";

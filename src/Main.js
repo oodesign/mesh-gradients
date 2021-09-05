@@ -2,6 +2,7 @@ const MeshGradients = require("./MeshGradients");
 const Helpers = require("./Helpers");
 const sketch = require('sketch')
 var Settings = require('sketch/settings')
+var validator = require("email-validator");
 
 var globalRemainingDays = 0;
 var globalIsInTrial = false;
@@ -133,23 +134,23 @@ export function showRegistration(context) {
     const licenseKey = parameters.licenseKey;
     console.log("Receiving RegisterKey: " + email + " - " + licenseKey);
 
+    var proceed = true;
 
-
+    var emailValid = validator.validate(email);
     var gumroadResponse = Helpers.CheckGumroad(parameters.licenseKey, false);
-    console.log(gumroadResponse);
-    if (gumroadResponse) {
-      if (gumroadResponse == Helpers.valStatus.no) {
-        webContentsReg.executeJavaScript(`ShowRegistrationFail()`).catch(console.error);
-      }
-      else {
-        const variant = gumroadResponse.purchase.variants;
-        console.log("Variant is:" + variant);
+    var gumroadResponseOK = gumroadResponse && (gumroadResponse != Helpers.valStatus.no);
 
-        webContentsReg.executeJavaScript(`ShowRegistrationInProgress()`).catch(console.error);
-        //webContentsReg.executeJavaScript(`AttemptLogin(${JSON.stringify(email)},${JSON.stringify(licenseKey)},${JSON.stringify(variant)},${JSON.stringify(Helpers.uuidv4())})`).catch(console.error);
-      }
+    console.log("MailValid:" + emailValid + " - gumroadOk:" + gumroadResponseOK);
+    if (!emailValid || !gumroadResponseOK)
+      proceed = false;
+
+    if (proceed) {
+      const variant = gumroadResponse.purchase.variants;
+      webContentsReg.executeJavaScript(`ShowRegistrationInProgress()`).catch(console.error);
+      webContentsReg.executeJavaScript(`AttemptLogin(${JSON.stringify(email)},${JSON.stringify(licenseKey)},${JSON.stringify(variant)},${JSON.stringify(Helpers.uuidv4())})`).catch(console.error);
     }
-
+    else
+      webContentsReg.executeJavaScript(`ShowRegistrationFail(${JSON.stringify(emailValid)},${JSON.stringify(gumroadResponseOK)})`).catch(console.error);
 
   });
 
