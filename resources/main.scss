@@ -534,6 +534,11 @@ body {
   }
 }
 
+.btnAwaitingGoBack {
+  width: 260px;
+  margin-top: 30px;
+}
+
 // #endregion
 
 // #region Registration
@@ -616,9 +621,10 @@ body {
     width: 100%;
   }
 
-  // button {
-  //   margin-top: 12px;
-  // }
+}
+
+.loginContent{
+  height: 360px;
 }
 
 #confirmationForm {

@@ -203,7 +203,7 @@ export function showRegistration(context) {
   })
 
   webContentsReg.on('OpenPluginWeb', s => {
-    NSWorkspace.sharedWorkspace().openURL(NSURL.URLWithString("http://www.meshgradients.com"));
+    NSWorkspace.sharedWorkspace().openURL(NSURL.URLWithString("https://www.meshgradients.com"));
   })
 
   webContentsReg.on('Cancel', () => {

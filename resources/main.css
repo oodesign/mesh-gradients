@@ -888,6 +888,11 @@ body {
   background: rgba(35, 95, 255, 0.2);
 }
 
+.btnAwaitingGoBack {
+  width: 260px;
+  margin-top: 30px;
+}
+
 .registerHeader {
   font-family: AvenirNextLTPro-Medium, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
@@ -1233,6 +1238,10 @@ body {
 
 #registerForm input {
   width: 100%;
+}
+
+.loginContent {
+  height: 360px;
 }
 
 #confirmationForm {
