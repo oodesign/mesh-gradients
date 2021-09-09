@@ -56,8 +56,6 @@ function onValidate(context) {
   Settings.setSettingForKey('oo.meshGradients.session', null);
 
   var state = Helpers.VerifyLicense();
-  console.log("Verifying local license:");
-  console.log(Settings.settingForKey('oo.meshGradients.session'));
 
   console.log(state);
   switch (state) {
@@ -191,7 +189,7 @@ export function showRegistration(context) {
     triggerMethod(context);
   });
 
-  webContentsReg.on('OnLoginSuccessful', (email, licenseKey) => {
+  webContentsReg.on('OnLoginSuccessful', (email, licenseKey, dev) => {
     Settings.setSettingForKey('oo.meshGradients.session', {
       "active": true,
       "timeStamp": Date.now(),
