@@ -20,62 +20,6 @@ document.addEventListener('contextmenu', (e) => {
   //e.preventDefault()
 })
 
-document.getElementById('btnGetPlugin').addEventListener('click', () => {
-  window.postMessage('OpenPluginWeb');
-})
-
-document.getElementById('btnStartTrial').addEventListener('click', () => {
-  window.postMessage('StartTrial');
-})
-
-document.getElementById('btnContinueTrial').addEventListener('click', () => {
-  window.postMessage('ContinueTrial');
-})
-
-document.getElementById('btnLetsStart').addEventListener('click', () => {
-  window.postMessage('LetsStart');
-})
-
-document.getElementById('btnLetsStartTrial').addEventListener('click', () => {
-  window.postMessage('LetsStartTrial');
-})
-
-document.getElementById('btnNavRegistration').addEventListener('click', () => {
-  document.getElementById('ctaForm').className = "yFadeOut";
-  document.getElementById('registerForm').className = "yFadeIn";
-  document.getElementById('inputLicense').focus();
-})
-
-document.getElementById('btnRegisterGoBack').addEventListener('click', () => {
-  document.getElementById('registerForm').className = "";
-  document.getElementById('ctaForm').className = "yFadeIn";
-  document.getElementById('warningMessage').className = "rowAuto warningText";
-})
-
-document.getElementById('btnAwaitingGoBack').addEventListener('click', () => {
-  document.getElementById('awaitingForm').className = "";
-  document.getElementById('registerForm').className = "yFadeIn";
-  document.getElementById('warningMessage').className = "rowAuto warningText";
-})
-
-document.getElementById('btnTimeoutGoBack').addEventListener('click', () => {
-  document.getElementById('activationTimeout').className = "";
-  document.getElementById('registerForm').className = "yFadeIn";
-  document.getElementById('warningMessage').className = "rowAuto warningText";
-})
-
-
-
-document.getElementById('btnRegister').addEventListener('click', () => {
-  document.getElementById('warningMessage').className = "rowAuto warningText";
-  document.getElementById('magicLinkEmail').textContent = "We've sent you a magic link to " + document.getElementById("inputEmail").value + ".";
-
-  window.postMessage("RegisterKey", {
-    email: document.getElementById("inputEmail").value,
-    licenseKey: document.getElementById("inputLicense").value
-  });
-})
-
 
 
 window.AttemptLogin = (email, licenseKey, variant, ref) => {
@@ -97,6 +41,7 @@ window.AttemptLogin = (email, licenseKey, variant, ref) => {
     linkUsed: false,
     linkSignedIn: false,
     linkExpired: false,
+    isNotValid: false,
     app: "Sketch"
   })
 
@@ -108,6 +53,10 @@ window.AttemptLogin = (email, licenseKey, variant, ref) => {
         unsubscribe();
         if (timeoutTimer) clearTimeout(timeoutTimer);
         console.log("Unsubscribed it");
+      }
+      else if (doc.data().isNotValid) {
+        ShowRegistrationResponseFail();
+        if (timeoutTimer) clearTimeout(timeoutTimer);
       }
     }
   });
@@ -126,30 +75,38 @@ window.AttemptLogin = (email, licenseKey, variant, ref) => {
 
 };
 
-window.ShowRegistrationInProgress = () => {
-  document.getElementById('ctaForm').className = "yFadeOut";
-  document.getElementById('registerForm').className = "yFadeOut";
-  document.getElementById('awaitingForm').className = "yFadeIn";
-  document.getElementById('confirmationForm').className = "yFadeOut";
-};
-
-window.ShowRegistrationComplete = () => {
+window.HideForms = () => {
   document.getElementById('ctaForm').className = "yFadeOut";
   document.getElementById('registerForm').className = "yFadeOut";
   document.getElementById('awaitingForm').className = "yFadeOut";
+  document.getElementById('confirmationForm').className = "yFadeOut";
+  document.getElementById('issueForm').className = "yFadeOut";
+  document.getElementById('activationTimeout').className = "yFadeOut";
+  document.getElementById('startTrialForm').className = "yFadeOut";
+}
+
+window.ShowRegistrationInProgress = () => {
+  HideForms();
+  document.getElementById('awaitingForm').className = "yFadeIn";
+};
+
+window.ShowRegistrationResponseFail = () => {
+  HideForms();
+  document.getElementById('issueForm').className = "yFadeIn";
+};
+
+window.ShowRegistrationComplete = () => {
+  HideForms();
   document.getElementById('confirmationForm').className = "yFadeIn";
 };
 
 window.showActivationTimeout = () => {
-  document.getElementById('ctaForm').className = "yFadeOut";
-  document.getElementById('registerForm').className = "yFadeOut";
-  document.getElementById('awaitingForm').className = "yFadeOut";
-  document.getElementById('confirmationForm').className = "yFadeOut";
+  HideForms();
   document.getElementById('activationTimeout').className = "yFadeIn";
 };
 
 window.ShowTrialStarted = () => {
-  document.getElementById('ctaForm').className = "yFadeOut";
+  HideForms();
   document.getElementById('startTrialForm').className = "yFadeIn";
 };
 
@@ -202,7 +159,72 @@ window.SetOverModeInReg = () => {
   document.getElementById('warningMessage').className = "rowAuto warningText";
 }
 
+window.initializeView = () => {
+
+  document.getElementById('btnGetPlugin').addEventListener('click', () => {
+    window.postMessage('OpenPluginWeb');
+  })
+
+  document.getElementById('btnStartTrial').addEventListener('click', () => {
+    window.postMessage('StartTrial');
+  })
+
+  document.getElementById('btnContinueTrial').addEventListener('click', () => {
+    window.postMessage('ContinueTrial');
+  })
+
+  document.getElementById('btnLetsStart').addEventListener('click', () => {
+    window.postMessage('LetsStart');
+  })
+
+  document.getElementById('btnLetsStartTrial').addEventListener('click', () => {
+    window.postMessage('LetsStartTrial');
+  })
+
+  document.getElementById('btnNavRegistration').addEventListener('click', () => {
+    document.getElementById('ctaForm').className = "yFadeOut";
+    document.getElementById('registerForm').className = "yFadeIn";
+    document.getElementById('inputLicense').focus();
+  })
+
+  document.getElementById('btnRegisterGoBack').addEventListener('click', () => {
+    document.getElementById('registerForm').className = "";
+    document.getElementById('ctaForm').className = "yFadeIn";
+    document.getElementById('warningMessage').className = "rowAuto warningText";
+  })
+
+  document.getElementById('btnAwaitingGoBack').addEventListener('click', () => {
+    document.getElementById('awaitingForm').className = "";
+    document.getElementById('registerForm').className = "yFadeIn";
+    document.getElementById('warningMessage').className = "rowAuto warningText";
+  })
+
+  document.getElementById('btnIssueGoBack').addEventListener('click', () => {
+    document.getElementById('issueForm').className = "";
+    document.getElementById('registerForm').className = "yFadeIn";
+    document.getElementById('warningMessage').className = "rowAuto warningText";
+  })
+
+  document.getElementById('btnTimeoutGoBack').addEventListener('click', () => {
+    document.getElementById('activationTimeout').className = "";
+    document.getElementById('registerForm').className = "yFadeIn";
+    document.getElementById('warningMessage').className = "rowAuto warningText";
+  })
+
+  document.getElementById('btnRegister').addEventListener('click', () => {
+    document.getElementById('warningMessage').className = "rowAuto warningText";
+    document.getElementById('magicLinkEmail').textContent = "We've sent you a magic link to " + document.getElementById("inputEmail").value + ".";
+
+    window.postMessage("RegisterKey", {
+      email: document.getElementById("inputEmail").value,
+      licenseKey: document.getElementById("inputLicense").value
+    });
+  })
+}
+
 window.onload = () => {
+
+  initializeView();
   document.getElementById("inputEmail").value = "ootomir@gmail.com"
   document.getElementById("inputLicense").value = "B2721513-41D547DB-BFF282F4-79B67612"
 }

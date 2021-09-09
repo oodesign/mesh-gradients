@@ -565,7 +565,7 @@ body {
   text-align: center;
 }
 
-.awaitingText{
+.awaitingText {
   @include primaryText;
   width: 400px;
   margin: 30px 0 30px 0;
@@ -629,41 +629,17 @@ body {
   input {
     width: 100%;
   }
-
 }
 
-.loginContent{
+.loginContent {
   height: 360px;
 }
 
+#awaitingForm,
+#issueForm,
+#activationTimeout,
+#startTrialForm,
 #confirmationForm {
-  position: absolute;
-  left: 50%;
-  visibility: hidden;
-  opacity: 0;
-  transform: translate(-50%, 50px);
-  transition: all 0.3s ease-out;
-}
-
-#activationTimeout {
-  position: absolute;
-  left: 50%;
-  visibility: hidden;
-  opacity: 0;
-  transform: translate(-50%, 50px);
-  transition: all 0.3s ease-out;
-}
-
-#awaitingForm {
-  position: absolute;
-  left: 50%;
-  visibility: hidden;
-  opacity: 0;
-  transform: translate(-50%, 50px);
-  transition: all 0.3s ease-out;
-}
-
-#startTrialForm {
   position: absolute;
   left: 50%;
   visibility: hidden;
