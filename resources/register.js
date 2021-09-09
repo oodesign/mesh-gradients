@@ -22,7 +22,7 @@ document.addEventListener('contextmenu', (e) => {
 
 
 
-window.AttemptLogin = (email, licenseKey, variant, ref) => {
+window.AttemptLogin = (email, licenseKey, variant, ref, dev) => {
   console.log("Gonna attempt login:" + email + " - " + licenseKey + " - " + variant + " - " + ref);
 
   var timeoutTimer;
@@ -48,7 +48,7 @@ window.AttemptLogin = (email, licenseKey, variant, ref) => {
   const unsubscribe = db.collection("loginAttempts").doc(ref).onSnapshot((doc) => {
     if (doc.exists) {
       if (doc.data().status == 200) {
-        window.postMessage("OnLoginSuccessful", email, licenseKey);
+        window.postMessage("OnLoginSuccessful", email, licenseKey, dev);
         console.log("Unsubscribing");
         unsubscribe();
         if (timeoutTimer) clearTimeout(timeoutTimer);
@@ -71,7 +71,7 @@ window.AttemptLogin = (email, licenseKey, variant, ref) => {
     }).catch(e => console.error(e));
   }, 60000);
 
-  window.postMessage("OpenURL", 'https://auth.meshgradients.com?ref=' + ref);
+  window.postMessage("OpenURL", 'https://auth.meshgradients.com?ref=' + ref + '&dev=' + dev);
 
 };
 

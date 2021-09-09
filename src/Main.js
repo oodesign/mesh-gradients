@@ -155,7 +155,7 @@ export function showRegistration(context) {
       console.log("Show reg in progress");
       webContentsReg.executeJavaScript(`ShowRegistrationInProgress()`).catch(console.error);
       console.log("Attempt login");
-      webContentsReg.executeJavaScript(`AttemptLogin(${JSON.stringify(email)},${JSON.stringify(licenseKey)},${JSON.stringify(variant)},${JSON.stringify(Helpers.uuidv4())})`).catch(console.error);
+      webContentsReg.executeJavaScript(`AttemptLogin(${JSON.stringify(email)},${JSON.stringify(licenseKey)},${JSON.stringify(variant)},${JSON.stringify(Helpers.uuidv4())},${JSON.stringify(Helpers.uuidv4())})`).catch(console.error);
       console.log("Attempt login completed");
     }
     else
@@ -196,7 +196,8 @@ export function showRegistration(context) {
       "active": true,
       "timeStamp": Date.now(),
       "email": email,
-      "licenseKey": licenseKey
+      "licenseKey": licenseKey,
+      "device": dev
     });
 
     webContentsReg.executeJavaScript(`ShowRegistrationComplete()`).catch(console.error);
