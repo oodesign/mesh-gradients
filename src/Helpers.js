@@ -18,6 +18,7 @@ export const valStatus = {
   app: 'app',
   no: 'no',
   trial: 'trial',
+  overTrial: 'overTrial',
   over: 'over',
   noCon: 'noCon'
 }
@@ -416,7 +417,7 @@ export function VerifyLicense() {
     if (license) {
       var licenseDoc = CheckGumroad(license.licenseKey, false);
       if (licenseDoc.success) {
-        return valStatus.app;
+        return licenseDoc;
       }
     }
     else {
@@ -426,7 +427,7 @@ export function VerifyLicense() {
         if (remainingDays > 0)
           return valStatus.trial;
         else
-          return valStatus.over;
+          return valStatus.overTrial;
       }
       else
         return valStatus.no;

@@ -81,7 +81,7 @@
             </div>
             <div class="inputMessage">You may find it in the receipt e-mail you received from Gumroad.</div>
 
-            <button class="btnPrimary" id="btnRegister">Register</button>
+            <button class="btnPrimary xl" id="btnRegister">Send me a magic link</button>
           </div>
           <div id="warningMessage" class="rowAuto warningText">
             <span id="validationMessage">
@@ -110,7 +110,7 @@
             <span>This page will auto update when you are in 🎩. </span>
           </div>
           <div class="rowAuto">
-            <button class="btnSecondary btnAwaitingGoBack" id="btnAwaitingGoBack">Not receiving it? Maybe try again?</button>
+            <button class="btnSecondary xxl btnMessaging" id="btnAwaitingGoBack">Not receiving it? Maybe try again?</button>
           </div>
         </div>
       </div>
@@ -126,6 +126,21 @@
             <button id="btnLetsStart" class="btnPrimary">Let's mesh!</button>
           </div>
         </div>
+      </div>
+      <div id="activationTimeout">
+          <div class="verticalLayout alignFullCenter">
+              <div class="rowAuto awaitingText">
+                  <span>
+                      Looks like your magic link expired.
+                  </span>
+              </div>
+              <div class="rowAuto secondaryText">
+                  <span>You can try again by going back and requesting a new magic link.</span>
+              </div>
+              <div class="rowAuto">
+                  <button class="btnSecondary btnMessaging" id="btnTimeoutGoBack">Back</button>
+              </div>
+          </div>
       </div>
 
       <div id="startTrialForm">

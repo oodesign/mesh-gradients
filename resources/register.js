@@ -12,6 +12,8 @@ const firebaseConfig = {
   measurementId: "G-2V9WY6B83Y"
 };
 
+var db;
+var isFirebaseInitialized = false;
 
 // disable the context menu (eg. the right click menu) to have a more native feel
 document.addEventListener('contextmenu', (e) => {
@@ -56,6 +58,14 @@ document.getElementById('btnAwaitingGoBack').addEventListener('click', () => {
   document.getElementById('warningMessage').className = "rowAuto warningText";
 })
 
+document.getElementById('btnTimeoutGoBack').addEventListener('click', () => {
+  document.getElementById('activationTimeout').className = "";
+  document.getElementById('registerForm').className = "yFadeIn";
+  document.getElementById('warningMessage').className = "rowAuto warningText";
+})
+
+
+
 document.getElementById('btnRegister').addEventListener('click', () => {
   document.getElementById('warningMessage').className = "rowAuto warningText";
   document.getElementById('magicLinkEmail').textContent = "We've sent you a magic link to " + document.getElementById("inputEmail").value + ".";
@@ -71,8 +81,13 @@ document.getElementById('btnRegister').addEventListener('click', () => {
 window.AttemptLogin = (email, licenseKey, variant, ref) => {
   console.log("Gonna attempt login:" + email + " - " + licenseKey + " - " + variant + " - " + ref);
 
-  firebase.initializeApp(firebaseConfig);
-  var db = firebase.firestore();
+  var timeoutTimer;
+
+  if (!isFirebaseInitialized) {
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+    isFirebaseInitialized = true;
+  }
 
   db.collection("loginAttempts").doc(ref).set({
     email: email,
@@ -80,24 +95,31 @@ window.AttemptLogin = (email, licenseKey, variant, ref) => {
     variant: variant,
     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     linkUsed: false,
+    linkSignedIn: false,
     linkExpired: false,
     app: "Sketch"
   })
 
   const unsubscribe = db.collection("loginAttempts").doc(ref).onSnapshot((doc) => {
-
-    if (doc.data().status == 200) {
-      window.postMessage("OnLoginSuccessful", email, licenseKey);
-      console.log("Unsubscribing");
-      unsubscribe();
-      console.log("Unsubscribed it");
+    if (doc.exists) {
+      if (doc.data().status == 200) {
+        window.postMessage("OnLoginSuccessful", email, licenseKey);
+        console.log("Unsubscribing");
+        unsubscribe();
+        if (timeoutTimer) clearTimeout(timeoutTimer);
+        console.log("Unsubscribed it");
+      }
     }
   });
 
-  setTimeout(() => {
+  timeoutTimer = setTimeout(() => {
     unsubscribe();
     console.log("Unsubscribed it due to timeout");
-    //TODO Handle Timeout in UI
+    showActivationTimeout();
+    console.log("Updating login attempt:" + ref);
+    db.collection("loginAttempts").doc(ref).update({
+      linkExpired: true
+    }).catch(e => console.error(e));
   }, 60000);
 
   window.postMessage("OpenURL", 'https://auth.meshgradients.com?ref=' + ref);
@@ -116,6 +138,14 @@ window.ShowRegistrationComplete = () => {
   document.getElementById('registerForm').className = "yFadeOut";
   document.getElementById('awaitingForm').className = "yFadeOut";
   document.getElementById('confirmationForm').className = "yFadeIn";
+};
+
+window.showActivationTimeout = () => {
+  document.getElementById('ctaForm').className = "yFadeOut";
+  document.getElementById('registerForm').className = "yFadeOut";
+  document.getElementById('awaitingForm').className = "yFadeOut";
+  document.getElementById('confirmationForm').className = "yFadeOut";
+  document.getElementById('activationTimeout').className = "yFadeIn";
 };
 
 window.ShowTrialStarted = () => {
@@ -172,6 +202,8 @@ window.SetOverModeInReg = () => {
   document.getElementById('warningMessage').className = "rowAuto warningText";
 }
 
-document.getElementById("inputEmail").value = "ootomir@gmail.com"
-document.getElementById("inputLicense").value = "B2721513-41D547DB-BFF282F4-79B67612"
+window.onload = () => {
+  document.getElementById("inputEmail").value = "ootomir@gmail.com"
+  document.getElementById("inputLicense").value = "B2721513-41D547DB-BFF282F4-79B67612"
+}
 

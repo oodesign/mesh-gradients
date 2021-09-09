@@ -6,8 +6,8 @@ var validator = require("email-validator");
 
 var globalRemainingDays = 0;
 var globalIsInTrial = false;
-var globalIsExpired = false;
 var globalIsOver = false;
+var globalIsOverTrial = false;
 
 var globalCommand;
 
@@ -52,6 +52,7 @@ function onValidate(context) {
   console.log(Settings.settingForKey('oo.meshGradients.session'));
   console.log("Stored trial: " + Settings.settingForKey('oo.meshGradients.trial'));
 
+  Settings.setSettingForKey('oo.meshGradients.trial', null);
   Settings.setSettingForKey('oo.meshGradients.session', null);
 
   var state = Helpers.VerifyLicense();
@@ -68,8 +69,12 @@ function onValidate(context) {
       globalIsInTrial = true;
       showRegistration(context);
       break;
-    case Helpers.valStatus.over:
-      globalIsOver = true;
+    // case Helpers.valStatus.over:
+    //   globalIsOver = true;
+    //   showRegistration(context);
+    //   break;
+    case Helpers.valStatus.overTrial:
+      globalIsOverTrial = true;
       showRegistration(context);
       break;
     case Helpers.valStatus.no:
@@ -104,11 +109,11 @@ export function showRegistration(context) {
     if (globalIsInTrial) {
       webContentsReg.executeJavaScript(`SetTrialMode(${JSON.stringify(globalRemainingDays)})`).catch(console.error);
     }
-    if (globalIsExpired) {
-      webContentsReg.executeJavaScript(`SetExpiredMode()`).catch(console.error);
-    }
     if (globalIsOver) {
       webContentsReg.executeJavaScript(`SetOverMode()`).catch(console.error);
+    }
+    if (globalIsOverTrial) {
+      webContentsReg.executeJavaScript(`SetExpiredMode()`).catch(console.error);
     }
 
     regWindow.show()
@@ -118,11 +123,11 @@ export function showRegistration(context) {
     if (globalIsInTrial) {
       webContentsReg.executeJavaScript(`SetTrialMode(${JSON.stringify(globalRemainingDays)})`).catch(console.error);
     }
-    if (globalIsExpired) {
-      webContentsReg.executeJavaScript(`SetExpiredMode()`).catch(console.error);
-    }
     if (globalIsOver) {
       webContentsReg.executeJavaScript(`SetOverMode()`).catch(console.error);
+    }
+    if (globalIsOverTrial) {
+      webContentsReg.executeJavaScript(`SetExpiredMode()`).catch(console.error);
     }
   })
 
@@ -145,9 +150,13 @@ export function showRegistration(context) {
       proceed = false;
 
     if (proceed) {
+      console.log(gumroadResponse.purchase.variants);
       const variant = gumroadResponse.purchase.variants;
+      console.log("Show reg in progress");
       webContentsReg.executeJavaScript(`ShowRegistrationInProgress()`).catch(console.error);
+      console.log("Attempt login");
       webContentsReg.executeJavaScript(`AttemptLogin(${JSON.stringify(email)},${JSON.stringify(licenseKey)},${JSON.stringify(variant)},${JSON.stringify(Helpers.uuidv4())})`).catch(console.error);
+      console.log("Attempt login completed");
     }
     else
       webContentsReg.executeJavaScript(`ShowRegistrationFail(${JSON.stringify(emailValid)},${JSON.stringify(gumroadResponseOK)})`).catch(console.error);

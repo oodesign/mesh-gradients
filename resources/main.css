@@ -471,6 +471,10 @@ body {
   width: 170px;
 }
 
+.btnPrimary.xxl {
+  width: 210px;
+}
+
 .btnSecondary {
   background-color: transparent;
   width: 100px;
@@ -545,6 +549,14 @@ body {
     background-color: rgba(35, 95, 255, 0.2);
     border-color: #1b4edb;
   }
+}
+
+.btnSecondary.xl {
+  width: 200px;
+}
+
+.btnSecondary.xxl {
+  width: 260px;
 }
 
 .btnTertiary {
@@ -888,8 +900,7 @@ body {
   background: rgba(35, 95, 255, 0.2);
 }
 
-.btnAwaitingGoBack {
-  width: 260px;
+.btnMessaging {
   margin-top: 30px;
 }
 
@@ -1245,6 +1256,17 @@ body {
 }
 
 #confirmationForm {
+  position: absolute;
+  left: 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transform: translate(-50%, 50px);
+          transform: translate(-50%, 50px);
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+#activationTimeout {
   position: absolute;
   left: 50%;
   visibility: hidden;

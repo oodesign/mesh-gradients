@@ -256,6 +256,9 @@ body {
   &.xl {
     width: 170px;
   }
+  &.xxl {
+    width: 210px;
+  }
 }
 
 @mixin btnSecondary {
@@ -311,6 +314,13 @@ body {
 
 .btnSecondary {
   @include btnSecondary;
+
+  &.xl {
+    width: 200px;
+  }
+  &.xxl {
+    width: 260px;
+  }
 }
 
 @mixin btnTertiary {
@@ -534,8 +544,7 @@ body {
   }
 }
 
-.btnAwaitingGoBack {
-  width: 260px;
+.btnMessaging {
   margin-top: 30px;
 }
 
@@ -628,6 +637,15 @@ body {
 }
 
 #confirmationForm {
+  position: absolute;
+  left: 50%;
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, 50px);
+  transition: all 0.3s ease-out;
+}
+
+#activationTimeout {
   position: absolute;
   left: 50%;
   visibility: hidden;
