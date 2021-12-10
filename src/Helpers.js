@@ -222,51 +222,55 @@ function getAllColorVariables(includeAllStylesFromExternalLibraries) {
   var allColorVariables = [];
   const map = new Map();
 
-  document.swatches.forEach(function (swatch) {
+  if (document.swatches) {
+    document.swatches.forEach(function (swatch) {
 
-    var colorVariableObject = {
-      "colorVariable": swatch,
-      "name": "" + swatch.name,
-      "color": "" + swatch.color.substring(0, 7),
-      "libraryName": null,
-      "library": null,
-      "isForeign": false,
-      "isSelected": false,
-      "isChosen": false,
-      "description": "" + swatch.color.substring(0, 7),
-      // "thumbnail": getColorVariableThumbnail(swatch),
-      // "contrastMode": shouldEnableContrastMode(swatch.color.substring(1, 7)),
-      "duplicates": [],
-      "isSelected": false
-    }
+      var colorVariableObject = {
+        "colorVariable": swatch,
+        "name": "" + swatch.name,
+        "color": "" + swatch.color.substring(0, 7),
+        "libraryName": null,
+        "library": null,
+        "isForeign": false,
+        "isSelected": false,
+        "isChosen": false,
+        "description": "" + swatch.color.substring(0, 7),
+        // "thumbnail": getColorVariableThumbnail(swatch),
+        // "contrastMode": shouldEnableContrastMode(swatch.color.substring(1, 7)),
+        "duplicates": [],
+        "isSelected": false
+      }
 
-    allColorVariables.push(colorVariableObject);
-    map.set(swatch.id, true);
-  });
+      allColorVariables.push(colorVariableObject);
+      map.set(swatch.id, true);
+    });
+  }
 
   if (includeAllStylesFromExternalLibraries) {
     libraries.forEach(function (lib) {
       if (lib && lib.id && lib.enabled && context.document.documentData() && context.document.documentData().objectID().toString().localeCompare(lib.id) != 0) {
-        lib.getDocument().swatches.forEach(function (swatch) {
-          if (!map.has(swatch.id)) {
-            var colorVariableObject = {
-              "colorVariable": swatch,
-              "name": "" + swatch.name,
-              "color": "" + swatch.color.substring(0, 7),
-              "libraryName": lib.name,
-              "library": lib,
-              "isForeign": true,
-              "isSelected": false,
-              "isChosen": false,
-              "description": "" + swatch.color.substring(0, 7),
-              // "thumbnail": getColorVariableThumbnail(swatch),
-              // "contrastMode": shouldEnableContrastMode(swatch.color.substring(1, 7)),
-              "duplicates": [],
-              "isSelected": false
+        if (lib.getDocument().swatches) {
+          lib.getDocument().swatches.forEach(function (swatch) {
+            if (!map.has(swatch.id)) {
+              var colorVariableObject = {
+                "colorVariable": swatch,
+                "name": "" + swatch.name,
+                "color": "" + swatch.color.substring(0, 7),
+                "libraryName": lib.name,
+                "library": lib,
+                "isForeign": true,
+                "isSelected": false,
+                "isChosen": false,
+                "description": "" + swatch.color.substring(0, 7),
+                // "thumbnail": getColorVariableThumbnail(swatch),
+                // "contrastMode": shouldEnableContrastMode(swatch.color.substring(1, 7)),
+                "duplicates": [],
+                "isSelected": false
+              }
+              allColorVariables.push(colorVariableObject);
             }
-            allColorVariables.push(colorVariableObject);
-          }
-        });
+          });
+        }
       }
     });
   }

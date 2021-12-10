@@ -41,7 +41,15 @@ export function EditGradient(context) {
     Helpers.clog("Getting selected layer information");
     selectedLayer = document.selectedLayers.layers[0];
     if (Settings.layerSettingForKey(selectedLayer, 'MeshGradientDefinition')) {
-      let layersWithMeshGradientFill = selectedLayer.style.fills.filter(fill => ((fill.fillType == Style.FillType.Pattern) && (fill.pattern.image.size.width == 5000)))
+      let layersWithMeshGradientFill = selectedLayer.style.fills.filter(fill => {
+        if (fill.fillType == Style.FillType.Pattern) {
+          if (fill.pattern.image.size) {
+            if (fill.pattern.image.size.width == 5000) return true;
+          } else {
+            return true;
+          }
+        }
+      });
 
       if (layersWithMeshGradientFill.length > 0)
         layerMeshGradientDefinition = Settings.layerSettingForKey(selectedLayer, 'MeshGradientDefinition');
