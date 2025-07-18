@@ -15,7 +15,6 @@ import BrowserWindow from 'sketch-module-web-view';
 import { getWebview } from 'sketch-module-web-view/remote';
 
 export function EditGradient(context) {
-  Helpers.analytics("EditGradient");
   globalCommand = Helpers.commands.editgradient;
   onValidate(context);
 };

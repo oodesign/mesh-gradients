@@ -33,6 +33,7 @@
     "resources/**/*.js"
   ],
   "dependencies": {
+    "@babel/runtime": "^7.27.6",
     "@skpm/fs": "^0.2.6",
     "a-color-picker": "github:oodesign/a-color-picker",
     "color-interpolate": "^1.0.5",

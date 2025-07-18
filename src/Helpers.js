@@ -2,7 +2,6 @@ const sketch = require('sketch');
 const dom = require('sketch/dom');
 
 var fs = require('@skpm/fs');
-var track = require("sketch-module-google-analytics");
 var Settings = require('sketch/settings')
 
 var acquiredLicense = "Single";
@@ -326,17 +325,6 @@ export function clog(message) {
 
 export function getAcquiredLicense() {
   return acquiredLicense;
-}
-
-export function analytics(action) {
-  try {
-    var res = track("UA-191923189-1", "event", {
-      ec: "command",
-      ea: action,
-    });
-  } catch (e) {
-    clog("Couldn't report analytics for '" + action + "'")
-  }
 }
 
 function compareOrder(a, b) {
